@@ -3569,9 +3569,16 @@ footer{background:#040d16;padding:68px 0 0;}
           <div class="li-pf-dot"></div>
           Profile imported — please verify and complete below
         </div>
-
+<button type="button" id="regLiBtn" class="li-btn" onclick="regLiConnect()">
+  <!-- LinkedIn SVG -->
+  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <rect width="20" height="20" rx="3" fill="#fff"/>
+    <path d="M4.5 7.5H7v8H4.5v-8zm1.25-4a1.5 1.5 0 110 3 1.5 1.5 0 010-3zM8.5 7.5H11v1.1c.4-.7 1.3-1.35 2.5-1.35 2.65 0 3.15 1.75 3.15 4.02V15.5H14v-3.75c0-1-.02-2.3-1.4-2.3-1.4 0-1.6 1.1-1.6 2.23V15.5H8.5v-8z" fill="#0A66C2"/>
+  </svg>
+  Connect with LinkedIn
+</button>
+<div class="li-divider">or complete manually</div>
         <form id="regForm" onsubmit="regSubmit(event)">
-
           <!-- IDENTITY -->
           <div class="rg-2">
             <div class="rg"><label>First name *</label><input type="text" id="rgFirst" placeholder="First name" required/></div>
@@ -3983,8 +3990,10 @@ function go(page){
       o.observe(el);
     });
     pg.querySelectorAll('.bbar').forEach(b=>{setTimeout(()=>{b.style.width=b.dataset.w+'%';},250);});
-    if(page==='delegates')drawDonut();
-    if(page==='builder')
+    if(page==='delegates') drawDonut();
+    if(page==='builder') { /* builder init if needed */ }
+  }, 80);
+}
 // ── INTERACTIVE EVENT TABS
 function evSel(idx) {
   document.querySelectorAll('.ev-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
@@ -4660,7 +4669,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeRegModal();});
 //
 //  STEP 3 — Paste your Client ID below and re-upload index.html
 // ═══════════════════════════════════════════════════════════════════════════
-const LI_CLIENT_ID = 'YOUR_CLIENT_ID'; // ← paste LinkedIn App Client ID here
+const LI_CLIENT_ID ='YOUR_ACTUAL_CLIENT_ID_HERE';
 const LI_SCOPE     = 'openid%20profile%20email';
 
 // ── On page load: check if we're returning from LinkedIn OAuth redirect
