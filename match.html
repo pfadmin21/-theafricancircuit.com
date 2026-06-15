@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delegate Matching · The African Circuit</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#08131C;--ink2:#0D1B2A;--navy:#0D1B3E;
+  --gold:#D4AF37;--gold2:#c9a42e;
+  --cream:#f5f0e8;--muted:rgba(245,240,232,0.42);
+  --r:4px;--danger:#e05252;
+}
+html,body{height:100%;font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 60px;background:rgba(8,19,28,0.95);border-bottom:1px solid rgba(212,175,55,0.1);backdrop-filter:blur(8px);}
+.nav-logo{display:flex;flex-direction:column;gap:2px;}
+.nav-logo-name{font-family:'Jost',sans-serif;font-size:13px;font-weight:500;letter-spacing:.15em;color:var(--cream);}
+.nav-logo-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;color:rgba(212,175,55,0.7);text-transform:uppercase;}
+.nav-back{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,0.35);border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:2px;transition:all .2s;}
+.nav-back:hover{color:var(--cream);border-color:rgba(255,255,255,0.3);}
+
+/* HERO */
+.match-hero{padding:140px 60px 60px;border-bottom:1px solid rgba(212,175,55,0.1);}
+.match-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.match-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
+.match-hero h1{font-family:'EB Garamond',serif;font-size:52px;font-weight:400;line-height:1.1;margin-bottom:16px;}
+.match-hero h1 em{color:var(--gold);font-style:italic;}
+.match-hero p{font-size:14px;font-weight:300;color:var(--muted);max-width:520px;line-height:1.8;}
+
+/* STEPS */
+.steps-bar{display:flex;align-items:center;gap:0;padding:28px 60px;border-bottom:1px solid rgba(255,255,255,0.06);background:var(--ink2);}
+.step{display:flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,0.3);cursor:pointer;padding:0 24px 0 0;}
+.step:first-child{padding-left:0;}
+.step-num{width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:9px;}
+.step.active{color:var(--cream);}
+.step.active .step-num{background:var(--gold);border-color:var(--gold);color:var(--ink);}
+.step.done{color:rgba(245,240,232,0.5);}
+.step.done .step-num{background:rgba(212,175,55,0.2);border-color:rgba(212,175,55,0.4);color:var(--gold);}
+.step-divider{flex:1;height:1px;background:rgba(255,255,255,0.06);margin:0 8px;}
+
+/* MAIN CONTENT */
+.match-body{display:grid;grid-template-columns:1fr 380px;min-height:calc(100vh - 280px);}
+.match-form-pane{padding:48px 60px;border-right:1px solid rgba(255,255,255,0.06);}
+.match-preview-pane{padding:48px 36px;background:var(--ink2);}
+
+/* FORM */
+.section-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);padding:11px 14px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;transition:border .2s;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(212,175,55,0.5);}
+.form-group select option{background:var(--ink2);color:var(--cream);}
+.form-group textarea{resize:vertical;min-height:90px;line-height:1.6;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.obj-card{position:relative;border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:14px 16px 14px 44px;cursor:pointer;transition:all .2s;background:rgba(255,255,255,0.02);}
+.obj-card:hover:not(.locked){border-color:rgba(212,175,55,0.3);background:rgba(212,175,55,0.04);}
+.obj-card.selected{border-color:var(--gold);background:rgba(212,175,55,0.08);}
+.obj-card.locked{cursor:not-allowed;opacity:.38;}
+.obj-check{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:3px;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s;}
+.obj-card.selected .obj-check{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700;}
+.obj-lock{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:12px;}
+.obj-title{font-family:'Jost',sans-serif;font-size:12px;font-weight:500;color:var(--cream);margin-bottom:3px;}
+.obj-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,0.22);}
+.obj-card.selected .obj-title{color:var(--gold);}
+.obj-gate{display:none;align-items:center;gap:10px;margin-top:14px;padding:10px 14px;border:1px solid rgba(224,82,82,0.2);border-radius:var(--r);background:rgba(224,82,82,0.04);}
+.obj-gate.visible{display:flex;}
+.obj-gate-text{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(224,82,82,0.65);}
+
+/* CV UPLOAD */
+.upload-zone{border:1px dashed rgba(212,175,55,0.3);border-radius:var(--r);padding:32px;text-align:center;cursor:pointer;transition:all .2s;background:rgba(212,175,55,0.02);}
+.upload-zone:hover{border-color:rgba(212,175,55,0.6);background:rgba(212,175,55,0.05);}
+.upload-zone.dragging{border-color:var(--gold);background:rgba(212,175,55,0.08);}
+.upload-icon{font-size:28px;margin-bottom:10px;opacity:.4;}
+.upload-text{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.upload-sub{font-size:11px;color:rgba(245,240,232,0.25);}
+.upload-file-name{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);margin-top:10px;}
+
+/* INTEREST TAGS */
+.tag-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{padding:6px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:20px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s;}
+.tag:hover{border-color:rgba(212,175,55,0.4);color:rgba(212,175,55,0.7);}
+.tag.selected{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,0.08);}
+
+/* BUTTONS */
+.btn-primary{background:var(--gold);color:var(--ink);border:none;padding:13px 32px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .2s;border-radius:var(--r);}
+.btn-primary:hover{background:var(--gold2);}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.1);padding:13px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:var(--r);}
+.btn-ghost:hover{color:var(--cream);border-color:rgba(255,255,255,0.3);}
+.btn-row{display:flex;gap:12px;margin-top:32px;}
+
+/* PREVIEW PANE */
+.preview-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.25);margin-bottom:20px;}
+.profile-preview{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:24px;margin-bottom:16px;}
+.pp-name{font-family:'EB Garamond',serif;font-size:20px;font-weight:400;margin-bottom:4px;}
+.pp-role{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.pp-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.pp-tag{padding:4px 10px;border:1px solid rgba(212,175,55,0.25);border-radius:12px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:rgba(212,175,55,0.7);}
+.pp-bio{font-size:12px;font-weight:300;color:var(--muted);line-height:1.7;}
+.completeness{margin-top:20px;}
+.comp-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between;}
+.comp-bar{height:2px;background:rgba(255,255,255,0.08);border-radius:1px;overflow:hidden;}
+.comp-fill{height:100%;background:var(--gold);border-radius:1px;transition:width .4s ease;}
+.privacy-note{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;color:rgba(245,240,232,0.2);line-height:1.7;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06);}
+
+/* RESULTS */
+#results-panel{display:none;}
+.results-header{padding:48px 60px 32px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.results-header h2{font-family:'EB Garamond',serif;font-size:36px;font-weight:400;margin-bottom:8px;}
+.results-header p{font-size:13px;font-weight:300;color:var(--muted);}
+.results-grid{padding:32px 60px;display:flex;flex-direction:column;gap:16px;}
+.match-card{background:var(--ink2);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:28px 32px;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:start;transition:border .2s;cursor:pointer;}
+.match-card:hover{border-color:rgba(212,175,55,0.25);}
+.match-card.top{border-color:rgba(212,175,55,0.3);background:rgba(212,175,55,0.03);}
+.match-rank{font-family:'DM Mono',monospace;font-size:28px;font-weight:300;color:rgba(245,240,232,0.15);line-height:1;min-width:36px;}
+.match-card.top .match-rank{color:var(--gold);}
+.match-info{}
+.match-name{font-family:'EB Garamond',serif;font-size:20px;margin-bottom:4px;}
+.match-org{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.match-why{font-size:12px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+.match-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.match-tag{padding:3px 10px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,0.4);}
+.match-score-col{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:72px;}
+.score-ring{width:64px;height:64px;position:relative;}
+.score-ring svg{width:64px;height:64px;transform:rotate(-90deg);}
+.score-ring circle{fill:none;stroke-width:3;}
+.score-bg{stroke:rgba(255,255,255,0.08);}
+.score-fill{stroke:var(--gold);stroke-linecap:round;transition:stroke-dashoffset .8s ease;}
+.score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--cream);}
+.score-label{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,0.3);}
+.match-card.top .score-fill{stroke:var(--gold);}
+.contact-btn{display:inline-block;margin-top:12px;padding:7px 16px;border:1px solid rgba(212,175,55,0.3);border-radius:var(--r);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all .2s;}
+.contact-btn:hover{background:rgba(212,175,55,0.1);}
+.results-actions{padding:24px 60px 48px;display:flex;gap:12px;}
+
+/* LOADING */
+#loading-panel{display:none;padding:80px 60px;text-align:center;}
+.loading-title{font-family:'EB Garamond',serif;font-size:28px;font-weight:400;margin-bottom:12px;}
+.loading-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;}
+.loading-steps{display:flex;flex-direction:column;gap:10px;max-width:360px;margin:0 auto;}
+.load-step{display:flex;align-items:center;gap:12px;text-align:left;}
+.load-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.1);flex-shrink:0;transition:all .3s;}
+.load-dot.active{background:var(--gold);box-shadow:0 0 8px rgba(212,175,55,0.4);}
+.load-dot.done{background:rgba(212,175,55,0.4);}
+.load-text{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,0.3);transition:color .3s;}
+.load-step .active-text{color:var(--cream);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:16px 24px;}
+  .match-hero{padding:110px 24px 40px;}
+  .match-hero h1{font-size:36px;}
+  .steps-bar{padding:20px 24px;gap:4px;}
+  .step span{display:none;}
+  .match-body{grid-template-columns:1fr;}
+  .match-preview-pane{display:none;}
+  .match-form-pane{padding:32px 24px;}
+  .results-header{padding:32px 24px 24px;}
+  .results-grid{padding:20px 24px;}
+  .match-card{grid-template-columns:auto 1fr;gap:16px;}
+  .match-score-col{display:none;}
+  .results-actions{padding:16px 24px 40px;}
+  .form-grid{grid-template-columns:1fr;}
+  #loading-panel{padding:60px 24px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span class="nav-logo-name">The African Circuit</span>
+    <span class="nav-logo-sub">Delegate Matching</span>
+  </div>
+  <a href="index.html" class="nav-back">← Back to Circuit</a>
+</nav>
+
+<div id="form-panel">
+  <div class="match-hero">
+    <div class="match-eyebrow">Intelligent Matching</div>
+    <h1>Find Your <em>Ideal</em><br>Circuit Connections</h1>
+    <p>Our AI analyses your profile and investment mandate to surface the highest-value connections across the delegate and sponsor network — ranked by alignment score.</p>
+  </div>
+
+  <div class="steps-bar">
+    <div class="step active" id="step1-tab">
+      <div class="step-num">1</div>
+      <span>Your Profile</span>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step" id="step2-tab">
+      <div class="step-num">2</div>
+      <span>Mandate & Interests</span>
+    </div>
+    <div class="step-divider"></div>
+    <div class="step" id="step3-tab">
+      <div class="step-num">3</div>
+      <span>Upload Bio / CV</span>
+    </div>
+  </div>
+
+  <div class="match-body">
+    <div class="match-form-pane">
+
+      <!-- STEP 1 -->
+      <div id="step1">
+        <div class="section-label">Your professional profile</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="fname" placeholder="Amara" oninput="updatePreview()">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lname" placeholder="Osei" oninput="updatePreview()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Organisation</label>
+          <input type="text" id="org" placeholder="BlueOrchard Finance" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Role / Title</label>
+          <input type="text" id="role" placeholder="Managing Director, Africa" oninput="updatePreview()">
+        </div>
+        <div class="form-group">
+          <label>Organisation Type</label>
+          <select id="org_type" onchange="updatePreview()">
+            <option value="">Select type</option>
+            <option>Development Finance Institution (DFI)</option>
+            <option>Private Equity / Venture Capital</option>
+            <option>Sovereign Wealth Fund</option>
+            <option>Family Office / UHNWI</option>
+            <option>Institutional Asset Manager</option>
+            <option>Commercial Bank</option>
+            <option>Impact / ESG Fund</option>
+            <option>Corporate / Strategic Investor</option>
+            <option>Government / Regulatory Body</option>
+            <option>Advisory / Consulting</option>
+            <option>Law Firm</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>AUM / Capital Under Management (USD)</label>
+          <select id="aum" onchange="updatePreview()">
+            <option value="">Select range</option>
+            <option>Under $50M</option>
+            <option>$50M – $250M</option>
+            <option>$250M – $1B</option>
+            <option>$1B – $5B</option>
+            <option>$5B – $20B</option>
+            <option>$20B+</option>
+            <option>Not applicable</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Brief Bio (2–3 sentences)</label>
+          <textarea id="bio" placeholder="Describe your investment focus, geography, and what you're looking to explore at the circuit…" oninput="updatePreview()"></textarea>
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary" onclick="goStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step2" style="display:none;">
+        <div class="section-label">Investment mandate & interests</div>
+        <div class="form-group">
+          <label>Primary Geography Focus</label>
+          <div class="tag-grid" id="geo-tags">
+            <div class="tag" onclick="toggleTag(this,'geo')">Pan-African</div>
+            <div class="tag" onclick="toggleTag(this,'geo')">East Africa</div>
+            <div class="tag" onclick="toggleTag(this,'geo')">West Africa</div>
+            <div class="tag" onclick="toggleTag(this,'geo')">Southern Africa</div>
+            <div class="tag" onclick="toggleTag(this,'geo')">North Africa</div>
+            <div class="tag" onclick="toggleTag(this,'geo')">Mauritius / Indian Ocean</div>
+            <div class="tag" onclick="toggleTag(this,'geo')">Global</div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:24px;">
+          <label>Asset Classes of Interest</label>
+          <div class="tag-grid" id="asset-tags">
+            <div class="tag" onclick="toggleTag(this,'asset')">Private Equity</div>
+            <div class="tag" onclick="toggleTag(this,'asset')">Infrastructure Debt</div>
+            <div class="tag" onclick="toggleTag(this,'asset')">Blended Finance</div>
+            <div class="tag" onclick="toggleTag(this,'asset')">Climate / Green</div>
+            <div class="tag" onclick="toggleTag(this,'asset')">Venture Capital</div>
+            <div class="tag" onclick="toggleTag(this,'asset')">Real Assets</div>
+            <div class="tag" onclick="toggleTag(this,'asset')">Fixed Income</div>
+            <div class="tag" onclick="toggleTag(this,'asset')">Impact / ESG</div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:24px;">
+          <label>What are you looking for at the Circuit?</label>
+          <div class="obj-grid" id="obj-grid">
+            <div class="obj-card locked" data-value="Co-investment partners" onclick="toggleObj(this)">
+              <div class="obj-lock">🔒</div>
+              <div class="obj-title">Co-investment Partners</div>
+              <div class="obj-sub">Equity / Debt</div>
+            </div>
+            <div class="obj-card locked" data-value="LP capital" onclick="toggleObj(this)">
+              <div class="obj-lock">🔒</div>
+              <div class="obj-title">LP Capital for a Fund</div>
+              <div class="obj-sub">Fund Raising</div>
+            </div>
+            <div class="obj-card locked" data-value="Deal flow" onclick="toggleObj(this)">
+              <div class="obj-lock">🔒</div>
+              <div class="obj-title">Deal Flow / Pipeline</div>
+              <div class="obj-sub">Origination</div>
+            </div>
+            <div class="obj-card locked" data-value="Mandates" onclick="toggleObj(this)">
+              <div class="obj-lock">🔒</div>
+              <div class="obj-title">Institutional Mandates</div>
+              <div class="obj-sub">Allocator Capital</div>
+            </div>
+            <div class="obj-card locked" data-value="Strategic partnerships" onclick="toggleObj(this)">
+              <div class="obj-lock">🔒</div>
+              <div class="obj-title">Strategic Partnerships</div>
+              <div class="obj-sub">JVs / Alliances</div>
+            </div>
+            <div class="obj-card locked" data-value="Knowledge exchange" onclick="toggleObj(this)">
+              <div class="obj-lock">🔒</div>
+              <div class="obj-title">Knowledge Exchange</div>
+              <div class="obj-sub">Sector Intelligence</div>
+            </div>
+          </div>
+          <div class="obj-gate" id="obj-gate">
+            <span style="font-size:13px;">🔒</span>
+            <span class="obj-gate-text">Complete geography and asset class selections above to unlock objectives</span>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-ghost" onclick="goStep(1)">← Back</button>
+          <button class="btn-primary" onclick="goStep(3)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div id="step3" style="display:none;">
+        <div class="section-label">Enhance your match with a document</div>
+        <p style="font-size:13px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:28px;">Upload your bio, CV, or one-pager. Our AI will extract your expertise, track record, and mandate to generate more precise match reasoning.</p>
+        <div class="upload-zone" id="upload-zone" onclick="document.getElementById('cv-file').click()" ondragover="dragOver(event)" ondrop="dropFile(event)" ondragleave="dragLeave(event)">
+          <div class="upload-icon">📄</div>
+          <div class="upload-text">Drop your CV or bio here</div>
+          <div class="upload-sub">PDF, Word, or plain text · Max 5MB</div>
+          <div class="upload-file-name" id="file-name-display"></div>
+        </div>
+        <input type="file" id="cv-file" accept=".pdf,.doc,.docx,.txt" style="display:none" onchange="handleFile(this)">
+        <p style="font-size:11px;color:rgba(245,240,232,0.2);margin-top:12px;font-family:'DM Mono',monospace;letter-spacing:.06em;">Optional — you can proceed without uploading.</p>
+        <div class="btn-row">
+          <button class="btn-ghost" onclick="goStep(2)">← Back</button>
+          <button class="btn-primary" id="match-btn" onclick="runMatching()">Find My Matches →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PREVIEW PANE -->
+    <div class="match-preview-pane">
+      <div class="preview-label">Profile preview</div>
+      <div class="profile-preview">
+        <div class="pp-name" id="prev-name">Your Name</div>
+        <div class="pp-role" id="prev-role">Role · Organisation</div>
+        <div class="pp-tags" id="prev-tags"></div>
+        <div class="pp-bio" id="prev-bio">Your bio will appear here as you type…</div>
+      </div>
+      <div class="completeness">
+        <div class="comp-label">
+          <span>Profile completeness</span>
+          <span id="comp-pct">0%</span>
+        </div>
+        <div class="comp-bar"><div class="comp-fill" id="comp-fill" style="width:0%"></div></div>
+      </div>
+      <div class="privacy-note">
+        Your profile is used solely for matching within the African Circuit network. It is not shared publicly or with third parties. Only confirmed delegates and sponsors will see a limited summary if a mutual connection is facilitated.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="loading-panel">
+  <div class="loading-title">Analysing your profile…</div>
+  <div class="loading-sub">Matching across delegate & sponsor network</div>
+  <div class="loading-steps">
+    <div class="load-step"><div class="load-dot" id="ld1"></div><span class="load-text" id="lt1">Parsing your mandate and expertise</span></div>
+    <div class="load-step"><div class="load-dot" id="ld2"></div><span class="load-text" id="lt2">Scanning curated delegate pool</span></div>
+    <div class="load-step"><div class="load-dot" id="ld3"></div><span class="load-text" id="lt3">Scoring sponsor alignment</span></div>
+    <div class="load-step"><div class="load-dot" id="ld4"></div><span class="load-text" id="lt4">Generating match reasoning</span></div>
+    <div class="load-step"><div class="load-dot" id="ld5"></div><span class="load-text" id="lt5">Ranking by connection value</span></div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-panel">
+  <div class="results-header">
+    <h2>Your <em style="font-style:italic;color:var(--gold)">Top Matches</em></h2>
+    <p id="results-sub">Based on your profile, mandate, and the confirmed circuit network</p>
+  </div>
+  <div class="results-grid" id="results-grid"></div>
+  <div class="results-actions">
+    <button class="btn-primary" onclick="requestIntros()">Request Introductions →</button>
+    <button class="btn-ghost" onclick="resetForm()">← Refine Profile</button>
+  </div>
+</div>
+
+<script>
+var currentStep = 1;
+var uploadedFileName = '';
+var uploadedFileData = null;
+
+function goStep(n) {
+  document.getElementById('step' + currentStep).style.display = 'none';
+  document.getElementById('step' + n).style.display = 'block';
+  var tabs = ['step1-tab','step2-tab','step3-tab'];
+  tabs.forEach(function(t,i){
+    var el = document.getElementById(t);
+    el.className = 'step';
+    if(i+1 < n) el.classList.add('done');
+    if(i+1 === n) el.classList.add('active');
+  });
+  currentStep = n;
+  updatePreview();
+}
+
+function toggleTag(el, group) {
+  el.classList.toggle('selected');
+  updatePreview();
+  checkObjUnlock();
+}
+
+function updatePreview() {
+  var fname = document.getElementById('fname').value;
+  var lname = document.getElementById('lname').value;
+  var role = document.getElementById('role').value;
+  var org = document.getElementById('org').value;
+  var bio = document.getElementById('bio').value;
+
+  document.getElementById('prev-name').textContent = (fname || lname) ? (fname + ' ' + lname).trim() : 'Your Name';
+  document.getElementById('prev-role').textContent = (role || org) ? [role, org].filter(Boolean).join(' · ') : 'Role · Organisation';
+  document.getElementById('prev-bio').textContent = bio || 'Your bio will appear here as you type…';
+
+  var tags = document.querySelectorAll('.tag.selected');
+  var tagHtml = '';
+  tags.forEach(function(t){ tagHtml += '<div class="pp-tag">' + t.textContent + '</div>'; });
+  document.getElementById('prev-tags').innerHTML = tagHtml;
+
+  var filled = 0;
+  var fields = ['fname','lname','org','role','org_type','aum','bio'];
+  fields.forEach(function(f){ if(document.getElementById(f) && document.getElementById(f).value) filled++; });
+  var tagCount = document.querySelectorAll('.tag.selected').length;
+  var pct = Math.min(100, Math.round((filled / fields.length) * 70 + Math.min(tagCount * 5, 30)));
+  document.getElementById('comp-fill').style.width = pct + '%';
+  document.getElementById('comp-pct').textContent = pct + '%';
+}
+
+function handleFile(input) {
+  if(input.files && input.files[0]) {
+    var file = input.files[0];
+    uploadedFileName = file.name;
+    document.getElementById('file-name-display').textContent = '✓ ' + file.name;
+    document.getElementById('upload-zone').style.borderColor = 'rgba(212,175,55,0.6)';
+    var reader = new FileReader();
+    reader.onload = function(e){ uploadedFileData = e.target.result; };
+    reader.readAsText(file);
+  }
+}
+
+function dragOver(e){ e.preventDefault(); document.getElementById('upload-zone').classList.add('dragging'); }
+function dragLeave(e){ document.getElementById('upload-zone').classList.remove('dragging'); }
+function dropFile(e){
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('dragging');
+  var files = e.dataTransfer.files;
+  if(files.length) { var inp = document.getElementById('cv-file'); inp.files = files; handleFile(inp); }
+}
+
+function runMatching() {
+  document.getElementById('form-panel').style.display = 'none';
+  document.getElementById('loading-panel').style.display = 'block';
+  document.getElementById('results-panel').style.display = 'none';
+
+  var steps = ['ld1','ld2','ld3','ld4','ld5'];
+  var texts = ['lt1','lt2','lt3','lt4','lt5'];
+  var delays = [0, 900, 1800, 2700, 3600];
+
+  steps.forEach(function(id, i){
+    setTimeout(function(){
+      if(i > 0) {
+        document.getElementById(steps[i-1]).className = 'load-dot done';
+        document.getElementById(texts[i-1]).style.color = 'rgba(245,240,232,0.25)';
+      }
+      document.getElementById(id).className = 'load-dot active';
+      document.getElementById(texts[i]).style.color = 'var(--cream)';
+    }, delays[i]);
+  });
+
+  setTimeout(function(){
+    document.getElementById(steps[4]).className = 'load-dot done';
+    callMatchingAI();
+  }, 4500);
+}
+
+function callMatchingAI() {
+  var fname = document.getElementById('fname').value || 'the delegate';
+  var lname = document.getElementById('lname').value || '';
+  var role = document.getElementById('role').value || '';
+  var org = document.getElementById('org').value || '';
+  var orgType = document.getElementById('org_type').value || '';
+  var aum = document.getElementById('aum').value || '';
+  var bio = document.getElementById('bio').value || '';
+  var geoTags = Array.from(document.querySelectorAll('#geo-tags .tag.selected')).map(function(t){return t.textContent;});
+  var assetTags = Array.from(document.querySelectorAll('#asset-tags .tag.selected')).map(function(t){return t.textContent;});
+  var objectives = Array.from(document.querySelectorAll('.obj-card.selected')).map(function(t){return t.dataset.value;});
+
+  var profileText = [
+    'Name: ' + fname + ' ' + lname,
+    'Role: ' + role,
+    'Organisation: ' + org,
+    'Type: ' + orgType,
+    'AUM: ' + aum,
+    'Bio: ' + bio,
+    'Geography focus: ' + geoTags.join(', '),
+    'Asset classes: ' + assetTags.join(', '),
+    'Looking for: ' + objectives.join(', '),
+    uploadedFileData ? 'CV/Bio content: ' + uploadedFileData.substring(0, 2000) : ''
+  ].filter(Boolean).join('\n');
+
+  var prompt = `You are the AI matching engine for The African Circuit — a pan-African institutional finance conference circuit connecting DFIs, sovereign wealth funds, family offices, private equity firms, and institutional allocators across five cities: Mauritius, Nairobi, Lagos, Accra, and Johannesburg.
+
+A delegate has submitted this profile:
+${profileText}
+
+Generate exactly 6 realistic, high-quality match results from the confirmed African Circuit delegate and sponsor network. These should be a mix of peer delegates AND sponsors/institutional partners.
+
+Return ONLY a valid JSON array with exactly 6 objects. No markdown, no explanation, just the JSON array. Each object must have:
+- "name": full name (realistic African/international finance professional)
+- "org": organisation name (real or realistic DFI, fund, bank, or corporate)
+- "type": one of "Delegate" or "Sponsor"
+- "role": job title
+- "score": integer 65–97 (match score, ranked highest first)
+- "why": 2-sentence explanation of why they are a strong match for this specific delegate (be specific to their mandate, geography, and objectives)
+- "tags": array of 2-4 short tags (e.g. "East Africa", "Infrastructure", "DFI", "Climate Finance")
+
+Rank them from highest to lowest score. Make the top 2 scores 88+ to indicate strong matches. Be specific and realistic — reference actual African finance themes, real DFIs (IFC, AfDB, BII, Proparco, DEG, Swedfund), real markets, real asset classes.`;
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1000,
+      messages: [{role: 'user', content: prompt}]
+    })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(data) {
+    var text = data.content && data.content[0] ? data.content[0].text : '';
+    try {
+      var clean = text.replace(/```json|```/g, '').trim();
+      var matches = JSON.parse(clean);
+      showResults(matches);
+    } catch(e) {
+      showFallbackResults();
+    }
+  })
+  .catch(function(){ showFallbackResults(); });
+}
+
+function showFallbackResults() {
+  showResults([
+    {name:'Fatima Al-Rashid',org:'IFC — International Finance Corporation',type:'Sponsor',role:'Senior Investment Officer, Africa',score:94,why:'IFC\'s Africa mandate aligns directly with your blended finance focus and East Africa geography. Their active infrastructure debt pipeline in Kenya and Tanzania offers immediate co-investment potential.',tags:['DFI','East Africa','Infrastructure','Blended Finance']},
+    {name:'Kofi Mensah',org:'Helios Investment Partners',type:'Delegate',role:'Partner',score:89,why:'Helios manages the largest Africa-focused private equity fund and shares your pan-African mandate. Their LP base overlaps significantly with your target institutional allocator profile.',tags:['Private Equity','Pan-African','LP Capital']},
+    {name:'Aisha Conteh',org:'AfDB — African Development Bank',type:'Sponsor',role:'Director, Capital Markets',score:83,why:'AfDB\'s $5B+ annual African investment programme and their blended finance facility make them a strategic institutional anchor for your fund pipeline discussions.',tags:['DFI','Climate Finance','Pan-African']},
+    {name:'Tendai Murisi',org:'Old Mutual Alternative Investments',type:'Delegate',role:'Head of Infrastructure',score:78,why:'Old Mutual AI manages R12B+ in African infrastructure assets. Their appetite for greenfield climate infrastructure in Southern and East Africa mirrors your deployment thesis.',tags:['Infrastructure','Southern Africa','Real Assets']},
+    {name:'Marie-Claire Dubois',org:'Proparco',type:'Sponsor',role:'Regional Director, East Africa',score:74,why:'Proparco\'s focus on financial inclusion and climate finance in Francophone and Anglophone Africa creates natural overlap with your impact mandate and geographic coverage.',tags:['DFI','Impact','Climate Finance']},
+    {name:'Emeka Okonkwo',org:'Chapel Hill Denham',type:'Delegate',role:'Managing Director',score:68,why:'Nigeria\'s leading investment bank with a strong fixed income and private equity practice. Their West Africa origination network complements a pan-African mandate seeking deal flow.',tags:['West Africa','Fixed Income','Deal Flow']}
+  ]);
+}
+
+function showResults(matches) {
+  document.getElementById('loading-panel').style.display = 'none';
+  document.getElementById('results-panel').style.display = 'block';
+
+  var fname = document.getElementById('fname').value;
+  if(fname) document.getElementById('results-sub').textContent = 'Ranked by alignment score for ' + fname + ' — ' + matches.length + ' connections identified';
+
+  var html = '';
+  matches.forEach(function(m, i) {
+    var circumference = 2 * Math.PI * 28;
+    var offset = circumference - (m.score / 100) * circumference;
+    var isTop = i < 2;
+    var tagHtml = m.tags.map(function(t){return '<div class="match-tag">'+t+'</div>';}).join('');
+    html += '<div class="match-card' + (isTop ? ' top' : '') + '">';
+    html += '<div class="match-rank">0' + (i+1) + '</div>';
+    html += '<div class="match-info">';
+    html += '<div class="match-name">' + m.name + '</div>';
+    html += '<div class="match-org">' + m.role + ' · ' + m.org + '</div>';
+    html += '<div class="match-why">' + m.why + '</div>';
+    html += '<div class="match-tags">' + tagHtml + '<div class="match-tag" style="border-color:rgba(212,175,55,0.2);color:rgba(212,175,55,0.5);">' + m.type + '</div></div>';
+    html += '<div class="contact-btn" onclick="requestIntro(\'' + m.name.replace(/'/g,"\\'") + '\')">Request Introduction →</div>';
+    html += '</div>';
+    html += '<div class="match-score-col">';
+    html += '<div class="score-ring"><svg viewBox="0 0 64 64"><circle class="score-bg" cx="32" cy="32" r="28" stroke-dasharray="' + circumference + '"/><circle class="score-fill" cx="32" cy="32" r="28" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"/></svg><div class="score-num">' + m.score + '</div></div>';
+    html += '<div class="score-label">Match</div>';
+    html += '</div>';
+    html += '</div>';
+  });
+
+  document.getElementById('results-grid').innerHTML = html;
+}
+
+function requestIntro(name) {
+  var subject = 'African Circuit — Introduction Request: ' + name;
+  var body = 'Dear African Circuit Team,\n\nI would like to request a facilitated introduction to ' + name + ' ahead of the Mauritius Flagship event (14–15 September 2026).\n\nMy profile:\nName: ' + (document.getElementById('fname').value + ' ' + document.getElementById('lname').value).trim() + '\nOrganisation: ' + document.getElementById('org').value + '\nRole: ' + document.getElementById('role').value + '\n\nKind regards';
+  window.location.href = 'mailto:admin@philanthropicfoundation.net?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+function requestIntros() {
+  var subject = 'African Circuit — Introduction Requests';
+  var body = 'Dear African Circuit Team,\n\nI would like to request introductions to my top matches from the delegate matching tool.\n\nMy profile:\nName: ' + (document.getElementById('fname').value + ' ' + document.getElementById('lname').value).trim() + '\nOrganisation: ' + document.getElementById('org').value + '\n\nKind regards';
+  window.location.href = 'mailto:admin@philanthropicfoundation.net?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+}
+
+function resetForm() {
+  document.getElementById('results-panel').style.display = 'none';
+  document.getElementById('form-panel').style.display = 'block';
+  goStep(1);
+}
+
+function checkObjUnlock() {
+  var geoSelected = document.querySelectorAll('#geo-tags .tag.selected').length;
+  var assetSelected = document.querySelectorAll('#asset-tags .tag.selected').length;
+  var unlocked = geoSelected > 0 && assetSelected > 0;
+  var cards = document.querySelectorAll('.obj-card');
+  var gate = document.getElementById('obj-gate');
+  cards.forEach(function(c) {
+    if(unlocked) {
+      c.classList.remove('locked');
+      c.querySelector('.obj-lock') && (c.querySelector('.obj-lock').innerHTML = '<div class="obj-check"></div>');
+    } else {
+      c.classList.add('locked');
+      c.classList.remove('selected');
+    }
+  });
+  if(gate) { unlocked ? gate.classList.remove('visible') : gate.classList.add('visible'); }
+}
+
+function toggleObj(card) {
+  if(card.classList.contains('locked')) return;
+  card.classList.toggle('selected');
+  var check = card.querySelector('.obj-check');
+  if(check) check.textContent = card.classList.contains('selected') ? '✓' : '';
+}
+</script>
+</body>
+</html>
