@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The African Circuit · Operations v3</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --deep:#080f22;--navy:#0D1B3E;--gold:#D4AF37;--gb:rgba(212,175,55,0.12);
+  --gbl:rgba(212,175,55,0.07);--gborder:rgba(212,175,55,0.22);
+  --cream:#f5f0e8;--muted:rgba(245,240,232,0.42);
+  --danger:#e05252;--warn:#e8a020;--ok:#4ade80;--info:#4A90D9;--purple:#a78bfa;
+  --r:6px;
+}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--deep);color:var(--cream);overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.2);border-radius:2px}
+
+/* LOGIN */
+#login{position:fixed;inset:0;z-index:9999;background:var(--deep);display:flex;align-items:center;justify-content:center}
+.lg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,175,55,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.lg-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(212,175,55,0.07) 0%,transparent 65%);pointer-events:none}
+.lg-card{position:relative;z-index:1;width:380px;background:rgba(13,27,62,0.9);border:0.5px solid var(--gborder);border-radius:10px;padding:44px 40px;backdrop-filter:blur(20px);animation:fadeUp 0.5s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.lg-icon{width:44px;height:44px;border-radius:50%;background:var(--gb);border:0.5px solid var(--gborder);display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+.lg-icon i{font-size:20px;color:var(--gold)}
+.lg-title{font-family:'EB Garamond',serif;font-size:22px;text-align:center;margin-bottom:3px}
+.lg-sub{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:30px}
+.lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block}
+.lg-in{width:100%;background:rgba(0,0,0,.3);border:0.5px solid var(--gborder);border-radius:var(--r);padding:11px 14px;font-size:14px;color:var(--cream);font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.lg-in:focus{border-color:var(--gold)}
+.lg-in::placeholder{color:var(--muted)}
+.lg-btn{width:100%;margin-top:18px;padding:12px;background:var(--gold);color:var(--navy);border:none;border-radius:var(--r);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .15s}
+.lg-btn:hover{background:#c9a42e}
+.lg-err{margin-top:10px;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--danger);opacity:0;transition:opacity .2s}
+.lg-err.show{opacity:1}
+.lg-foot{margin-top:24px;padding-top:18px;border-top:0.5px solid rgba(212,175,55,.1);text-align:center;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.06em}
+
+/* APP */
+#app{display:none;height:100vh;flex-direction:column}
+#app.on{display:flex}
+
+/* TOPNAV */
+.topnav{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:50px;background:var(--deep);border-bottom:1px solid var(--gborder);flex-shrink:0}
+.brand{font-family:'EB Garamond',serif;font-size:15px;letter-spacing:.04em}.brand span{color:var(--gold)}
+.tabs{display:flex;gap:1px;overflow-x:auto}
+.tab{padding:5px 11px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-radius:4px;border:.5px solid transparent;transition:all .15s;position:relative;white-space:nowrap;flex-shrink:0}
+.tab:hover{color:var(--cream);background:rgba(255,255,255,.04)}
+.tab.on{color:var(--gold);border-color:var(--gborder);background:var(--gb)}
+.badge-n{position:absolute;top:1px;right:1px;width:13px;height:13px;border-radius:50%;background:var(--danger);color:#fff;font-size:7px;display:none;align-items:center;justify-content:center;font-family:'DM Mono',monospace}
+.nav-r{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.live-p{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted)}
+.ldot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.logout{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:4px 8px;border:.5px solid rgba(255,255,255,.1);border-radius:4px;background:transparent;transition:all .15s}
+.logout:hover{color:var(--danger);border-color:rgba(224,82,82,.3)}
+
+/* CONTENT */
+.content{flex:1;overflow-y:auto}
+.sec{display:none;animation:fi .2s ease}.sec.on{display:block}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+
+/* SHARED */
+.alert-bar{background:rgba(224,82,82,.07);border-bottom:1px solid rgba(224,82,82,.2);padding:9px 20px;display:flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;color:rgba(224,82,82,.9)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gborder);border-bottom:1px solid var(--gborder)}
+.kpi{background:var(--deep);padding:14px 18px}
+.kl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.kv{font-family:'EB Garamond',serif;font-size:22px;font-weight:500;line-height:1}
+.kv.g{color:var(--gold)}.kv.r{color:var(--danger)}.kv.b{color:var(--info)}.kv.ok{color:var(--ok)}.kv.w{color:var(--warn)}
+.ks{font-size:11px;color:var(--muted);margin-top:3px}
+.layout{display:grid;grid-template-columns:1fr 272px;min-height:400px}
+.main{padding:16px 20px}.side{border-left:1px solid var(--gborder);padding:14px 16px;overflow-y:auto}
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding-bottom:10px;border-bottom:.5px solid rgba(212,175,55,.12)}
+.pt{font-family:'EB Garamond',serif;font-size:16px}.pt span{color:var(--gold)}
+.pbtn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:5px 9px;border:.5px solid rgba(212,175,55,.2);border-radius:3px;background:transparent;transition:all .15s}
+.pbtn:hover{color:var(--gold);border-color:var(--gold)}
+.srch{background:rgba(255,255,255,.04);border:.5px solid rgba(212,175,55,.2);border-radius:4px;padding:6px 10px;font-size:12px;color:var(--cream);font-family:'DM Sans',sans-serif;outline:none;width:150px}
+.srch::placeholder{color:var(--muted)}.srch:focus{border-color:rgba(212,175,55,.45)}
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 8px 7px 0;border-bottom:.5px solid rgba(212,175,55,.12)}
+.tbl td{padding:8px 8px 8px 0;font-size:12px;color:rgba(245,240,232,.82);border-bottom:.5px solid rgba(255,255,255,.04);vertical-align:middle}
+.tbl tr:hover td{background:rgba(212,175,55,.025)}
+.co{font-weight:500;color:var(--cream);font-size:13px}.cs{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:1px}
+.ssel{background:var(--deep);border:.5px solid rgba(212,175,55,.2);border-radius:3px;font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;color:var(--cream);cursor:pointer;padding:3px 6px;outline:none}
+.ssel:hover,.ssel:focus{border-color:var(--gold)}
+.ssel option{background:#0D1B3E;color:var(--cream)}
+.bd{display:inline-block;padding:2px 7px;border-radius:3px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase}
+.b-r{background:rgba(224,82,82,.1);color:#e05252;border:.5px solid rgba(224,82,82,.25)}
+.b-w{background:rgba(232,160,32,.1);color:#e8a020;border:.5px solid rgba(232,160,32,.25)}
+.b-g{background:rgba(74,222,128,.1);color:#4ade80;border:.5px solid rgba(74,222,128,.25)}
+.b-b{background:rgba(74,144,217,.1);color:#4A90D9;border:.5px solid rgba(74,144,217,.25)}
+.b-gold{background:rgba(212,175,55,.1);color:var(--gold);border:.5px solid rgba(212,175,55,.25)}
+.b-p{background:rgba(167,139,250,.1);color:#a78bfa;border:.5px solid rgba(167,139,250,.25)}
+.ab{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:3px 7px;border:.5px solid rgba(255,255,255,.1);border-radius:3px;background:transparent;transition:all .15s;white-space:nowrap}
+.ab:hover{color:var(--gold);border-color:rgba(212,175,55,.3)}
+.note-in{width:100%;background:rgba(0,0,0,.2);border:.5px solid rgba(212,175,55,.15);border-radius:3px;padding:5px 8px;font-size:11px;color:var(--cream);font-family:'DM Sans',sans-serif;outline:none;resize:none}
+.note-in:focus{border-color:rgba(212,175,55,.4)}
+.fu-in{background:rgba(0,0,0,.2);border:.5px solid rgba(212,175,55,.15);border-radius:3px;padding:4px 7px;font-size:11px;color:var(--cream);font-family:'DM Mono',monospace;outline:none}
+.sl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-bottom:7px;margin-bottom:9px;border-bottom:.5px solid rgba(212,175,55,.1)}
+.sr{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:.5px solid rgba(255,255,255,.04);font-size:12px}
+.sn{color:var(--cream);font-weight:500}
+.act{padding:7px 0;border-bottom:.5px solid rgba(255,255,255,.04);font-size:11px;line-height:1.5}
+.at{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:1px}
+.fu-card{background:rgba(255,255,255,.03);border:.5px solid var(--gborder);border-radius:var(--r);padding:12px;margin-bottom:8px}
+.fu-card.urgent{border-color:rgba(224,82,82,.35);background:rgba(224,82,82,.04)}
+.fu-card.today{border-color:rgba(232,160,32,.35);background:rgba(232,160,32,.04)}
+.fu-org{font-family:'EB Garamond',serif;font-size:14px;margin-bottom:2px}
+.fu-contact{font-size:11px;color:var(--muted)}
+.ai-ta{width:100%;background:rgba(0,0,0,.2);border:.5px solid rgba(212,175,55,.18);border-radius:4px;padding:9px 11px;font-size:12px;color:var(--cream);font-family:'DM Sans',sans-serif;outline:none;resize:vertical;margin-bottom:8px}
+.ai-ta:focus{border-color:var(--gold)}
+.ai-ta::placeholder{color:var(--muted)}
+.ai-go{width:100%;padding:9px;background:var(--gold);color:var(--navy);border:none;border-radius:4px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .15s}
+.ai-go:hover{background:#c9a42e}
+.ai-out{margin-top:10px;font-size:11px;line-height:1.75;color:rgba(245,240,232,.85);background:rgba(0,0,0,.18);border-radius:4px;padding:12px;display:none;max-height:260px;overflow-y:auto;white-space:pre-wrap;font-family:'DM Mono',monospace}
+.chip{display:inline-block;padding:4px 9px;border:.5px solid rgba(212,175,55,.22);border-radius:3px;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);cursor:pointer;margin:3px 3px 0 0;transition:all .15s}
+.chip:hover{color:var(--gold);border-color:var(--gold);background:var(--gbl)}
+.countdown{display:flex;gap:14px;padding:12px 20px;background:var(--gbl);border-bottom:1px solid var(--gborder);align-items:center}
+.cd-num{font-family:'EB Garamond',serif;font-size:28px;color:var(--gold);line-height:1}
+.cd-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:2px;text-align:center}
+.cd-sep{font-family:'EB Garamond',serif;font-size:24px;color:var(--muted);padding-bottom:6px}
+.cd-title{flex:1;font-family:'EB Garamond',serif;font-size:17px}
+.cd-title span{color:var(--gold)}
+.toast{position:fixed;bottom:16px;right:16px;background:#0f2218;border:.5px solid rgba(74,222,128,.3);color:#4ade80;padding:10px 16px;border-radius:5px;font-family:'DM Mono',monospace;font-size:10px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:99999}
+.toast.show{opacity:1}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-bg.open{display:flex}
+.modal{background:#0D1B3E;border:.5px solid var(--gborder);border-radius:10px;padding:26px;width:480px;max-width:95vw;max-height:88vh;overflow-y:auto;animation:fadeUp .2s ease}
+.modal-title{font-family:'EB Garamond',serif;font-size:18px;margin-bottom:14px;padding-bottom:10px;border-bottom:.5px solid rgba(212,175,55,.12)}
+.modal-x{float:right;cursor:pointer;color:var(--muted);font-size:20px;line-height:1}
+.modal-x:hover{color:var(--cream)}
+.m-in{width:100%;background:rgba(0,0,0,.3);border:.5px solid rgba(212,175,55,.2);border-radius:4px;padding:9px 11px;font-size:13px;color:var(--cream);font-family:'DM Sans',sans-serif;outline:none;margin-bottom:10px}
+.m-in:focus{border-color:var(--gold)}
+.m-btn{margin-top:6px;padding:10px 20px;background:var(--gold);color:var(--navy);border:none;border-radius:4px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;font-weight:500}
+.m-btn:hover{background:#c9a42e}
+.m-btn2{margin-top:6px;margin-left:8px;padding:10px 14px;background:transparent;color:var(--muted);border:.5px solid rgba(255,255,255,.15);border-radius:4px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;cursor:pointer}
+.m-btn2:hover{color:var(--cream)}
+.gap-item{padding:9px 0;border-bottom:.5px solid rgba(255,255,255,.04)}
+.gap-org{font-size:13px;font-weight:500;color:var(--cream)}
+.gap-type{font-size:11px;color:var(--muted);margin-top:1px}
+.gap-action{font-size:11px;color:var(--warn);margin-top:3px}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:20px}
+.team-card{background:rgba(255,255,255,.03);border:.5px solid var(--gborder);border-radius:8px;padding:18px;text-align:center}
+.t-av{width:44px;height:44px;border-radius:50%;background:var(--gb);border:.5px solid var(--gborder);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-family:'EB Garamond',serif;font-size:16px;color:var(--gold)}
+.t-name{font-family:'EB Garamond',serif;font-size:15px;margin-bottom:2px}
+.t-role{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.bulk-card{background:rgba(255,255,255,.03);border:.5px solid var(--gborder);border-radius:var(--r);padding:9px 12px;margin-bottom:5px;display:flex;align-items:center;gap:10px}
+.bulk-out{background:rgba(0,0,0,.2);border:.5px solid rgba(212,175,55,.15);border-radius:var(--r);padding:12px;font-family:'DM Mono',monospace;font-size:11px;line-height:1.8;color:rgba(245,240,232,.85);white-space:pre-wrap;margin-bottom:10px;max-height:200px;overflow-y:auto}
+
+/* PROGRAMME */
+.session-card{background:rgba(255,255,255,.03);border:.5px solid var(--gborder);border-radius:var(--r);padding:12px 14px;margin-bottom:8px;display:flex;gap:12px;align-items:flex-start;transition:border-color .15s;cursor:grab}
+.session-card:hover{border-color:rgba(212,175,55,.35)}
+.session-time{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);min-width:60px;margin-top:2px}
+.session-body{flex:1}
+.session-title{font-size:13px;font-weight:500;color:var(--cream);margin-bottom:2px}
+.session-speaker{font-size:11px;color:var(--muted)}
+.session-type{margin-top:4px}
+.time-block{background:rgba(212,175,55,.06);border-left:2px solid var(--gold);padding:8px 12px;margin-bottom:6px;border-radius:0 4px 4px 0}
+.tb-time{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold)}
+.tb-label{font-size:12px;color:var(--cream);margin-top:2px}
+
+/* BUDGET */
+.budget-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:.5px solid rgba(255,255,255,.04)}
+.budget-cat{font-size:13px;font-weight:500;color:var(--cream);flex:1}
+.budget-sub{font-size:11px;color:var(--muted)}
+.budget-input{background:rgba(0,0,0,.2);border:.5px solid rgba(212,175,55,.15);border-radius:3px;padding:4px 8px;font-family:'DM Mono',monospace;font-size:12px;color:var(--cream);width:100px;text-align:right;outline:none}
+.budget-input:focus{border-color:var(--gold)}
+.profit-bar{height:8px;border-radius:4px;background:rgba(255,255,255,.06);overflow:hidden;margin-top:8px}
+.profit-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--ok),var(--gold));transition:width .5s}
+
+/* EMAIL LOG */
+.log-item{padding:10px 0;border-bottom:.5px solid rgba(255,255,255,.04)}
+.log-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.log-org{font-size:13px;font-weight:500;color:var(--cream)}
+.log-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted)}
+.log-subject{font-size:12px;color:rgba(245,240,232,.7);margin-bottom:3px}
+.log-sentiment{font-family:'DM Mono',monospace;font-size:9px}
+.log-note{font-size:11px;color:var(--muted);font-style:italic;margin-top:3px}
+
+/* POST EVENT */
+.post-card{background:rgba(255,255,255,.03);border:.5px solid var(--gborder);border-radius:var(--r);padding:14px;margin-bottom:10px}
+.post-title{font-family:'EB Garamond',serif;font-size:15px;margin-bottom:4px}
+.post-desc{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.post-status{display:flex;align-items:center;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="lg-grid"></div><div class="lg-glow"></div>
+  <div class="lg-card">
+    <div class="lg-icon"><i class="ti ti-lock"></i></div>
+    <div class="lg-title">The African Circuit</div>
+    <div class="lg-sub">Operations v3 &middot; Internal Access</div>
+    <label class="lbl">Access password</label>
+    <input class="lg-in" id="pw" type="password" placeholder="Enter password">
+    <button class="lg-btn" onclick="doLogin()">Enter Operations &rarr;</button>
+    <div class="lg-err" id="pw-err">Incorrect password &mdash; please try again.</div>
+    <div class="lg-foot">The African Circuit &middot; Restricted Access<br>Ebene, Mauritius &middot; 2026</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topnav">
+    <div class="brand">The African Circuit <span>&middot; Ops v3</span></div>
+    <div class="tabs">
+      <div class="tab on" onclick="sw('today',this)">Today <span class="badge-n" id="fu-count">0</span></div>
+      <div class="tab" onclick="sw('sponsors',this)">Sponsors</div>
+      <div class="tab" onclick="sw('speakers',this)">Speakers</div>
+      <div class="tab" onclick="sw('delegates',this)">Delegates</div>
+      <div class="tab" onclick="sw('programme',this)">Programme</div>
+      <div class="tab" onclick="sw('budget',this)">Budget</div>
+      <div class="tab" onclick="sw('log',this)">Email Log</div>
+      <div class="tab" onclick="sw('post',this)">Post-Event</div>
+      <div class="tab" onclick="sw('bulk',this)">Bulk Emails</div>
+      <div class="tab" onclick="sw('gaps',this)">Gaps</div>
+      <div class="tab" onclick="sw('ai',this)">AI Drafts</div>
+      <div class="tab" onclick="sw('team',this)">Team</div>
+    </div>
+    <div class="nav-r">
+      <div class="live-p"><div class="ldot"></div>Live</div>
+      <button class="logout" onclick="doLogout()">Sign out</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- TODAY -->
+    <div class="sec on" id="sec-today">
+      <div class="countdown">
+        <div class="cd-title">Days to <span>Mauritius Flagship</span></div>
+        <div style="text-align:center"><div class="cd-num" id="cd-d">--</div><div class="cd-lbl">Days</div></div>
+        <div class="cd-sep">:</div>
+        <div style="text-align:center"><div class="cd-num" id="cd-h">--</div><div class="cd-lbl">Hours</div></div>
+        <div class="cd-sep">:</div>
+        <div style="text-align:center"><div class="cd-num" id="cd-m">--</div><div class="cd-lbl">Mins</div></div>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Follow-ups Today</div><div class="kv r" id="k-today">0</div><div class="ks">Require action</div></div>
+        <div class="kpi"><div class="kl">Overdue</div><div class="kv r" id="k-overdue">0</div><div class="ks">Past date</div></div>
+        <div class="kpi"><div class="kl">This Week</div><div class="kv g" id="k-week">0</div><div class="ks">Upcoming</div></div>
+        <div class="kpi"><div class="kl">Sponsor Pipeline</div><div class="kv g">$197,500</div><div class="ks">10 active accounts</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph"><div class="pt">Follow-up Queue <span>&middot; Priority Order</span></div></div>
+          <div id="fu-list"><div style="color:var(--muted);font-size:13px;padding:20px 0">No follow-ups yet. Add dates to contacts in Sponsors or Speakers tabs.</div></div>
+        </div>
+        <div class="side">
+          <div class="sl">Quick add follow-up</div>
+          <label class="lbl">Organisation</label>
+          <input class="m-in" id="q-org" placeholder="Company name">
+          <label class="lbl">Contact</label>
+          <input class="m-in" id="q-contact" placeholder="Contact name">
+          <label class="lbl">Follow-up date</label>
+          <input class="m-in fu-in" id="q-date" type="date" style="width:100%">
+          <label class="lbl">Note</label>
+          <textarea class="note-in" id="q-note" rows="2" placeholder="What needs to happen?" style="width:100%;margin-bottom:10px"></textarea>
+          <button class="pbtn" style="width:100%;text-align:center" onclick="quickAddFU()">Add Follow-up</button>
+          <div style="margin-top:18px">
+            <div class="sl">Fixed priorities</div>
+            <div class="act"><div style="color:var(--danger)">Ministry of Finance letter</div><div class="at">Keynote &middot; Minister Dovina Pillay</div></div>
+            <div class="act"><div style="color:var(--danger)">SA High Commission invite</div><div class="at">Diplomatic &middot; Dr. Manzini</div></div>
+            <div class="act"><div style="color:var(--warn)">Mediterrania follow-up</div><div class="at">$40k &middot; Noha El Ghazali</div></div>
+            <div class="act"><div style="color:var(--warn)">AfrAsia Bank outreach</div><div class="at">TAP custodian &middot; not contacted</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPONSORS -->
+    <div class="sec" id="sec-sponsors">
+      <div class="alert-bar" style="justify-content:space-between">
+        <span><i class="ti ti-alert-triangle"></i> Update amounts inline &middot; Status updates save instantly &middot; Pipeline total updates automatically</span>
+        <button class="ab" onclick="sw('team',document.querySelectorAll('.tab')[11])" style="color:rgba(224,82,82,.8);border-color:rgba(224,82,82,.3)">Data wrong? Reset &rarr;</button>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Pipeline</div><div class="kv g pipeline-total">$197,500</div><div class="ks" id="sp-count-ks">10 accounts</div></div>
+        <div class="kpi"><div class="kl">Confirmed</div><div class="kv ok" id="k-conf">0</div><div class="ks">Signed up</div></div>
+        <div class="kpi"><div class="kl">In Progress</div><div class="kv b" id="k-prog">0</div><div class="ks">Active conversations</div></div>
+        <div class="kpi"><div class="kl">Calls Pending</div><div class="kv r">14+</div><div class="ks">Master list</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph">
+            <div class="pt">Sponsors <span>&middot; Live Status</span></div>
+            <div style="display:flex;gap:8px">
+              <input class="srch" placeholder="Search..." oninput="filterTbl('sp-tb',this.value)">
+              <button class="pbtn" onclick="openModal('sp')">+ Add</button>
+            </div>
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Organisation</th><th>Target</th><th>Status</th><th>Follow-up</th><th>Notes</th><th></th></tr></thead>
+            <tbody id="sp-tb"></tbody>
+          </table>
+        </div>
+        <div class="side">
+          <div class="sl">Pipeline by value</div>
+          <div id="sp-sidebar-list"></div>
+          <div style="margin-top:16px">
+            <div class="sl">Critical gaps</div>
+            <div class="act"><div style="color:var(--danger)">AfrAsia Bank &mdash; not in Excel</div><div class="at">TAP I custodian</div></div>
+            <div class="act"><div style="color:var(--warn)">Air Mauritius &mdash; not approached</div></div>
+            <div class="act"><div>GCR Ratings &mdash; role unclear</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPEAKERS -->
+    <div class="sec" id="sec-speakers">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Confirmed</div><div class="kv ok" id="spk-conf">0</div><div class="ks">Mauritius flagship</div></div>
+        <div class="kpi"><div class="kl">Diplomatic</div><div class="kv b">2</div><div class="ks">SA High Comm + Min Finance</div></div>
+        <div class="kpi"><div class="kl">Pending</div><div class="kv r" id="spk-pend">0</div><div class="ks">Awaiting confirmation</div></div>
+        <div class="kpi"><div class="kl">DFIs / Multilaterals</div><div class="kv b">6</div><div class="ks">In pipeline</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph">
+            <div class="pt">Speakers <span>&middot; Status Tracker</span></div>
+            <div style="display:flex;gap:8px">
+              <input class="srch" placeholder="Search..." oninput="filterTbl('spk-tb',this.value)">
+              <button class="pbtn" onclick="openModal('spk')">+ Add</button>
+            </div>
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Name</th><th>Organisation</th><th>Type</th><th>Status</th><th>Follow-up</th><th>Notes</th><th></th></tr></thead>
+            <tbody id="spk-tb"></tbody>
+          </table>
+        </div>
+        <div class="side">
+          <div class="sl">Urgent</div>
+          <div class="act"><div style="color:var(--danger)">Ministry of Finance letter</div><div class="at">Keynote &middot; Minister Pillay</div></div>
+          <div class="act"><div style="color:var(--danger)">SA High Commission invite</div><div class="at">Dr. H.N. Manzini</div></div>
+          <div class="act"><div style="color:var(--warn)">BII &mdash; call Wednesday</div><div class="at">Keegan Ziady</div></div>
+          <div class="act"><div style="color:var(--warn)">CAIA &mdash; upgrade to partner?</div><div class="at">Laura Merlini</div></div>
+          <div class="act"><div>UNITAR &mdash; call scheduled</div><div class="at">Elena Proden</div></div>
+          <div style="margin-top:16px">
+            <div class="sl">DFIs in pipeline</div>
+            <div class="act"><div>MIGA &mdash; World Bank Group</div></div>
+            <div class="act"><div>Swedfund International</div></div>
+            <div class="act"><div>BII &mdash; Keegan Ziady</div></div>
+            <div class="act"><div>TDB &mdash; Jean Francois Rose</div></div>
+            <div class="act"><div>AfDB &mdash; Kazuhiro Numasawa</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELEGATES -->
+    <div class="sec" id="sec-delegates">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">IFC Directory</div><div class="kv g">159</div><div class="ks">Verified contacts</div></div>
+        <div class="kpi"><div class="kl">Banks</div><div class="kv b">20</div><div class="ks">Absa, Standard, Bank One</div></div>
+        <div class="kpi"><div class="kl">Fund Managers</div><div class="kv b">55</div><div class="ks">CIS + investment mgmt</div></div>
+        <div class="kpi"><div class="kl">Mgmt Companies</div><div class="kv b">38</div><div class="ks">Largest category</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph">
+            <div class="pt">Delegates <span>&middot; IFC Directory</span></div>
+            <input class="srch" placeholder="Search..." oninput="filterTbl('del-tb',this.value)">
+          </div>
+          <table class="tbl">
+            <thead><tr><th>Organisation</th><th>Category</th><th>Contact</th><th>Email</th><th>Priority</th><th></th></tr></thead>
+            <tbody id="del-tb"></tbody>
+          </table>
+        </div>
+        <div class="side">
+          <div class="sl">Breakdown</div>
+          <div class="sr"><span class="sn">Management Cos</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">38</span></div>
+          <div class="sr"><span class="sn">Investment Mgmt</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">31</span></div>
+          <div class="sr"><span class="sn">CIS / Fund Mgrs</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">24</span></div>
+          <div class="sr"><span class="sn">Banks</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">20</span></div>
+          <div class="sr"><span class="sn">Insurance</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">13</span></div>
+          <div class="sr"><span class="sn">Legal / Other</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">33</span></div>
+          <div class="sr" style="border-top:.5px solid rgba(212,175,55,.2);padding-top:8px;margin-top:4px">
+            <span style="color:var(--gold)">Total</span>
+            <span style="font-family:'DM Mono',monospace;font-size:14px;color:var(--gold)">159</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRAMME BUILDER -->
+    <div class="sec" id="sec-programme">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Sessions Scheduled</div><div class="kv g" id="prog-count">0</div><div class="ks">Mauritius flagship</div></div>
+        <div class="kpi"><div class="kl">Keynote</div><div class="kv b">1</div><div class="ks">Minister of Finance</div></div>
+        <div class="kpi"><div class="kl">Programme Duration</div><div class="kv g">8h</div><div class="ks">09:00 &mdash; 17:00</div></div>
+        <div class="kpi"><div class="kl">Gaps in Schedule</div><div class="kv r" id="prog-gaps">0</div><div class="ks">Unassigned slots</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph">
+            <div class="pt">Programme <span>&middot; Mauritius Flagship</span></div>
+            <div style="display:flex;gap:8px">
+              <button class="pbtn" onclick="openProgModal()">+ Add Session</button>
+              <button class="pbtn" onclick="genProgAI()">AI Generate Briefing</button>
+            </div>
+          </div>
+          <div id="prog-list"></div>
+        </div>
+        <div class="side">
+          <div class="sl">Day structure</div>
+          <div class="time-block"><div class="tb-time">09:00 &mdash; 09:30</div><div class="tb-label">Registration &amp; Welcome Coffee</div></div>
+          <div class="time-block"><div class="tb-time">09:30 &mdash; 10:00</div><div class="tb-label">Opening Keynote &mdash; Minister of Finance</div></div>
+          <div class="time-block"><div class="tb-time">10:00 &mdash; 11:00</div><div class="tb-label">Panel 1 &mdash; DFI Capital Mobilisation</div></div>
+          <div class="time-block"><div class="tb-time">11:00 &mdash; 11:15</div><div class="tb-label">Networking Break</div></div>
+          <div class="time-block"><div class="tb-time">11:15 &mdash; 12:15</div><div class="tb-label">Panel 2 &mdash; IFC &amp; Mauritius as Gateway</div></div>
+          <div class="time-block"><div class="tb-time">12:15 &mdash; 13:30</div><div class="tb-label">Networking Lunch</div></div>
+          <div class="time-block"><div class="tb-time">13:30 &mdash; 14:30</div><div class="tb-label">Panel 3 &mdash; Private Capital &amp; Co-Investment</div></div>
+          <div class="time-block"><div class="tb-time">14:30 &mdash; 15:30</div><div class="tb-label">Panel 4 &mdash; Regulatory &amp; ESG</div></div>
+          <div class="time-block"><div class="tb-time">15:30 &mdash; 15:45</div><div class="tb-label">Networking Break</div></div>
+          <div class="time-block"><div class="tb-time">15:45 &mdash; 16:45</div><div class="tb-label">Panel 5 &mdash; Deal Flow &amp; Pipeline</div></div>
+          <div class="time-block"><div class="tb-time">16:45 &mdash; 17:00</div><div class="tb-label">Closing Remarks</div></div>
+          <div class="time-block"><div class="tb-time">17:00 &mdash; 19:00</div><div class="tb-label">Cocktail Reception</div></div>
+          <div style="margin-top:14px">
+            <div class="sl">AI briefing</div>
+            <div class="ai-out" id="prog-ai-out" style="display:block;font-size:11px;color:var(--muted)">Click "AI Generate Briefing" to get a full programme briefing note.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUDGET -->
+    <div class="sec" id="sec-budget">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Revenue Pipeline</div><div class="kv g pipeline-total">$197,500</div><div class="ks">Sponsorships + delegates</div></div>
+        <div class="kpi"><div class="kl">Total Costs</div><div class="kv r" id="b-costs">$0</div><div class="ks">Event expenditure</div></div>
+        <div class="kpi"><div class="kl">Gross Margin</div><div class="kv ok" id="b-margin">$197,500</div><div class="ks">Revenue minus costs</div></div>
+        <div class="kpi"><div class="kl">Margin %</div><div class="kv ok" id="b-pct">100%</div><div class="ks">Profitability</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph"><div class="pt">Budget Tracker <span>&middot; Mauritius Flagship</span></div><button class="pbtn" onclick="addBudgetRow()">+ Add Item</button></div>
+          <div style="margin-bottom:16px">
+            <div style="display:flex;gap:8px;margin-bottom:8px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">
+              <span style="flex:1">Category</span><span style="width:120px">Budgeted</span><span style="width:120px">Actual</span><span style="width:80px">Variance</span>
+            </div>
+            <div id="budget-rows"></div>
+          </div>
+          <div style="background:rgba(212,175,55,.06);border:.5px solid rgba(212,175,55,.2);border-radius:var(--r);padding:14px;margin-top:8px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+              <span style="font-family:'EB Garamond',serif;font-size:16px">Revenue minus costs</span>
+              <span style="font-family:'DM Mono',monospace;font-size:16px;color:var(--gold)" id="b-net">$197,500</span>
+            </div>
+            <div class="profit-bar"><div class="profit-fill" id="b-bar" style="width:100%"></div></div>
+            <div style="font-size:11px;color:var(--muted);margin-top:6px">Based on <span class="pipeline-total">$197,500</span> pipeline &mdash; update actuals as payments come in</div>
+          </div>
+        </div>
+        <div class="side">
+          <div class="sl">Revenue breakdown</div>
+          <div class="sr"><span class="sn">Sponsorships</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--gold)">$197,500</span></div>
+          <div class="sr"><span class="sn">Delegate tickets</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">TBC</span></div>
+          <div class="sr"><span class="sn">Partnership fees</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)">TBC</span></div>
+          <div style="margin-top:16px">
+            <div class="sl">Typical event costs</div>
+            <div class="act"><div>Venue hire</div><div class="at">Largest single cost</div></div>
+            <div class="act"><div>Catering &amp; F&amp;B</div><div class="at">Per head &times; delegates</div></div>
+            <div class="act"><div>AV &amp; production</div><div class="at">Screens, mics, streaming</div></div>
+            <div class="act"><div>Speaker travel</div><div class="at">Flights + accommodation</div></div>
+            <div class="act"><div>Marketing &amp; print</div><div class="at">Collateral, backdrop, roll-ups</div></div>
+            <div class="act"><div>Staffing</div><div class="at">On-site team</div></div>
+            <div class="act"><div>Contingency (10%)</div><div class="at">Always budget this</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL LOG -->
+    <div class="sec" id="sec-log">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Emails Logged</div><div class="kv g" id="log-count">0</div><div class="ks">This event</div></div>
+        <div class="kpi"><div class="kl">Positive responses</div><div class="kv ok" id="log-pos">0</div><div class="ks">Interested / confirmed</div></div>
+        <div class="kpi"><div class="kl">Awaiting reply</div><div class="kv w" id="log-wait">0</div><div class="ks">No response yet</div></div>
+        <div class="kpi"><div class="kl">Negative</div><div class="kv r" id="log-neg">0</div><div class="ks">Not interested</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph">
+            <div class="pt">Email Log <span>&middot; Comms Record</span></div>
+            <button class="pbtn" onclick="openLogModal()">+ Log Email</button>
+          </div>
+          <div id="log-list"><div style="color:var(--muted);font-size:13px;padding:20px 0">No emails logged yet. Click "+ Log Email" to record your outreach.</div></div>
+        </div>
+        <div class="side">
+          <div class="sl">Why log emails?</div>
+          <div class="act"><div style="font-weight:500">Track what was sent</div><div class="at">Never send the same email twice</div></div>
+          <div class="act"><div style="font-weight:500">Know response sentiment</div><div class="at">See where each relationship stands</div></div>
+          <div class="act"><div style="font-weight:500">Team visibility</div><div class="at">Anyone can see what was discussed</div></div>
+          <div class="act"><div style="font-weight:500">Follow-up trigger</div><div class="at">Know when to chase and when not to</div></div>
+          <div style="margin-top:16px">
+            <div class="sl">Sentiment guide</div>
+            <div class="act"><div class="bd b-g" style="margin-bottom:3px">Positive</div><div class="at">Interested, confirmed, wants to proceed</div></div>
+            <div class="act"><div class="bd b-w" style="margin-bottom:3px">Neutral</div><div class="at">No reply yet, or non-committal</div></div>
+            <div class="act"><div class="bd b-r" style="margin-bottom:3px">Negative</div><div class="at">Declined, not interested, no budget</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POST EVENT -->
+    <div class="sec" id="sec-post">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Follow-up emails</div><div class="kv g">6</div><div class="ks">Types ready to send</div></div>
+        <div class="kpi"><div class="kl">Best window</div><div class="kv g">24-48h</div><div class="ks">After the event</div></div>
+        <div class="kpi"><div class="kl">AI drafts</div><div class="kv b">Live</div><div class="ks">Personalised per contact</div></div>
+        <div class="kpi"><div class="kl">Next event</div><div class="kv g">Nairobi</div><div class="ks">Circuit stop 2</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph"><div class="pt">Post-Event Engine <span>&middot; Mauritius Flagship</span></div></div>
+          <div class="post-card">
+            <div class="post-title">Thank you &mdash; Delegates</div>
+            <div class="post-desc">Warm thank you email to all attendees. Reference key moments from the day, share any materials, and introduce the next circuit stop.</div>
+            <div class="post-status">
+              <span class="bd b-b">Delegates</span>
+              <button class="ab" onclick="setAI('Draft a warm, diplomatic thank you email to delegates who attended the African Circuit Mauritius flagship event. Reference the quality of discussions, the calibre of speakers including the keynote from the Minister of Finance, and introduce the next circuit stop. Sign off as The African Circuit Team.')">Draft with AI</button>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="post-title">Thank you &mdash; Sponsors</div>
+            <div class="post-desc">Personalised thank you to each sponsor. Reference their specific contribution, confirm deliverables received, and discuss next circuit stop sponsorship.</div>
+            <div class="post-status">
+              <span class="bd b-gold">Sponsors</span>
+              <button class="ab" onclick="setAI('Draft a personalised post-event thank you email to a sponsor of the African Circuit Mauritius flagship event. Thank them for their partnership, reference their specific sponsorship package and what was delivered, and introduce the opportunity to sponsor the next circuit stop in Nairobi. Sign off as The African Circuit Partnerships Team.')">Draft with AI</button>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="post-title">Thank you &mdash; Speakers</div>
+            <div class="post-desc">Personal thank you to each speaker. Reference their specific session, share any feedback received, and invite them to the next circuit stop.</div>
+            <div class="post-status">
+              <span class="bd b-b">Speakers</span>
+              <button class="ab" onclick="setAI('Draft a warm personal thank you email to a speaker at the African Circuit Mauritius flagship event. Thank them for their contribution to their specific panel, reference positive feedback from delegates, and invite them to consider participating in the next circuit stop. Sign off as The African Circuit Team.')">Draft with AI</button>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="post-title">Next circuit stop &mdash; Nairobi announcement</div>
+            <div class="post-desc">Announce Nairobi as the next stop. Build momentum while the Mauritius event is fresh. Include early registration or sponsorship opportunity.</div>
+            <div class="post-status">
+              <span class="bd b-p">All contacts</span>
+              <button class="ab" onclick="setAI('Draft an announcement email introducing the next African Circuit stop in Nairobi. This follows the successful Mauritius flagship. Build excitement, reference the circuit model, and include an early-bird call to action for delegates and sponsors. Sign off as The African Circuit Team.')">Draft with AI</button>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="post-title">Meeting introduction &mdash; delegate to sponsor</div>
+            <div class="post-desc">Facilitate introductions between delegates and sponsors who expressed interest in connecting. Highest value post-event action.</div>
+            <div class="post-status">
+              <span class="bd b-gold">Networking</span>
+              <button class="ab" onclick="setAI('Draft a warm introduction email connecting a delegate and a sponsor who met at the African Circuit Mauritius event and expressed mutual interest in exploring opportunities. The email should be sent from The African Circuit facilitating the introduction. Professional and warm in tone.')">Draft with AI</button>
+            </div>
+          </div>
+          <div class="post-card">
+            <div class="post-title">Feedback survey &mdash; all attendees</div>
+            <div class="post-desc">Send a short feedback request to all attendees. Use responses to improve future circuit stops and share key insights with sponsors.</div>
+            <div class="post-status">
+              <span class="bd b-b">All attendees</span>
+              <button class="ab" onclick="setAI('Draft a short, warm feedback request email to attendees of the African Circuit Mauritius flagship event. Keep it brief, explain that their feedback shapes future circuit stops, and include a note that aggregate insights will be shared with sponsors. Sign off as The African Circuit Team.')">Draft with AI</button>
+            </div>
+          </div>
+          <div style="margin-top:16px">
+            <div class="sl" style="margin-bottom:10px">Custom post-event draft</div>
+            <textarea class="ai-ta" id="post-prompt" rows="3" placeholder="Describe what you need e.g. follow-up to a specific sponsor conversation at the event..."></textarea>
+            <button class="ai-go" onclick="runPostAI()">Generate with AI &rarr;</button>
+            <div class="ai-out" id="post-ai-out"></div>
+          </div>
+        </div>
+        <div class="side">
+          <div class="sl">Post-event timeline</div>
+          <div class="act"><div style="color:var(--danger)">Day 0 &mdash; Event day</div><div class="at">Collect business cards, note conversations</div></div>
+          <div class="act"><div style="color:var(--warn)">Day 1 &mdash; Next morning</div><div class="at">Send thank you emails while fresh</div></div>
+          <div class="act"><div style="color:var(--warn)">Day 2-3</div><div class="at">Facilitiate introductions, follow-up on deals</div></div>
+          <div class="act"><div style="color:var(--ok)">Day 5-7</div><div class="at">Send Nairobi announcement</div></div>
+          <div class="act"><div style="color:var(--ok)">Week 2</div><div class="at">Sponsor deliverables report, invoices for Nairobi</div></div>
+          <div class="act"><div style="color:var(--muted)">Week 3-4</div><div class="at">Feedback summary to sponsors, event report</div></div>
+          <div style="margin-top:16px">
+            <div class="sl">Key metrics to capture</div>
+            <div class="act"><div>Total delegates attended vs registered</div></div>
+            <div class="act"><div>Sponsor satisfaction scores</div></div>
+            <div class="act"><div>Number of introductions facilitated</div></div>
+            <div class="act"><div>Revenue collected on the day</div></div>
+            <div class="act"><div>Media coverage secured</div></div>
+            <div class="act"><div>Nairobi early sign-ups</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BULK EMAILS -->
+    <div class="sec" id="sec-bulk">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Selected</div><div class="kv g" id="bulk-count">0</div><div class="ks">Contacts chosen</div></div>
+        <div class="kpi"><div class="kl">Generated</div><div class="kv g" id="bulk-gen">0</div><div class="ks">Emails drafted</div></div>
+        <div class="kpi"><div class="kl">Mode</div><div class="kv" style="font-size:18px;color:var(--gold)">Personal</div><div class="ks">Per contact</div></div>
+        <div class="kpi"><div class="kl">Time Saved</div><div class="kv ok" id="bulk-time">0 min</div><div class="ks">vs manual</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph"><div class="pt">Bulk Email Generator <span>&middot; Select &amp; Draft</span></div></div>
+          <div style="margin-bottom:14px">
+            <label class="lbl">Email type</label>
+            <select class="ssel" id="bulk-type" style="width:100%;padding:8px 10px;font-size:12px;margin-bottom:10px">
+              <option value="sponsor">Sponsor proposal &mdash; new prospect</option>
+              <option value="followup">Sponsor follow-up &mdash; no reply</option>
+              <option value="delegate">Delegate invitation &mdash; IFC contacts</option>
+              <option value="speaker">Speaker invitation</option>
+              <option value="reminder">Payment reminder</option>
+              <option value="partner">Supporting partner upgrade</option>
+              <option value="thankyou">Post-event thank you</option>
+            </select>
+            <label class="lbl">Additional context (optional)</label>
+            <input class="m-in" id="bulk-context" placeholder="e.g. Mauritius flagship, September 2026">
+          </div>
+          <div class="ph" style="margin-bottom:10px">
+            <div class="pt" style="font-size:14px">Select contacts</div>
+            <div style="display:flex;gap:6px">
+              <button class="pbtn" onclick="selAllBulk(true)">Select all</button>
+              <button class="pbtn" onclick="selAllBulk(false)">Clear</button>
+            </div>
+          </div>
+          <div id="bulk-list"></div>
+          <button class="ai-go" style="margin-top:14px" onclick="runBulk()">Generate Selected Emails &rarr;</button>
+          <div id="bulk-results" style="margin-top:16px"></div>
+        </div>
+        <div class="side">
+          <div class="sl">How it works</div>
+          <div class="act"><div style="font-weight:500">1. Choose type</div></div>
+          <div class="act"><div style="font-weight:500">2. Select contacts</div></div>
+          <div class="act"><div style="font-weight:500">3. Generate</div><div class="at">Personalised per contact</div></div>
+          <div class="act"><div style="font-weight:500">4. Review &amp; send</div></div>
+          <div style="margin-top:16px;font-size:11px;color:var(--muted);line-height:1.7">Each email is personalised with the contact name, organisation, and role &mdash; not a mail merge. A real draft.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GAPS -->
+    <div class="sec" id="sec-gaps">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Missing contacts</div><div class="kv r">8</div><div class="ks">Not in Excel</div></div>
+        <div class="kpi"><div class="kl">Upgrade opps</div><div class="kv w">5</div><div class="ks">Speaker to Partner</div></div>
+        <div class="kpi"><div class="kl">Media partners</div><div class="kv r">4</div><div class="ks">None approached</div></div>
+        <div class="kpi"><div class="kl">Critical miss</div><div class="kv r">AfrAsia</div><div class="ks">TAP I custodian</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph"><div class="pt">Gap Analysis <span>&middot; Action Required</span></div></div>
+          <div style="margin-bottom:18px">
+            <div class="sl" style="margin-bottom:10px">Not in Excel &mdash; add immediately</div>
+            <div class="gap-item"><div class="gap-org">AfrAsia Bank</div><div class="gap-type">TAP I custodian &mdash; critical sponsor target</div><div class="gap-action">Add to Sponsors sheet immediately</div><button class="ab" style="margin-top:6px" onclick="setAI('Draft a strategic sponsorship outreach email to AfrAsia Bank Mauritius for the African Circuit — they are the custodian bank for TAP Fund I and a critical strategic partner')">Draft</button></div>
+            <div class="gap-item"><div class="gap-org">Air Mauritius</div><div class="gap-type">Airline Partner &mdash; not approached</div><div class="gap-action">Identify contact and send partnership proposal</div><button class="ab" style="margin-top:6px" onclick="setAI('Draft a partnership proposal for Air Mauritius as the official airline partner of the African Circuit — a five-city pan-African financial conference circuit 2026-2027')">Draft</button></div>
+            <div class="gap-item"><div class="gap-org">Sanlam Allianz Re</div><div class="gap-type">Supporting Partner &mdash; PDF notes only</div><div class="gap-action">Identify contact and send outreach</div></div>
+            <div class="gap-item"><div class="gap-org">Apex Funds &mdash; Mahesh Doorgakant</div><div class="gap-type">Confirm partner type</div></div>
+          </div>
+          <div style="margin-bottom:18px">
+            <div class="sl" style="margin-bottom:10px">Speaker to Supporting Partner upgrades</div>
+            <div class="gap-item"><div class="gap-org">CAIA &mdash; Laura Merlini</div><button class="ab" style="margin-top:6px" onclick="setAI('Draft a diplomatic email to Laura Merlini at CAIA proposing an upgrade from Speaker to Supporting Partner for the African Circuit 2026')">Draft</button></div>
+            <div class="gap-item"><div class="gap-org">UN Global Compact &mdash; Pooja Etwah</div><button class="ab" style="margin-top:6px" onclick="setAI('Draft a diplomatic email to Pooja Etwah at UN Global Compact proposing an upgrade from Speaker to Supporting Partner for the African Circuit 2026')">Draft</button></div>
+            <div class="gap-item"><div class="gap-org">UNITAR &mdash; Elena Proden</div><button class="ab" style="margin-top:6px" onclick="setAI('Draft a diplomatic email to Elena Proden at UN UNITAR proposing an upgrade from Speaker to Supporting Partner for the African Circuit 2026')">Draft</button></div>
+          </div>
+          <div>
+            <div class="sl" style="margin-bottom:10px">Media Partners &mdash; none approached</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+              <div class="gap-item"><div class="gap-org">BBC</div><button class="ab" style="margin-top:4px" onclick="setAI('Draft a media partnership proposal for BBC for the African Circuit pan-African financial conference circuit')">Draft</button></div>
+              <div class="gap-item"><div class="gap-org">Economist Intelligence</div><button class="ab" style="margin-top:4px" onclick="setAI('Draft a media partnership proposal for The Economist Intelligence Unit for the African Circuit')">Draft</button></div>
+              <div class="gap-item"><div class="gap-org">Global Investor</div><button class="ab" style="margin-top:4px" onclick="setAI('Draft a media partnership proposal for Global Investor magazine for the African Circuit')">Draft</button></div>
+              <div class="gap-item"><div class="gap-org">Afridigest</div><button class="ab" style="margin-top:4px" onclick="setAI('Draft a media partnership proposal for Afridigest for the African Circuit')">Draft</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="side">
+          <div class="sl">Priority</div>
+          <div class="act"><div style="color:var(--danger)">AfrAsia Bank &mdash; critical</div></div>
+          <div class="act"><div style="color:var(--danger)">4 media partners &mdash; none sent</div></div>
+          <div class="act"><div style="color:var(--warn)">5 speaker upgrades pending</div></div>
+          <div class="act"><div style="color:var(--warn)">Air Mauritius &mdash; not approached</div></div>
+          <div class="act"><div>GCR Ratings &mdash; role unclear</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI DRAFTS -->
+    <div class="sec" id="sec-ai">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Quick actions</div><div class="kv g">8</div><div class="ks">Pre-loaded prompts</div></div>
+        <div class="kpi"><div class="kl">Context</div><div class="kv ok">Loaded</div><div class="ks">Real contact data</div></div>
+        <div class="kpi"><div class="kl">Tone</div><div class="kv" style="font-size:18px;color:var(--gold)">Diplomatic</div><div class="ks">Senior institutional</div></div>
+        <div class="kpi"><div class="kl">Model</div><div class="kv" style="font-size:18px">Claude</div><div class="ks">Sonnet &middot; Live</div></div>
+      </div>
+      <div class="layout">
+        <div class="main">
+          <div class="ph"><div class="pt">AI Draft Engine <span>&middot; Live</span></div></div>
+          <div style="margin-bottom:14px">
+            <div class="sl" style="margin-bottom:8px">Quick actions</div>
+            <span class="chip" onclick="setAI('Draft a formal letter to the Minister of Finance of Mauritius, Dovina Pillay, inviting her as keynote speaker for the African Circuit Mauritius flagship event 2026')">Keynote letter &mdash; Minister of Finance</span>
+            <span class="chip" onclick="setAI('Draft an official diplomatic invitation for Dr. H.N. Manzini, High Commissioner of South Africa to Mauritius, to participate in the African Circuit 2026 as a diplomatic partner')">Diplomatic invite &mdash; SA High Commission</span>
+            <span class="chip" onclick="setAI('Draft a strategic follow-up email to Mediterrania Capital Partners (Noha El Ghazali) regarding their $40,000 sponsorship of the African Circuit')">Follow-up &mdash; Mediterrania $40k</span>
+            <span class="chip" onclick="setAI('Draft a strategic outreach email to AfrAsia Bank as a key sponsorship target for the African Circuit — they are the custodian bank for TAP Fund I')">AfrAsia Bank outreach</span>
+            <span class="chip" onclick="setAI('Draft a media partnership proposal for BBC as official media partner of the African Circuit — a pan-African financial conference circuit across Nairobi, Lagos, Accra, Johannesburg, and Mauritius')">BBC media partnership</span>
+            <span class="chip" onclick="setAI('Draft a delegate invitation for senior executives in the Mauritius IFC to attend the African Circuit Mauritius flagship event 2026')">IFC delegate invitation</span>
+            <span class="chip" onclick="setAI('Draft a pre-event briefing note for the African Circuit Mauritius flagship event team. Include key speakers, sponsors, logistics reminders, and what to watch for on the day.')">Pre-event team briefing</span>
+            <span class="chip" onclick="setAI('Draft a post-event thank you email to all delegates of the African Circuit Mauritius flagship event. Warm, professional, and introduce the next stop in Nairobi.')">Post-event delegate thank you</span>
+          </div>
+          <textarea class="ai-ta" id="ai-prompt" rows="4" placeholder="Type any instruction or select a quick action above..."></textarea>
+          <button class="ai-go" onclick="runAI()">Generate Email / Letter &rarr;</button>
+          <div class="ai-out" id="ai-out"></div>
+        </div>
+        <div class="side">
+          <div class="sl">Context active</div>
+          <div class="act"><div>Sponsor list &middot; $197,500 pipeline</div></div>
+          <div class="act"><div>Speaker list &middot; diplomatic + DFI</div></div>
+          <div class="act"><div>Mauritius IFC Directory &middot; 159 contacts</div></div>
+          <div class="act"><div>Programme &middot; Mauritius flagship</div></div>
+          <div class="act"><div>Post-event engine &middot; loaded</div></div>
+          <div style="margin-top:16px;font-size:11px;color:var(--muted);line-height:1.7">All emails drafted in your circuit's diplomatic tone &mdash; suitable for ministers, high commissioners, DFI principals, and senior institutional investors.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM -->
+    <div class="sec" id="sec-team">
+      <div class="kpis">
+        <div class="kpi"><div class="kl">Team Members</div><div class="kv g">4</div><div class="ks">Ops access</div></div>
+        <div class="kpi"><div class="kl">Access Level</div><div class="kv b">Full</div><div class="ks">All modules</div></div>
+        <div class="kpi"><div class="kl">Password</div><div class="kv" style="font-size:18px;color:var(--gold)">Shared</div><div class="ks">Change below</div></div>
+        <div class="kpi"><div class="kl">Version</div><div class="kv" style="font-size:18px">v3</div><div class="ks">Full platform</div></div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card"><div class="t-av">AC</div><div class="t-name">Circuit Lead</div><div class="t-role">Founder &middot; Full Access</div></div>
+        <div class="team-card"><div class="t-av" style="background:rgba(74,144,217,.12);color:var(--info)">PM</div><div class="t-name">Partnerships Manager</div><div class="t-role">Team &middot; Full Access</div></div>
+        <div class="team-card"><div class="t-av" style="background:rgba(74,222,128,.1);color:var(--ok)">OA</div><div class="t-name">Operations Assistant</div><div class="t-role">Team &middot; Full Access</div></div>
+        <div class="team-card" style="border-style:dashed;opacity:.5"><div class="t-av" style="background:rgba(255,255,255,.04);color:var(--muted)">+</div><div class="t-name" style="color:var(--muted)">Add team member</div><div class="t-role">Share the password</div></div>
+      </div>
+      <div style="padding:0 20px 24px">
+        <div style="background:rgba(224,82,82,.05);border:.5px solid rgba(224,82,82,.2);border-radius:8px;padding:20px;max-width:400px;margin-bottom:16px">
+          <div class="sl" style="margin-bottom:10px;color:rgba(224,82,82,.7)">Reset data</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">If your sponsor amounts or statuses look wrong (from a previous session), reset to the correct default data. Your custom follow-up dates and notes will be lost.</div>
+          <button class="m-btn" style="background:rgba(224,82,82,.8);color:#fff" onclick="resetToDefault()">Reset to Default Data</button>
+        </div>
+        <div style="background:rgba(255,255,255,.03);border:.5px solid var(--gborder);border-radius:8px;padding:20px;max-width:400px">
+          <div class="sl" style="margin-bottom:14px">Change password</div>
+          <label class="lbl">New password</label>
+          <input class="m-in" id="new-pw" type="password" placeholder="New password">
+          <label class="lbl">Confirm</label>
+          <input class="m-in" id="conf-pw" type="password" placeholder="Confirm password">
+          <button class="lg-btn" style="margin-top:0" onclick="changePw()">Update Password</button>
+          <div id="pw-msg" style="margin-top:10px;font-family:'DM Mono',monospace;font-size:10px;color:var(--ok);display:none">Password updated.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-bg" id="modal-contact">
+  <div class="modal">
+    <span class="modal-x" onclick="closeModal('modal-contact')">&times;</span>
+    <div class="modal-title" id="modal-contact-title">Add Contact</div>
+    <label class="lbl">Organisation</label><input class="m-in" id="m-org" placeholder="Company name">
+    <label class="lbl">Contact name</label><input class="m-in" id="m-contact" placeholder="Full name">
+    <label class="lbl">Role</label><input class="m-in" id="m-role" placeholder="e.g. Managing Director">
+    <label class="lbl">Email</label><input class="m-in" id="m-email" placeholder="email@company.com">
+    <label class="lbl" id="m-extra-lbl">Budget Target</label><input class="m-in" id="m-extra" placeholder="e.g. $20,000">
+    <label class="lbl">Status</label>
+    <select class="m-in ssel" id="m-status">
+      <option value="prospect">Prospect</option><option value="contacted">Contacted</option>
+      <option value="email-sent">Email sent</option><option value="call">Call scheduled</option>
+      <option value="negotiating">Negotiating</option><option value="confirmed">Confirmed</option>
+      <option value="contracted">Contracted</option><option value="paid">Paid</option>
+    </select>
+    <label class="lbl">Follow-up date</label><input class="m-in fu-in" id="m-fu" type="date" style="width:100%">
+    <label class="lbl">Notes</label><textarea class="m-in" id="m-notes" rows="3" placeholder="Notes or next action..."></textarea>
+    <button class="m-btn" onclick="saveContact()">Save</button>
+    <button class="m-btn2" onclick="closeModal('modal-contact')">Cancel</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-prog">
+  <div class="modal">
+    <span class="modal-x" onclick="closeModal('modal-prog')">&times;</span>
+    <div class="modal-title">Add Session</div>
+    <label class="lbl">Session title</label><input class="m-in" id="prog-title" placeholder="e.g. DFI Capital Mobilisation in Africa">
+    <label class="lbl">Speaker(s)</label><input class="m-in" id="prog-speaker" placeholder="e.g. Dr. Amina Osei, AfDB">
+    <label class="lbl">Start time</label><input class="m-in" id="prog-start" type="time" value="09:00">
+    <label class="lbl">End time</label><input class="m-in" id="prog-end" type="time" value="10:00">
+    <label class="lbl">Session type</label>
+    <select class="m-in ssel" id="prog-type">
+      <option value="keynote">Keynote</option><option value="panel">Panel discussion</option>
+      <option value="fireside">Fireside chat</option><option value="presentation">Presentation</option>
+      <option value="networking">Networking break</option><option value="lunch">Lunch</option>
+      <option value="reception">Reception</option>
+    </select>
+    <label class="lbl">Notes</label><textarea class="m-in" id="prog-notes" rows="2" placeholder="Room, AV needs, special instructions..."></textarea>
+    <button class="m-btn" onclick="saveSession()">Save Session</button>
+    <button class="m-btn2" onclick="closeModal('modal-prog')">Cancel</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-log">
+  <div class="modal">
+    <span class="modal-x" onclick="closeModal('modal-log')">&times;</span>
+    <div class="modal-title">Log Email</div>
+    <label class="lbl">Organisation</label><input class="m-in" id="log-org" placeholder="Company name">
+    <label class="lbl">Contact</label><input class="m-in" id="log-contact" placeholder="Contact name">
+    <label class="lbl">Email subject</label><input class="m-in" id="log-subject" placeholder="e.g. African Circuit Mauritius &mdash; Platinum Sponsorship">
+    <label class="lbl">Date sent</label><input class="m-in" id="log-date" type="date">
+    <label class="lbl">Sent by</label><input class="m-in" id="log-by" placeholder="Your name">
+    <label class="lbl">Response sentiment</label>
+    <select class="m-in ssel" id="log-sent">
+      <option value="awaiting">Awaiting reply</option><option value="positive">Positive &mdash; interested</option>
+      <option value="neutral">Neutral &mdash; non-committal</option><option value="negative">Negative &mdash; declined</option>
+    </select>
+    <label class="lbl">Notes / response summary</label><textarea class="m-in" id="log-notes" rows="3" placeholder="What did they say? What is the next step?"></textarea>
+    <button class="m-btn" onclick="saveLog()">Save Log</button>
+    <button class="m-btn2" onclick="closeModal('modal-log')">Cancel</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var PW_KEY='ac_pw_v3', AUTH_KEY='ac_auth_v3', STORE_KEY='ac_data_v3';
+var DEFAULT_PW='circuit2026';
+var modalMode='sp';
+var bulkGenCount=0;
+
+function getPw(){ return localStorage.getItem(PW_KEY)||DEFAULT_PW; }
+
+function doLogin(){
+  var v=document.getElementById('pw').value;
+  if(v===getPw()){
+    sessionStorage.setItem(AUTH_KEY,'1');
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').classList.add('on');
+    init();
+  } else {
+    var e=document.getElementById('pw-err');
+    e.classList.add('show');
+    document.getElementById('pw').value='';
+    setTimeout(function(){e.classList.remove('show');},2500);
+  }
+}
+function doLogout(){
+  sessionStorage.removeItem(AUTH_KEY);
+  document.getElementById('login').style.display='flex';
+  document.getElementById('app').classList.remove('on');
+  document.getElementById('pw').value='';
+}
+function changePw(){
+  var np=document.getElementById('new-pw').value;
+  var cp=document.getElementById('conf-pw').value;
+  if(!np){toast('Enter a new password');return;}
+  if(np!==cp){toast('Passwords do not match');return;}
+  localStorage.setItem(PW_KEY,np);
+  document.getElementById('pw-msg').style.display='block';
+  document.getElementById('new-pw').value='';document.getElementById('conf-pw').value='';
+  setTimeout(function(){document.getElementById('pw-msg').style.display='none';},3000);
+}
+window.addEventListener('load',function(){
+  if(sessionStorage.getItem(AUTH_KEY)==='1'){
+    document.getElementById('login').style.display='none';
+    document.getElementById('app').classList.add('on');
+    init();
+  }
+  document.getElementById('pw').addEventListener('keydown',function(e){
+    if(e.key==='Enter') doLogin();
+  });
+});
+
+function loadData(){
+  try{ return JSON.parse(localStorage.getItem(STORE_KEY))||getDefaultData(); }
+  catch(e){ return getDefaultData(); }
+}
+function saveData(d){ localStorage.setItem(STORE_KEY,JSON.stringify(d)); }
+
+function getDefaultData(){
+  return {
+    sponsors:[
+      {id:'s1',org:'Mediterrania Capital Partners',contact:'Noha El Ghazali',role:'Sponsor',email:'',extra:'$40,000',status:'email-sent',fu:'',notes:''},
+      {id:'s2',org:'EDB Mauritius',contact:'Jaya Doomun Dookhun',role:'Supporting Partner - Gold Circuit',email:'',extra:'$40,000',status:'email-sent',fu:'',notes:'Full circuit'},
+      {id:'s3',org:'Suntera',contact:'Frank Hattann',role:'Sponsor + Speaker',email:'',extra:'$30,000',status:'call',fu:'',notes:'Speaking slot noon'},
+      {id:'s4',org:'Alpha Beta Energy',contact:'Vinay Patel',role:'Sponsor',email:'',extra:'$20,000',status:'email-sent',fu:'',notes:''},
+      {id:'s5',org:'Blend Financial Services',contact:'Isha Desai',role:'Sponsor',email:'isha@blendfinance.com',extra:'$15,000',status:'email-sent',fu:'',notes:'Head Alt Capital Markets'},
+      {id:'s6',org:'Bluelife',contact:'Stephanie Ithier',role:'Sponsor + Speaker',email:'',extra:'$15,000',status:'prospect',fu:'',notes:'Circuit visibility'},
+      {id:'s7',org:'DTOS',contact:'Warren Uppiah',role:'Supporting Partner',email:'',extra:'$15,000',status:'email-sent',fu:'',notes:'Circuit visibility'},
+      {id:'s8',org:'Mauritius Finance',contact:'Faraz Rojab',role:'Supporting Partner',email:'',extra:'$10,000',status:'email-sent',fu:'',notes:'Booths all conferences'},
+      {id:'s9',org:'Strategia',contact:'Loic Bax',role:'Sponsor + Speaker',email:'',extra:'$7,500',status:'email-sent',fu:'',notes:'Mauritius visibility'},
+      {id:'s10',org:'Nexus Capital',contact:'Noushrat Bhugeloo',role:'Sponsor',email:'',extra:'$5,000',status:'email-sent',fu:'',notes:'Mauritius + booth'}
+    ],
+    speakers:[
+      {id:'sp1',org:'Ministry of Finance',contact:'Dovina Pillay',role:'Keynote Speaker',email:'',extra:'Supporting Partner',status:'contacted',fu:'',notes:'Confirm letter to Minister'},
+      {id:'sp2',org:'SA High Commission Mauritius',contact:'Dr. H.N. Manzini',role:'Diplomatic Partner',email:'manzinih@dirco.gov.za',extra:'Diplomatic',status:'contacted',fu:'',notes:'Official invite needed'},
+      {id:'sp3',org:'TDB - Trade Development Bank',contact:'Jean Francois Rose',role:'Speaker',email:'',extra:'DFI',status:'email-sent',fu:'',notes:''},
+      {id:'sp4',org:'CAIA',contact:'Laura Merlini',role:'Speaker - upgrade to Supporting Partner?',email:'',extra:'Speaker',status:'email-sent',fu:'',notes:'Upgrade opportunity'},
+      {id:'sp5',org:'BII - British International Investment',contact:'Keegan Ziady',role:'Speaker - DFI',email:'',extra:'DFI',status:'call',fu:'',notes:'Call Wednesday'},
+      {id:'sp6',org:'MIGA - World Bank Group',contact:'Nabil Fawaz',role:'Speaker',email:'',extra:'Multilateral',status:'email-sent',fu:'',notes:''},
+      {id:'sp7',org:'Swedfund International AB',contact:'Jane Niedra',role:'DFI Partner - Speaker',email:'jane.niedra@swedfund.se',extra:'DFI',status:'email-sent',fu:'',notes:'Investment Director Financial Inclusion'},
+      {id:'sp8',org:'UN UNITAR',contact:'Elena Proden',role:'Speaker - upgrade to Supporting Partner?',email:'',extra:'UN',status:'call',fu:'',notes:'Call scheduled'},
+      {id:'sp9',org:'UN Global Compact',contact:'Pooja Etwah',role:'Speaker - upgrade to Supporting Partner?',email:'',extra:'UN',status:'email-sent',fu:'',notes:'Upgrade opportunity'},
+      {id:'sp10',org:'Gateway Partners',contact:'Andrew Bainbridge',role:'Panel speaker',email:'',extra:'',status:'not-interested',fu:'',notes:'Not interested - re-engage later'}
+    ],
+    delegates:[
+      {id:'d1',org:'Absa Bank (Mauritius)',cat:'Bank',contact:'Ravin Dajee - MD',email:'+230 213 2390',priority:'high'},
+      {id:'d2',org:'Standard Bank (Mauritius)',cat:'Bank',contact:'Francois Gamet - CEO',email:'clientservices@standardbank.mu',priority:'high'},
+      {id:'d3',org:'Bank One Limited',cat:'Bank',contact:'Sunil Ramgobin - CEO',email:'info@bankone.mu',priority:'high'},
+      {id:'d4',org:'MCB Capital Partners',cat:'CIS / Fund Manager',contact:'Kevin Rangasami - MD',email:'--',priority:'high'},
+      {id:'d5',org:'IPRO Fund Management',cat:'CIS / Fund Manager',contact:'Stephane Henry - CEO',email:'--',priority:'medium'},
+      {id:'d6',org:'Warwyck Private Bank',cat:'Bank',contact:'Eric Hautefeuille',email:'contact@warwyckprivatebank.com',priority:'medium'},
+      {id:'d7',org:'Axis Fiduciary Ltd',cat:'Management Company',contact:'Assad Abdullatiff - CEO',email:'+230 403 2500',priority:'high'},
+      {id:'d8',org:'Ocorian Mauritius',cat:'Management Company',contact:'John Felicite - Director Africa',email:'joh.felicite@ocorian.com',priority:'high'},
+      {id:'d9',org:'Swan Insurance',cat:'Insurance',contact:'Alan Goder - COO',email:'info@swanforlife.com',priority:'medium'},
+      {id:'d10',org:'Grant Thornton Mauritius',cat:'Audit Firm',contact:'Sattar Hajee Abdoula',email:'grant.thornton@mu.gt.com',priority:'medium'},
+      {id:'d11',org:'MauBank Ltd',cat:'Bank',contact:'Issa Soormally',email:'info@maubank.mu',priority:'medium'},
+      {id:'d12',org:'SBM Bank (Mauritius)',cat:'Bank',contact:'Robin Y Appadoo',email:'sbm@sbmgroup.mu',priority:'high'}
+    ],
+    sessions:[],
+    budget:[
+      {id:'b1',cat:'Venue hire',sub:'Conference hall + breakout rooms',budgeted:0,actual:0},
+      {id:'b2',cat:'Catering and F&B',sub:'Lunch, breaks, cocktail reception',budgeted:0,actual:0},
+      {id:'b3',cat:'AV and production',sub:'Screens, mics, live streaming',budgeted:0,actual:0},
+      {id:'b4',cat:'Speaker travel',sub:'Flights and accommodation',budgeted:0,actual:0},
+      {id:'b5',cat:'Marketing and print',sub:'Backdrop, collateral, branding',budgeted:0,actual:0},
+      {id:'b6',cat:'Staffing',sub:'On-site team and support',budgeted:0,actual:0},
+      {id:'b7',cat:'Contingency (10%)',sub:'Buffer for unexpected costs',budgeted:0,actual:0}
+    ],
+    emailLog:[],
+    postChecklist:[]
+  };
+}
+
+var DATA=loadData();
+
+var STATUSES={
+  'prospect':'Prospect','contacted':'Contacted','email-sent':'Email sent',
+  'call':'Call pending','negotiating':'Negotiating','confirmed':'Confirmed',
+  'contracted':'Contracted','paid':'Paid','not-interested':'Not interested'
+};
+
+function sw(id,el){
+  document.querySelectorAll('.sec').forEach(function(s){s.classList.remove('on');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
+  document.getElementById('sec-'+id).classList.add('on');
+  el.classList.add('on');
+}
+
+function init(){
+  validateData();
+  renderSponsors();renderSpeakers();renderDelegates();
+  renderBulkList();renderBudget();renderProgramme();renderLog();
+  startCountdown();updateTodayTab();
+}
+function validateData(){
+  // If sponsors look corrupted (first sponsor has $0 or wrong status), reset
+  if(DATA.sponsors && DATA.sponsors.length > 0){
+    var first = DATA.sponsors[0];
+    if(!first.extra || first.extra === '$0' || first.extra === '0' || first.extra === ''){
+      // Likely corrupted from old session - but don't auto-reset, just warn
+      console.warn('Data may be from an older session. Use Reset Data in Team tab if incorrect.');
+    }
+  }
+}
+function resetToDefault(){
+  if(!confirm('This will reset ALL data to defaults. Your status updates and notes will be lost. Continue?')) return;
+  localStorage.removeItem(STORE_KEY);
+  DATA = getDefaultData();
+  saveData(DATA);
+  renderSponsors();renderSpeakers();renderDelegates();
+  renderBulkList();renderBudget();renderProgramme();renderLog();
+  updateTodayTab();recalcPipeline();
+  toast('Data reset to defaults');
+}
+
+function makeStatusSel(list,id,cur){
+  var opts='';
+  Object.keys(STATUSES).forEach(function(k){
+    opts+='<option value="'+k+'"'+(cur===k?' selected':'')+'>'+STATUSES[k]+'</option>';
+  });
+  return '<select class="ssel" onchange="updateStatus(\''+list+'\',\''+id+'\',this.value)">'+opts+'</select>';
+}
+
+function renderSponsors(){
+  var tb = document.getElementById('sp-tb');
+  tb.innerHTML = '';
+  var conf = 0, prog = 0;
+  DATA.sponsors.forEach(function(s){
+    if(['confirmed','contracted','paid'].indexOf(s.status) >= 0) conf++;
+    if(['email-sent','call','negotiating'].indexOf(s.status) >= 0) prog++;
+
+    var tr = document.createElement('tr');
+
+    // Organisation + contact
+    var td1 = document.createElement('td');
+    td1.innerHTML = '<div class="co">' + s.org + '</div><div class="cs">' + s.contact + '</div>';
+
+    // Amount — EDITABLE INPUT
+    var td2 = document.createElement('td');
+    var amtInput = document.createElement('input');
+    amtInput.className = 'budget-input';
+    amtInput.value = s.extra || '';
+    amtInput.placeholder = 'e.g. $15,000';
+    amtInput.style.cssText = 'width:100px;color:var(--gold);text-align:left;font-size:12px';
+    amtInput.title = 'Click to edit amount';
+    (function(sid){
+      amtInput.addEventListener('change', function(){
+        updateExtra('sponsors', sid, this.value);
+      });
+    })(s.id);
+    td2.appendChild(amtInput);
+
+    // Status dropdown
+    var td3 = document.createElement('td');
+    td3.innerHTML = makeStatusSel('sponsors', s.id, s.status);
+
+    // Follow-up date
+    var td4 = document.createElement('td');
+    var fuInput = document.createElement('input');
+    fuInput.type = 'date';
+    fuInput.className = 'fu-in';
+    fuInput.value = s.fu || '';
+    fuInput.style.width = '130px';
+    (function(sid){
+      fuInput.addEventListener('change', function(){
+        updateFU('sponsors', sid, this.value);
+      });
+    })(s.id);
+    td4.appendChild(fuInput);
+
+    // Notes
+    var td5 = document.createElement('td');
+    var noteArea = document.createElement('textarea');
+    noteArea.className = 'note-in';
+    noteArea.rows = 1;
+    noteArea.style.width = '150px';
+    noteArea.value = s.notes || '';
+    noteArea.placeholder = 'Notes...';
+    (function(sid){
+      noteArea.addEventListener('change', function(){
+        updateNotes('sponsors', sid, this.value);
+      });
+    })(s.id);
+    td5.appendChild(noteArea);
+
+    // Draft button
+    var td6 = document.createElement('td');
+    var btn = document.createElement('button');
+    btn.className = 'ab';
+    btn.textContent = 'Draft';
+    (function(sc, so, sr){
+      btn.addEventListener('click', function(){
+        setAIName(sc, so, sr);
+      });
+    })(s.contact, s.org, s.role);
+    td6.appendChild(btn);
+
+    tr.appendChild(td1);tr.appendChild(td2);tr.appendChild(td3);
+    tr.appendChild(td4);tr.appendChild(td5);tr.appendChild(td6);
+    tb.appendChild(tr);
+  });
+  document.getElementById('k-conf').textContent = conf;
+  document.getElementById('k-prog').textContent = prog;
+  recalcPipeline();
+}
+
+function renderSpeakers(){
+  var tb=document.getElementById('spk-tb');tb.innerHTML='';
+  var conf=0,pend=0;
+  DATA.speakers.forEach(function(s){
+    if(['confirmed','contracted'].indexOf(s.status)>=0)conf++;
+    if(['prospect','contacted','email-sent','call'].indexOf(s.status)>=0)pend++;
+    var tr=document.createElement('tr');
+    var notes=(s.notes||'').replace(/"/g,'&quot;');
+    tr.innerHTML='<td><div class="co">'+s.contact+'</div><div class="cs">'+s.extra+'</div></td>'+
+      '<td style="font-size:12px">'+s.org+'</td>'+
+      '<td style="font-size:11px;color:var(--muted)">'+s.role+'</td>'+
+      '<td>'+makeStatusSel('speakers',s.id,s.status)+'</td>'+
+      '<td><input type="date" class="fu-in" value="'+(s.fu||'')+'" onchange="updateFU(\'speakers\',\''+s.id+'\',this.value)" style="width:120px"></td>'+
+      '<td><textarea class="note-in" rows="1" style="width:130px" onchange="updateNotes(\'speakers\',\''+s.id+'\',this.value)">'+notes+'</textarea></td>'+
+      '<td><button class="ab" onclick="setAIName(\''+s.contact+'\',\''+s.org+'\',\'speaker follow-up\')">Draft</button></td>';
+    tb.appendChild(tr);
+  });
+  document.getElementById('spk-conf').textContent=conf;
+  document.getElementById('spk-pend').textContent=pend;
+}
+
+function renderDelegates(){
+  var tb=document.getElementById('del-tb');tb.innerHTML='';
+  DATA.delegates.forEach(function(d){
+    var p=d.priority==='high'?'<span class="bd b-gold">High</span>':'<span class="bd b-b">Medium</span>';
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td><div class="co">'+d.org+'</div></td>'+
+      '<td style="font-size:11px">'+d.cat+'</td>'+
+      '<td style="font-size:12px">'+d.contact+'</td>'+
+      '<td style="font-family:DM Mono,monospace;font-size:10px;color:var(--muted)">'+d.email+'</td>'+
+      '<td>'+p+'</td>'+
+      '<td><button class="ab" onclick="setAIName(\''+d.contact+'\',\''+d.org+'\',\'delegate invitation\')">Draft</button></td>';
+    tb.appendChild(tr);
+  });
+}
+
+function renderProgramme(){
+  var list=document.getElementById('prog-list');
+  var sessions=DATA.sessions||[];
+  sessions.sort(function(a,b){return a.start>b.start?1:-1;});
+  if(sessions.length===0){
+    list.innerHTML='<div style="color:var(--muted);font-size:13px;padding:20px 0">No sessions added yet. Click "+ Add Session" to build your running order.</div>';
+    document.getElementById('prog-count').textContent=0;
+    document.getElementById('prog-gaps').textContent=0;
+    return;
+  }
+  var typeColors={'keynote':'b-gold','panel':'b-b','fireside':'b-p','presentation':'b-b','networking':'b-g','lunch':'b-g','reception':'b-g'};
+  var html='';
+  sessions.forEach(function(s){
+    var cls=typeColors[s.type]||'b-b';
+    html+='<div class="session-card">'+
+      '<div class="session-time">'+s.start+'<br><span style="color:var(--muted)">'+s.end+'</span></div>'+
+      '<div class="session-body">'+
+        '<div class="session-title">'+s.title+'</div>'+
+        '<div class="session-speaker">'+s.speaker+'</div>'+
+        '<div class="session-type"><span class="bd '+cls+'">'+s.type+'</span>'+
+        (s.notes?' &nbsp;<span style="font-size:11px;color:var(--muted)">'+s.notes+'</span>':'')+
+        '</div></div>'+
+      '<button class="ab" onclick="deleteSession(\''+s.id+'\')">Remove</button>'+
+    '</div>';
+  });
+  list.innerHTML=html;
+  document.getElementById('prog-count').textContent=sessions.length;
+  document.getElementById('prog-gaps').textContent=Math.max(0,5-sessions.filter(function(s){return s.type==='panel';}).length);
+}
+
+function renderBudget(){
+  var rows = document.getElementById('budget-rows');
+  rows.innerHTML = '';
+  var totalBudgeted = 0, totalActual = 0;
+  var revenue = DATA.sponsors.reduce(function(sum,s){
+    var n = parseFloat((s.extra||'0').replace(/[^0-9.-]/g,''))||0;
+    return sum+n;
+  }, 0) || 197500;
+
+  DATA.budget.forEach(function(b){
+    totalBudgeted += b.budgeted;
+    totalActual += b.actual;
+    var variance = b.actual - b.budgeted;
+    var varColor = variance > 0 ? 'var(--danger)' : variance < 0 ? 'var(--ok)' : 'var(--muted)';
+    var varStr = variance === 0 ? '--' : (variance > 0 ? '+' : '') + formatCurrency(variance);
+
+    var row = document.createElement('div');
+    row.className = 'budget-row';
+    row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:.5px solid rgba(255,255,255,.04)';
+
+    // Label
+    var label = document.createElement('div');
+    label.style.flex = '1';
+    label.innerHTML = '<div class="budget-cat">' + b.cat + '</div><div style="font-size:11px;color:var(--muted)">' + b.sub + '</div>';
+
+    // Budgeted input
+    var inB = document.createElement('input');
+    inB.type = 'number';
+    inB.className = 'budget-input';
+    inB.value = b.budgeted || '';
+    inB.placeholder = 'Budgeted';
+    inB.style.width = '110px';
+    (function(bid){
+      inB.addEventListener('input', function(){ updateBudget(bid, 'budgeted', this.value); });
+      inB.addEventListener('change', function(){ updateBudget(bid, 'budgeted', this.value); });
+    })(b.id);
+
+    // Actual input
+    var inA = document.createElement('input');
+    inA.type = 'number';
+    inA.className = 'budget-input';
+    inA.value = b.actual || '';
+    inA.placeholder = 'Actual';
+    inA.style.width = '110px';
+    (function(bid){
+      inA.addEventListener('input', function(){ updateBudget(bid, 'actual', this.value); });
+      inA.addEventListener('change', function(){ updateBudget(bid, 'actual', this.value); });
+    })(b.id);
+
+    // Variance
+    var varEl = document.createElement('span');
+    varEl.style.cssText = 'font-family:DM Mono,monospace;font-size:12px;width:90px;text-align:right;color:' + varColor;
+    varEl.textContent = varStr;
+
+    // Delete
+    var del = document.createElement('button');
+    del.className = 'ab';
+    del.textContent = 'x';
+    del.style.marginLeft = '4px';
+    (function(bid){ del.addEventListener('click', function(){ deleteBudgetRow(bid); }); })(b.id);
+
+    row.appendChild(label);
+    row.appendChild(inB);
+    row.appendChild(inA);
+    row.appendChild(varEl);
+    row.appendChild(del);
+    rows.appendChild(row);
+  });
+
+  var totalCosts = totalActual || totalBudgeted;
+  var net = revenue - totalCosts;
+  var pct = totalCosts > 0 ? Math.round((net / revenue) * 100) : 100;
+  var barW = Math.max(0, Math.min(100, pct));
+
+  document.getElementById('b-costs').textContent = formatCurrency(totalCosts);
+  document.getElementById('b-margin').textContent = formatCurrency(net);
+  document.getElementById('b-pct').textContent = pct + '%';
+  document.getElementById('b-net').textContent = formatCurrency(net);
+  document.getElementById('b-bar').style.width = barW + '%';
+  document.getElementById('b-bar').style.background = pct > 60
+    ? 'linear-gradient(90deg,var(--ok),var(--gold))'
+    : 'linear-gradient(90deg,var(--warn),var(--danger))';
+}
+
+function formatCurrency(n){
+  if(n===0) return '$0';
+  return (n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString();
+}
+
+function updateBudget(id,field,val){
+  var item=DATA.budget.find(function(b){return b.id===id;});
+  if(item){item[field]=parseFloat(val)||0;saveData(DATA);renderBudget();}
+}
+
+function addBudgetRow(){
+  var cat=prompt('Category name:');
+  if(!cat) return;
+  var sub=prompt('Description (optional):')||'';
+  DATA.budget.push({id:'b'+Date.now(),cat:cat,sub:sub,budgeted:0,actual:0});
+  saveData(DATA);renderBudget();toast('Budget item added');
+}
+function deleteBudgetRow(id){
+  if(!confirm('Remove this budget item?')) return;
+  DATA.budget=DATA.budget.filter(function(b){return b.id!==id;});
+  saveData(DATA);renderBudget();toast('Item removed');
+}
+
+function renderLog(){
+  var list=document.getElementById('log-list');
+  var logs=DATA.emailLog||[];
+  if(logs.length===0){
+    list.innerHTML='<div style="color:var(--muted);font-size:13px;padding:20px 0">No emails logged yet.</div>';
+    document.getElementById('log-count').textContent=0;
+    document.getElementById('log-pos').textContent=0;
+    document.getElementById('log-wait').textContent=0;
+    document.getElementById('log-neg').textContent=0;
+    return;
+  }
+  var pos=0,wait=0,neg=0;
+  var sentCls={'positive':'b-g','neutral':'b-w','awaiting':'b-w','negative':'b-r'};
+  var sentLabel={'positive':'Positive','neutral':'Neutral','awaiting':'Awaiting reply','negative':'Declined'};
+  var html='';
+  logs.slice().reverse().forEach(function(l){
+    if(l.sentiment==='positive')pos++;
+    else if(l.sentiment==='negative')neg++;
+    else wait++;
+    var cls=sentCls[l.sentiment]||'b-w';
+    var lbl=sentLabel[l.sentiment]||'Awaiting';
+    html+='<div class="log-item">'+
+      '<div class="log-header">'+
+        '<div class="log-org">'+l.org+' &mdash; '+l.contact+'</div>'+
+        '<div class="log-date">'+l.date+' &middot; '+l.by+'</div>'+
+      '</div>'+
+      '<div class="log-subject">'+l.subject+'</div>'+
+      '<span class="bd '+cls+' log-sentiment">'+lbl+'</span>'+
+      (l.notes?'<div class="log-note">'+l.notes+'</div>':'')+
+    '</div>';
+  });
+  list.innerHTML=html;
+  document.getElementById('log-count').textContent=logs.length;
+  document.getElementById('log-pos').textContent=pos;
+  document.getElementById('log-wait').textContent=wait;
+  document.getElementById('log-neg').textContent=neg;
+}
+
+function renderBulkList(){
+  var all=[];
+  DATA.sponsors.forEach(function(s){all.push({org:s.org,contact:s.contact,role:s.role,cat:'Sponsor'});});
+  DATA.speakers.forEach(function(s){all.push({org:s.org,contact:s.contact,role:s.role,cat:'Speaker'});});
+  DATA.delegates.forEach(function(d){all.push({org:d.org,contact:d.contact,role:d.cat,cat:'Delegate'});});
+  window._bulkAll=all;
+  var html='';
+  all.forEach(function(c,i){
+    var cls=c.cat==='Sponsor'?'b-gold':c.cat==='Speaker'?'b-b':'b-g';
+    html+='<div class="bulk-card">'+
+      '<input type="checkbox" style="accent-color:var(--gold);width:15px;height:15px;flex-shrink:0" data-idx="'+i+'" onchange="updateBulkCount()">'+
+      '<div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--cream)">'+c.org+'</div>'+
+      '<div style="font-size:11px;color:var(--muted)">'+c.contact+' &middot; '+c.role+'</div></div>'+
+      '<span class="bd '+cls+'">'+c.cat+'</span></div>';
+  });
+  document.getElementById('bulk-list').innerHTML=html;
+}
+
+function updateBulkCount(){
+  var n=document.querySelectorAll('#bulk-list input[type=checkbox]:checked').length;
+  document.getElementById('bulk-count').textContent=n;
+  document.getElementById('bulk-time').textContent=Math.round(n*3)+' min';
+}
+function selAllBulk(s){
+  document.querySelectorAll('#bulk-list input[type=checkbox]').forEach(function(c){c.checked=s;});
+  updateBulkCount();
+}
+
+function updateStatus(list,id,val){
+  var item=DATA[list].find(function(x){return x.id===id;});
+  if(item){item.status=val;saveData(DATA);updateTodayTab();}
+}
+function updateFU(list,id,val){
+  var item=DATA[list].find(function(x){return x.id===id;});
+  if(item){item.fu=val;saveData(DATA);updateTodayTab();toast('Follow-up date saved');}
+}
+function updateNotes(list,id,val){
+  var item=DATA[list].find(function(x){return x.id===id;});
+  if(item){item.notes=val;saveData(DATA);}
+}
+function updateExtra(list,id,val){
+  var item=DATA[list].find(function(x){return x.id===id;});
+  if(item){
+    item.extra=val;
+    saveData(DATA);
+    recalcPipeline();
+    toast('Amount updated');
+  }
+}
+function recalcPipeline(){
+  var total=DATA.sponsors.reduce(function(sum,s){
+    var n=parseFloat((s.extra||'0').replace(/[^0-9.-]/g,''))||0;
+    return sum+n;
+  },0);
+  var fmt='$'+total.toLocaleString();
+  document.querySelectorAll('.pipeline-total').forEach(function(el){el.textContent=fmt;});
+  var sb=document.getElementById('sp-sidebar-list');
+  if(sb){
+    var sorted=DATA.sponsors.slice().sort(function(a,b){
+      var an=parseFloat((a.extra||'0').replace(/[^0-9.-]/g,''))||0;
+      var bn=parseFloat((b.extra||'0').replace(/[^0-9.-]/g,''))||0;
+      return bn-an;
+    });
+    var html='';
+    sorted.forEach(function(s){
+      var n=parseFloat((s.extra||'0').replace(/[^0-9.-]/g,''))||0;
+      if(n>0){
+        html+='<div class="sr"><span class="sn">'+s.org.split(' ')[0]+'</span>'+
+          '<span style="font-family:DM Mono,monospace;font-size:11px;color:var(--gold)">$'+n.toLocaleString()+'</span></div>';
+      }
+    });
+    html+='<div class="sr" style="border-top:.5px solid rgba(212,175,55,.2);padding-top:8px;margin-top:4px">'+
+      '<span style="color:var(--gold);font-weight:500">Total</span>'+
+      '<span style="font-family:DM Mono,monospace;font-size:14px;color:var(--gold)">'+fmt+'</span></div>';
+    sb.innerHTML=html;
+  }
+  var ck=document.getElementById('sp-count-ks');
+  if(ck) ck.textContent=DATA.sponsors.length+' accounts';
+}
+
+function updateTodayTab(){
+  var today=new Date();today.setHours(0,0,0,0);
+  var all=DATA.sponsors.concat(DATA.speakers).filter(function(x){return x.fu;});
+  var todayC=0,overdueC=0,weekC=0;var cards=[];
+  all.forEach(function(x){
+    var fd=new Date(x.fu);fd.setHours(0,0,0,0);
+    var diff=Math.round((fd-today)/(1000*60*60*24));
+    if(diff<0){overdueC++;cards.push({item:x,diff:diff,type:'urgent'});}
+    else if(diff===0){todayC++;cards.push({item:x,diff:diff,type:'today'});}
+    else if(diff<=7){weekC++;cards.push({item:x,diff:diff,type:'week'});}
+  });
+  cards.sort(function(a,b){return a.diff-b.diff;});
+  document.getElementById('k-today').textContent=todayC;
+  document.getElementById('k-overdue').textContent=overdueC;
+  document.getElementById('k-week').textContent=weekC;
+  var total=todayC+overdueC;
+  var bc=document.getElementById('fu-count');
+  if(total>0){bc.style.display='flex';bc.textContent=total;}else{bc.style.display='none';}
+  var fl=document.getElementById('fu-list');
+  if(cards.length===0){fl.innerHTML='<div style="color:var(--muted);font-size:13px;padding:20px 0">No follow-ups scheduled. Add dates in Sponsors or Speakers tabs.</div>';return;}
+  var html='';
+  cards.forEach(function(c){
+    var x=c.item;
+    var when=c.diff<0?'<span style="color:var(--danger)">'+Math.abs(c.diff)+'d overdue</span>':c.diff===0?'<span style="color:var(--warn)">Today</span>':'<span style="color:var(--ok)">In '+c.diff+' day'+(c.diff===1?'':'s')+'</span>';
+    html+='<div class="fu-card '+c.type+'">'+
+      '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">'+
+      '<div><div class="fu-org">'+x.org+'</div>'+
+      '<div class="fu-contact">'+x.contact+(x.role?' &middot; '+x.role:'')+'</div>'+
+      (x.notes?'<div style="font-size:11px;color:rgba(245,240,232,.65);margin-top:3px;font-style:italic">'+x.notes+'</div>':'')+
+      '</div><div style="text-align:right;flex-shrink:0">'+
+      '<div style="font-family:DM Mono,monospace;font-size:10px">'+when+'</div>'+
+      '<button class="ab" style="margin-top:5px" onclick="setAIName(\''+x.contact+'\',\''+x.org+'\',\'follow-up\')">Draft</button>'+
+      '</div></div></div>';
+  });
+  fl.innerHTML=html;
+}
+
+function quickAddFU(){
+  var org=document.getElementById('q-org').value.trim();
+  var contact=document.getElementById('q-contact').value.trim();
+  var fu=document.getElementById('q-date').value;
+  var note=document.getElementById('q-note').value.trim();
+  if(!org||!fu){toast('Add organisation and date');return;}
+  var newItem={id:'q'+Date.now(),org:org,contact:contact,role:'',email:'',extra:'',status:'contacted',fu:fu,notes:note};
+  DATA.sponsors.push(newItem);saveData(DATA);renderSponsors();renderBulkList();updateTodayTab();
+  document.getElementById('q-org').value='';document.getElementById('q-contact').value='';
+  document.getElementById('q-date').value='';document.getElementById('q-note').value='';
+  toast('Follow-up added');
+}
+
+function openModal(mode){
+  modalMode=mode;
+  document.getElementById('modal-contact-title').textContent=mode==='sp'?'Add Sponsor':'Add Speaker';
+  document.getElementById('m-extra-lbl').textContent=mode==='sp'?'Budget Target':'Speaker type';
+  document.getElementById('modal-contact').classList.add('open');
+}
+function openProgModal(){document.getElementById('modal-prog').classList.add('open');}
+function openLogModal(){document.getElementById('modal-log').classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+function saveContact(){
+  var obj={
+    id:(modalMode==='sp'?'s':'sp')+Date.now(),
+    org:document.getElementById('m-org').value.trim(),
+    contact:document.getElementById('m-contact').value.trim(),
+    role:document.getElementById('m-role').value.trim(),
+    email:document.getElementById('m-email').value.trim(),
+    extra:document.getElementById('m-extra').value.trim(),
+    status:document.getElementById('m-status').value,
+    fu:document.getElementById('m-fu').value,
+    notes:document.getElementById('m-notes').value.trim()
+  };
+  if(!obj.org){toast('Organisation name required');return;}
+  if(modalMode==='sp') DATA.sponsors.push(obj); else DATA.speakers.push(obj);
+  saveData(DATA);
+  if(modalMode==='sp') renderSponsors(); else renderSpeakers();
+  renderBulkList();updateTodayTab();closeModal('modal-contact');
+  ['m-org','m-contact','m-role','m-email','m-extra','m-notes'].forEach(function(id){document.getElementById(id).value='';});
+  document.getElementById('m-fu').value='';
+  toast('Contact added');
+}
+
+function saveSession(){
+  var title=document.getElementById('prog-title').value.trim();
+  if(!title){toast('Session title required');return;}
+  var session={
+    id:'sess'+Date.now(),
+    title:title,
+    speaker:document.getElementById('prog-speaker').value.trim(),
+    start:document.getElementById('prog-start').value,
+    end:document.getElementById('prog-end').value,
+    type:document.getElementById('prog-type').value,
+    notes:document.getElementById('prog-notes').value.trim()
+  };
+  if(!DATA.sessions) DATA.sessions=[];
+  DATA.sessions.push(session);saveData(DATA);renderProgramme();closeModal('modal-prog');
+  ['prog-title','prog-speaker','prog-notes'].forEach(function(id){document.getElementById(id).value='';});
+  toast('Session added');
+}
+
+function deleteSession(id){
+  DATA.sessions=DATA.sessions.filter(function(s){return s.id!==id;});
+  saveData(DATA);renderProgramme();toast('Session removed');
+}
+
+function saveLog(){
+  var org=document.getElementById('log-org').value.trim();
+  if(!org){toast('Organisation required');return;}
+  var entry={
+    id:'log'+Date.now(),
+    org:org,
+    contact:document.getElementById('log-contact').value.trim(),
+    subject:document.getElementById('log-subject').value.trim(),
+    date:document.getElementById('log-date').value,
+    by:document.getElementById('log-by').value.trim(),
+    sentiment:document.getElementById('log-sent').value,
+    notes:document.getElementById('log-notes').value.trim()
+  };
+  if(!DATA.emailLog) DATA.emailLog=[];
+  DATA.emailLog.push(entry);saveData(DATA);renderLog();closeModal('modal-log');
+  ['log-org','log-contact','log-subject','log-by','log-notes'].forEach(function(id){document.getElementById(id).value='';});
+  toast('Email logged');
+}
+
+function filterTbl(id,q){
+  document.querySelectorAll('#'+id+' tr').forEach(function(r){
+    r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';
+  });
+}
+
+async function runBulk(){
+  var checked=document.querySelectorAll('#bulk-list input[type=checkbox]:checked');
+  if(!checked.length){toast('Select at least one contact');return;}
+  var type=document.getElementById('bulk-type').value;
+  var context=document.getElementById('bulk-context').value.trim();
+  var results=document.getElementById('bulk-results');
+  var typeLabels={
+    sponsor:'sponsorship proposal',followup:'follow-up on a sponsor proposal sent with no reply',
+    delegate:'delegate invitation to a flagship conference',speaker:'speaker invitation',
+    reminder:'payment reminder for an outstanding invoice',
+    partner:'upgrade from Speaker to Supporting Partner',
+    thankyou:'warm post-event thank you'
+  };
+  results.innerHTML='<div style="color:var(--muted);font-size:12px;padding:8px 0">Generating '+checked.length+' email'+(checked.length>1?'s':'')+'...</div>';
+  var all=window._bulkAll||[];
+  for(var i=0;i<checked.length;i++){
+    var idx=parseInt(checked[i].dataset.idx);
+    var c=all[idx];if(!c)continue;
+    var ph=document.createElement('div');
+    ph.style.marginBottom='14px';
+    ph.innerHTML='<div class="sl" style="margin-bottom:6px">'+c.org+' &mdash; '+c.contact+'</div>'+
+      '<div class="bulk-out" style="color:var(--muted)">Drafting...</div>';
+    results.appendChild(ph);
+    try{
+      var res=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',max_tokens:500,
+          system:'You are the senior communications writer for The African Circuit — a premier pan-African financial conference circuit across Nairobi, Lagos, Accra, Johannesburg, and Mauritius, under The Philanthropic Foundation (Mauritius). Write polished, diplomatic, personalised emails. Sign off as "The African Circuit Partnerships Team". Max 180 words.',
+          messages:[{role:'user',content:'Write a personalised '+typeLabels[type]+' email for '+c.contact+' at '+c.org+' (role: '+c.role+'). '+(context?'Context: '+context+'. ':'')+'Make it specific to their organisation.'}]
+        })
+      });
+      var d=await res.json();
+      var text=d.content&&d.content.map(function(b){return b.text||'';}).join('')||'Error.';
+      ph.querySelector('.bulk-out').textContent=text;
+      ph.querySelector('.bulk-out').style.color='';
+      bulkGenCount++;document.getElementById('bulk-gen').textContent=bulkGenCount;
+    }catch(e){ph.querySelector('.bulk-out').textContent='Connection error.';}
+  }
+  toast(checked.length+' email'+(checked.length>1?'s':'')+' generated');
+}
+
+function setAI(text){
+  sw('ai',document.querySelectorAll('.tab')[10]);
+  document.getElementById('ai-prompt').value=text;
+}
+function setAIName(name,org,role){
+  setAI('Draft a personalised, diplomatic '+role+' email for '+name+' at '+org+' for the African Circuit Mauritius flagship event 2026. Sign off as The African Circuit Partnerships Team.');
+}
+
+async function callAI(prompt,outId,systemOverride){
+  var out=document.getElementById(outId);
+  out.style.display='block';out.textContent='Drafting...';
+  var sys=systemOverride||'You are the senior communications writer for The African Circuit — a premier pan-African financial conference circuit operating across Nairobi, Lagos, Accra, Johannesburg, and Mauritius, under The Philanthropic Foundation (Mauritius, Reg. No. 679). Write with a polished, warm but formal diplomatic tone. Sign off as "The African Circuit Partnerships Team".';
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:prompt}]})
+    });
+    var d=await res.json();
+    out.textContent=d.content&&d.content.map(function(b){return b.text||'';}).join('')||'No response.';
+  }catch(e){out.textContent='Connection error. Please try again.';}
+}
+
+async function runAI(){ callAI(document.getElementById('ai-prompt').value.trim(),'ai-out'); }
+async function runPostAI(){ callAI(document.getElementById('post-prompt').value.trim(),'post-ai-out'); }
+async function genProgAI(){
+  var sessions=DATA.sessions||[];
+  var sessionList=sessions.length>0?sessions.map(function(s){return s.start+' - '+s.end+': '+s.title+' ('+s.speaker+')';}).join('\n'):'No sessions added yet.';
+  var prompt='Generate a professional pre-event briefing note for The African Circuit Mauritius flagship event team. Include:\n1. Event overview and objectives\n2. Programme summary\n3. Key speakers and their backgrounds\n4. Key sponsors and their packages\n5. On-the-day logistics reminders\n6. What to watch for and talking points\n\nCurrent programme:\n'+sessionList+'\n\nKey speakers: Minister of Finance Dovina Pillay (keynote), Dr. H.N. Manzini (SA High Commissioner), Keegan Ziady (BII), Nabil Fawaz (MIGA), Jane Niedra (Swedfund), Jean Francois Rose (TDB).\n\nKey sponsors: Mediterrania ($40k), EDB Mauritius ($40k), Suntera ($30k), Alpha Beta Energy ($20k).';
+  callAI(prompt,'prog-ai-out','You are the operations director for The African Circuit. Write a detailed, professional pre-event briefing note for the internal team. Be thorough and practical.');
+}
+
+function startCountdown(){
+  var target=new Date('2026-09-15T09:00:00');
+  function tick(){
+    var now=new Date();var diff=target-now;
+    if(diff<=0){document.getElementById('cd-d').textContent='0';return;}
+    var d=Math.floor(diff/(1000*60*60*24));
+    var h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    var m=Math.floor((diff%(1000*60*60))/(1000*60));
+    document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+  }
+  tick();setInterval(tick,30000);
+}
+
+function toast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2600);
+}
+</script>
+</body>
+</html>
