@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Delegate Matching · The African Circuit</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -15,6 +16,28 @@
 }
 html,body{height:100%;font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;}
 a{color:inherit;text-decoration:none;}
+
+
+/* ACCESS GATE MODAL */
+#access-gate{position:fixed;inset:0;z-index:200;background:rgba(8,19,28,0.92);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:40px 24px;}
+.gate-box{max-width:440px;width:100%;text-align:center;position:relative;background:var(--ink2);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:48px 40px;}
+.gate-logo{font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.4);margin-bottom:48px;}
+.gate-logo span{color:var(--gold);}
+.gate-eyebrow{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.gate-title{font-family:'EB Garamond',serif;font-size:36px;font-weight:400;line-height:1.15;margin-bottom:12px;}
+.gate-sub{font-size:13px;font-weight:300;color:rgba(245,240,232,0.4);line-height:1.7;margin-bottom:36px;}
+.gate-input-wrap{position:relative;margin-bottom:12px;}
+.gate-input{width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:14px 18px;font-family:'DM Mono',monospace;font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);outline:none;text-align:center;transition:border .2s;}
+.gate-input:focus{border-color:rgba(212,175,55,0.4);}
+.gate-input.error{border-color:rgba(224,82,82,0.5);animation:shake .3s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.gate-error{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(224,82,82,0.7);margin-bottom:16px;min-height:14px;}
+.gate-btn{width:100%;background:var(--gold);color:var(--ink);border:none;padding:14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:background .2s;border-radius:4px;}
+.gate-btn:hover{background:var(--gold2);}
+.gate-btn:disabled{opacity:.4;cursor:not-allowed;}
+.gate-note{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;color:rgba(245,240,232,0.18);margin-top:28px;line-height:1.8;}
+.gate-note a{color:rgba(212,175,55,0.4);text-decoration:none;}
+.gate-note a:hover{color:var(--gold);}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 60px;background:rgba(8,19,28,0.95);border-bottom:1px solid rgba(212,175,55,0.1);backdrop-filter:blur(8px);}
@@ -57,20 +80,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .form-group select option{background:var(--ink2);color:var(--cream);}
 .form-group textarea{resize:vertical;min-height:90px;line-height:1.6;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.obj-card{position:relative;border:1px solid rgba(255,255,255,0.08);border-radius:var(--r);padding:14px 16px 14px 44px;cursor:pointer;transition:all .2s;background:rgba(255,255,255,0.02);}
-.obj-card:hover:not(.locked){border-color:rgba(212,175,55,0.3);background:rgba(212,175,55,0.04);}
-.obj-card.selected{border-color:var(--gold);background:rgba(212,175,55,0.08);}
-.obj-card.locked{cursor:not-allowed;opacity:.38;}
-.obj-check{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:3px;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .2s;}
-.obj-card.selected .obj-check{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700;}
-.obj-lock{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:12px;}
-.obj-title{font-family:'Jost',sans-serif;font-size:12px;font-weight:500;color:var(--cream);margin-bottom:3px;}
-.obj-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,0.22);}
+.obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.obj-card{position:relative;border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:18px 18px 18px 52px;cursor:pointer;transition:border .2s,background .2s;background:rgba(255,255,255,0.02);overflow:hidden;}
+.obj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s;}
+.obj-card:hover:not(.locked){border-color:rgba(212,175,55,0.2);background:rgba(212,175,55,0.03);}
+.obj-card:hover:not(.locked)::before{background:rgba(212,175,55,0.3);}
+.obj-card.selected{border-color:rgba(212,175,55,0.35);background:rgba(212,175,55,0.06);}
+.obj-card.selected::before{background:var(--gold);}
+.obj-card.locked{cursor:not-allowed;opacity:.3;pointer-events:none;}
+.obj-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:16px;color:rgba(245,240,232,0.25);transition:color .2s;}
+.obj-card.selected .obj-icon{color:var(--gold);}
+.obj-lock-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:14px;color:rgba(245,240,232,0.15);}
+.obj-tick{position:absolute;right:14px;top:14px;width:16px;height:16px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.obj-card.selected .obj-tick{background:var(--gold);border-color:var(--gold);}
+.obj-tick i{font-size:9px;color:var(--ink);opacity:0;transition:opacity .2s;}
+.obj-card.selected .obj-tick i{opacity:1;}
+.obj-title{font-family:'Jost',sans-serif;font-size:12px;font-weight:500;color:rgba(245,240,232,0.8);margin-bottom:3px;transition:color .2s;}
+.obj-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,0.2);}
 .obj-card.selected .obj-title{color:var(--gold);}
-.obj-gate{display:none;align-items:center;gap:10px;margin-top:14px;padding:10px 14px;border:1px solid rgba(224,82,82,0.2);border-radius:var(--r);background:rgba(224,82,82,0.04);}
+.obj-gate{display:none;align-items:center;gap:10px;margin-top:12px;padding:11px 16px;border:1px solid rgba(255,255,255,0.06);border-radius:6px;background:rgba(255,255,255,0.02);}
 .obj-gate.visible{display:flex;}
-.obj-gate-text{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(224,82,82,0.65);}
+.obj-gate-text{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,0.25);}
 
 /* CV UPLOAD */
 .upload-zone{border:1px dashed rgba(212,175,55,0.3);border-radius:var(--r);padding:32px;text-align:center;cursor:pointer;transition:all .2s;background:rgba(212,175,55,0.02);}
@@ -181,6 +211,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   <a href="index.html" class="nav-back">← Back to Circuit</a>
 </nav>
 
+<div id="access-gate" style="display:none;">
+  <div class="gate-box">
+    <button onclick="document.getElementById('access-gate').style.display='none';" style="position:absolute;top:24px;right:28px;background:transparent;border:none;color:rgba(245,240,232,0.25);font-size:20px;cursor:pointer;line-height:1;padding:4px;"><i class="ti ti-x"></i></button>
+    <div class="gate-logo">The African <span>Circuit</span></div>
+    <div class="gate-eyebrow">Restricted Access</div>
+    <h1 class="gate-title">Delegate & Sponsor<br>Matching</h1>
+    <p class="gate-sub">This tool is exclusively available to confirmed African Circuit delegates and sponsors. Enter your referral code to access your personalised match results.</p>
+    <div class="gate-input-wrap">
+      <input class="gate-input" id="gate-code" type="text" placeholder="ENTER ACCESS CODE" maxlength="12" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter')checkCode()">
+    </div>
+    <div class="gate-error" id="gate-error"></div>
+    <button class="gate-btn" id="gate-btn" onclick="checkCode()">Access Matching →</button>
+    <div class="gate-note">
+      Don't have a code? Your access code is included in your confirmation email.<br>
+      <a href="mailto:admin@philanthropicfoundation.net">Contact us</a> if you haven't received one.
+    </div>
+  </div>
+</div>
+
 <div id="form-panel">
   <div class="match-hero">
     <div class="match-eyebrow">Intelligent Matching</div>
@@ -214,20 +263,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         <div class="form-grid">
           <div class="form-group">
             <label>First Name</label>
-            <input type="text" id="fname" placeholder="Amara" oninput="updatePreview()">
+            <input type="text" id="fname" placeholder="First name" oninput="updatePreview()">
           </div>
           <div class="form-group">
             <label>Last Name</label>
-            <input type="text" id="lname" placeholder="Osei" oninput="updatePreview()">
+            <input type="text" id="lname" placeholder="Last name" oninput="updatePreview()">
           </div>
         </div>
         <div class="form-group">
           <label>Organisation</label>
-          <input type="text" id="org" placeholder="BlueOrchard Finance" oninput="updatePreview()">
+          <input type="text" id="org" placeholder="Your organisation" oninput="updatePreview()">
         </div>
         <div class="form-group">
           <label>Role / Title</label>
-          <input type="text" id="role" placeholder="Managing Director, Africa" oninput="updatePreview()">
+          <input type="text" id="role" placeholder="Your role / title" oninput="updatePreview()">
         </div>
         <div class="form-group">
           <label>Organisation Type</label>
@@ -262,7 +311,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         </div>
         <div class="form-group">
           <label>Brief Bio (2–3 sentences)</label>
-          <textarea id="bio" placeholder="Describe your investment focus, geography, and what you're looking to explore at the circuit…" oninput="updatePreview()"></textarea>
+          <textarea id="bio" placeholder="Briefly describe your investment focus, geography, and what you're looking to explore at the Circuit…" oninput="updatePreview()"></textarea>
         </div>
         <div class="btn-row">
           <button class="btn-primary" onclick="goStep(2)">Continue →</button>
@@ -301,39 +350,51 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           <label>What are you looking for at the Circuit?</label>
           <div class="obj-grid" id="obj-grid">
             <div class="obj-card locked" data-value="Co-investment partners" onclick="toggleObj(this)">
-              <div class="obj-lock">🔒</div>
+              <div class="obj-lock-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
+              <div class="obj-icon"><i class="ti ti-building-bank" aria-hidden="true"></i></div>
+              <div class="obj-tick"><i class="ti ti-check"></i></div>
               <div class="obj-title">Co-investment Partners</div>
-              <div class="obj-sub">Equity / Debt</div>
+              <div class="obj-sub">Equity · Debt</div>
             </div>
             <div class="obj-card locked" data-value="LP capital" onclick="toggleObj(this)">
-              <div class="obj-lock">🔒</div>
+              <div class="obj-lock-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
+              <div class="obj-icon"><i class="ti ti-chart-pie" aria-hidden="true"></i></div>
+              <div class="obj-tick"><i class="ti ti-check"></i></div>
               <div class="obj-title">LP Capital for a Fund</div>
               <div class="obj-sub">Fund Raising</div>
             </div>
             <div class="obj-card locked" data-value="Deal flow" onclick="toggleObj(this)">
-              <div class="obj-lock">🔒</div>
+              <div class="obj-lock-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
+              <div class="obj-icon"><i class="ti ti-arrows-exchange" aria-hidden="true"></i></div>
+              <div class="obj-tick"><i class="ti ti-check"></i></div>
               <div class="obj-title">Deal Flow / Pipeline</div>
               <div class="obj-sub">Origination</div>
             </div>
             <div class="obj-card locked" data-value="Mandates" onclick="toggleObj(this)">
-              <div class="obj-lock">🔒</div>
+              <div class="obj-lock-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
+              <div class="obj-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></div>
+              <div class="obj-tick"><i class="ti ti-check"></i></div>
               <div class="obj-title">Institutional Mandates</div>
               <div class="obj-sub">Allocator Capital</div>
             </div>
             <div class="obj-card locked" data-value="Strategic partnerships" onclick="toggleObj(this)">
-              <div class="obj-lock">🔒</div>
+              <div class="obj-lock-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
+              <div class="obj-icon"><i class="ti ti-handshake" aria-hidden="true"></i></div>
+              <div class="obj-tick"><i class="ti ti-check"></i></div>
               <div class="obj-title">Strategic Partnerships</div>
-              <div class="obj-sub">JVs / Alliances</div>
+              <div class="obj-sub">JVs · Alliances</div>
             </div>
             <div class="obj-card locked" data-value="Knowledge exchange" onclick="toggleObj(this)">
-              <div class="obj-lock">🔒</div>
+              <div class="obj-lock-icon"><i class="ti ti-lock" aria-hidden="true"></i></div>
+              <div class="obj-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+              <div class="obj-tick"><i class="ti ti-check"></i></div>
               <div class="obj-title">Knowledge Exchange</div>
               <div class="obj-sub">Sector Intelligence</div>
             </div>
           </div>
           <div class="obj-gate" id="obj-gate">
-            <span style="font-size:13px;">🔒</span>
-            <span class="obj-gate-text">Complete geography and asset class selections above to unlock objectives</span>
+            <i class="ti ti-lock" style="font-size:13px;color:rgba(245,240,232,0.2);" aria-hidden="true"></i>
+            <span class="obj-gate-text">Select a geography and asset class above to unlock</span>
           </div>
         </div>
         <div class="btn-row">
@@ -483,6 +544,14 @@ function dropFile(e){
 }
 
 function runMatching() {
+  if(!sessionStorage.getItem('tac_access')) {
+    document.getElementById('access-gate').style.display = 'flex';
+    document.getElementById('gate-code').value = '';
+    document.getElementById('gate-error').textContent = '';
+    document.getElementById('gate-btn').textContent = 'Access Matching →';
+    document.getElementById('gate-btn').disabled = false;
+    return;
+  }
   document.getElementById('form-panel').style.display = 'none';
   document.getElementById('loading-panel').style.display = 'block';
   document.getElementById('results-panel').style.display = 'none';
@@ -644,7 +713,6 @@ function checkObjUnlock() {
   cards.forEach(function(c) {
     if(unlocked) {
       c.classList.remove('locked');
-      c.querySelector('.obj-lock') && (c.querySelector('.obj-lock').innerHTML = '<div class="obj-check"></div>');
     } else {
       c.classList.add('locked');
       c.classList.remove('selected');
@@ -656,9 +724,43 @@ function checkObjUnlock() {
 function toggleObj(card) {
   if(card.classList.contains('locked')) return;
   card.classList.toggle('selected');
-  var check = card.querySelector('.obj-check');
-  if(check) check.textContent = card.classList.contains('selected') ? '✓' : '';
 }
+
+var VALID_CODES = ['TAC2026','MAURITIUS26','CIRCUIT26','DELEGATE26','SPONSOR26'];
+
+function checkCode() {
+  var code = document.getElementById('gate-code').value.trim().toUpperCase();
+  var btn = document.getElementById('gate-btn');
+  var err = document.getElementById('gate-error');
+  var input = document.getElementById('gate-code');
+  
+  if(!code) { 
+    input.classList.add('error');
+    err.textContent = 'Please enter your access code';
+    setTimeout(function(){ input.classList.remove('error'); }, 400);
+    return; 
+  }
+  
+  btn.textContent = 'Verifying…';
+  btn.disabled = true;
+  
+  setTimeout(function() {
+    if(VALID_CODES.indexOf(code) !== -1) {
+      document.getElementById('access-gate').style.display = 'none';
+      sessionStorage.setItem('tac_access','1');
+      runMatching();
+    } else {
+      input.classList.add('error');
+      err.textContent = 'Invalid code — check your confirmation email';
+      btn.textContent = 'Access Matching →';
+      btn.disabled = false;
+      setTimeout(function(){ input.classList.remove('error'); }, 400);
+    }
+  }, 700);
+}
+
+// session check handled at match click time
+
 </script>
 </body>
 </html>
