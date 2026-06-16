@@ -637,10 +637,10 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 @media(max-width:900px){.invest-layout{grid-template-columns:1fr;}.invest-results{position:static;}.ir-kpis{grid-template-columns:1fr 1fr;}}
 
 /* SPEAKER TOAST */
-#speaker-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);z-index:999;background:var(--ink2);border:1px solid rgba(212,175,55,0.3);border-radius:6px;padding:16px 24px;text-align:center;opacity:0;pointer-events:none;transition:all .3s;min-width:300px;}
+#speaker-toast{position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-4px);z-index:9999;background:var(--ink2);border:1px solid rgba(212,175,55,0.25);border-radius:4px;padding:14px 28px;text-align:center;opacity:0;pointer-events:none;transition:opacity .25s ease, transform .25s ease;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
 #speaker-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.toast-title{font-family:'EB Garamond',serif;font-size:16px;color:var(--cream);margin-bottom:4px;}
-.toast-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
+.toast-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);}
+.toast-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold);margin:0 10px;vertical-align:middle;}
 </style>
 </head>
 <body>
@@ -1189,7 +1189,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </section>
 
 <!-- SPEAKERS TEASER -->
-<section id="speakers" style="background:var(--ink2);padding:80px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);">
+<section id="speakers" style="display:none;">
   <div class="wrap" style="text-align:center;max-width:600px;margin:0 auto;">
     <div class="s-label gold" style="margin-bottom:20px;">Faculty &middot; 2026</div>
     <h2 class="inv" style="font-family:'EB Garamond',serif;font-size:42px;font-weight:400;margin-bottom:16px;">Speaker Announcements<br><em style="color:var(--gold);font-style:italic;">Begin July 2026</em></h2>
@@ -3467,8 +3467,7 @@ function showSpeakerToast(e){
   e.preventDefault();
   var toast = document.getElementById('speaker-toast');
   toast.classList.add('show');
-  setTimeout(function(){ toast.classList.remove('show'); }, 3000);
-  setTimeout(function(){ document.getElementById('speakers').scrollIntoView({behavior:'smooth'}); }, 400);
+  setTimeout(function(){ toast.classList.remove('show'); }, 3500);
 }
 
 function notifySpeakers(){
@@ -3485,8 +3484,7 @@ function notifySpeakers(){
 }
 </script>
 <div id="speaker-toast">
-  <div class="toast-title">Speaker announcements begin July 2026</div>
-  <div class="toast-sub">Scroll down to register for early access</div>
+  <span class="toast-title">Speaker Faculty</span><span class="toast-dot"></span><span class="toast-title" style="color:var(--gold);">Announcements begin July 2026</span>
 </div>
 </body>
 </html>
