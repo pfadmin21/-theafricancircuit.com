@@ -1660,13 +1660,7 @@ function applyCircuitConfig() {
   const h1 = document.querySelector('#hero h1');
   if(h1) h1.innerHTML = `${CIRCUIT.heroHeadline[0]} <em>${CIRCUIT.heroHeadline[1]}</em> ${CIRCUIT.heroHeadline[2]}`;
 
-  // Hero background image
-  const heroSection = document.getElementById('hero');
-  if(heroSection && CIRCUIT.flagship.heroImage) {
-    const splitImg=document.querySelector('.hero-split-img');if(splitImg)splitImg.style.backgroundImage=`url('${CIRCUIT.flagship.heroImage}')`;heroSection.style.backgroundImage='none';
-    heroSection.style.backgroundSize = 'cover';
-    heroSection.style.backgroundPosition = 'center';
-  }
+  // Hero background handled by static HTML img tag
 
   // Countdown target
   window.__countdownTarget = new Date(CIRCUIT.flagship.countdownISO);
