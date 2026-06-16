@@ -42,7 +42,7 @@ nav.scrolled{padding:14px 64px;background:rgba(8,19,28,.97);backdrop-filter:blur
 @media(max-width:900px){nav{padding:20px 24px;}.nav-links,.nav-r>.nav-btn{display:none;}.nav-mob{display:flex;}}
 
 /* HERO */
-#hero{background:var(--ink);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+#hero{background:var(--ink) !important;background-image:none !important;display:flex;flex-direction:column;position:relative;overflow:hidden;}
 .hero-backdrop{width:100%;display:block;line-height:0;position:relative;}
 .hero-backdrop img{width:100%;height:auto;display:block;max-height:100vh;object-fit:cover;object-position:center center;}
 .hero-backdrop-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,28,.15) 0%,rgba(8,19,28,.05) 60%,rgba(8,19,28,.55) 100%);}
@@ -1407,17 +1407,6 @@ document.querySelectorAll('a,button,[data-city],.tier-card,.ev-toggle,.dl-item,.
   el.addEventListener('mouseenter',()=>{ring.classList.add('hover');dot.classList.add('hover');});
   el.addEventListener('mouseleave',()=>{ring.classList.remove('hover');dot.classList.remove('hover');});
 });
-
-// ── HERO IMAGE FALLBACK ──
-(function(){
-  const hero=document.getElementById('hero');
-  if(!hero) return;
-  const img=new Image();
-  img.onerror=function(){
-    hero.style.backgroundImage="linear-gradient(135deg,#08131C 0%,#0A2030 50%,#08131C 100%)";
-  };
-  img.src=hero.style.backgroundImage.replace(/url\(['"]?([^'"]+)['"]?\)/,'$1');
-})();
 
 // ── MOBILE NAV ──
 function toggleMobileNav(){
