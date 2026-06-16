@@ -57,7 +57,7 @@ nav.scrolled{padding:14px 64px;background:rgba(8,19,28,.97);backdrop-filter:blur
 .hero-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(192,154,60,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(192,154,60,.03) 1px, transparent 1px);background-size:180px 180px;animation:gridDrift 30s linear infinite reverse;}
 .hero-fade{position:absolute;inset:0;background:linear-gradient(105deg,var(--ink) 32%,rgba(8,19,28,.8) 52%,rgba(8,19,28,.25) 72%,transparent 100%),linear-gradient(180deg,rgba(8,19,28,.82) 0%,rgba(8,19,28,.4) 18%,transparent 40%);z-index:1;pointer-events:none;}
 .hero-vline{position:absolute;left:64px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(192,154,60,.3) 30%,rgba(192,154,60,.3) 70%,transparent);z-index:1;}
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 28px 124px;max-width:56%;}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 28px 124px;max-width:680px;}
 .h-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:14px;opacity:0;animation:rise .8s .2s forwards;}
 .h-label::before{content:'';width:28px;height:1px;background:var(--gold);}
 h1{font-family:'EB Garamond',serif;font-size:clamp(34px,4vw,62px);font-weight:400;color:#fff;line-height:1.06;letter-spacing:-.01em;max-width:580px;opacity:0;animation:rise .9s .4s forwards;}
@@ -682,12 +682,10 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </div>
 
 <!-- HERO -->
-<section id="hero" style="background:var(--ink);">
+<section id="hero" style="background-image:url('images/Backdrop_TAC.png');background-size:cover;background-position:center 40%;">
   <div class="hero-bg"></div>
   <div class="hero-vline"></div>
-  <div class="hero-split-img" style="position:absolute;top:0;right:0;width:52%;height:100%;background-image:url('images/hero 1.png');background-size:cover;background-position:center center;z-index:0;">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right, var(--ink) 0%, rgba(8,19,28,0.5) 30%, rgba(8,19,28,0.0) 100%);"></div>
-  </div>
+
   <div class="hero-content" style="z-index:2;position:relative;">
     <div class="h-label">Pan-African Financial Circuit · 2026–2028</div>
     <h1>Built on the Networks That <em>Actually Move</em> African Capital</h1>
@@ -1204,6 +1202,105 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
 </section>
 
+
+<!-- SPONSOR MOOD + ROI + CORRIDOR -->
+<section id="sponsor-brand" style="background:var(--ink);padding:0;">
+
+  <!-- MOOD IMAGE with overlay headline -->
+  <div style="position:relative;height:520px;overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:url('images/TAC_Design_Logo_Placement.png');background-size:cover;background-position:center 30%;"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,19,28,0.92) 0%,rgba(8,19,28,0.7) 45%,rgba(8,19,28,0.3) 100%);"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 124px;max-width:700px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Sponsor Brand Experience</div>
+      <h2 style="font-family:'EB Garamond',serif;font-size:48px;font-weight:400;line-height:1.1;color:var(--cream);margin-bottom:16px;">Your Brand.<br><em style="color:var(--gold);font-style:italic;">Every Room.</em><br>Five Markets.</h2>
+      <p style="font-size:14px;font-weight:300;color:rgba(245,240,232,0.55);line-height:1.8;max-width:480px;">Sponsorship at The African Circuit is not an awareness play. It is a direct line to the decision-makers who move capital across the continent — measured in introductions, mandates, and partnerships closed.</p>
+    </div>
+  </div>
+
+  <!-- ROI CALCULATOR -->
+  <div style="background:var(--ink2);padding:72px 124px;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Quantify Your Return</div>
+        <h3 style="font-family:'EB Garamond',serif;font-size:36px;font-weight:400;color:var(--cream);margin-bottom:12px;">What does your<br><em style="color:var(--gold);font-style:italic;">investment unlock?</em></h3>
+        <p style="font-size:13px;font-weight:300;color:rgba(245,240,232,0.45);line-height:1.8;">Input your sponsorship tier and primary objective. We'll show you the projected return based on comparable circuit data.</p>
+      </div>
+      <div>
+        <div style="margin-bottom:20px;">
+          <label style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,0.4);display:block;margin-bottom:8px;">Sponsorship Tier</label>
+          <select id="roi-tier" onchange="calcROI()" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:12px 14px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;">
+            <option value="25000">Institutional — $25,000</option>
+            <option value="50000">Strategic — $50,000</option>
+            <option value="100000">Founding — $100,000</option>
+          </select>
+        </div>
+        <div style="margin-bottom:24px;">
+          <label style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,0.4);display:block;margin-bottom:8px;">Primary Objective</label>
+          <select id="roi-obj" onchange="calcROI()" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:12px 14px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;">
+            <option value="bd">Business Development / Mandates</option>
+            <option value="lp">LP Capital Raising</option>
+            <option value="brand">Brand Positioning</option>
+            <option value="deals">Deal Flow / Co-investment</option>
+          </select>
+        </div>
+        <div id="roi-result" style="background:rgba(212,175,55,0.06);border:1px solid rgba(212,175,55,0.2);border-radius:6px;padding:24px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div>
+              <div id="roi-meetings" style="font-family:'EB Garamond',serif;font-size:28px;color:var(--gold);">18–34</div>
+              <div style="font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-top:4px;">Qualified<br>Meetings</div>
+            </div>
+            <div>
+              <div id="roi-value" style="font-family:'EB Garamond',serif;font-size:28px;color:var(--gold);">$2–8M</div>
+              <div style="font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-top:4px;">Pipeline<br>Value</div>
+            </div>
+            <div>
+              <div id="roi-ratio" style="font-family:'EB Garamond',serif;font-size:28px;color:var(--gold);">×80</div>
+              <div style="font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,0.35);margin-top:4px;">ROI<br>Ratio</div>
+            </div>
+          </div>
+          <div id="roi-note" style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;color:rgba(245,240,232,0.25);line-height:1.7;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;">Based on comparable African institutional finance conference data. Actual results depend on engagement quality and delegate alignment.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAPITAL CORRIDOR -->
+  <div style="background:var(--ink);padding:48px 124px;border-bottom:1px solid rgba(255,255,255,0.06);">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,175,55,0.5);margin-bottom:8px;">— Welcome to the —</div>
+      <div style="font-family:'EB Garamond',serif;font-size:32px;font-weight:400;color:var(--cream);letter-spacing:.05em;">Capital Corridor</div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:0;margin-bottom:40px;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);">
+      <div style="padding:16px 28px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.5);border-right:1px solid rgba(255,255,255,0.06);">Mauritius</div>
+      <div style="padding:16px 28px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.5);border-right:1px solid rgba(255,255,255,0.06);">Nairobi</div>
+      <div style="padding:16px 28px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.5);border-right:1px solid rgba(255,255,255,0.06);">Lagos</div>
+      <div style="padding:16px 28px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.5);border-right:1px solid rgba(255,255,255,0.06);">Accra</div>
+      <div style="padding:16px 28px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.5);">Johannesburg</div>
+    </div>
+    <div style="text-align:center;margin-bottom:24px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,240,232,0.2);">Powered by our Strategic Partners</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+      <div style="border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:24px 16px;text-align:center;display:flex;align-items:center;justify-content:center;min-height:72px;background:rgba(255,255,255,0.02);">
+        <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.12);">Your Logo</span>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:24px 16px;text-align:center;display:flex;align-items:center;justify-content:center;min-height:72px;background:rgba(255,255,255,0.02);">
+        <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.12);">Your Logo</span>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:24px 16px;text-align:center;display:flex;align-items:center;justify-content:center;min-height:72px;background:rgba(255,255,255,0.02);">
+        <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.12);">Your Logo</span>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:24px 16px;text-align:center;display:flex;align-items:center;justify-content:center;min-height:72px;background:rgba(255,255,255,0.02);">
+        <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.12);">Your Logo</span>
+      </div>
+      <div style="border:1px solid rgba(255,255,255,0.07);border-radius:4px;padding:24px 16px;text-align:center;display:flex;align-items:center;justify-content:center;min-height:72px;background:rgba(255,255,255,0.02);">
+        <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.12);">Your Logo</span>
+      </div>
+    </div>
+  </div>
+
+</section>
+
 <!-- DELEGATE APPLICATION -->
 
 
@@ -1663,7 +1760,7 @@ function applyCircuitConfig() {
   // Hero background image
   const heroSection = document.getElementById('hero');
   if(heroSection && CIRCUIT.flagship.heroImage) {
-    document.querySelector('.hero-split-img').style.backgroundImage = `url('${CIRCUIT.flagship.heroImage}')`;heroSection.style.backgroundImage='none';
+    heroSection.style.backgroundImage = `url('${CIRCUIT.flagship.heroImage}')`;heroSection.style.backgroundSize='cover';heroSection.style.backgroundPosition='center 40%';
     heroSection.style.backgroundSize = 'cover';
     heroSection.style.backgroundPosition = 'center';
   }
@@ -3484,6 +3581,44 @@ function notifySpeakers(){
     document.getElementById('speaker-notify-email').style.display='none';
   });
 }
+
+function calcROI(){
+  var tier = parseInt(document.getElementById('roi-tier').value);
+  var obj = document.getElementById('roi-obj').value;
+  var meetings, valueMin, valueMax, ratio, note;
+
+  if(obj === 'bd'){
+    meetings = tier === 25000 ? '18–28' : tier === 50000 ? '24–38' : '32–50';
+    valueMin = tier === 25000 ? 2 : tier === 50000 ? 4 : 8;
+    valueMax = tier === 25000 ? 8 : tier === 50000 ? 15 : 30;
+    ratio = Math.round((valueMin * 1000000) / tier);
+    note = 'Mandate pipeline projections based on delegate AUM concentration and BD conversion rates at comparable African IFC events.';
+  } else if(obj === 'lp'){
+    meetings = tier === 25000 ? '8–14' : tier === 50000 ? '12–20' : '18–32';
+    valueMin = tier === 25000 ? 10 : tier === 50000 ? 25 : 50;
+    valueMax = tier === 25000 ? 50 : tier === 50000 ? 100 : 250;
+    ratio = Math.round((valueMin * 1000000) / tier);
+    note = 'LP pipeline value based on confirmed delegate AUM profiles. 200+ institutional allocators across the 5-city circuit.';
+  } else if(obj === 'brand'){
+    meetings = tier === 25000 ? '220+' : tier === 50000 ? '400+' : '600+';
+    valueMin = tier === 25000 ? 1 : tier === 50000 ? 2 : 5;
+    valueMax = tier === 25000 ? 3 : tier === 50000 ? 6 : 12;
+    ratio = Math.round((valueMin * 1000000) / tier);
+    note = 'Brand impressions across delegate badges, stage backdrop, digital assets, and post-event circuit report distribution.';
+  } else {
+    meetings = tier === 25000 ? '6–12' : tier === 50000 ? '10–18' : '16–28';
+    valueMin = tier === 25000 ? 5 : tier === 50000 ? 15 : 40;
+    valueMax = tier === 25000 ? 20 : tier === 50000 ? 50 : 150;
+    ratio = Math.round((valueMin * 1000000) / tier);
+    note = 'Deal flow projections based on GP/LP co-investment appetite and infrastructure pipeline across circuit markets.';
+  }
+
+  document.getElementById('roi-meetings').textContent = meetings;
+  document.getElementById('roi-value').textContent = '$' + valueMin + '–' + valueMax + 'M';
+  document.getElementById('roi-ratio').textContent = '×' + ratio;
+  document.getElementById('roi-note').textContent = note;
+}
+
 </script>
 <div id="speaker-toast">
   <span class="toast-title">Speaker Faculty</span><span class="toast-dot"></span><span class="toast-title" style="color:var(--gold);">Announcements begin July 2026</span>
