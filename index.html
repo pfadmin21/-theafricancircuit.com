@@ -668,7 +668,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   <button onclick="toggleMobileNav()" style="position:absolute;top:28px;right:24px;background:none;border:none;color:rgba(255,255,255,.5);font-size:28px;cursor:pointer;line-height:1;">×</button>
   <a href="#platform" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Circuit</a>
   <a href="#programme" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Programme</a>
-  <a href="#speakers" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Delegates</a>
+  <a href="#speakers" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Speakers</a>
   <a href="match.html" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(212,175,55,0.7);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">AI Matching</a>
   <a href="#sponsor" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Sponsorship</a>
   <a href="#apply" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Apply</a>
@@ -1179,6 +1179,20 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SPEAKERS TEASER -->
+<section id="speakers" style="background:var(--ink2);padding:80px 0;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <div class="wrap" style="text-align:center;max-width:600px;margin:0 auto;">
+    <div class="s-label gold" style="margin-bottom:20px;">Faculty &middot; 2026</div>
+    <h2 class="inv" style="font-family:'EB Garamond',serif;font-size:42px;font-weight:400;margin-bottom:16px;">Speaker Announcements<br><em style="color:var(--gold);font-style:italic;">Begin July 2026</em></h2>
+    <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:36px;">Confirmed keynotes, panel moderators, and deal room chairs will be announced from July 2026. Register below to be notified first.</p>
+    <div style="display:flex;gap:12px;justify-content:center;max-width:400px;margin:0 auto;">
+      <input type="email" id="speaker-notify-email" placeholder="your@email.com" style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:12px 16px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;">
+      <button onclick="notifySpeakers()" style="background:var(--gold);color:var(--ink);border:none;padding:12px 24px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:4px;white-space:nowrap;">Notify Me</button>
+    </div>
+    <div id="speaker-notify-confirm" style="display:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:16px;">&check; You&rsquo;re on the list</div>
   </div>
 </section>
 
@@ -3440,6 +3454,19 @@ function submitProspectus(){
       <p style="font-size:11px;font-weight:300;color:rgba(255,255,255,.25);margin-top:8px;line-height:1.7;">Or write directly to <span style="color:var(--gold);">admin@philanthropicfoundation.net</span></p>
       <button onclick="closeModal('prospectus')" style="margin-top:24px;background:var(--gold);color:var(--ink);padding:12px 28px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Manrope',sans-serif;">Close</button>
     </div>`;
+}
+
+function notifySpeakers(){
+  var email = document.getElementById('speaker-notify-email').value;
+  if(!email) return;
+  fetch('https://formspree.io/f/mnjynokn',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({email:email, _subject:'Speaker Notify — African Circuit', type:'speaker_notification'})
+  }).then(function(){
+    document.getElementById('speaker-notify-confirm').style.display='block';
+    document.getElementById('speaker-notify-email').style.display='none';
+  });
 }
 </script>
 </body>
