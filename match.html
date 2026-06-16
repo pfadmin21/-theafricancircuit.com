@@ -14,9 +14,8 @@
   --cream:#f5f0e8;--muted:rgba(245,240,232,0.42);
   --r:4px;--danger:#e05252;
 }
-html,body{height:100%;font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;}
+html,body{height:100%;font-family:'Jost',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;cursor:auto;}
 a{color:inherit;text-decoration:none;}
-
 
 /* ACCESS GATE MODAL */
 #access-gate{position:fixed;inset:0;z-index:200;background:rgba(8,19,28,0.92);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:40px 24px;}
@@ -32,7 +31,7 @@ a{color:inherit;text-decoration:none;}
 .gate-input.error{border-color:rgba(224,82,82,0.5);animation:shake .3s ease;}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .gate-error{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(224,82,82,0.7);margin-bottom:16px;min-height:14px;}
-.gate-btn{width:100%;background:var(--gold);color:var(--ink);border:none;padding:14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:background .2s;border-radius:4px;}
+.gate-btn{width:100%;background:var(--gold);color:var(--ink);border:none;padding:14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:background .2s;border-radius:4px;-webkit-tap-highlight-color:transparent;}
 .gate-btn:hover{background:var(--gold2);}
 .gate-btn:disabled{opacity:.4;cursor:not-allowed;}
 .gate-note{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;color:rgba(245,240,232,0.18);margin-top:28px;line-height:1.8;}
@@ -81,7 +80,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .form-group textarea{resize:vertical;min-height:90px;line-height:1.6;}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.obj-card{position:relative;border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:18px 18px 18px 52px;cursor:pointer;transition:border .2s,background .2s;background:rgba(255,255,255,0.02);overflow:hidden;}
+.obj-card{position:relative;border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:18px 18px 18px 52px;cursor:pointer;transition:border .2s,background .2s;background:rgba(255,255,255,0.02);overflow:hidden;-webkit-tap-highlight-color:transparent;}
 .obj-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background .2s;}
 .obj-card:hover:not(.locked){border-color:rgba(212,175,55,0.2);background:rgba(212,175,55,0.03);}
 .obj-card:hover:not(.locked)::before{background:rgba(212,175,55,0.3);}
@@ -113,15 +112,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* INTEREST TAGS */
 .tag-grid{display:flex;flex-wrap:wrap;gap:8px;}
-.tag{padding:6px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:20px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s;}
+.tag{padding:8px 14px;border:1px solid rgba(255,255,255,0.1);border-radius:20px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
 .tag:hover{border-color:rgba(212,175,55,0.4);color:rgba(212,175,55,0.7);}
 .tag.selected{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,0.08);}
 
 /* BUTTONS */
-.btn-primary{background:var(--gold);color:var(--ink);border:none;padding:13px 32px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .2s;border-radius:var(--r);}
+.btn-primary{background:var(--gold);color:var(--ink);border:none;padding:16px 32px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;font-weight:500;transition:all .2s;border-radius:var(--r);-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:50px;}
 .btn-primary:hover{background:var(--gold2);}
 .btn-primary:disabled{opacity:.4;cursor:not-allowed;}
-.btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.1);padding:13px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:var(--r);}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.1);padding:16px 24px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .2s;border-radius:var(--r);-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:50px;}
 .btn-ghost:hover{color:var(--cream);border-color:rgba(255,255,255,0.3);}
 .btn-row{display:flex;gap:12px;margin-top:32px;}
 
@@ -150,7 +149,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .match-card.top{border-color:rgba(212,175,55,0.3);background:rgba(212,175,55,0.03);}
 .match-rank{font-family:'DM Mono',monospace;font-size:28px;font-weight:300;color:rgba(245,240,232,0.15);line-height:1;min-width:36px;}
 .match-card.top .match-rank{color:var(--gold);}
-.match-info{}
 .match-name{font-family:'EB Garamond',serif;font-size:20px;margin-bottom:4px;}
 .match-org{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
 .match-why{font-size:12px;font-weight:300;color:var(--muted);line-height:1.7;margin-bottom:14px;}
@@ -164,8 +162,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .score-fill{stroke:var(--gold);stroke-linecap:round;transition:stroke-dashoffset .8s ease;}
 .score-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:var(--cream);}
 .score-label{font-family:'DM Mono',monospace;font-size:7px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,0.3);}
-.match-card.top .score-fill{stroke:var(--gold);}
-.contact-btn{display:inline-block;margin-top:12px;padding:7px 16px;border:1px solid rgba(212,175,55,0.3);border-radius:var(--r);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all .2s;}
+.contact-btn{display:inline-block;margin-top:12px;padding:10px 16px;border:1px solid rgba(212,175,55,0.3);border-radius:var(--r);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;}
 .contact-btn:hover{background:rgba(212,175,55,0.1);}
 .results-actions{padding:24px 60px 48px;display:flex;gap:12px;}
 
@@ -179,7 +176,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .load-dot.active{background:var(--gold);box-shadow:0 0 8px rgba(212,175,55,0.4);}
 .load-dot.done{background:rgba(212,175,55,0.4);}
 .load-text{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,0.3);transition:color .3s;}
-.load-step .active-text{color:var(--cream);}
 
 /* RESPONSIVE */
 @media(max-width:900px){
@@ -195,9 +191,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   .results-grid{padding:20px 24px;}
   .match-card{grid-template-columns:auto 1fr;gap:16px;}
   .match-score-col{display:none;}
-  .results-actions{padding:16px 24px 40px;}
+  .results-actions{padding:16px 24px 40px;flex-direction:column;}
   .form-grid{grid-template-columns:1fr;}
   #loading-panel{padding:60px 24px;}
+  .btn-row{flex-direction:row;}
+  .btn-primary,.btn-ghost{flex:1;text-align:center;}
 }
 </style>
 </head>
@@ -314,7 +312,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           <textarea id="bio" placeholder="Briefly describe your investment focus, geography, and what you're looking to explore at the Circuit…" oninput="updatePreview()"></textarea>
         </div>
         <div class="btn-row">
-          <button class="btn-primary" onclick="goStep(2)">Continue →</button>
+          <button class="btn-primary" type="button" onclick="goStep(2)">Continue →</button>
         </div>
       </div>
 
@@ -398,8 +396,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
           </div>
         </div>
         <div class="btn-row">
-          <button class="btn-ghost" onclick="goStep(1)">← Back</button>
-          <button class="btn-primary" onclick="goStep(3)">Continue →</button>
+          <button class="btn-ghost" type="button" onclick="goStep(1)">← Back</button>
+          <button class="btn-primary" type="button" onclick="goStep(3)">Continue →</button>
         </div>
       </div>
 
@@ -416,8 +414,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
         <input type="file" id="cv-file" accept=".pdf,.doc,.docx,.txt" style="display:none" onchange="handleFile(this)">
         <p style="font-size:11px;color:rgba(245,240,232,0.2);margin-top:12px;font-family:'DM Mono',monospace;letter-spacing:.06em;">Optional — you can proceed without uploading.</p>
         <div class="btn-row">
-          <button class="btn-ghost" onclick="goStep(2)">← Back</button>
-          <button class="btn-primary" id="match-btn" onclick="runMatching()">Find My Matches →</button>
+          <button class="btn-ghost" type="button" onclick="goStep(2)">← Back</button>
+          <button class="btn-primary" type="button" id="match-btn" onclick="runMatching()">Find My Matches →</button>
         </div>
       </div>
 
@@ -467,8 +465,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
   </div>
   <div class="results-grid" id="results-grid"></div>
   <div class="results-actions">
-    <button class="btn-primary" onclick="requestIntros()">Request Introductions →</button>
-    <button class="btn-ghost" onclick="resetForm()">← Refine Profile</button>
+    <button class="btn-primary" type="button" onclick="requestIntros()">Request Introductions →</button>
+    <button class="btn-ghost" type="button" onclick="resetForm()">← Refine Profile</button>
   </div>
 </div>
 
@@ -488,6 +486,7 @@ function goStep(n) {
     if(i+1 === n) el.classList.add('active');
   });
   currentStep = n;
+  window.scrollTo(0, 0);
   updatePreview();
 }
 
@@ -503,16 +502,13 @@ function updatePreview() {
   var role = document.getElementById('role').value;
   var org = document.getElementById('org').value;
   var bio = document.getElementById('bio').value;
-
   document.getElementById('prev-name').textContent = (fname || lname) ? (fname + ' ' + lname).trim() : 'Your Name';
   document.getElementById('prev-role').textContent = (role || org) ? [role, org].filter(Boolean).join(' · ') : 'Role · Organisation';
   document.getElementById('prev-bio').textContent = bio || 'Your bio will appear here as you type…';
-
   var tags = document.querySelectorAll('.tag.selected');
   var tagHtml = '';
   tags.forEach(function(t){ tagHtml += '<div class="pp-tag">' + t.textContent + '</div>'; });
   document.getElementById('prev-tags').innerHTML = tagHtml;
-
   var filled = 0;
   var fields = ['fname','lname','org','role','org_type','aum','bio'];
   fields.forEach(function(f){ if(document.getElementById(f) && document.getElementById(f).value) filled++; });
@@ -555,11 +551,9 @@ function runMatching() {
   document.getElementById('form-panel').style.display = 'none';
   document.getElementById('loading-panel').style.display = 'block';
   document.getElementById('results-panel').style.display = 'none';
-
   var steps = ['ld1','ld2','ld3','ld4','ld5'];
   var texts = ['lt1','lt2','lt3','lt4','lt5'];
   var delays = [0, 900, 1800, 2700, 3600];
-
   steps.forEach(function(id, i){
     setTimeout(function(){
       if(i > 0) {
@@ -570,7 +564,6 @@ function runMatching() {
       document.getElementById(texts[i]).style.color = 'var(--cream)';
     }, delays[i]);
   });
-
   setTimeout(function(){
     document.getElementById(steps[4]).className = 'load-dot done';
     callMatchingAI();
@@ -588,7 +581,6 @@ function callMatchingAI() {
   var geoTags = Array.from(document.querySelectorAll('#geo-tags .tag.selected')).map(function(t){return t.textContent;});
   var assetTags = Array.from(document.querySelectorAll('#asset-tags .tag.selected')).map(function(t){return t.textContent;});
   var objectives = Array.from(document.querySelectorAll('.obj-card.selected')).map(function(t){return t.dataset.value;});
-
   var profileText = [
     'Name: ' + fname + ' ' + lname,
     'Role: ' + role,
@@ -602,23 +594,7 @@ function callMatchingAI() {
     uploadedFileData ? 'CV/Bio content: ' + uploadedFileData.substring(0, 2000) : ''
   ].filter(Boolean).join('\n');
 
-  var prompt = `You are the AI matching engine for The African Circuit — a pan-African institutional finance conference circuit connecting DFIs, sovereign wealth funds, family offices, private equity firms, and institutional allocators across five cities: Mauritius, Nairobi, Lagos, Accra, and Johannesburg.
-
-A delegate has submitted this profile:
-${profileText}
-
-Generate exactly 6 realistic, high-quality match results from the confirmed African Circuit delegate and sponsor network. These should be a mix of peer delegates AND sponsors/institutional partners.
-
-Return ONLY a valid JSON array with exactly 6 objects. No markdown, no explanation, just the JSON array. Each object must have:
-- "name": full name (realistic African/international finance professional)
-- "org": organisation name (real or realistic DFI, fund, bank, or corporate)
-- "type": one of "Delegate" or "Sponsor"
-- "role": job title
-- "score": integer 65–97 (match score, ranked highest first)
-- "why": 2-sentence explanation of why they are a strong match for this specific delegate (be specific to their mandate, geography, and objectives)
-- "tags": array of 2-4 short tags (e.g. "East Africa", "Infrastructure", "DFI", "Climate Finance")
-
-Rank them from highest to lowest score. Make the top 2 scores 88+ to indicate strong matches. Be specific and realistic — reference actual African finance themes, real DFIs (IFC, AfDB, BII, Proparco, DEG, Swedfund), real markets, real asset classes.`;
+  var prompt = 'You are the AI matching engine for The African Circuit — a pan-African institutional finance conference circuit connecting DFIs, sovereign wealth funds, family offices, private equity firms, and institutional allocators across five cities: Mauritius, Nairobi, Lagos, Accra, and Johannesburg.\n\nA delegate has submitted this profile:\n' + profileText + '\n\nGenerate exactly 6 realistic, high-quality match results from the confirmed African Circuit delegate and sponsor network. These should be a mix of peer delegates AND sponsors/institutional partners.\n\nReturn ONLY a valid JSON array with exactly 6 objects. No markdown, no explanation, just the JSON array. Each object must have:\n- "name": full name\n- "org": organisation name\n- "type": one of "Delegate" or "Sponsor"\n- "role": job title\n- "score": integer 65-97\n- "why": 2-sentence explanation\n- "tags": array of 2-4 short tags\n\nRank them from highest to lowest score.';
 
   fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
@@ -636,9 +612,7 @@ Rank them from highest to lowest score. Make the top 2 scores 88+ to indicate st
       var clean = text.replace(/```json|```/g, '').trim();
       var matches = JSON.parse(clean);
       showResults(matches);
-    } catch(e) {
-      showFallbackResults();
-    }
+    } catch(e) { showFallbackResults(); }
   })
   .catch(function(){ showFallbackResults(); });
 }
@@ -657,10 +631,8 @@ function showFallbackResults() {
 function showResults(matches) {
   document.getElementById('loading-panel').style.display = 'none';
   document.getElementById('results-panel').style.display = 'block';
-
   var fname = document.getElementById('fname').value;
   if(fname) document.getElementById('results-sub').textContent = 'Ranked by alignment score for ' + fname + ' — ' + matches.length + ' connections identified';
-
   var html = '';
   matches.forEach(function(m, i) {
     var circumference = 2 * Math.PI * 28;
@@ -682,8 +654,8 @@ function showResults(matches) {
     html += '</div>';
     html += '</div>';
   });
-
   document.getElementById('results-grid').innerHTML = html;
+  window.scrollTo(0, 0);
 }
 
 function requestIntro(name) {
@@ -711,12 +683,8 @@ function checkObjUnlock() {
   var cards = document.querySelectorAll('.obj-card');
   var gate = document.getElementById('obj-gate');
   cards.forEach(function(c) {
-    if(unlocked) {
-      c.classList.remove('locked');
-    } else {
-      c.classList.add('locked');
-      c.classList.remove('selected');
-    }
+    if(unlocked) { c.classList.remove('locked'); }
+    else { c.classList.add('locked'); c.classList.remove('selected'); }
   });
   if(gate) { unlocked ? gate.classList.remove('visible') : gate.classList.add('visible'); }
 }
@@ -733,17 +701,14 @@ function checkCode() {
   var btn = document.getElementById('gate-btn');
   var err = document.getElementById('gate-error');
   var input = document.getElementById('gate-code');
-  
-  if(!code) { 
+  if(!code) {
     input.classList.add('error');
     err.textContent = 'Please enter your access code';
     setTimeout(function(){ input.classList.remove('error'); }, 400);
-    return; 
+    return;
   }
-  
   btn.textContent = 'Verifying…';
   btn.disabled = true;
-  
   setTimeout(function() {
     if(VALID_CODES.indexOf(code) !== -1) {
       document.getElementById('access-gate').style.display = 'none';
@@ -758,9 +723,6 @@ function checkCode() {
     }
   }, 700);
 }
-
-// session check handled at match click time
-
 </script>
 </body>
 </html>
