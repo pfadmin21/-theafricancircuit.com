@@ -635,6 +635,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 .ir-empty-icon{margin-bottom:20px;}
 .ir-empty-txt{font-size:14px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;}
 @media(max-width:900px){.invest-layout{grid-template-columns:1fr;}.invest-results{position:static;}.ir-kpis{grid-template-columns:1fr 1fr;}}
+
+/* SPEAKER TOAST */
+#speaker-toast{position:fixed;top:80px;left:50%;transform:translateX(-50%) translateY(-10px);z-index:999;background:var(--ink2);border:1px solid rgba(212,175,55,0.3);border-radius:6px;padding:16px 24px;text-align:center;opacity:0;pointer-events:none;transition:all .3s;min-width:300px;}
+#speaker-toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.toast-title{font-family:'EB Garamond',serif;font-size:16px;color:var(--cream);margin-bottom:4px;}
+.toast-sub{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);}
 </style>
 </head>
 <body>
@@ -652,7 +658,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     <ul class="nav-links">
       <li><a href="#platform">Circuit</a></li>
       <li><a href="#programme">Programme</a></li>
-      <li><a href="#speakers">Speakers</a></li>
+      <li><a href="#speakers" onclick="showSpeakerToast(event)">Speakers</a></li>
       <li><a href="match.html" style="color:rgba(212,175,55,0.7);">AI Matching</a></li>
       <li><a href="#sponsor">Sponsorship</a></li>
       <li><a href="#apply">Apply</a></li>
@@ -668,7 +674,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   <button onclick="toggleMobileNav()" style="position:absolute;top:28px;right:24px;background:none;border:none;color:rgba(255,255,255,.5);font-size:28px;cursor:pointer;line-height:1;">×</button>
   <a href="#platform" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Circuit</a>
   <a href="#programme" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Programme</a>
-  <a href="#speakers" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Speakers</a>
+  <a href="#speakers" onclick="toggleMobileNav();showSpeakerToast(event)" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Speakers</a>
   <a href="match.html" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(212,175,55,0.7);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">AI Matching</a>
   <a href="#sponsor" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Sponsorship</a>
   <a href="#apply" onclick="toggleMobileNav()" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.6);text-decoration:none;text-transform:uppercase;padding:18px 40px;width:100%;text-align:center;border-bottom:1px solid rgba(255,255,255,.05);">Apply</a>
@@ -1190,7 +1196,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     <p style="font-size:14px;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:36px;">Confirmed keynotes, panel moderators, and deal room chairs will be announced from July 2026. Register below to be notified first.</p>
     <div style="display:flex;gap:12px;justify-content:center;max-width:400px;margin:0 auto;">
       <input type="email" id="speaker-notify-email" placeholder="your@email.com" style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:12px 16px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;">
-      <button onclick="notifySpeakers()" style="background:var(--gold);color:var(--ink);border:none;padding:12px 24px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:4px;white-space:nowrap;">Notify Me</button>
+      <button onclick="notifySpeakers()" style="background:var(--gold);color:#08131C;border:none;padding:12px 24px;font-family:'DM Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:4px;white-space:nowrap;">Notify Me</button>
     </div>
     <div id="speaker-notify-confirm" style="display:none;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:16px;">&check; You&rsquo;re on the list</div>
   </div>
@@ -3456,6 +3462,15 @@ function submitProspectus(){
     </div>`;
 }
 
+
+function showSpeakerToast(e){
+  e.preventDefault();
+  var toast = document.getElementById('speaker-toast');
+  toast.classList.add('show');
+  setTimeout(function(){ toast.classList.remove('show'); }, 3000);
+  setTimeout(function(){ document.getElementById('speakers').scrollIntoView({behavior:'smooth'}); }, 400);
+}
+
 function notifySpeakers(){
   var email = document.getElementById('speaker-notify-email').value;
   if(!email) return;
@@ -3469,5 +3484,9 @@ function notifySpeakers(){
   });
 }
 </script>
+<div id="speaker-toast">
+  <div class="toast-title">Speaker announcements begin July 2026</div>
+  <div class="toast-sub">Scroll down to register for early access</div>
+</div>
 </body>
 </html>
