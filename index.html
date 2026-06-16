@@ -1654,7 +1654,7 @@ function applyCircuitConfig() {
   // Hero background image
   const heroSection = document.getElementById('hero');
   if(heroSection && CIRCUIT.flagship.heroImage) {
-    document.querySelector('.hero-split-img').style.backgroundImage = `url('${CIRCUIT.flagship.heroImage}')`;heroSection.style.backgroundImage='none';
+    const splitImg=document.querySelector('.hero-split-img');if(splitImg)splitImg.style.backgroundImage=`url('${CIRCUIT.flagship.heroImage}')`;heroSection.style.backgroundImage='none';
     heroSection.style.backgroundSize = 'cover';
     heroSection.style.backgroundPosition = 'center';
   }
