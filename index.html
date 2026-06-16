@@ -1206,28 +1206,28 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 <!-- SPONSOR BRAND SECTION -->
 <section id="sponsor-brand" style="background:var(--ink);padding:0;">
 
-  <!-- 1. BALLROOM FULL WIDTH MOOD IMAGE -->
-  <div style="position:relative;height:60vh;min-height:480px;overflow:hidden;">
-    <img src="images/Backdrop%20TAC.png" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;" alt="The African Circuit 2026 Stage">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,28,0.5) 0%,rgba(8,19,28,0.2) 50%,rgba(8,19,28,0.85) 100%);"></div>
-    <div style="position:absolute;bottom:48px;left:0;right:0;text-align:center;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,175,55,0.7);margin-bottom:12px;">Flagship · InterContinental Resort Balaclava Fort · 14–15 September 2026</div>
-      <div style="font-family:'EB Garamond',serif;font-size:42px;font-weight:400;color:var(--cream);">Where Capital <em style="color:var(--gold);font-style:italic;">Meets the Continent</em></div>
+  <!-- BALLROOM IMAGE -->
+  <div style="position:relative;height:70vh;min-height:520px;overflow:hidden;">
+    <img src="images/Backdrop%20TAC.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;" alt="African Circuit Stage">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,28,0.45) 0%,rgba(8,19,28,0.1) 40%,rgba(8,19,28,0.75) 100%);"></div>
+    <div style="position:absolute;bottom:56px;left:0;right:0;text-align:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(212,175,55,0.75);margin-bottom:14px;">Flagship &middot; InterContinental Resort Balaclava Fort &middot; 14–15 September 2026</div>
+      <div style="font-family:'EB Garamond',serif;font-size:46px;font-weight:400;color:var(--cream);">Where Capital <em style="color:var(--gold);font-style:italic;">Meets the Continent</em></div>
     </div>
   </div>
 
-  <!-- 2. SPONSOR WALL + HEADLINE -->
-  <div style="position:relative;height:55vh;min-height:420px;overflow:hidden;">
-    <img src="images/TAC%20Design%20Logo%20Placement.png" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;" alt="Sponsor Wall">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,19,28,0.92) 0%,rgba(8,19,28,0.75) 40%,rgba(8,19,28,0.15) 100%);"></div>
-    <div style="position:absolute;top:50%;left:124px;transform:translateY(-50%);max-width:500px;">
+  <!-- SPONSOR WALL IMAGE -->
+  <div style="position:relative;height:70vh;min-height:520px;overflow:hidden;">
+    <img src="images/TAC%20Design%20Logo%20Placement.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;" alt="Sponsor Wall">
+    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,19,28,0.95) 0%,rgba(8,19,28,0.8) 35%,rgba(8,19,28,0.1) 70%,transparent 100%);"></div>
+    <div style="position:absolute;top:50%;left:124px;transform:translateY(-50%);max-width:460px;">
       <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Sponsor Brand Experience</div>
-      <h2 style="font-family:'EB Garamond',serif;font-size:52px;font-weight:400;line-height:1.05;color:var(--cream);margin-bottom:20px;">Your Brand.<br><em style="color:var(--gold);font-style:italic;">Every Room.</em><br>Five Markets.</h2>
-      <p style="font-size:14px;font-weight:300;color:rgba(245,240,232,0.5);line-height:1.8;">A direct line to the decision-makers who move capital across the continent — measured in introductions, mandates, and partnerships closed.</p>
+      <h2 style="font-family:'EB Garamond',serif;font-size:54px;font-weight:400;line-height:1.05;color:var(--cream);margin-bottom:24px;">Your Brand.<br><em style="color:var(--gold);font-style:italic;">Every Room.</em><br>Five Markets.</h2>
+      <p style="font-size:13px;font-weight:300;color:rgba(245,240,232,0.45);line-height:1.85;">A direct line to the decision-makers who move capital across the continent — measured in introductions, mandates, and partnerships closed.</p>
     </div>
   </div>
 
-  <!-- 3. ROI CALCULATOR -->
+  <!-- ROI CALCULATOR -->
   <div style="background:var(--ink2);padding:80px 124px;border-top:1px solid rgba(255,255,255,0.06);">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1100px;margin:0 auto;">
       <div>
@@ -1236,7 +1236,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         <p style="font-size:13px;font-weight:300;color:rgba(245,240,232,0.4);line-height:1.8;margin-bottom:32px;">Select your tier and primary objective. See projected return based on comparable African institutional finance conference data.</p>
         <div style="margin-bottom:16px;">
           <label style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,0.35);display:block;margin-bottom:8px;">Sponsorship Tier</label>
-          <select id="roi-tier" onchange="calcROI()" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:13px 16px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;appearance:none;">
+          <select id="roi-tier" onchange="calcROI()" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:13px 16px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;">
             <option value="25000">Institutional Partner — $25,000</option>
             <option value="50000">Strategic Partner — $50,000</option>
             <option value="100000">Founding Partner — $100,000</option>
@@ -1244,7 +1244,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
         </div>
         <div>
           <label style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,240,232,0.35);display:block;margin-bottom:8px;">Primary Objective</label>
-          <select id="roi-obj" onchange="calcROI()" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:13px 16px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;appearance:none;">
+          <select id="roi-obj" onchange="calcROI()" style="width:100%;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:13px 16px;font-family:'Jost',sans-serif;font-size:13px;color:var(--cream);outline:none;">
             <option value="bd">Business Development / Mandates</option>
             <option value="lp">LP Capital Raising</option>
             <option value="brand">Brand Positioning</option>
@@ -1272,9 +1272,7 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
     </div>
   </div>
 
-
 </section>
-
 <!-- DELEGATE APPLICATION -->
 
 
@@ -1513,7 +1511,7 @@ const CIRCUIT = {
   positionsClose: 'June 2026',
   tagline:      'Pan-African Financial Circuit · 2026–2028',
   heroHeadline: ['Built on the Networks That', 'Actually Move', 'African Capital'],
-  heroBg:       'images/hero 1.png',
+  heroBg:       'images/image%201.jpg',
 
   flagship: {
     city:         'Mauritius',
@@ -1525,7 +1523,7 @@ const CIRCUIT = {
     countdownISO: '2026-09-14T09:00:00',
     lon:          57.5,
     lat:          -20.3,
-    heroImage:    'images/hero 1.png',
+    heroImage:    'images/image%201.jpg',
     ballroomImage:'https://mauritius.intercontinental.com/wp-content/uploads/2025/12/InterContinental-Conference-Room-04-1-scaled.jpg',
     galaImage:    'https://mauritius.intercontinental.com/wp-content/uploads/2025/12/intercontinental-mauritius.jpg',
     delegates:    250,
