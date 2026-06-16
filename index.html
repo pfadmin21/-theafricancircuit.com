@@ -42,22 +42,14 @@ nav.scrolled{padding:14px 64px;background:rgba(8,19,28,.97);backdrop-filter:blur
 @media(max-width:900px){nav{padding:20px 24px;}.nav-links,.nav-r>.nav-btn{display:none;}.nav-mob{display:flex;}}
 
 /* HERO */
-#hero{height:100vh;min-height:820px;background:var(--ink);display:grid;grid-template-rows:1fr auto;position:relative;overflow:hidden;}
-.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;
-  background:radial-gradient(ellipse 70% 60% at 72% 38%, rgba(10,112,112,.18) 0%, transparent 60%),
-  radial-gradient(ellipse 40% 40% at 85% 75%, rgba(192,154,60,.09) 0%, transparent 55%),
-  radial-gradient(ellipse 50% 50% at 15% 80%, rgba(10,112,112,.05) 0%, transparent 50%);
-  animation:heroGlow 8s ease-in-out infinite alternate;}
-@keyframes heroGlow{
-  0%{background:radial-gradient(ellipse 70% 60% at 72% 38%, rgba(10,112,112,.18) 0%, transparent 60%),radial-gradient(ellipse 40% 40% at 85% 75%, rgba(192,154,60,.09) 0%, transparent 55%),radial-gradient(ellipse 50% 50% at 15% 80%, rgba(10,112,112,.05) 0%, transparent 50%);}
-  100%{background:radial-gradient(ellipse 65% 65% at 68% 42%, rgba(10,112,112,.25) 0%, transparent 60%),radial-gradient(ellipse 45% 45% at 80% 70%, rgba(192,154,60,.13) 0%, transparent 55%),radial-gradient(ellipse 55% 45% at 22% 75%, rgba(10,112,112,.09) 0%, transparent 50%);}
-}
-.hero-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(10,112,112,.07) 1px, transparent 1px),linear-gradient(90deg, rgba(10,112,112,.07) 1px, transparent 1px);background-size:60px 60px;animation:gridDrift 20s linear infinite;}
-@keyframes gridDrift{0%{transform:translate(0,0);}100%{transform:translate(60px,60px);}}
-.hero-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(192,154,60,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(192,154,60,.03) 1px, transparent 1px);background-size:180px 180px;animation:gridDrift 30s linear infinite reverse;}
-.hero-fade{position:absolute;inset:0;background:linear-gradient(105deg,var(--ink) 32%,rgba(8,19,28,.8) 52%,rgba(8,19,28,.25) 72%,transparent 100%),linear-gradient(180deg,rgba(8,19,28,.82) 0%,rgba(8,19,28,.4) 18%,transparent 40%);z-index:1;pointer-events:none;}
-.hero-vline{position:absolute;left:64px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,transparent,rgba(192,154,60,.3) 30%,rgba(192,154,60,.3) 70%,transparent);z-index:1;}
-.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 28px 124px;max-width:680px;}
+#hero{background:var(--ink);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+.hero-backdrop{width:100%;display:block;line-height:0;position:relative;}
+.hero-backdrop img{width:100%;height:auto;display:block;max-height:100vh;object-fit:cover;object-position:center top;}
+.hero-backdrop-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,28,.15) 0%,rgba(8,19,28,.05) 60%,rgba(8,19,28,.55) 100%);}
+.hero-bg{display:none;}
+.hero-fade{display:none;}
+.hero-vline{display:none;}
+.hero-content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:52px 64px 44px 124px;max-width:62%;background:var(--ink);}
 .h-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:14px;opacity:0;animation:rise .8s .2s forwards;}
 .h-label::before{content:'';width:28px;height:1px;background:var(--gold);}
 h1{font-family:'EB Garamond',serif;font-size:clamp(34px,4vw,62px);font-weight:400;color:#fff;line-height:1.06;letter-spacing:-.01em;max-width:580px;opacity:0;animation:rise .9s .4s forwards;}
@@ -68,7 +60,7 @@ h1 em{font-style:italic;color:var(--gold);}
 .btn-solid:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 10px 32px rgba(192,154,60,.32);}
 .btn-ghost{color:rgba(255,255,255,.4);font-size:11px;font-weight:300;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:2px;transition:color .2s,border-color .2s;}
 .btn-ghost:hover{color:rgba(255,255,255,.8);border-color:var(--gold);}
-.hero-bottom{position:relative;z-index:3;padding:14px 124px 40px;display:flex;justify-content:space-between;align-items:flex-end;opacity:0;animation:rise 1s 1s forwards;border-top:1px solid rgba(192,154,60,.12);background:rgba(8,19,28,.92);}
+.hero-bottom{position:relative;z-index:3;padding:32px 124px 40px;display:flex;justify-content:space-between;align-items:flex-end;opacity:0;animation:rise 1s 1s forwards;border-top:1px solid rgba(192,154,60,.12);background:var(--ink);}
 .hero-stats{display:flex;gap:52px;flex-wrap:wrap;}
 .hstat-val{font-family:'EB Garamond',serif;font-size:36px;font-weight:400;color:#fff;line-height:1;}
 .hstat-val sup{font-size:16px;color:var(--gold);}
@@ -81,7 +73,7 @@ h1 em{font-style:italic;color:var(--gold);}
 .ct-unit{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.25);text-transform:uppercase;}
 .ct-sep{font-family:'EB Garamond',serif;font-size:22px;color:var(--gold);opacity:.5;line-height:1.3;align-self:flex-start;margin-top:4px;}
 @keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@media(max-width:900px){.hero-content{padding:0 24px 24px;}.hero-bottom{padding:14px 24px 32px;}.hero-stats{gap:24px;}.hero-countdown{display:none;}.hero-vline{display:none;}}
+@media(max-width:900px){.hero-content{padding:32px 24px 28px;max-width:100%;}.hero-bottom{padding:24px 24px 32px;}.hero-stats{gap:24px;}.hero-countdown{display:none;}}
 
 /* TICKER */
 .ticker{background:var(--gold);padding:16px 0;overflow:hidden;width:100%;}
@@ -682,11 +674,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 </div>
 
 <!-- HERO -->
-<section id="hero" style="background-image:url('images/image%201.jpg');background-size:cover;background-position:center 50%;">
-  <div class="hero-bg"></div>
-  <div class="hero-vline"></div>
-
-  <div class="hero-content" style="z-index:2;position:relative;">
+<section id="hero" style="background:var(--ink);">
+  <div class="hero-backdrop">
+    <img src="Backdrop_TAC.png" alt="The African Circuit 2026 Stage" />
+    <div class="hero-backdrop-overlay"></div>
+  </div>
+  <div class="hero-content">
     <div class="h-label">Pan-African Financial Circuit · 2026–2028</div>
     <h1>Built on the Networks That <em>Actually Move</em> African Capital</h1>
     <p class="h-sub">Five events. Five markets. One invitation-only community connecting DFIs, institutional allocators, UHNWIs, and policymakers across the continent.</p>
@@ -1202,31 +1195,6 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
   </div>
 </section>
 
-
-<!-- SPONSOR BRAND SECTION -->
-<section id="sponsor-brand" style="background:var(--ink);padding:0;">
-
-  <!-- BALLROOM IMAGE -->
-  <div style="position:relative;height:70vh;min-height:520px;overflow:hidden;">
-    <img src="images/Backdrop%20TAC.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;" alt="African Circuit Stage">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,19,28,0.45) 0%,rgba(8,19,28,0.1) 40%,rgba(8,19,28,0.75) 100%);"></div>
-    <div style="position:absolute;bottom:56px;left:0;right:0;text-align:center;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:rgba(212,175,55,0.75);margin-bottom:14px;">Flagship &middot; InterContinental Resort Balaclava Fort &middot; 14–15 September 2026</div>
-      <div style="font-family:'EB Garamond',serif;font-size:46px;font-weight:400;color:var(--cream);">Where Capital <em style="color:var(--gold);font-style:italic;">Meets the Continent</em></div>
-    </div>
-  </div>
-
-  <!-- SPONSOR WALL IMAGE -->
-  <div style="position:relative;height:70vh;min-height:520px;overflow:hidden;">
-    <img src="images/TAC%20Design%20Logo%20Placement.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;" alt="Sponsor Wall">
-    <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(8,19,28,0.95) 0%,rgba(8,19,28,0.8) 35%,rgba(8,19,28,0.1) 70%,transparent 100%);"></div>
-    <div style="position:absolute;top:50%;left:124px;transform:translateY(-50%);max-width:460px;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Sponsor Brand Experience</div>
-      <h2 style="font-family:'EB Garamond',serif;font-size:54px;font-weight:400;line-height:1.05;color:var(--cream);margin-bottom:24px;">Your Brand.<br><em style="color:var(--gold);font-style:italic;">Every Room.</em><br>Five Markets.</h2>
-      <p style="font-size:13px;font-weight:300;color:rgba(245,240,232,0.45);line-height:1.85;">A direct line to the decision-makers who move capital across the continent — measured in introductions, mandates, and partnerships closed.</p>
-    </div>
-  </div>
-
 <!-- DELEGATE APPLICATION -->
 
 
@@ -1465,7 +1433,7 @@ const CIRCUIT = {
   positionsClose: 'June 2026',
   tagline:      'Pan-African Financial Circuit · 2026–2028',
   heroHeadline: ['Built on the Networks That', 'Actually Move', 'African Capital'],
-  heroBg:       'images/image%201.jpg',
+  heroBg:       'images/hero 1.png',
 
   flagship: {
     city:         'Mauritius',
@@ -1477,7 +1445,7 @@ const CIRCUIT = {
     countdownISO: '2026-09-14T09:00:00',
     lon:          57.5,
     lat:          -20.3,
-    heroImage:    'images/image%201.jpg',
+    heroImage:    'images/hero 1.png',
     ballroomImage:'https://mauritius.intercontinental.com/wp-content/uploads/2025/12/InterContinental-Conference-Room-04-1-scaled.jpg',
     galaImage:    'https://mauritius.intercontinental.com/wp-content/uploads/2025/12/intercontinental-mauritius.jpg',
     delegates:    250,
@@ -1686,7 +1654,7 @@ function applyCircuitConfig() {
   // Hero background image
   const heroSection = document.getElementById('hero');
   if(heroSection && CIRCUIT.flagship.heroImage) {
-    heroSection.style.backgroundImage = `url('${CIRCUIT.flagship.heroImage}')`;heroSection.style.backgroundSize='cover';heroSection.style.backgroundPosition='center 40%';
+    document.querySelector('.hero-split-img').style.backgroundImage = `url('${CIRCUIT.flagship.heroImage}')`;heroSection.style.backgroundImage='none';
     heroSection.style.backgroundSize = 'cover';
     heroSection.style.backgroundPosition = 'center';
   }
@@ -3507,76 +3475,6 @@ function notifySpeakers(){
     document.getElementById('speaker-notify-email').style.display='none';
   });
 }
-
-function calcROI(){
-  var tier = parseInt(document.getElementById('roi-tier').value);
-  var obj = document.getElementById('roi-obj').value;
-  var meetings, valueMin, valueMax, ratio, note;
-
-  if(obj === 'bd'){
-    meetings = tier === 25000 ? '18–28' : tier === 50000 ? '24–38' : '32–50';
-    valueMin = tier === 25000 ? 2 : tier === 50000 ? 4 : 8;
-    valueMax = tier === 25000 ? 8 : tier === 50000 ? 15 : 30;
-    ratio = Math.round((valueMin * 1000000) / tier);
-    note = 'Mandate pipeline projections based on delegate AUM concentration and BD conversion rates at comparable African IFC events.';
-  } else if(obj === 'lp'){
-    meetings = tier === 25000 ? '8–14' : tier === 50000 ? '12–20' : '18–32';
-    valueMin = tier === 25000 ? 10 : tier === 50000 ? 25 : 50;
-    valueMax = tier === 25000 ? 50 : tier === 50000 ? 100 : 250;
-    ratio = Math.round((valueMin * 1000000) / tier);
-    note = 'LP pipeline value based on confirmed delegate AUM profiles. 200+ institutional allocators across the 5-city circuit.';
-  } else if(obj === 'brand'){
-    meetings = tier === 25000 ? '220+' : tier === 50000 ? '400+' : '600+';
-    valueMin = tier === 25000 ? 1 : tier === 50000 ? 2 : 5;
-    valueMax = tier === 25000 ? 3 : tier === 50000 ? 6 : 12;
-    ratio = Math.round((valueMin * 1000000) / tier);
-    note = 'Brand impressions across delegate badges, stage backdrop, digital assets, and post-event circuit report distribution.';
-  } else {
-    meetings = tier === 25000 ? '6–12' : tier === 50000 ? '10–18' : '16–28';
-    valueMin = tier === 25000 ? 5 : tier === 50000 ? 15 : 40;
-    valueMax = tier === 25000 ? 20 : tier === 50000 ? 50 : 150;
-    ratio = Math.round((valueMin * 1000000) / tier);
-    note = 'Deal flow projections based on GP/LP co-investment appetite and infrastructure pipeline across circuit markets.';
-  }
-
-  document.getElementById('roi-meetings').textContent = meetings;
-  document.getElementById('roi-value').textContent = '$' + valueMin + '–' + valueMax + 'M';
-  document.getElementById('roi-ratio').textContent = '×' + ratio;
-  document.getElementById('roi-note').textContent = note;
-}
-
-
-function calcROI(){
-  var tier = parseInt(document.getElementById('roi-tier').value);
-  var obj = document.getElementById('roi-obj').value;
-  var meetings, valueRange, ratio, note;
-  if(obj==='bd'){
-    meetings=tier===25000?'18–28':tier===50000?'24–38':'32–50';
-    valueRange=tier===25000?'$2–8M':tier===50000?'$4–15M':'$8–30M';
-    ratio=tier===25000?80:tier===50000?80:80;
-    note='Mandate pipeline projections based on delegate AUM concentration and BD conversion rates at comparable African IFC events.';
-  }else if(obj==='lp'){
-    meetings=tier===25000?'8–14':tier===50000?'12–20':'18–32';
-    valueRange=tier===25000?'$10–50M':tier===50000?'$25–100M':'$50–250M';
-    ratio=tier===25000?400:tier===50000?500:500;
-    note='LP pipeline value based on confirmed delegate AUM profiles. 200+ institutional allocators across the 5-city circuit.';
-  }else if(obj==='brand'){
-    meetings=tier===25000?'220+':tier===50000?'400+':'600+';
-    valueRange=tier===25000?'$1–3M':tier===50000?'$2–6M':'$5–12M';
-    ratio=tier===25000?40:tier===50000?40:50;
-    note='Brand impressions across delegate badges, stage backdrop, digital assets, and post-event circuit report distribution.';
-  }else{
-    meetings=tier===25000?'6–12':tier===50000?'10–18':'16–28';
-    valueRange=tier===25000?'$5–20M':tier===50000?'$15–50M':'$40–150M';
-    ratio=tier===25000?200:tier===50000?300:400;
-    note='Deal flow projections based on GP/LP co-investment appetite and infrastructure pipeline across circuit markets.';
-  }
-  document.getElementById('roi-meetings').textContent=meetings;
-  document.getElementById('roi-value').textContent=valueRange;
-  document.getElementById('roi-ratio').textContent='×'+ratio;
-  document.getElementById('roi-note').textContent=note;
-}
-
 </script>
 <div id="speaker-toast">
   <span class="toast-title">Speaker Faculty</span><span class="toast-dot"></span><span class="toast-title" style="color:var(--gold);">Announcements begin July 2026</span>
