@@ -740,12 +740,12 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
 .city-name{font-family:'EB Garamond',serif;font-size:clamp(48px,6vw,80px);font-weight:400;color:#fff;line-height:.95;margin-bottom:20px;}
 .city-venue{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.38);text-transform:uppercase;margin-bottom:20px;}
 .city-tagline{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.7;max-width:480px;margin-bottom:28px;}
-.city-meta-strip{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border-top:1px solid rgba(255,255,255,.1);padding:20px 0 0;background:rgba(8,19,28,.72);backdrop-filter:blur(8px);margin:0 -56px;padding:20px 56px 24px;}
-.city-meta-item{padding-right:20px;margin-right:0;border-right:1px solid rgba(255,255,255,.08);}
+.city-meta-strip{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:24px 56px;background:rgba(8,19,28,.95);}
+.city-meta-item{padding-right:20px;border-right:1px solid rgba(255,255,255,.08);}
 .city-meta-item:last-child{border-right:none;}
-.city-meta-val{font-family:'EB Garamond',serif;font-size:22px;color:#fff;line-height:1;}
+.city-meta-val{font-family:'EB Garamond',serif;font-size:28px;color:#fff;line-height:1;}
 .city-meta-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(255,255,255,.28);text-transform:uppercase;margin-top:4px;}
-@media(max-width:600px){.city-meta-strip{grid-template-columns:1fr 1fr;gap:16px 0;}.city-meta-item{border-right:none;padding-right:0;border-bottom:none;}.city-meta-item:nth-child(1),.city-meta-item:nth-child(2){border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:16px;}.city-meta-val{font-size:28px;}}
+@media(max-width:600px){.city-meta-strip{grid-template-columns:1fr 1fr;gap:0;padding:20px 24px;}.city-meta-item{border-right:none;padding:0 0 16px 0;}.city-meta-item:nth-child(1),.city-meta-item:nth-child(2){border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:16px;}.city-meta-item:nth-child(2){text-align:right;}.city-meta-item:nth-child(4){text-align:right;}.city-meta-val{font-size:32px;}}
 .city-tags{position:absolute;top:28px;right:28px;display:flex;flex-direction:column;gap:6px;align-items:flex-end;}
 .city-tag-pill{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);backdrop-filter:blur(8px);background:rgba(8,19,28,.4);}
 .city-body{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:none;}
@@ -791,12 +791,6 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <div class="city-name">Mauritius</div>
           <div class="city-venue">InterContinental Resort Balaclava Fort &middot; Grand Ballroom</div>
           <div class="city-tagline">The continent's capital architecture gateway. Where African fund structures are domiciled and the Indian Ocean corridor opens.</div>
-          <div class="city-meta-strip">
-            <div class="city-meta-item"><div class="city-meta-val">250</div><div class="city-meta-lbl">Delegates</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
-          </div>
         </div>
         <div class="city-tags">
           <span class="city-tag-pill">Capital Markets</span>
@@ -804,10 +798,13 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <span class="city-tag-pill">Blended Finance</span>
         </div>
       </div>
+      <div class="city-meta-strip">
+        <div class="city-meta-item"><div class="city-meta-val">250</div><div class="city-meta-lbl">Delegates</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
+      </div>
       <div class="city-body">
-        <div class="city-sessions">
-          <div class="cs-label">Programme Highlights</div>
-          <div class="cs-item"><span class="cs-num">1</span><div class="cs-text">Can Mauritius become the default capital architecture platform for Africa-bound investment?</div></div>
           <div class="cs-item"><span class="cs-num">2</span><div class="cs-text">Blended capital stacks: how DFIs, LPs and private wealth can share risk in African transformation assets.</div></div>
           <div class="cs-item"><span class="cs-num">3</span><div class="cs-text">From private wealth to productive capital: mobilising family offices into climate and social infrastructure.</div></div>
         </div>
@@ -828,18 +825,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <div class="city-name">Nairobi</div>
           <div class="city-venue">JW Marriott Hotel Nairobi &middot; Kenya</div>
           <div class="city-tagline">East Africa's fintech capital and the continent's fastest-growing mobile finance corridor. DFI-backed SME and growth capital at the centre.</div>
-          <div class="city-meta-strip">
-            <div class="city-meta-item"><div class="city-meta-val">250</div><div class="city-meta-lbl">Delegates</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
-          </div>
         </div>
         <div class="city-tags">
           <span class="city-tag-pill">Fintech</span>
           <span class="city-tag-pill">East Africa PE</span>
           <span class="city-tag-pill">SME Finance</span>
         </div>
+      </div>
+      <div class="city-meta-strip">
+        <div class="city-meta-item"><div class="city-meta-val">250</div><div class="city-meta-lbl">Delegates</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
       </div>
       <div class="city-body">
         <div class="city-sessions">
@@ -865,18 +862,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <div class="city-name">Cape Town</div>
           <div class="city-venue">The Westin Cape Town &middot; South Africa</div>
           <div class="city-tagline">Southern Africa's institutional capital base. Climate finance, pension fund allocation, and infrastructure PPP deal flow at the continent's premier VC and impact hub.</div>
-          <div class="city-meta-strip">
-            <div class="city-meta-item"><div class="city-meta-val">300</div><div class="city-meta-lbl">Delegates</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
-          </div>
         </div>
         <div class="city-tags">
           <span class="city-tag-pill">Infrastructure</span>
           <span class="city-tag-pill">Pensions</span>
           <span class="city-tag-pill">Climate Finance</span>
         </div>
+      </div>
+      <div class="city-meta-strip">
+        <div class="city-meta-item"><div class="city-meta-val">300</div><div class="city-meta-lbl">Delegates</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
       </div>
       <div class="city-body">
         <div class="city-sessions">
@@ -902,18 +899,18 @@ footer{background:var(--ink);border-top:1px solid rgba(255,255,255,.05);padding:
           <div class="city-name">Casablanca</div>
           <div class="city-venue">Hyatt Regency Casablanca &middot; Morocco</div>
           <div class="city-tagline">North Africa's financial capital. Islamic finance, francophone DFIs, and sovereign wealth at the circuit's annual close.</div>
-          <div class="city-meta-strip">
-            <div class="city-meta-item"><div class="city-meta-val">300</div><div class="city-meta-lbl">Delegates</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
-            <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
-          </div>
         </div>
         <div class="city-tags">
           <span class="city-tag-pill">Islamic Finance</span>
           <span class="city-tag-pill">Francophone DFIs</span>
           <span class="city-tag-pill">Sovereign Funds</span>
         </div>
+      </div>
+      <div class="city-meta-strip">
+        <div class="city-meta-item"><div class="city-meta-val">300</div><div class="city-meta-lbl">Delegates</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">2</div><div class="city-meta-lbl">Days</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">5</div><div class="city-meta-lbl">Main Panels</div></div>
+        <div class="city-meta-item"><div class="city-meta-val">10</div><div class="city-meta-lbl">Closed Roundtables</div></div>
       </div>
       <div class="city-body">
         <div class="city-sessions">
