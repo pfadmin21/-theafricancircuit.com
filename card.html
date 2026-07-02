@@ -405,9 +405,10 @@
     </div>
     <div class="zoom-row" id="zoomRow" style="display:none; margin-top:12px;">
       <span style="font-size:11px;color:rgba(255,255,255,0.3);font-family:'DM Mono',monospace;letter-spacing:0.1em;text-transform:uppercase;">Zoom</span>
-      <input type="range" id="zoomSlider" min="100" max="250" value="100">
+      <input type="range" id="zoomSlider" min="60" max="300" value="100">
+      <button type="button" id="resetPositionBtn" title="Reset position and zoom" style="flex-shrink:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.5);width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;">↺</button>
     </div>
-    <p class="drag-hint" id="dragHint" style="display:none;">Drag the photo on the card to reposition it</p>
+    <p class="drag-hint" id="dragHint" style="display:none;">Drag to reposition · scroll or pinch to zoom</p>
     <div class="bg-toggle-row">
       <input type="checkbox" id="bgRemoveToggle" checked>
       <label for="bgRemoveToggle" style="margin:0;text-transform:none;font-weight:400;letter-spacing:0;font-size:12px;color:rgba(255,255,255,0.4);">Automatically remove background</label>
@@ -483,6 +484,8 @@ let photoState = { scale: 1, offsetX: 0, offsetY: 0 };
 let dragging = false;
 let dragStart = { x: 0, y: 0 };
 let offsetStart = { x: 0, y: 0 };
+let showCropGuide = false;
+let wheelGuideTimer = null;
 
 const PHOTO_X = 620, PHOTO_Y = 0, PHOTO_W = 634, PHOTO_H = 1254;
 
@@ -493,6 +496,7 @@ const photoInput = document.getElementById('photoInput');
 const dropZone = document.getElementById('dropZone');
 const zoomRow = document.getElementById('zoomRow');
 const zoomSlider = document.getElementById('zoomSlider');
+const resetPositionBtn = document.getElementById('resetPositionBtn');
 const dragHint = document.getElementById('dragHint');
 const bgRemoveToggle = document.getElementById('bgRemoveToggle');
 const bgStatus = document.getElementById('bgStatus');
@@ -608,6 +612,33 @@ function draw() {
     ctx.textAlign = 'left';
   }
   ctx.restore();
+
+  // crop guide — shown briefly while dragging or zooming so it's clear
+  // exactly what area of the photo will end up on the card
+  if (showCropGuide && photoImg) {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(192,154,60,0.7)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([10, 8]);
+    ctx.strokeRect(PHOTO_X + 1, PHOTO_Y + 1, PHOTO_W - 2, PHOTO_H - 2);
+    ctx.setLineDash([]);
+    // corner marks for extra clarity
+    const cl = 22;
+    ctx.strokeStyle = '#C09A3C';
+    ctx.lineWidth = 3;
+    const corners = [
+      [PHOTO_X, PHOTO_Y, 1, 1], [PHOTO_X + PHOTO_W, PHOTO_Y, -1, 1],
+      [PHOTO_X, PHOTO_Y + PHOTO_H, 1, -1], [PHOTO_X + PHOTO_W, PHOTO_Y + PHOTO_H, -1, -1]
+    ];
+    corners.forEach(([cx, cy, dx, dy]) => {
+      ctx.beginPath();
+      ctx.moveTo(cx, cy + cl * dy);
+      ctx.lineTo(cx, cy);
+      ctx.lineTo(cx + cl * dx, cy);
+      ctx.stroke();
+    });
+    ctx.restore();
+  }
 
   // logo
   if (logoImg.complete && logoImg.naturalWidth > 0) {
@@ -828,7 +859,7 @@ function getSegmenter() {
   segmenter = new SelfieSegmentation({
     locateFile: (f) => `https://cdn.jsdelivr.net/npm/@mediapipe/selfie_segmentation@0.1/${f}`
   });
-  segmenter.setOptions({ modelSelection: 1 });
+  segmenter.setOptions({ modelSelection: 0 });
   return segmenter;
 }
 
@@ -880,63 +911,34 @@ function runBackgroundRemoval(img) {
   });
 }
 
-// Erodes the alpha channel inward (past the halo-contaminated boundary),
-// then feathers alpha back out for a smooth edge without reintroducing
-// background colour. Operates in-place on the canvas context.
+// The model computes its mask at a tiny internal resolution (256x256)
+// then stretches it up to the full photo size — this smears the
+// transition band across a wide, unpredictable number of pixels, far
+// more than a small erosion can reliably erode past. Rather than guess
+// that width, we cut it entirely: hard-threshold every pixel to either
+// fully opaque or fully transparent, which removes every trace of
+// background-colour contamination outright, then apply one pixel of
+// blur purely to soften the resulting hard edge (safe here, since every
+// remaining semi-transparent pixel now sits on top of already-clean,
+// fully-opaque, correctly-coloured subject pixels).
 function cleanCutoutEdges(ctx, w, h) {
-  const ERODE_PX = 3;
-  const FEATHER_PX = 2;
+  const THRESHOLD = 140;
+  const SMOOTH_PX = 1;
 
   const imgData = ctx.getImageData(0, 0, w, h);
   const data = imgData.data;
   const n = w * h;
 
-  // Extract alpha channel
   let alpha = new Uint8ClampedArray(n);
-  for (let i = 0; i < n; i++) alpha[i] = data[i * 4 + 3];
+  for (let i = 0; i < n; i++) {
+    alpha[i] = data[i * 4 + 3] >= THRESHOLD ? 255 : 0;
+  }
 
-  // Separable erosion (min filter) — horizontal pass then vertical pass
-  alpha = separableMinFilter(alpha, w, h, ERODE_PX);
+  alpha = separableBoxBlur(alpha, w, h, SMOOTH_PX);
 
-  // Separable feather (box blur) on the eroded alpha for a soft edge
-  alpha = separableBoxBlur(alpha, w, h, FEATHER_PX);
-
-  // Write back: keep RGB as-is, replace alpha. Fully-transparent pixels'
-  // RGB doesn't matter since they won't render.
   for (let i = 0; i < n; i++) data[i * 4 + 3] = alpha[i];
 
   ctx.putImageData(imgData, 0, 0);
-}
-
-function separableMinFilter(src, w, h, radius) {
-  const tmp = new Uint8ClampedArray(w * h);
-  const dst = new Uint8ClampedArray(w * h);
-  // horizontal
-  for (let y = 0; y < h; y++) {
-    const row = y * w;
-    for (let x = 0; x < w; x++) {
-      let m = 255;
-      const x0 = Math.max(0, x - radius), x1 = Math.min(w - 1, x + radius);
-      for (let xx = x0; xx <= x1; xx++) {
-        const v = src[row + xx];
-        if (v < m) m = v;
-      }
-      tmp[row + x] = m;
-    }
-  }
-  // vertical
-  for (let x = 0; x < w; x++) {
-    for (let y = 0; y < h; y++) {
-      let m = 255;
-      const y0 = Math.max(0, y - radius), y1 = Math.min(h - 1, y + radius);
-      for (let yy = y0; yy <= y1; yy++) {
-        const v = tmp[yy * w + x];
-        if (v < m) m = v;
-      }
-      dst[y * w + x] = m;
-    }
-  }
-  return dst;
 }
 
 function separableBoxBlur(src, w, h, radius) {
@@ -978,6 +980,12 @@ zoomSlider.addEventListener('input', () => {
   redraw();
 });
 
+resetPositionBtn.addEventListener('click', () => {
+  photoState = { scale: 1, offsetX: 0, offsetY: 0 };
+  zoomSlider.value = 100;
+  redraw();
+});
+
 // drag to reposition photo on canvas
 function getCanvasCoords(e) {
   const rect = canvas.getBoundingClientRect();
@@ -988,14 +996,21 @@ function getCanvasCoords(e) {
   return { x: (clientX - rect.left) * scaleX, y: (clientY - rect.top) * scaleY };
 }
 
+function clampZoomSlider() {
+  const pct = Math.round(photoState.scale * 100);
+  zoomSlider.value = Math.max(+zoomSlider.min, Math.min(+zoomSlider.max, pct));
+}
+
 function startDrag(e) {
   if (!photoImg) return;
   const { x, y } = getCanvasCoords(e);
   if (x < PHOTO_X) return;
   dragging = true;
+  showCropGuide = true;
   dragStart = { x, y };
   offsetStart = { x: photoState.offsetX, y: photoState.offsetY };
   canvas.style.cursor = 'grabbing';
+  redraw();
 }
 
 function moveDrag(e) {
@@ -1008,15 +1023,65 @@ function moveDrag(e) {
 
 function endDrag() {
   dragging = false;
+  showCropGuide = false;
   canvas.style.cursor = 'grab';
+  redraw();
 }
 
 canvas.addEventListener('mousedown', startDrag);
 window.addEventListener('mousemove', moveDrag);
 window.addEventListener('mouseup', endDrag);
-canvas.addEventListener('touchstart', startDrag, { passive: true });
-window.addEventListener('touchmove', moveDrag, { passive: true });
+canvas.addEventListener('touchstart', (e) => { if (e.touches.length === 1) startDrag(e); }, { passive: true });
+window.addEventListener('touchmove', (e) => { if (e.touches.length === 1) moveDrag(e); }, { passive: true });
 window.addEventListener('touchend', endDrag);
+
+// scroll-wheel zoom — hover over the photo half of the card
+canvas.addEventListener('wheel', (e) => {
+  if (!photoImg) return;
+  const { x } = getCanvasCoords(e);
+  if (x < PHOTO_X) return;
+  e.preventDefault();
+  const delta = e.deltaY > 0 ? -0.04 : 0.04;
+  photoState.scale = Math.max(zoomSlider.min / 100, Math.min(zoomSlider.max / 100, photoState.scale + delta));
+  clampZoomSlider();
+  showCropGuide = true;
+  clearTimeout(wheelGuideTimer);
+  wheelGuideTimer = setTimeout(() => { showCropGuide = false; redraw(); }, 500);
+  redraw();
+}, { passive: false });
+
+// pinch-to-zoom on mobile
+let pinchStartDist = null;
+let pinchStartScale = 1;
+function touchDist(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+canvas.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 2) {
+    dragging = false;
+    pinchStartDist = touchDist(e.touches);
+    pinchStartScale = photoState.scale;
+    showCropGuide = true;
+  }
+}, { passive: true });
+window.addEventListener('touchmove', (e) => {
+  if (e.touches.length === 2 && pinchStartDist) {
+    const dist = touchDist(e.touches);
+    const ratio = dist / pinchStartDist;
+    photoState.scale = Math.max(zoomSlider.min / 100, Math.min(zoomSlider.max / 100, pinchStartScale * ratio));
+    clampZoomSlider();
+    redraw();
+  }
+}, { passive: true });
+window.addEventListener('touchend', (e) => {
+  if (e.touches.length < 2) {
+    pinchStartDist = null;
+    showCropGuide = false;
+    redraw();
+  }
+});
 
 // download
 document.getElementById('downloadBtn').addEventListener('click', () => {
