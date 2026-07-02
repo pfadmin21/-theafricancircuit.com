@@ -286,6 +286,7 @@
   .gate-row {
     display: flex;
     gap: 8px;
+    align-items: stretch;
   }
 
   .gate-row input[type=password] {
@@ -297,6 +298,7 @@
     font-size: 13px;
     color: #fff;
     background: rgba(255,255,255,0.04);
+    box-sizing: border-box;
   }
 
   .gate-row input[type=password]:focus {
@@ -308,7 +310,7 @@
     padding: 11px 18px;
     background: var(--gold);
     color: var(--ink);
-    border: none;
+    border: 1px solid var(--gold);
     font-family: 'Manrope', sans-serif;
     font-weight: 700;
     font-size: 11px;
@@ -316,9 +318,10 @@
     text-transform: uppercase;
     cursor: pointer;
     white-space: nowrap;
+    box-sizing: border-box;
   }
 
-  .gate-btn:hover { background: var(--gold2); }
+  .gate-btn:hover { background: var(--gold2); border-color: var(--gold2); }
 
   .gate-error {
     display: none;
@@ -789,7 +792,7 @@ function loadPhoto(file) {
       dragHint.style.display = 'block';
 
       if (bgRemoveToggle.checked) {
-        runBackgroundRemoval(img);
+        runBackgroundRemoval(capImageSize(img, 1100));
       } else {
         photoImg = img;
         photoIsCutout = false;
@@ -799,6 +802,20 @@ function loadPhoto(file) {
     img.src = ev.target.result;
   };
   reader.readAsDataURL(file);
+}
+
+// Downscales large photos (phone camera photos can be 10-40MP) to a
+// sane working size before segmentation — keeps the mask cleanup fast
+// and gives the model a more consistent input size.
+function capImageSize(img, maxDim) {
+  const w = img.naturalWidth, h = img.naturalHeight;
+  if (Math.max(w, h) <= maxDim) return img;
+  const scale = maxDim / Math.max(w, h);
+  const c = document.createElement('canvas');
+  c.width = Math.round(w * scale);
+  c.height = Math.round(h * scale);
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+  return c;
 }
 
 // ── Background removal (runs client-side via MediaPipe Selfie Segmentation) ──
@@ -828,14 +845,23 @@ function runBackgroundRemoval(img) {
   bgStatus.classList.add('show');
 
   model.onResults((results) => {
+    const w = results.image.width, h = results.image.height;
     const out = document.createElement('canvas');
-    out.width = results.image.width;
-    out.height = results.image.height;
+    out.width = w;
+    out.height = h;
     const octx = out.getContext('2d');
     octx.drawImage(results.image, 0, 0);
     octx.globalCompositeOperation = 'destination-in';
     octx.drawImage(results.segmentationMask, 0, 0);
     octx.globalCompositeOperation = 'source-over';
+
+    // Clean up the soft mask edge — the raw model output leaves
+    // semi-transparent boundary pixels that still carry a trace of the
+    // original background colour, which shows up as a pale halo once
+    // composited onto a dark card. Erode the alpha inward past that
+    // contaminated band, then feather just the alpha channel back out
+    // for a smooth (but colour-clean) edge.
+    cleanCutoutEdges(octx, w, h);
 
     photoImg = out;
     photoIsCutout = true;
@@ -852,6 +878,95 @@ function runBackgroundRemoval(img) {
     bgStatus.classList.remove('show');
     redraw();
   });
+}
+
+// Erodes the alpha channel inward (past the halo-contaminated boundary),
+// then feathers alpha back out for a smooth edge without reintroducing
+// background colour. Operates in-place on the canvas context.
+function cleanCutoutEdges(ctx, w, h) {
+  const ERODE_PX = 3;
+  const FEATHER_PX = 2;
+
+  const imgData = ctx.getImageData(0, 0, w, h);
+  const data = imgData.data;
+  const n = w * h;
+
+  // Extract alpha channel
+  let alpha = new Uint8ClampedArray(n);
+  for (let i = 0; i < n; i++) alpha[i] = data[i * 4 + 3];
+
+  // Separable erosion (min filter) — horizontal pass then vertical pass
+  alpha = separableMinFilter(alpha, w, h, ERODE_PX);
+
+  // Separable feather (box blur) on the eroded alpha for a soft edge
+  alpha = separableBoxBlur(alpha, w, h, FEATHER_PX);
+
+  // Write back: keep RGB as-is, replace alpha. Fully-transparent pixels'
+  // RGB doesn't matter since they won't render.
+  for (let i = 0; i < n; i++) data[i * 4 + 3] = alpha[i];
+
+  ctx.putImageData(imgData, 0, 0);
+}
+
+function separableMinFilter(src, w, h, radius) {
+  const tmp = new Uint8ClampedArray(w * h);
+  const dst = new Uint8ClampedArray(w * h);
+  // horizontal
+  for (let y = 0; y < h; y++) {
+    const row = y * w;
+    for (let x = 0; x < w; x++) {
+      let m = 255;
+      const x0 = Math.max(0, x - radius), x1 = Math.min(w - 1, x + radius);
+      for (let xx = x0; xx <= x1; xx++) {
+        const v = src[row + xx];
+        if (v < m) m = v;
+      }
+      tmp[row + x] = m;
+    }
+  }
+  // vertical
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) {
+      let m = 255;
+      const y0 = Math.max(0, y - radius), y1 = Math.min(h - 1, y + radius);
+      for (let yy = y0; yy <= y1; yy++) {
+        const v = tmp[yy * w + x];
+        if (v < m) m = v;
+      }
+      dst[y * w + x] = m;
+    }
+  }
+  return dst;
+}
+
+function separableBoxBlur(src, w, h, radius) {
+  const tmp = new Float32Array(w * h);
+  const dst = new Uint8ClampedArray(w * h);
+  const size = radius * 2 + 1;
+  // horizontal
+  for (let y = 0; y < h; y++) {
+    const row = y * w;
+    let sum = 0;
+    for (let x = -radius; x <= radius; x++) sum += src[row + Math.min(w - 1, Math.max(0, x))];
+    for (let x = 0; x < w; x++) {
+      tmp[row + x] = sum / size;
+      const addX = Math.min(w - 1, x + radius + 1);
+      const subX = Math.max(0, x - radius);
+      sum += src[row + addX] - src[row + subX];
+    }
+  }
+  // vertical
+  for (let x = 0; x < w; x++) {
+    let sum = 0;
+    for (let y = -radius; y <= radius; y++) sum += tmp[Math.min(h - 1, Math.max(0, y)) * w + x];
+    for (let y = 0; y < h; y++) {
+      dst[y * w + x] = sum / size;
+      const addY = Math.min(h - 1, y + radius + 1);
+      const subY = Math.max(0, y - radius);
+      sum += tmp[addY * w + x] - tmp[subY * w + x];
+    }
+  }
+  return dst;
 }
 
 bgRemoveToggle.addEventListener('change', () => {
