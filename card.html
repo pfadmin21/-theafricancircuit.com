@@ -286,12 +286,13 @@
   .gate-row {
     display: flex;
     gap: 8px;
-    align-items: stretch;
+    align-items: center;
   }
 
   .gate-row input[type=password] {
     flex: 1;
-    padding: 11px 14px;
+    height: 46px;
+    padding: 0 14px;
     border: 1px solid rgba(255,255,255,0.1);
     font-family: 'Manrope', sans-serif;
     font-weight: 300;
@@ -299,6 +300,7 @@
     color: #fff;
     background: rgba(255,255,255,0.04);
     box-sizing: border-box;
+    line-height: normal;
   }
 
   .gate-row input[type=password]:focus {
@@ -307,7 +309,8 @@
   }
 
   .gate-btn {
-    padding: 11px 18px;
+    height: 46px;
+    padding: 0 18px;
     background: var(--gold);
     color: var(--ink);
     border: 1px solid var(--gold);
@@ -319,6 +322,9 @@
     cursor: pointer;
     white-space: nowrap;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .gate-btn:hover { background: var(--gold2); border-color: var(--gold2); }
