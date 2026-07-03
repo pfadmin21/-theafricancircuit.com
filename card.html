@@ -529,6 +529,8 @@ const LOGO_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyCAYAAADo
 
 const canvas = document.getElementById('cardCanvas');
 const ctx = canvas.getContext('2d');
+ctx.imageSmoothingEnabled = true;
+ctx.imageSmoothingQuality = 'high';
 const W = canvas.width, H = canvas.height;
 
 let logoImg = new Image();
@@ -871,6 +873,20 @@ dropZone.addEventListener('drop', (e) => {
   if (e.dataTransfer.files[0]) loadPhoto(e.dataTransfer.files[0]);
 });
 
+// For the boxed (non-cutout) photo mode, a pure center-crop into this
+// very tall panel often crops the top of the head on typical headshot
+// photos. Bias the default position toward showing more of the top of
+// the photo instead of dead-centering it.
+function computeHeadFriendlyOffsetY(img) {
+  const iw = img.naturalWidth || img.width;
+  const ih = img.naturalHeight || img.height;
+  const baseScale = Math.max(PHOTO_W / iw, PHOTO_H / ih);
+  const dh = ih * baseScale;
+  const overflow = dh - PHOTO_H;
+  if (overflow <= 0) return 0;
+  return overflow * 0.32;
+}
+
 function loadPhoto(file) {
   if (!file.type.startsWith('image/')) return;
   const reader = new FileReader();
@@ -890,6 +906,7 @@ function loadPhoto(file) {
       } else {
         photoImg = img;
         photoIsCutout = false;
+        photoState.offsetY = computeHeadFriendlyOffsetY(img);
         redraw();
       }
     };
@@ -908,7 +925,10 @@ function capImageSize(img, maxDim) {
   const c = document.createElement('canvas');
   c.width = Math.round(w * scale);
   c.height = Math.round(h * scale);
-  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+  const cctx = c.getContext('2d');
+  cctx.imageSmoothingEnabled = true;
+  cctx.imageSmoothingQuality = 'high';
+  cctx.drawImage(img, 0, 0, c.width, c.height);
   return c;
 }
 
@@ -932,6 +952,7 @@ function runBackgroundRemoval(img) {
     // model unavailable — fall back to the boxed photo
     photoImg = img;
     photoIsCutout = false;
+    photoState.offsetY = computeHeadFriendlyOffsetY(img);
     redraw();
     return;
   }
@@ -944,6 +965,8 @@ function runBackgroundRemoval(img) {
     out.width = w;
     out.height = h;
     const octx = out.getContext('2d');
+    octx.imageSmoothingEnabled = true;
+    octx.imageSmoothingQuality = 'high';
     octx.drawImage(results.image, 0, 0);
     octx.globalCompositeOperation = 'destination-in';
     octx.drawImage(results.segmentationMask, 0, 0);
@@ -968,6 +991,7 @@ function runBackgroundRemoval(img) {
     // segmentation failed — fall back to the boxed photo
     photoImg = img;
     photoIsCutout = false;
+    photoState.offsetY = computeHeadFriendlyOffsetY(img);
     segmenting = false;
     bgStatus.classList.remove('show');
     redraw();
@@ -985,8 +1009,12 @@ function runBackgroundRemoval(img) {
 // remaining semi-transparent pixel now sits on top of already-clean,
 // fully-opaque, correctly-coloured subject pixels).
 function cleanCutoutEdges(ctx, w, h) {
-  const THRESHOLD = 140;
-  const SMOOTH_PX = 1;
+  // A narrow ramp rather than a hard on/off cut — still tight enough to
+  // discard the contaminated (light-fringe) band, but avoids a harsh,
+  // jagged silhouette on fine detail like hair.
+  const LOW = 90;
+  const HIGH = 165;
+  const SMOOTH_PX = 2;
 
   const imgData = ctx.getImageData(0, 0, w, h);
   const data = imgData.data;
@@ -994,7 +1022,15 @@ function cleanCutoutEdges(ctx, w, h) {
 
   let alpha = new Uint8ClampedArray(n);
   for (let i = 0; i < n; i++) {
-    alpha[i] = data[i * 4 + 3] >= THRESHOLD ? 255 : 0;
+    const a = data[i * 4 + 3];
+    if (a <= LOW) {
+      alpha[i] = 0;
+    } else if (a >= HIGH) {
+      alpha[i] = 255;
+    } else {
+      const t = (a - LOW) / (HIGH - LOW);
+      alpha[i] = Math.round(t * t * (3 - 2 * t) * 255); // smoothstep
+    }
   }
 
   alpha = separableBoxBlur(alpha, w, h, SMOOTH_PX);
