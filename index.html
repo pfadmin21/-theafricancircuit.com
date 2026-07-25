@@ -318,26 +318,28 @@ linear-gradient(180deg,#04111d 0%,#061827 100%);
 
 /* Partners */
 .partners{padding:34px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#061522;overflow:hidden}
-.partner-track{
-  margin-top:28px;
-  overflow:hidden;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);
-  mask-image:linear-gradient(90deg,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);
+.partner-carousel{display:flex;align-items:center;gap:18px;margin-top:32px}
+.partner-row{
+  display:flex;align-items:center;gap:52px;
+  overflow-x:auto;scroll-behavior:smooth;
+  scrollbar-width:none;-ms-overflow-style:none;
+  padding:6px 2px;flex:1;
+  mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 24px,#000 calc(100% - 24px),transparent 100%);
 }
-.partner-marquee{display:flex;align-items:center;width:max-content;animation:partner-scroll 48s linear infinite}
-.partner-track:hover .partner-marquee{animation-play-state:paused}
-@keyframes partner-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.partner-logo{
-  display:flex;align-items:center;justify-content:center;
-  width:190px;height:86px;flex:0 0 auto;margin:0 10px;
-  background:var(--cream);border-radius:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,.28);
-  opacity:.92;transition:.25s
+.partner-row::-webkit-scrollbar{display:none}
+.partner-item{flex:0 0 auto;display:flex;align-items:center}
+.partner-item img{height:26px;width:auto;max-width:130px;object-fit:contain;filter:brightness(0) invert(1);opacity:.68;transition:.25s}
+.partner-item img:hover{opacity:1}
+.partner-item span{font:600 13px/1 "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);white-space:nowrap;transition:.25s}
+.partner-item span:hover{color:rgba(255,255,255,.85)}
+.partner-nav{
+  flex:0 0 auto;width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--border-gold);background:transparent;color:var(--gold);
+  font-size:16px;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:.2s
 }
-.partner-logo:hover{opacity:1;transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.38)}
-.partner-logo img{max-width:78%;max-height:64%;object-fit:contain}
-.partner-logo span{font:700 14px/1.25 Manrope;color:var(--navy);text-align:center;padding:0 10px;white-space:normal}
-@media(prefers-reduced-motion:reduce){.partner-marquee{animation:none}}
+.partner-nav:hover{background:var(--gold);color:var(--navy)}
 
 /* Footer */
 footer{padding:48px 0 23px}
@@ -372,7 +374,7 @@ footer{padding:48px 0 23px}
   .city-grid{grid-template-columns:1fr 1fr}.city-card{padding:22px 10px;border-bottom:1px solid var(--border)}
   .institution-copy{padding:34px 25px}.skyline{min-height:300px}.stage{min-height:300px}
   .pillar-grid{grid-template-columns:1fr}
-  .partner-logo{width:150px;height:72px;margin:0 8px}
+  .partner-row{gap:36px}.partner-item img{height:22px}.partner-nav{width:30px;height:30px;font-size:14px}
   .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
 }
 </style>
@@ -582,52 +584,31 @@ footer{padding:48px 0 23px}
 <section class="partners">
   <div class="wrap">
     <div class="section-title"><div class="kicker">Trusted by Leading Institutions</div></div>
-    <div class="partner-track">
-      <div class="partner-marquee" id="partnerMarquee">
-        <!-- SET 1 — add new partners here as logos arrive, then copy the identical block into SET 2 below -->
-        <div class="partner-logo"><img src="images/files%20(12)/afdb.png" alt="African Development Bank Group"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/alsf.png" alt="African Legal Support Facility"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/bioculture.png" alt="Bioculture Group"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/caia.png" alt="CAIA Association"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/careedge.png" alt="CareEdge Ratings Africa"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/datura.png" alt="Datura"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/dtos.png" alt="DTOS Group"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/ess.png" alt="ESS"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/pwc.png" alt="PwC"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/sango.png" alt="Sango"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/suntera.png" alt="Suntera Global"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/tlg.png" alt="TLG Capital"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/trimetys.png" alt="Trimetys"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/ventures47.png" alt="47 Ventures"></div>
-        <div class="partner-logo"><img src="images/files%20(12)/veritas.png" alt="Veritas"></div>
-        <div class="partner-logo"><span>IFC</span></div>
-        <div class="partner-logo"><span>SAVCA</span></div>
-        <div class="partner-logo"><span>MCCI</span></div>
-        <div class="partner-logo"><span>KPMG</span></div>
-        <div class="partner-logo"><span>COMESA</span></div>
-
-        <!-- SET 2 — exact duplicate of SET 1, required for the seamless loop. Keep both sets identical. -->
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/afdb.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/alsf.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/bioculture.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/caia.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/careedge.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/datura.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/dtos.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/ess.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/pwc.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/sango.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/suntera.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/tlg.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/trimetys.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/ventures47.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><img src="images/files%20(12)/veritas.png" alt=""></div>
-        <div class="partner-logo" aria-hidden="true"><span>IFC</span></div>
-        <div class="partner-logo" aria-hidden="true"><span>SAVCA</span></div>
-        <div class="partner-logo" aria-hidden="true"><span>MCCI</span></div>
-        <div class="partner-logo" aria-hidden="true"><span>KPMG</span></div>
-        <div class="partner-logo" aria-hidden="true"><span>COMESA</span></div>
+    <div class="partner-carousel">
+      <button class="partner-nav" id="partnerPrev" aria-label="Scroll partners left">‹</button>
+      <div class="partner-row" id="partnerRow">
+        <div class="partner-item"><img src="images/files/afdb.png" alt="African Development Bank Group" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/alsf.png" alt="African Legal Support Facility" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/bioculture.png" alt="Bioculture Group" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/caia.png" alt="CAIA Association" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/careedge.png" alt="CareEdge Ratings Africa" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/datura.png" alt="Datura" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/dtos.png" alt="DTOS Group" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/ess.png" alt="ESS" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/pwc.png" alt="PwC" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/sango.png" alt="Sango" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/suntera.png" alt="Suntera Global" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/tlg.png" alt="TLG Capital" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/trimetys.png" alt="Trimetys" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/ventures47.png" alt="47 Ventures" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/veritas.png" alt="Veritas" loading="lazy"></div>
+        <div class="partner-item"><span>IFC</span></div>
+        <div class="partner-item"><span>SAVCA</span></div>
+        <div class="partner-item"><span>MCCI</span></div>
+        <div class="partner-item"><span>KPMG</span></div>
+        <div class="partner-item"><span>COMESA</span></div>
       </div>
+      <button class="partner-nav" id="partnerNext" aria-label="Scroll partners right">›</button>
     </div>
   </div>
 </section>
@@ -677,16 +658,14 @@ const io=new IntersectionObserver(entries=>entries.forEach(e=>{
 }),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Partner logo marquee: keep scroll speed constant (~40px/s) no matter how many logos are added.
-const marquee=document.getElementById('partnerMarquee');
-if(marquee){
-  const setMarqueeSpeed=()=>{
-    const distance=marquee.scrollWidth/2; // track holds two identical sets
-    const pxPerSecond=40;
-    marquee.style.animationDuration=(distance/pxPerSecond)+'s';
-  };
-  setMarqueeSpeed();
-  window.addEventListener('resize',setMarqueeSpeed);
+// Partner row: arrow buttons scroll the row left/right by roughly one viewport-width of logos.
+const partnerRow=document.getElementById('partnerRow');
+const partnerPrev=document.getElementById('partnerPrev');
+const partnerNext=document.getElementById('partnerNext');
+if(partnerRow && partnerPrev && partnerNext){
+  const scrollByAmount=()=>partnerRow.clientWidth*0.8;
+  partnerPrev.addEventListener('click',()=>partnerRow.scrollBy({left:-scrollByAmount(),behavior:'smooth'}));
+  partnerNext.addEventListener('click',()=>partnerRow.scrollBy({left:scrollByAmount(),behavior:'smooth'}));
 }
 </script>
 </body>
