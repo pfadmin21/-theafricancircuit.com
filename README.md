@@ -1,4 +1,4 @@
-# The African Circuit V2
+ # The African Circuit V2
 
 Deployment-ready static website for GitHub Pages.
 
