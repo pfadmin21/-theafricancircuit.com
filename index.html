@@ -271,9 +271,13 @@ linear-gradient(180deg,#04111d 0%,#061827 100%);
 .checks li:before{content:"◎";color:var(--gold);margin-right:10px}
 .skyline{
   min-height:420px;
-  background:
-    linear-gradient(90deg,rgba(5,19,31,.35),rgba(5,19,31,.05)),
-    url("images/africa-circuit-map.svg") center/cover no-repeat
+  background-color:#071c2c;
+  background-image:
+    linear-gradient(90deg,rgba(5,19,31,.25),rgba(5,19,31,.02)),
+    url("images/africa-circuit-map.svg");
+  background-position:center;
+  background-repeat:no-repeat;
+  background-size:contain;
 }
 
 /* Flagship */
@@ -468,13 +472,18 @@ footer{padding:48px 0 23px}
         <h3>Nairobi</h3><div class="edition">East Africa Edition</div><div class="date">19–20 November 2026</div>
       </article>
       <article class="city-card">
-        <svg class="flag-svg" viewBox="0 0 60 40" role="img" aria-label="South Africa flag">
-          <rect width="60" height="40" fill="#fff"/>
-          <rect y="0" width="60" height="8" fill="#DE3831"/>
-          <rect y="32" width="60" height="8" fill="#002395"/>
-          <polygon points="0,8 0,32 22,20" fill="#000"/>
-          <polygon points="0,8 60,8 60,14 26,20 60,26 60,32 0,32 0,26 34,20 0,14" fill="#007A4D"/>
-          <polygon points="0,8 60,8 60,10 24,20 60,30 60,32 0,32 0,30 32,20 0,10" fill="#FFB612"/>
+        <svg class="flag-svg" viewBox="0 0 9 6" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="South Africa flag">
+          <clipPath id="za-c"><path d="M0 0l4.5 3L0 6" id="za-b"/></clipPath>
+          <clipPath id="za-a"><path d="M0 0h9v6H0z"/></clipPath>
+          <g clip-path="url(#za-a)">
+            <path d="M0 0v6h9V0z" fill="#001489"/>
+            <path d="M0 0v3h9V0z" fill="#e03c31"/>
+            <g stroke-width="2" stroke="#fff">
+              <path d="M0 0l4.5 3L0 6m4.5-3H9" id="za-d"/>
+              <use xlink:href="#za-b" stroke="#ffb81c" clip-path="url(#za-c)"/>
+            </g>
+            <use xlink:href="#za-d" fill="none" stroke="#007749" stroke-width="1.2"/>
+          </g>
         </svg>
         <h3>Cape Town</h3><div class="edition">Southern Africa Edition</div><div class="date">February 2027</div>
       </article>
