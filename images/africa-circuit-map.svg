@@ -1,9 +1,9 @@
-<svg viewBox="334.4 419.7 226.0 216.6" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Africa highlighting The African Circuit host countries: Morocco, Kenya, Mauritius and South Africa">
+<svg viewBox="296.4 415.7 339.3 231.4" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map of Africa highlighting The African Circuit host countries: Morocco, Kenya, Mauritius and South Africa">
 <defs>
 <radialGradient id="bgGlow" cx="50%" cy="35%" r="75%"><stop offset="0%" stop-color="#0a2437"/><stop offset="100%" stop-color="#03101b"/></radialGradient>
 <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
-<rect x="334.4" y="419.7" width="226.0" height="216.6" fill="url(#bgGlow)"/>
+<rect x="296.4" y="415.7" width="339.3" height="231.4" fill="url(#bgGlow)"/>
 <g id="countries">
 <path d="M424.625,435.764l-3.526-1.186l-14.677,2.758l-3.198,2.429l1.953,10.088l-5.835,0.233l-3.509,5.646l-8.359,2.005l0.025,4.105l27.532,21.048l4.692,0.398l15.654-12.231l-1.565-1.971l-2.938-0.398l-1.764-2.955V453.5l-1.177-1.184l0.199-3.155l-3.13-3.155l-0.389-3.354l1.366-0.986l-0.59-3.553L424.625,435.764L424.625,435.764z" fill="#0f2d42" stroke="rgba(208,161,73,0.16)" stroke-width="0.6"/>
 <path d="M437.366,547.461l2.948,11.003l-0.069,3.478l-4.313,4.633l-0.647,7.527l16.597,0.147l5.395,1.954l4.45-0.58l-2.594-3.251l0.01-9.282l5.101-0.217v-3.621l-4.142-0.172l-0.829-8.575l-1.746,0.024l-0.943-0.848l-1.027,0.054l-1.365,2.646h-5.255l-1.22-1.227l0.363-1.738l-1.436-2.101L437.366,547.461L437.366,547.461z" fill="#0f2d42" stroke="rgba(208,161,73,0.16)" stroke-width="0.6"/>
