@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The African Circuit — Capital, Policy & Investment</title>
+<meta name="description" content="The African Circuit is Africa's institutional platform for capital, policy and investment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#06111b;--navy-2:#0b1a27;--paper:#f7f3ec;--cream:#eee6d8;
+  --white:#fff;--ink:#0a1721;--muted:#6f7a82;--gold:#c9a252;--teal:#0d7777;
+  --line:rgba(10,23,33,.14);--max:1440px;--pad:clamp(24px,5vw,76px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(var(--max),100%);margin:auto;padding-inline:var(--pad)}
+.kicker{font:500 10px/1.4 'DM Mono';letter-spacing:.24em;text-transform:uppercase;color:var(--teal)}
+.kicker.gold{color:var(--gold)}
+
+/* header */
+.header{position:fixed;inset:0 0 auto;z-index:50;transition:.3s;background:linear-gradient(180deg,rgba(6,17,27,.88),transparent)}
+.header.scrolled{background:rgba(6,17,27,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav{height:92px;display:flex;align-items:center;gap:28px}
+.brand{color:#fff;min-width:250px}
+.brand strong{display:block;font:500 22px/1 'EB Garamond';letter-spacing:.02em}
+.brand strong span{color:var(--gold)}
+.brand small{display:block;margin-top:7px;font:400 8px/1 'DM Mono';letter-spacing:.26em;text-transform:uppercase;color:rgba(255,255,255,.42)}
+.links{margin-left:auto;display:flex;align-items:center;gap:4px}
+.links a{padding:12px 10px;color:rgba(255,255,255,.62);font-size:10px;text-transform:uppercase;letter-spacing:.11em}
+.links a:hover,.links a.active{color:#fff}
+.links .join{margin-left:10px;background:var(--gold);color:var(--navy);padding:14px 18px;font-weight:700}
+.menu{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:24px}
+.mobile{display:none;position:fixed;inset:0;background:var(--navy);z-index:40;padding:110px 28px 28px}
+.mobile.open{display:block}
+.mobile a{display:block;color:#fff;font:400 30px/1.1 'EB Garamond';padding:15px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+
+/* hero */
+.hero{position:relative;min-height:100svh;background:var(--navy);color:#fff;display:flex;align-items:flex-end;overflow:hidden}
+.hero-media{position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(6,17,27,.96) 0%,rgba(6,17,27,.78) 42%,rgba(6,17,27,.24) 73%,rgba(6,17,27,.62) 100%),
+url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2200&q=88') center/cover no-repeat;transform:scale(1.02)}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 74% 28%,rgba(201,162,82,.18),transparent 30%),linear-gradient(180deg,transparent 66%,rgba(6,17,27,.96))}
+.hero-grid{position:relative;z-index:2;width:100%;padding-top:180px;padding-bottom:72px;display:grid;grid-template-columns:minmax(0,1.25fr) 380px;gap:110px;align-items:end}
+.hero h1{font:400 clamp(68px,8vw,124px)/.86 'EB Garamond';letter-spacing:-.052em;margin:24px 0 28px;max-width:1000px}
+.hero h1 em{color:var(--gold);font-weight:400}
+.hero-copy{max-width:650px;color:rgba(255,255,255,.66);font-size:16px;line-height:1.9}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;border:1px solid transparent;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.13em;transition:.25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.ghost{border-color:rgba(255,255,255,.28);color:#fff}
+.btn.dark{background:var(--navy);color:#fff}
+.hero-index{border-top:1px solid rgba(255,255,255,.26)}
+.hero-index a{display:grid;grid-template-columns:44px 1fr auto;align-items:center;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#fff}
+.hero-index span{font:400 9px 'DM Mono';color:var(--gold)}
+.hero-index strong{font:400 25px 'EB Garamond'}
+.hero-index i{font-style:normal;color:rgba(255,255,255,.4)}
+
+/* general */
+section{padding:clamp(90px,10vw,150px) 0}
+.section-head{display:grid;grid-template-columns:1.1fr .8fr;gap:110px;align-items:end;margin-bottom:68px}
+.section-head h2{font:400 clamp(50px,5.7vw,84px)/.91 'EB Garamond';letter-spacing:-.04em;margin:16px 0 0}
+.section-head p{margin:0;font-size:14px;line-height:2;color:var(--muted);max-width:590px}
+.dark{background:var(--navy);color:#fff}
+.dark p{color:rgba(255,255,255,.48)}
+.cream{background:var(--cream)}
+
+/* ecosystem */
+.ecosystem{display:grid;grid-template-columns:1.15fr .85fr;gap:1px;background:var(--line)}
+.eco-main{background:#fff;padding:clamp(38px,5vw,74px);min-height:600px;display:flex;flex-direction:column;justify-content:space-between}
+.eco-main h3{font:400 clamp(48px,5vw,76px)/.94 'EB Garamond';letter-spacing:-.035em;margin:0;max-width:720px}
+.eco-main p{max-width:600px;font-size:14px;line-height:1.95;color:var(--muted)}
+.eco-stack{display:grid;grid-template-rows:repeat(3,1fr);gap:1px}
+.eco-item{background:#fff;padding:38px;display:grid;grid-template-columns:52px 1fr auto;gap:18px;align-items:center;transition:.25s}
+.eco-item:hover{background:var(--paper);padding-left:48px}
+.eco-item .num{font:400 9px 'DM Mono';color:var(--gold)}
+.eco-item h4{font:400 30px/1 'EB Garamond';margin:0 0 8px}
+.eco-item p{margin:0;font-size:12px;line-height:1.6;color:var(--muted)}
+
+/* circuit */
+.circuit-line{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:36px}
+.circuit-line:before{content:"";position:absolute;top:15px;left:9%;right:9%;height:1px;background:rgba(255,255,255,.18)}
+.city{position:relative;padding:52px 34px 34px;border-right:1px solid rgba(255,255,255,.08);min-height:280px}
+.city:last-child{border-right:0}
+.city:before{content:"";position:absolute;top:10px;left:34px;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 6px rgba(201,162,82,.12)}
+.city .date{font:400 8px 'DM Mono';letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.city h3{font:400 40px/1 'EB Garamond';margin:55px 0 14px}
+.city p{font-size:12px;line-height:1.8;color:rgba(255,255,255,.44)}
+
+/* editorial */
+.editorial{display:grid;grid-template-columns:1.2fr .8fr;gap:72px;align-items:stretch}
+.feature{position:relative;min-height:600px;overflow:hidden;background:var(--navy);color:#fff}
+.feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.72)}
+.feature:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,17,27,.08),rgba(6,17,27,.92))}
+.feature-copy{position:absolute;z-index:2;left:48px;right:48px;bottom:44px}
+.feature h3{font:400 clamp(42px,4.3vw,66px)/.95 'EB Garamond';letter-spacing:-.03em;margin:16px 0}
+.feature p{max-width:640px;color:rgba(255,255,255,.64);font-size:13px;line-height:1.8}
+.side-list{border-top:1px solid var(--line)}
+.story{display:block;padding:28px 0;border-bottom:1px solid var(--line)}
+.story .meta{font:400 8px 'DM Mono';letter-spacing:.16em;text-transform:uppercase;color:var(--teal)}
+.story h4{font:400 31px/1.05 'EB Garamond';margin:14px 0 8px}
+.story p{font-size:12px;line-height:1.75;color:var(--muted);margin:0}
+
+/* membership */
+.membership-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.1)}
+.member-copy,.member-stat{padding:clamp(40px,6vw,80px);background:rgba(255,255,255,.035)}
+.member-copy h2{font:400 clamp(50px,5.5vw,82px)/.91 'EB Garamond';letter-spacing:-.04em;margin:18px 0 26px}
+.member-copy p{font-size:14px;line-height:2;color:rgba(255,255,255,.5);max-width:620px}
+.member-stat{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);padding:0}
+.metric{padding:44px;background:var(--navy-2)}
+.metric strong{display:block;font:400 56px/1 'EB Garamond';color:#fff}
+.metric strong em{font-style:normal;color:var(--gold)}
+.metric span{display:block;margin-top:10px;font:400 8px/1.5 'DM Mono';text-transform:uppercase;letter-spacing:.16em;color:rgba(255,255,255,.38)}
+
+/* cta/footer */
+.cta{background:var(--gold);padding:82px 0}
+.cta-grid{display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+.cta h2{font:400 clamp(48px,5.4vw,82px)/.9 'EB Garamond';letter-spacing:-.04em;margin:0}
+.cta p{font-size:13px;line-height:1.8;max-width:620px}
+footer{background:var(--navy);color:#fff;padding:82px 0 30px}
+.footer-grid{display:grid;grid-template-columns:1.5fr repeat(4,1fr);gap:48px}
+.footer-title{font:400 24px 'EB Garamond';margin-bottom:18px}
+.footer-copy{font-size:11px;line-height:1.8;color:rgba(255,255,255,.34);max-width:330px}
+.footer-col a{display:block;margin:12px 0;font-size:11px;color:rgba(255,255,255,.42)}
+.footer-col a:hover{color:#fff}
+.footer-bottom{display:flex;justify-content:space-between;margin-top:58px;padding-top:22px;border-top:1px solid rgba(255,255,255,.08);font:400 8px 'DM Mono';letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.24)}
+
+.reveal{opacity:0;transform:translateY(22px);transition:.75s ease}.reveal.in{opacity:1;transform:none}
+
+@media(max-width:1100px){
+ .links{display:none}.menu{display:block}.hero-grid,.section-head,.ecosystem,.editorial,.membership-grid{grid-template-columns:1fr}
+ .hero-grid{gap:50px}.hero-index{max-width:560px}.circuit-line{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr 1fr}
+}
+@media(max-width:700px){
+ .nav{height:76px}.brand small{display:none}.hero{min-height:820px}.hero-grid{padding-top:140px;padding-bottom:48px}.hero h1{font-size:60px}
+ .hero-index{display:none}.section-head{gap:28px}.circuit-line{grid-template-columns:1fr}.circuit-line:before{display:none}.city{border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+ .feature{min-height:520px}.feature-copy{left:24px;right:24px;bottom:28px}.member-stat{grid-template-columns:1fr}.cta-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="./"><strong>THE AFRICAN <span>CIRCUIT</span></strong><small>Capital · Policy · Investment</small></a>
+    <nav class="links">
+      <a class="active" href="./">Home</a><a href="conference/">Conference</a><a href="institute/">Institute</a><a href="research/">Research</a><a href="exchange/">Exchange</a><a href="membership/">Membership</a><a href="about/">About</a><a class="join" href="membership/">Join the network</a>
+    <a href="contact/">Contact</a></nav>
+    <button class="menu" aria-label="Open menu">☰</button>
+  </div>
+</header>
+<nav class="mobile"><a href="./">Home</a><a href="conference/">Conference</a><a href="institute/">Institute</a><a href="research/">Research</a><a href="exchange/">Opportunity Exchange</a><a href="membership/">Membership</a><a href="network/">Network</a><a href="about/">About</a></nav>
+
+<main>
+<section class="hero">
+  <div class="hero-media"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker gold">Africa's institutional platform</div>
+      <h1>Where capital, policy and <em>investment</em> move together.</h1>
+      <p class="hero-copy">The African Circuit connects the institutions allocating capital, shaping policy and building the vehicles through which African investment can scale.</p>
+      <div class="actions"><a class="btn gold" href="conference/">Explore the Conference</a><a class="btn ghost" href="institute/">Discover the Institute</a></div>
+    </div>
+    <div class="hero-index">
+      <a href="conference/"><span>01</span><strong>Conference</strong><i>→</i></a>
+      <a href="institute/"><span>02</span><strong>Institute</strong><i>→</i></a>
+      <a href="research/"><span>03</span><strong>Research</strong><i>→</i></a>
+      <a href="exchange/"><span>04</span><strong>Exchange</strong><i>→</i></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="kicker">One platform. Year-round engagement.</div><h2>More than a conference.</h2></div>
+      <p>The African Circuit is a permanent institutional ecosystem. Leaders convene, build capability, publish intelligence, identify opportunities and remain connected throughout the year.</p>
+    </div>
+    <div class="ecosystem reveal">
+      <a class="eco-main" href="conference/">
+        <div><div class="kicker gold">01 · Flagship convening</div><h3>The Conference brings the institutions shaping African capital into the same room.</h3></div>
+        <p>Mauritius, Nairobi, Cape Town and Casablanca form one connected circuit of investors, DFIs, family offices, regulators, fund managers and business leaders.</p>
+      </a>
+      <div class="eco-stack">
+        <a class="eco-item" href="institute/"><div class="num">02</div><div><h4>Institute</h4><p>Executive education and institutional capability.</p></div><div>→</div></a>
+        <a class="eco-item" href="research/"><div class="num">03</div><div><h4>Research</h4><p>Market intelligence and policy perspectives.</p></div><div>→</div></a>
+        <a class="eco-item" href="exchange/"><div class="num">04</div><div><h4>Opportunity Exchange</h4><p>Curated projects, mandates and partnerships.</p></div><div>→</div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="kicker gold">The 2026–2027 Circuit</div><h2>Four cities. One institutional conversation.</h2></div>
+      <p>Each edition reflects the financial architecture, policy priorities and investment opportunities of its region while contributing to one continuous pan-African dialogue.</p>
+    </div>
+    <div class="circuit-line reveal">
+      <article class="city"><div class="date">14–15 September 2026</div><h3>Mauritius</h3><p>The flagship platform for Africa-bound capital architecture.</p></article>
+      <article class="city"><div class="date">19–20 November 2026</div><h3>Nairobi</h3><p>East Africa edition focused on innovation, growth capital and scale.</p></article>
+      <article class="city"><div class="date">February 2027</div><h3>Cape Town</h3><p>Southern Africa edition connecting private markets and transformation assets.</p></article>
+      <article class="city"><div class="date">Planned</div><h3>Casablanca</h3><p>North Africa edition bridging African, European and Middle Eastern capital.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="cream">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="kicker">Intelligence between convenings</div><h2>The conversation continues.</h2></div>
+      <p>The Institute and Research platform convert the questions raised at each Circuit into executive learning, institutional analysis and practical frameworks.</p>
+    </div>
+    <div class="editorial reveal">
+      <a class="feature" href="research/">
+        <img src="https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1600&q=86" alt="Research and institutional intelligence">
+        <div class="feature-copy"><div class="kicker gold">Featured intelligence</div><h3>The Mandate</h3><p>Nine consistent questions revealing how institutions think about risk, governance, deployment and value creation across Africa.</p></div>
+      </a>
+      <div class="side-list">
+        <a class="story" href="institute/"><div class="meta">Executive capability</div><h4>The African Circuit Institute</h4><p>Private academies, executive programmes and institution-specific learning.</p></a>
+        <a class="story" href="research/"><div class="meta">Capital intelligence</div><h4>African investment outlooks</h4><p>Research on capital formation, governance, infrastructure, climate and private markets.</p></a>
+        <a class="story" href="exchange/"><div class="meta">Opportunity</div><h4>From project to investable proposition</h4><p>Curating credible opportunities and connecting them with the right form of capital.</p></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap membership-grid reveal">
+    <div class="member-copy"><div class="kicker gold">Membership</div><h2>Stay inside the Circuit.</h2><p>Membership connects institutional leaders to private briefings, executive programmes, research, roundtables, curated introductions and priority access across every city.</p><div class="actions"><a class="btn gold" href="membership/">Explore membership</a><a class="btn ghost" href="network/">View the network</a></div></div>
+    <div class="member-stat">
+      <div class="metric"><strong>4</strong><span>Connected African cities</span></div>
+      <div class="metric"><strong>50<em>+</em></strong><span>Speakers at the flagship</span></div>
+      <div class="metric"><strong>250</strong><span>Senior delegates</span></div>
+      <div class="metric"><strong>365</strong><span>Days of engagement</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="wrap cta-grid"><div><h2>Enter the Circuit.</h2><p>Join the year-round institutional platform connecting Africa's capital, policy and investment leaders.</p></div><a class="btn dark" href="membership/">Join the network</a></div>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="footer-title">The African Circuit</div><div class="footer-copy">Africa's institutional platform for capital, policy and investment — connecting convening, intelligence, capability and opportunity throughout the year.</div></div>
+      <div class="footer-col"><div class="kicker gold">Platform</div><a href="conference/">Conference</a><a href="institute/">Institute</a><a href="research/">Research</a></div>
+      <div class="footer-col"><div class="kicker gold">Engage</div><a href="membership/">Membership</a><a href="exchange/">Opportunity Exchange</a><a href="network/">Institutional Network</a></div>
+      <div class="footer-col"><div class="kicker gold">Circuit</div><a href="conference/#mauritius">Mauritius</a><a href="conference/#nairobi">Nairobi</a><a href="conference/#capetown">Cape Town</a><a href="conference/#casablanca">Casablanca</a></div>
+      <div class="footer-col"><div class="kicker gold">Connect</div><a href="about/">About</a><a href="mailto:connect@theafricancircuit.com">Contact</a><a href="membership/">Apply</a></div>
+    </div>
+    <div class="footer-bottom"><span>© <span data-year></span> The African Circuit</span><span>Capital · Policy · Investment</span></div>
+  </div>
+</footer>
+<script>
+const header=document.querySelector('.header');
+const mobile=document.querySelector('.mobile');
+const menu=document.querySelector('.menu');
+const updateHeader=()=>header.classList.toggle('scrolled',window.scrollY>24);
+updateHeader();window.addEventListener('scroll',updateHeader,{passive:true});
+menu.addEventListener('click',()=>mobile.classList.toggle('open'));
+document.querySelectorAll('.mobile a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
+document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
