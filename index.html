@@ -331,8 +331,6 @@ linear-gradient(180deg,#04111d 0%,#061827 100%);
 .partner-item{flex:0 0 auto;display:flex;align-items:center}
 .partner-item img{height:26px;width:auto;max-width:130px;object-fit:contain;filter:brightness(0) invert(1);opacity:.68;transition:.25s}
 .partner-item img:hover{opacity:1}
-.partner-item span{font:600 13px/1 "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);white-space:nowrap;transition:.25s}
-.partner-item span:hover{color:rgba(255,255,255,.85)}
 .partner-nav{
   flex:0 0 auto;width:36px;height:36px;border-radius:50%;
   border:1px solid var(--border-gold);background:transparent;color:var(--gold);
@@ -340,6 +338,9 @@ linear-gradient(180deg,#04111d 0%,#061827 100%);
   cursor:pointer;transition:.2s
 }
 .partner-nav:hover{background:var(--gold);color:var(--navy)}
+@media(max-width:700px){
+  .partner-row{gap:36px}.partner-item img{height:22px}.partner-nav{width:30px;height:30px;font-size:14px}
+}
 
 /* Footer */
 footer{padding:48px 0 23px}
@@ -374,7 +375,6 @@ footer{padding:48px 0 23px}
   .city-grid{grid-template-columns:1fr 1fr}.city-card{padding:22px 10px;border-bottom:1px solid var(--border)}
   .institution-copy{padding:34px 25px}.skyline{min-height:300px}.stage{min-height:300px}
   .pillar-grid{grid-template-columns:1fr}
-  .partner-row{gap:36px}.partner-item img{height:22px}.partner-nav{width:30px;height:30px;font-size:14px}
   .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
 }
 </style>
@@ -601,6 +601,7 @@ footer{padding:48px 0 23px}
         <div class="partner-item"><img src="images/files/tlg.png" alt="TLG Capital" loading="lazy"></div>
         <div class="partner-item"><img src="images/files/trimetys.png" alt="Trimetys" loading="lazy"></div>
         <div class="partner-item"><img src="images/files/ventures47.png" alt="47 Ventures" loading="lazy"></div>
+        <div class="partner-item"><img src="images/files/veritas.png" alt="Veritas" loading="lazy"></div>
       </div>
       <button class="partner-nav" id="partnerNext" aria-label="Scroll partners right">›</button>
     </div>
@@ -652,7 +653,7 @@ const io=new IntersectionObserver(entries=>entries.forEach(e=>{
 }),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Partner row: arrow buttons scroll the row left/right by roughly one viewport-width of logos.
+// Partner row: arrow buttons scroll the row left/right.
 const partnerRow=document.getElementById('partnerRow');
 const partnerPrev=document.getElementById('partnerPrev');
 const partnerNext=document.getElementById('partnerNext');
