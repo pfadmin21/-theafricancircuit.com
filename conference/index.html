@@ -74,17 +74,26 @@ button,input{font:inherit}
 .mobile a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font:400 30px/1.1 "EB Garamond"}
 
 /* Hero */
-.pagehero{position:relative;padding:0;border-bottom:1px solid var(--border);overflow:hidden;min-height:640px;display:flex;align-items:flex-end}
-.pagehero-bg{position:absolute;inset:0;background:url("/images/tac-mauritius-2026.png") center/cover no-repeat}
-.pagehero-bg:after{content:"";position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(3,16,27,.55) 0%,rgba(3,16,27,.7) 55%,rgba(3,16,27,.97) 100%),
-  radial-gradient(circle at 85% 20%,rgba(28,156,147,.22),transparent 35%),
-  radial-gradient(circle at 5% 70%,rgba(208,161,73,.18),transparent 35%)}
+.pagehero{position:relative;padding:0;border-bottom:1px solid var(--border);overflow:hidden;min-height:600px;display:flex;align-items:flex-end}
+.pagehero-bg{position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(28,156,147,.20),transparent 32%),
+    radial-gradient(circle at 8% 75%,rgba(208,161,73,.16),transparent 34%),
+    linear-gradient(180deg,#04111d 0%,#061827 100%)
+}
+.pagehero-bg:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 0%,transparent 56%,rgba(255,255,255,.02) 56%,rgba(255,255,255,.02) 56.1%,transparent 56.1%),
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:100% 100%,72px 72px;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 58%,#000 100%)
+}
 .pagehero-inner{position:relative;z-index:2;padding:170px 0 0}
 .crumb{position:relative;font:500 9px/1.4 "DM Mono";letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px}
 .crumb a{color:rgba(255,255,255,.55)}
 .crumb a:hover{color:var(--gold)}
-.pagehero h1{position:relative;font:400 clamp(48px,7vw,92px)/.94 "EB Garamond";letter-spacing:-.03em;max-width:900px;margin:14px 0 22px;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+.pagehero h1{position:relative;font:400 clamp(48px,7vw,92px)/.94 "EB Garamond";letter-spacing:-.03em;max-width:900px;margin:14px 0 22px}
 .pagehero h1 em{color:var(--gold);font-style:normal}
 .pagehero h1 .flick{color:var(--teal-light)}
 .pagehero p{position:relative;max-width:640px;font-size:14px;line-height:1.85;color:var(--text-secondary)}
@@ -95,7 +104,7 @@ button,input{font:inherit}
 
 /* Countdown */
 .countdown{position:relative;z-index:2;display:flex;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:40px 0 0;width:fit-content}
-.cd-unit{background:rgba(5,15,25,.75);backdrop-filter:blur(6px);padding:16px 22px;text-align:center;min-width:84px}
+.cd-unit{background:rgba(5,15,25,.6);padding:16px 22px;text-align:center;min-width:84px}
 .cd-unit strong{display:block;font:400 32px "EB Garamond";color:var(--gold)}
 .cd-unit span{display:block;margin-top:4px;font:500 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
 .hero-bottom-space{height:56px}
@@ -134,15 +143,6 @@ button,input{font:inherit}
 .obj h3{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 10px}
 .obj p{font-size:11.5px;line-height:1.8;color:rgba(255,255,255,.58)}
 .obj-note{max-width:760px;margin:28px auto 0;font-size:10.5px;line-height:1.8;color:rgba(255,255,255,.42);text-align:center}
-
-/* Mid-page photo banner */
-.photo-banner{position:relative;min-height:380px;display:flex;align-items:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden}
-.photo-banner-bg{position:absolute;inset:0;background:url("/images/tac-mauritius-2026.png") center/cover no-repeat}
-.photo-banner-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,16,27,.92) 20%,rgba(3,16,27,.55) 65%,rgba(3,16,27,.3) 100%)}
-.photo-banner-copy{position:relative;z-index:2;max-width:600px;padding:0 var(--pad)}
-.photo-banner-copy .big-quote{font:400 clamp(26px,3.4vw,42px)/1.2 "EB Garamond";margin:14px 0 0}
-.photo-banner-copy .big-quote em{color:var(--teal-light);font-style:normal}
-@media(max-width:700px){.photo-banner{min-height:280px}}
 
 /* Debate intro banner */
 .debate-intro{padding:70px 0 20px;text-align:center}
@@ -486,16 +486,6 @@ footer{padding:48px 0 23px}
           <div class="tl-card"><span class="tl-tag">Close</span><h3>Summit Wrap-Up</h3><p>Core schedule ends — a free evening for delegates ahead of the Circuit's next stop.</p></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="photo-banner">
-  <div class="photo-banner-bg"></div>
-  <div class="wrap">
-    <div class="photo-banner-copy">
-      <div class="kicker teal">Port Louis, September 2026</div>
-      <p class="big-quote">Two days. <em>Eight closed rooms.</em> One question underneath all of it — where does African capital actually go next?</p>
     </div>
   </div>
 </section>
