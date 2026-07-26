@@ -123,18 +123,18 @@ background:radial-gradient(circle at 80% 20%,rgba(201,155,62,.12),transparent 35
 .expect-card p{font-size:11px;line-height:1.75;color:rgba(255,255,255,.58)}
 
 /* Agenda timeline */
+.agenda-days{display:grid;grid-template-columns:1fr 1fr;gap:60px}
 .agenda-day{margin-bottom:8px}
-.agenda-day + .agenda-day{margin-top:48px}
 .agenda-day .day-label{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
 .agenda-day .day-label span:first-child{font:400 30px "EB Garamond";color:var(--gold)}
 .agenda-day .day-label span:last-child{font:500 9px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
 .t-track{position:relative}
-.t-track:before{content:"";position:absolute;left:104px;top:10px;bottom:10px;width:1px;background:var(--border-gold)}
-.t-row{position:relative;display:grid;grid-template-columns:80px 48px 1fr;align-items:center;padding:16px 0}
-.t-dot{position:absolute;left:100px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);z-index:1}
-.t-time{grid-column:1;font:500 10px "DM Mono";letter-spacing:.04em;color:var(--gold);text-align:right;padding-right:20px}
-.t-content{grid-column:3;padding-left:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.t-content h4{margin:0;font-size:13px;font-weight:600}
+.t-track:before{content:"";position:absolute;left:76px;top:10px;bottom:10px;width:1px;background:var(--border-gold)}
+.t-row{position:relative;display:grid;grid-template-columns:60px 32px 1fr;align-items:center;padding:14px 0}
+.t-dot{position:absolute;left:72px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);z-index:1}
+.t-time{grid-column:1;font:500 10px "DM Mono";letter-spacing:.04em;color:var(--gold);text-align:right;padding-right:14px}
+.t-content{grid-column:3;padding-left:14px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.t-content h4{margin:0;font-size:12.5px;line-height:1.4;font-weight:600}
 .tag{display:inline-block;padding:3px 9px;border:1px solid var(--border-gold);font:500 8px "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 
 /* Roundtables strip */
@@ -223,6 +223,7 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
 @media(max-width:1100px){
   .links{display:none}.menu{display:block}
   .expect-grid{grid-template-columns:1fr}
+  .agenda-days{grid-template-columns:1fr;gap:48px}
   .rt-step{flex:1 1 45%}
   .rt-step:nth-child(-n+4){border-top:1px solid var(--border)}
   .rt-step:nth-child(-n+2){border-top:0}
@@ -338,6 +339,7 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
       <p>Indicative programme — final running order and panel titles are confirmed closer to the event as speaker line-ups lock in.</p>
     </div>
 
+    <div class="agenda-days">
     <div class="agenda-day reveal">
       <div class="day-label"><span>Day 1</span><span>14 September 2026</span></div>
       <div class="t-track">
@@ -361,6 +363,7 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
         <div class="t-row"><div class="t-time">11:45</div><div class="t-dot"></div><div class="t-content"><h4>Panel V — Capacity, Institutions & the Next Decade</h4><span class="tag">Main Stage</span></div></div>
         <div class="t-row"><div class="t-time">12:45</div><div class="t-dot"></div><div class="t-content"><h4>Closing Remarks & Farewell Lunch</h4></div></div>
       </div>
+    </div>
     </div>
   </div>
 </section>
