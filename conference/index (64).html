@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nairobi Edition — The African Circuit</title>
+<meta name="description" content="The African Circuit's Nairobi Edition, 19–20 November 2026, JW Marriott Hotel, Nairobi. Three concurrent tracks. The debates. The theses. The dealroom.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#03101b;
+  --navy-soft:#051522;
+  --navy-card:#071927;
+  --gold:#d0a149;
+  --gold-light:#e0b763;
+  --gold-dark:#a97d2d;
+  --teal:#1c9c93;
+  --teal-light:#3fc2b8;
+  --coral:#d3703f;
+  --coral-light:#e8935f;
+  --cream:#f5f0e8;
+  --text-primary:#f5f0e8;
+  --text-secondary:#c2cbd4;
+  --text-muted:#82909c;
+  --border:rgba(255,255,255,.09);
+  --border-gold:rgba(208,161,73,.55);
+  --border-teal:rgba(28,156,147,.5);
+  --border-coral:rgba(211,112,63,.55);
+  --max:1360px;
+  --pad:clamp(24px,4vw,64px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 70% 8%,rgba(28,156,147,.10),transparent 30%),
+    radial-gradient(circle at 15% 30%,rgba(208,161,73,.08),transparent 32%),
+    linear-gradient(180deg,#03101b 0%,#051522 100%);
+  color:var(--text-primary);
+  font-family:Manrope,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden
+}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input{font:inherit}
+.wrap{width:min(var(--max),100%);margin:auto;padding-inline:var(--pad)}
+.kicker{font:500 10px/1.4 "DM Mono";letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.kicker.teal{color:var(--teal-light)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 28px;border:1px solid transparent;border-radius:2px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:.25s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.gold:hover{background:var(--gold-light)}
+.btn.ghost{background:transparent;border-color:rgba(208,161,73,.65);color:#fff}
+
+/* Header */
+.header{position:fixed;inset:0 0 auto;z-index:100;height:92px;background:linear-gradient(180deg,rgba(3,16,27,.98),rgba(3,16,27,.72),transparent);transition:.3s}
+.header.scrolled{background:rgba(3,16,27,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav{height:92px;display:flex;align-items:center;gap:26px}
+.brand{display:flex;align-items:center;gap:14px;min-width:310px}
+.brand-mark{width:58px;height:58px;border-radius:50%;object-fit:cover}
+.brand strong{display:block;font:500 22px/1 "EB Garamond";letter-spacing:.02em}
+.brand strong span{color:var(--gold)}
+.brand small{display:block;margin-top:7px;font:400 8px/1 "DM Mono";letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.links{margin-left:auto;display:flex;align-items:center;gap:2px}
+.links a{position:relative;padding:12px 10px;font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.66)}
+.links a:hover,.links a.active{color:#fff}
+.links a.active:after{content:"";position:absolute;left:10px;right:10px;bottom:5px;height:1px;background:var(--gold)}
+.links .join{margin-left:12px;padding:17px 22px;background:var(--gold);color:var(--navy);font-weight:700}
+.links .join:after{display:none}
+.menu{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:25px}
+.mobile{display:none;position:fixed;inset:0;background:var(--navy);z-index:90;padding:108px 28px 28px}
+.mobile.open{display:block}
+.mobile a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font:400 30px/1.1 "EB Garamond"}
+
+/* Hero */
+.pagehero{position:relative;border-bottom:1px solid var(--border);overflow:hidden}
+.pagehero-bg{position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 85% 15%,rgba(28,156,147,.20),transparent 32%),
+    radial-gradient(circle at 8% 75%,rgba(208,161,73,.16),transparent 34%),
+    linear-gradient(180deg,#04111d 0%,#061827 100%)
+}
+.pagehero-bg:after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 0%,transparent 56%,rgba(255,255,255,.02) 56%,rgba(255,255,255,.02) 56.1%,transparent 56.1%),
+    linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:100% 100%,72px 72px;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 58%,#000 100%)
+}
+.pagehero-inner{position:relative;z-index:2;padding:162px clamp(24px,5vw,80px) 70px}
+.pagehero h1{position:relative;font:400 clamp(64px,6vw,100px)/.92 "EB Garamond";letter-spacing:-.045em;max-width:900px;margin:22px 0 26px}
+.pagehero h1 em{color:var(--gold);font-style:normal}
+.pagehero h1 .flick{color:var(--teal-light)}
+.pagehero p{position:relative;max-width:640px;font-size:15px;line-height:1.85;color:var(--text-secondary)}
+.pagehero .meta{position:relative;display:flex;flex-wrap:wrap;gap:28px;margin-top:30px}
+.pagehero .meta div{display:flex;align-items:center;gap:10px;font:500 9px/1.4 "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.pagehero .meta svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.6}
+.pagehero-actions{position:relative;display:flex;gap:14px;flex-wrap:wrap;margin:32px 0 0}
+
+/* Countdown */
+.countdown{position:relative;z-index:2;display:flex;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:40px 0 0;width:fit-content}
+.cd-unit{background:rgba(5,15,25,.6);padding:16px 22px;text-align:center;min-width:84px}
+.cd-unit strong{display:block;font:400 32px "EB Garamond";color:var(--gold)}
+.cd-unit span{display:block;margin-top:4px;font:500 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+/* Marquee ticker */
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#061b26;overflow:hidden;white-space:nowrap;padding:16px 0}
+.ticker-track{display:inline-flex;gap:0;animation:scroll 46s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker span{display:inline-flex;align-items:center;font:500 12px/1 "EB Garamond";font-style:italic;color:rgba(255,255,255,.7);padding:0 34px;white-space:nowrap}
+.ticker span:after{content:"◆";margin-left:34px;color:var(--gold);font-size:8px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* KPI strip */
+.kpis{background:#061522;border-bottom:1px solid var(--border)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.kpi{min-height:120px;padding:26px 18px;text-align:center;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center}
+.kpi:last-child{border-right:0}
+.kpi strong{font:400 40px/1 "EB Garamond";color:var(--gold)}
+.kpi span{display:block;margin-top:9px;font:400 8px/1.45 "DM Mono";letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+/* Section title */
+.section-title{text-align:center;margin-bottom:36px}
+.section-title .kicker{display:flex;align-items:center;justify-content:center;gap:16px}
+.section-title .kicker:before,.section-title .kicker:after{content:"";width:78px;height:1px;background:var(--gold-dark)}
+.section-title.teal .kicker:before,.section-title.teal .kicker:after{background:var(--teal)}
+.section-title h2{font:400 clamp(34px,4vw,54px)/1.02 "EB Garamond";margin:10px 0 0}
+.section-title p{max-width:640px;margin:16px auto 0;font-size:12.5px;line-height:1.85;color:var(--text-secondary)}
+
+/* Objectives */
+.objectives{padding:76px 0 60px;border-bottom:1px solid var(--border)}
+.obj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.obj{min-height:200px;padding:30px 26px;background:#071725;transition:.25s}
+.obj:hover{background:#0a1f2c;transform:translateY(-3px)}
+.obj-icon{width:38px;height:38px;color:var(--gold)}
+.obj-icon svg{width:38px;height:38px;stroke:currentColor;fill:none;stroke-width:1.4}
+.obj h3{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin:16px 0 10px}
+.obj p{font-size:11.5px;line-height:1.8;color:rgba(255,255,255,.58)}
+.obj-note{max-width:760px;margin:28px auto 0;font-size:10.5px;line-height:1.8;color:rgba(255,255,255,.42);text-align:center}
+
+/* Debate intro banner */
+.debate-intro{padding:70px 0 20px;text-align:center}
+.debate-intro .big{font:400 clamp(30px,4vw,52px)/1.15 "EB Garamond";max-width:920px;margin:0 auto}
+.debate-intro .big em{color:var(--teal-light);font-style:normal}
+.debate-intro p.sub{max-width:640px;margin:20px auto 0;font-size:12.5px;line-height:1.85;color:var(--text-secondary)}
+
+/* Day tabs */
+.day-tabs{display:flex;justify-content:center;gap:10px;margin:44px 0 8px;flex-wrap:wrap}
+.day-tab{padding:14px 30px;border:1px solid var(--border-gold);background:transparent;color:var(--text-secondary);font:600 10px "DM Mono";letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.2s;border-radius:2px}
+.day-tab.active,.day-tab:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.day-theme{text-align:center;font:400 16px "EB Garamond";font-style:italic;color:var(--teal-light);margin:18px 0 40px}
+
+/* Agenda grid */
+.agenda{padding:0 0 80px}
+.day-panel{display:none}
+.day-panel.active{display:block;animation:fadein .4s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.track-head{display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:1px;background:var(--border);margin-bottom:1px}
+.track-head > div{background:#0a1f2c;padding:12px 16px;font:700 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.track-head .th-main{color:var(--gold)}
+.track-head .th-rt{color:var(--teal-light)}
+
+.track-row{display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:1px;background:var(--border);margin-bottom:1px}
+.track-row.session{margin-bottom:1px}
+.track-cell{background:#071725;padding:16px 18px}
+.track-cell.time-cell{background:#061b26;display:flex;flex-direction:column;justify-content:center}
+.time-cell .t{font:600 10px "DM Mono";color:rgba(255,255,255,.85)}
+.time-cell .d{margin-top:3px;font:400 8px "DM Mono";color:rgba(255,255,255,.4)}
+.track-cell.muted{color:rgba(255,255,255,.32);font:400 10px "DM Mono";display:flex;align-items:center;font-style:italic}
+.track-cell h4{font:500 13.5px/1.4 "EB Garamond";margin:0 0 6px}
+.track-cell p{font-size:10px;line-height:1.7;color:rgba(255,255,255,.55);margin:0 0 8px}
+.role-chip{display:inline-block;font:600 7px "DM Mono";letter-spacing:.06em;text-transform:uppercase;color:var(--teal-light);border:1px solid var(--border-teal);padding:3px 8px;border-radius:20px}
+.format-badge{display:inline-flex;font:700 7.5px "DM Mono";letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;margin-bottom:8px;color:var(--navy)}
+.format-badge.debate{background:var(--gold)}
+.format-badge.thesis{background:var(--teal-light)}
+.format-badge.dealroom{background:var(--coral-light)}
+
+@media(max-width:1000px){
+  .track-head{display:none}
+  .track-row{grid-template-columns:1fr}
+  .track-cell.time-cell{flex-direction:row;gap:10px;padding:10px 16px}
+  .track-cell{border-bottom:2px solid var(--navy)}
+  .track-row .track-cell:nth-child(2):not(.time-cell):before{content:"Main Hall · Theatre";display:block;font:700 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .track-row .track-cell:nth-child(3):before{content:"Breakout Wing A";display:block;font:700 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px}
+  .track-row .track-cell:nth-child(4):before{content:"Breakout Wing B";display:block;font:700 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--teal-light);margin-bottom:8px}
+}
+
+/* Dealroom callout */
+.dealroom-callout{margin-top:36px;border:1px solid var(--border-coral);border-radius:8px;padding:30px 32px;background:linear-gradient(135deg,rgba(211,112,63,.10),transparent)}
+.dealroom-callout .kicker{color:var(--coral-light)}
+.dealroom-callout h3{font:400 26px "EB Garamond";margin:12px 0 10px}
+.dealroom-callout p{font-size:12px;line-height:1.8;color:rgba(255,255,255,.62);max-width:640px}
+
+/* Register CTA */
+.register{padding:70px 0 80px}
+.register-card{position:relative;overflow:hidden;border:1px solid var(--border-gold);border-radius:6px;padding:52px 48px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;background:linear-gradient(135deg,rgba(208,161,73,.08),rgba(28,156,147,.05))}
+.register-copy h2{font:400 clamp(30px,3vw,42px)/1.05 "EB Garamond";margin:0 0 16px}
+.register-copy p{font-size:12px;line-height:1.85;color:var(--text-secondary);max-width:520px}
+
+/* Footer */
+footer{padding:48px 0 23px}
+.footer-grid{display:grid;grid-template-columns:1.15fr 1fr .7fr .7fr;gap:1px;background:var(--border)}
+.footer-cell{padding:30px;background:#071522}
+.footer-brand{display:flex;gap:13px;align-items:center}
+.footer-brand img{width:54px;height:54px;border-radius:50%}
+.footer-brand strong{font:500 19px "EB Garamond"}
+.footer-cell p,.footer-cell a{font-size:9px;line-height:1.75;color:rgba(255,255,255,.48)}
+.footer-cell a{display:block;margin-top:8px}
+.newsletter{display:flex;margin-top:16px}
+.newsletter input{min-width:0;flex:1;background:#03101b;border:1px solid var(--border);padding:12px;color:#fff}
+.newsletter button{border:0;background:var(--gold);padding:0 17px;font-size:8px;font-weight:700;text-transform:uppercase}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;color:rgba(255,255,255,.7)}
+.footer-bottom{display:flex;justify-content:space-between;margin-top:22px;font:400 7px "DM Mono";letter-spacing:.07em;color:rgba(255,255,255,.32);text-transform:uppercase}
+
+@media(max-width:1100px){
+  .links{display:none}.menu{display:block}
+  .obj-grid{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .nav{height:76px}.header{height:76px}
+  .brand{min-width:auto}.brand-mark{width:46px;height:46px}.brand strong{font-size:17px}.brand small{display:none}
+  .pagehero-inner{padding:130px 22px 50px}
+  .pagehero h1{font-size:52px}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .register-card{padding:34px 26px}
+  .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="The African Circuit home">
+      <img class="brand-mark" src="/images/african-circuit-logo.png" alt="The African Circuit logo">
+      <span><strong>THE AFRICAN <span>CIRCUIT</span></strong><small>Capital · Policy · Investment</small></span>
+    </a>
+    <nav class="links">
+      <a href="/">Home</a>
+      <a class="active" href="/conference/">Conference</a>
+      <a href="/about/">About</a>
+      <a class="join" href="/membership/">Join the Network</a>
+    </nav>
+    <button class="menu" aria-label="Open menu">☰</button>
+  </div>
+</header>
+<nav class="mobile">
+  <a href="/">Home</a>
+  <a href="/conference/">Conference</a>
+  <a href="/about/">About</a>
+  <a href="/membership/">Join the Network</a>
+</nav>
+
+<main>
+<section class="pagehero">
+  <div class="pagehero-bg"></div>
+  <div class="wrap pagehero-inner">
+    <div class="kicker">Nairobi · East Africa Edition · 19–20 November 2026</div>
+    <h1>Three Tracks. <em>One City.</em> Every Debate <span class="flick">Running at Once</span></h1>
+    <p>The Circuit continues into East Africa's capital markets hub — fintech financing, SME credit, climate-tech and regional integration, argued across a Main Hall theatre and two live breakout wings, simultaneously.</p>
+    <div class="meta">
+      <div><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>19–20 November 2026</div>
+      <div><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg>JW Marriott Hotel, Nairobi</div>
+      <div><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 21v-3a6 6 0 0 1 12 0v3M10 21v-3a6 6 0 0 1 12 0v3"/></svg>Invitation-Only</div>
+    </div>
+    <div class="pagehero-actions">
+      <a class="btn gold" href="#register">Register Interest →</a>
+      <a class="btn ghost" href="#agenda">See the Full Programme →</a>
+    </div>
+    <div class="countdown" id="countdown">
+      <div class="cd-unit"><strong id="cd-days">–</strong><span>Days</span></div>
+      <div class="cd-unit"><strong id="cd-hours">–</strong><span>Hours</span></div>
+      <div class="cd-unit"><strong id="cd-mins">–</strong><span>Mins</span></div>
+      <div class="cd-unit"><strong id="cd-secs">–</strong><span>Secs</span></div>
+    </div>
+  </div>
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>Are African Startups Over-Funded at Seed and Under-Funded at Scale-Up?</span>
+      <span>Financing African SMEs Beyond Traditional Bank Lending</span>
+      <span>Can Regional Integration Turn SMEs into Cross-Border Growth Companies?</span>
+      <span>Turning Climate Resilience into a Growth Capital Opportunity</span>
+      <span>From Payments to Credit: Financing the Next Layer of African Fintech</span>
+      <span>Are African Startups Over-Funded at Seed and Under-Funded at Scale-Up?</span>
+      <span>Financing African SMEs Beyond Traditional Bank Lending</span>
+      <span>Can Regional Integration Turn SMEs into Cross-Border Growth Companies?</span>
+      <span>Turning Climate Resilience into a Growth Capital Opportunity</span>
+      <span>From Payments to Credit: Financing the Next Layer of African Fintech</span>
+    </div>
+  </div>
+</section>
+
+<section class="kpis">
+  <div class="wrap kpi-grid">
+    <div class="kpi"><strong>5</strong><span>Main Hall Panels</span></div>
+    <div class="kpi"><strong>10</strong><span>Roundtables</span></div>
+    <div class="kpi"><strong>3</strong><span>Concurrent Tracks</span></div>
+    <div class="kpi"><strong>250</strong><span>Seats Per Room</span></div>
+  </div>
+</section>
+
+<section class="objectives">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="kicker">What This Edition Is Built to Deliver</div>
+      <h2>East Africa's Capital Debate, Run in Parallel</h2>
+    </div>
+    <div class="obj-grid">
+      <div class="obj">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3>Fintech to Credit Infrastructure</h3>
+        <p>Where African fintechs go once payments alone stop being the business — the regulatory, data and lending infrastructure that comes next.</p>
+      </div>
+      <div class="obj">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><path d="M4 5a4 4 0 0 1 4-2h4v17H8a4 4 0 0 0-4 2zM20 5a4 4 0 0 0-4-2h-4v17h4a4 4 0 0 1 4 2z"/></svg></div>
+        <h3>SME & Climate Capital</h3>
+        <p>Alternative financing models for African SMEs and climate-adaptation technology, debated against the conventional bank-lending baseline.</p>
+      </div>
+      <div class="obj">
+        <div class="obj-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v4M20 12h-4M12 20v-4M4 12h4M8 8l3 3"/></svg></div>
+        <h3>A Live Dealroom</h3>
+        <p>Day Two closes with a structured matchmaking session connecting fintech, SME and growth-capital opportunities directly with capital in the room.</p>
+      </div>
+    </div>
+    <p class="obj-note">The Nairobi Edition builds directly on the Circuit's Mauritius flagship. Full delegate and speaker confirmations go out directly to registered attendees closer to the date.</p>
+  </div>
+</section>
+
+<section class="debate-intro">
+  <div class="wrap">
+    <div class="kicker teal">Debates & Theses</div>
+    <p class="big">Three panels run as <em>open debate</em>. Two run as a <em>thesis</em> — a single provocative claim, argued out loud. Ten roundtables run underneath, closed door.</p>
+    <p class="sub">As with Mauritius, we publish the questions the room is built to fight over — not the roster answering them. Confirmations go out directly to registered delegates.</p>
+  </div>
+</section>
+
+<section class="agenda" id="agenda">
+  <div class="wrap">
+    <div class="section-title teal">
+      <div class="kicker teal">The Programme</div>
+      <h2>Two Days, Three Rooms, Nairobi</h2>
+    </div>
+    <div class="day-tabs">
+      <button class="day-tab active" data-day="1">Day One · 19 Nov</button>
+      <button class="day-tab" data-day="2">Day Two · 20 Nov</button>
+    </div>
+
+    <div class="day-panel active" data-day-panel="1">
+      <p class="day-theme">Fintech, SME Finance & Climate Innovation</p>
+      <div class="track-head">
+        <div>Time</div>
+        <div class="th-main">Main Hall · Theatre</div>
+        <div class="th-rt">Breakout Wing A</div>
+        <div class="th-rt">Breakout Wing B</div>
+      </div>
+
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">08:30–09:30</span><span class="d">Opening</span></div>
+        <div class="track-cell"><h4>Registration, Welcome & Keynote 1</h4><p>Doors open, opening remarks, and the first keynote of the edition.</p></div>
+        <div class="track-cell muted">Closed for setup</div>
+        <div class="track-cell muted">Closed for setup</div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">09:40–09:55</span><span class="d">Partner Address</span></div>
+        <div class="track-cell"><h4>Partner Address (TBC)</h4></div>
+        <div class="track-cell"><h4>Technical Track 1</h4><p>Concurrent module, limited seating.</p></div>
+        <div class="track-cell"><h4>Technical Track 2</h4><p>Concurrent module, limited seating.</p></div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">10:00–11:15</span><span class="d">75 min</span></div>
+        <div class="track-cell">
+          <span class="format-badge debate">Debate</span>
+          <h4>From Payments to Credit Infrastructure: Financing the Next Layer of African Fintech</h4>
+          <p>How African fintechs move from payments rails into credit — the infrastructure, data and regulatory foundations needed to underwrite lending at scale.</p>
+        </div>
+        <div class="track-cell"><h4>Fintech Licensing, Payments & Data Regulation</h4><span class="role-chip">Fintech Lawyer / Regulator</span></div>
+        <div class="track-cell"><h4>SME Credit Infrastructure & Alternative Lending Models</h4><span class="role-chip">DFI / Fintech Lender</span></div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">11:15–11:45</span><span class="d">Break</span></div>
+        <div class="track-cell muted">Networking Coffee</div>
+        <div class="track-cell muted">Networking Coffee</div>
+        <div class="track-cell muted">Networking Coffee</div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">12:00–13:15</span><span class="d">75 min</span></div>
+        <div class="track-cell">
+          <span class="format-badge debate">Debate</span>
+          <h4>Financing African SMEs Beyond Traditional Bank Lending: Revenue, Credit, Platforms and Data</h4>
+          <p>Weighing revenue-based and platform-data-driven credit against conventional bank lending.</p>
+        </div>
+        <div class="track-cell"><h4>DFI-Backed SME Finance Platforms</h4><span class="role-chip">DFI / Impact Investment Fund</span></div>
+        <div class="track-cell"><h4>Climate-Tech & Adaptation Pipeline Review</h4><span class="role-chip">DFI / Impact Fund / Fintech</span></div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">13:15–14:15</span><span class="d">Break</span></div>
+        <div class="track-cell muted">Networking Lunch</div>
+        <div class="track-cell muted">Networking Lunch</div>
+        <div class="track-cell muted">Networking Lunch</div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">14:30–15:45</span><span class="d">75 min</span></div>
+        <div class="track-cell">
+          <span class="format-badge debate">Debate</span>
+          <h4>Climate-Tech and Adaptation Finance: Turning Resilience into a Growth Capital Opportunity</h4>
+          <p>Positioning climate adaptation and resilience technology as a distinct, investable growth-capital category across African markets.</p>
+        </div>
+        <div class="track-cell"><h4>Revenue-Based Finance & Non-Dilutive Growth Capital</h4><span class="role-chip">RBF / DFI / Merchant Bank</span></div>
+        <div class="track-cell"><h4>Trade Finance & East African Corridors</h4><span class="role-chip">DFI / Institutional Org</span></div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">16:15–17:00</span><span class="d">Closing</span></div>
+        <div class="track-cell"><h4>Day One Wrap-Up & Networking Reception Opening</h4></div>
+        <div class="track-cell muted">Closed</div>
+        <div class="track-cell muted">Closed</div>
+      </div>
+    </div>
+
+    <div class="day-panel" data-day-panel="2">
+      <p class="day-theme">Institutional Capital, Inclusion & Regional Integration</p>
+      <div class="track-head">
+        <div>Time</div>
+        <div class="th-main">Main Hall · Theatre</div>
+        <div class="th-rt">Breakout Wing A</div>
+        <div class="th-rt">Breakout Wing B</div>
+      </div>
+
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">08:30–09:30</span><span class="d">Opening</span></div>
+        <div class="track-cell"><h4>Registration, Day 2 Briefing & Keynote 2</h4></div>
+        <div class="track-cell muted">Closed for setup</div>
+        <div class="track-cell muted">Closed for setup</div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">09:40–09:55</span><span class="d">Partner Update</span></div>
+        <div class="track-cell"><h4>Partner Update (TBC)</h4></div>
+        <div class="track-cell"><h4>Technical Track 7</h4><p>Concurrent module, limited seating.</p></div>
+        <div class="track-cell"><h4>Technical Track 8</h4><p>Concurrent module, limited seating.</p></div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">10:00–11:15</span><span class="d">75 min</span></div>
+        <div class="track-cell">
+          <span class="format-badge thesis">Thesis</span>
+          <h4>Are African Startups Over-Funded at Seed Stage and Under-Funded at Scale-Up Stage?</h4>
+          <p>A thesis-format discussion on the shape of African venture capital across the funding lifecycle, and where the real capital gap sits.</p>
+        </div>
+        <div class="track-cell"><h4>Digital ID, KYC & Data Rails for Financial Inclusion</h4><span class="role-chip">Fintech / Regtech Firm</span></div>
+        <div class="track-cell"><h4>Women-Led SMEs & Inclusive Finance</h4><span class="role-chip">DFI / Impact Fund / Bank</span></div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">11:15–11:45</span><span class="d">Break</span></div>
+        <div class="track-cell muted">Networking Coffee</div>
+        <div class="track-cell muted">Networking Coffee</div>
+        <div class="track-cell muted">Networking Coffee</div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">12:00–13:15</span><span class="d">75 min</span></div>
+        <div class="track-cell">
+          <span class="format-badge thesis">Thesis</span>
+          <h4>East African Corridors: Can Regional Integration Turn SMEs into Cross-Border Growth Companies?</h4>
+          <p>Closing thesis panel on regional integration as a growth lever — what it takes for East African SMEs to scale across borders.</p>
+        </div>
+        <div class="track-cell"><h4>Corporate Venture Capital & Strategic Partnerships</h4><span class="role-chip">Fund of Funds / Corporate VC</span></div>
+        <div class="track-cell">
+          <span class="format-badge dealroom">Dealroom</span>
+          <h4>RT10 — Fintech, SME & Growth Capital Matchmaking</h4>
+          <span class="role-chip">Foundation / Dealroom Sponsor</span>
+        </div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">13:15–14:15</span><span class="d">Break</span></div>
+        <div class="track-cell muted">Networking Lunch</div>
+        <div class="track-cell muted">Networking Lunch</div>
+        <div class="track-cell muted">Networking Lunch</div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">14:15–15:15</span><span class="d">60 min</span></div>
+        <div class="track-cell muted">Closed</div>
+        <div class="track-cell muted">Closed</div>
+        <div class="track-cell"><span class="format-badge dealroom">Dealroom</span><h4>Matched Introductions Continue</h4></div>
+      </div>
+      <div class="track-row">
+        <div class="track-cell time-cell"><span class="t">15:15–16:15</span><span class="d">Closing</span></div>
+        <div class="track-cell"><h4>Closing Remarks & Capital Pathways Report Preview</h4><p>Followed by the closing networking reception.</p></div>
+        <div class="track-cell muted">Closed</div>
+        <div class="track-cell muted">Closed</div>
+      </div>
+
+      <div class="dealroom-callout">
+        <div class="kicker">Day Two Feature</div>
+        <h3>The Dealroom</h3>
+        <p>A structured matchmaking session running alongside the closing thesis panel — connecting fintech, SME and growth-capital opportunities directly with capital allocators in the room, then continuing through the afternoon for matched introductions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="register" id="register">
+  <div class="wrap">
+    <div class="register-card">
+      <div class="register-copy">
+        <div class="kicker">Registration</div>
+        <h2>Secure Your Seat in Nairobi</h2>
+        <p>Attendance is invitation-only. Register your interest to receive the full programme and delegate pass as the schedule finalises.</p>
+      </div>
+      <a class="btn gold" href="https://www.linkedin.com/events/theafricancircuit-nairobieditio7481971337968812032/" target="_blank" rel="noopener">Register Interest →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-cell">
+        <div class="footer-brand"><img src="/images/african-circuit-logo.png" alt=""><strong>The African Circuit</strong></div>
+        <p>Capital. Policy. Investment.<br>Across Africa. For Africa's Future.</p>
+        <div class="socials"><a href="#">in</a><a href="#">𝕏</a><a href="#">▶</a><a href="mailto:connect@theafricancircuit.com">✉</a></div>
+      </div>
+      <div class="footer-cell">
+        <div class="kicker">Stay Connected</div>
+        <p>Subscribe for updates on events, research and opportunities.</p>
+        <form class="newsletter"><input type="email" placeholder="Enter your email"><button type="submit">Subscribe</button></form>
+      </div>
+      <div class="footer-cell">
+        <div class="kicker">Quick Links</div>
+        <a href="/conference/">Conference</a><a href="/institute/">Institute</a><a href="/research/">Research</a><a href="/exchange/">Exchange</a><a href="/membership/">Membership</a>
+      </div>
+      <div class="footer-cell">
+        <div class="kicker">Legal</div>
+        <a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="mailto:connect@theafricancircuit.com">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> The African Circuit. All rights reserved.</span>
+      <span>Capital · Policy · Investment</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header=document.querySelector('.header');
+const mobile=document.querySelector('.mobile');
+const menu=document.querySelector('.menu');
+const updateHeader=()=>header.classList.toggle('scrolled',window.scrollY>24);
+updateHeader();
+window.addEventListener('scroll',updateHeader,{passive:true});
+menu.addEventListener('click',()=>mobile.classList.toggle('open'));
+document.querySelectorAll('.mobile a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
+document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
+
+const tabs=document.querySelectorAll('.day-tab');
+const panels=document.querySelectorAll('.day-panel');
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  tabs.forEach(t=>t.classList.remove('active'));
+  panels.forEach(p=>p.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelector(`.day-panel[data-day-panel="${tab.dataset.day}"]`).classList.add('active');
+}));
+
+const eventDate=new Date('2026-11-19T08:30:00+03:00').getTime();
+function tickCountdown(){
+  const now=Date.now();
+  const diff=eventDate-now;
+  if(diff<=0){
+    document.getElementById('cd-days').textContent='0';
+    document.getElementById('cd-hours').textContent='0';
+    document.getElementById('cd-mins').textContent='0';
+    document.getElementById('cd-secs').textContent='0';
+    return;
+  }
+  const d=Math.floor(diff/86400000);
+  const h=Math.floor((diff%86400000)/3600000);
+  const m=Math.floor((diff%3600000)/60000);
+  const s=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-days').textContent=d;
+  document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
+}
+tickCountdown();
+setInterval(tickCountdown,1000);
+</script>
+</body>
+</html>
