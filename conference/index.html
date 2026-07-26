@@ -122,25 +122,28 @@ background:radial-gradient(circle at 80% 20%,rgba(201,155,62,.12),transparent 35
 .expect-card h3{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:16px 0 10px}
 .expect-card p{font-size:11px;line-height:1.75;color:rgba(255,255,255,.58)}
 
-/* Agenda */
+/* Agenda timeline */
 .agenda-day{margin-bottom:8px}
-.agenda-day + .agenda-day{margin-top:36px}
-.agenda-day .day-label{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.agenda-day + .agenda-day{margin-top:48px}
+.agenda-day .day-label{display:flex;align-items:baseline;gap:14px;margin-bottom:26px}
 .agenda-day .day-label span:first-child{font:400 30px "EB Garamond";color:var(--gold)}
 .agenda-day .day-label span:last-child{font:500 9px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5)}
-.agenda-item{display:grid;grid-template-columns:110px 1fr;gap:24px;padding:18px 0;border-top:1px solid var(--border)}
-.agenda-item:last-child{border-bottom:1px solid var(--border)}
-.agenda-time{font:500 10px "DM Mono";letter-spacing:.06em;color:var(--gold);padding-top:2px}
-.agenda-body h4{margin:0 0 6px;font-size:14px;font-weight:600}
-.agenda-body p{margin:0;font-size:11px;line-height:1.7;color:rgba(255,255,255,.58)}
-.tag{display:inline-block;margin-top:8px;padding:3px 9px;border:1px solid var(--border-gold);font:500 8px "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
+.t-track{position:relative}
+.t-track:before{content:"";position:absolute;left:104px;top:10px;bottom:10px;width:1px;background:var(--border-gold)}
+.t-row{position:relative;display:grid;grid-template-columns:80px 48px 1fr;align-items:center;padding:16px 0}
+.t-dot{position:absolute;left:100px;top:50%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;background:var(--navy);border:2px solid var(--gold);z-index:1}
+.t-time{grid-column:1;font:500 10px "DM Mono";letter-spacing:.04em;color:var(--gold);text-align:right;padding-right:20px}
+.t-content{grid-column:3;padding-left:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.t-content h4{margin:0;font-size:13px;font-weight:600}
+.tag{display:inline-block;padding:3px 9px;border:1px solid var(--border-gold);font:500 8px "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 
-/* Roundtables */
-.rt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
-.rt-card{background:#071725;padding:24px 20px;min-height:150px}
-.rt-card .rt-num{font:400 22px "EB Garamond";color:var(--gold)}
-.rt-card h4{margin:12px 0 8px;font-size:12px;font-weight:600;letter-spacing:.03em}
-.rt-card p{margin:0;font-size:10.5px;line-height:1.65;color:rgba(255,255,255,.55)}
+/* Roundtables strip */
+.rt-track{display:flex;flex-wrap:wrap;border:1px solid var(--border-gold);border-radius:6px;overflow:hidden}
+.rt-step{flex:1 1 190px;padding:22px 20px;border-right:1px solid var(--border);border-top:1px solid var(--border)}
+.rt-step:nth-child(-n+4){border-top:0}
+.rt-step:nth-child(4n){border-right:0}
+.rt-step .num{font:400 22px "EB Garamond";color:var(--gold)}
+.rt-step h4{margin:10px 0 0;font-size:12px;font-weight:600;letter-spacing:.02em;line-height:1.4}
 .chatham{margin-top:22px;padding:16px 20px;border-left:2px solid var(--gold);font-size:11px;line-height:1.7;color:rgba(255,255,255,.62)}
 
 /* Speakers */
@@ -220,7 +223,11 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
 @media(max-width:1100px){
   .links{display:none}.menu{display:block}
   .expect-grid{grid-template-columns:1fr}
-  .rt-grid{grid-template-columns:1fr 1fr}
+  .rt-step{flex:1 1 45%}
+  .rt-step:nth-child(-n+4){border-top:1px solid var(--border)}
+  .rt-step:nth-child(-n+2){border-top:0}
+  .rt-step:nth-child(4n){border-right:1px solid var(--border)}
+  .rt-step:nth-child(2n){border-right:0}
   .price-grid{grid-template-columns:1fr}
   .next-stop-grid{grid-template-columns:1fr;text-align:left}
   .next-stop-badge{align-self:flex-start;min-width:auto}
@@ -230,8 +237,13 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
   .brand{min-width:auto}.brand-mark{width:46px;height:46px}.brand strong{font-size:17px}.brand small{display:none}
   .hero{padding-top:76px}
   .metrics-grid{grid-template-columns:1fr 1fr}
-  .rt-grid{grid-template-columns:1fr}
-  .agenda-item{grid-template-columns:1fr}
+  .rt-step{flex:1 1 100%;border-right:0!important}
+  .rt-step:nth-child(n){border-top:1px solid var(--border)}
+  .rt-step:first-child{border-top:0}
+  .t-track:before{left:56px}
+  .t-dot{left:52px}
+  .t-row{grid-template-columns:56px 32px 1fr}
+  .t-time{padding-right:12px}
   .field-row{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
 }
@@ -328,61 +340,26 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
 
     <div class="agenda-day reveal">
       <div class="day-label"><span>Day 1</span><span>14 September 2026</span></div>
-      <div class="agenda-item">
-        <div class="agenda-time">09:00</div>
-        <div class="agenda-body"><h4>Registration & Welcome Coffee</h4></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">09:45</div>
-        <div class="agenda-body"><h4>Opening Keynote</h4><p>Setting the frame for two days of dialogue on Africa-bound institutional capital.</p></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">10:30</div>
-        <div class="agenda-body"><h4>MCCI — Sustainability Framework</h4><p>The Mauritius Chamber of Commerce and Industry presents its sustainability framework, immediately following the keynote.</p><span class="tag">Presentation</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">11:15</div>
-        <div class="agenda-body"><h4>Panel I — Blended Finance & De-Risking African Deal Flow</h4><p>How blended structures are unlocking DFI and private capital co-investment across the continent.</p><span class="tag">Main Stage</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">12:15</div>
-        <div class="agenda-body"><h4>Closed-Door Roundtables I–IV</h4><p>Parallel small-group sessions under Chatham House Rule.</p><span class="tag">Chatham House Rule</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">13:15</div>
-        <div class="agenda-body"><h4>Networking Lunch</h4></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">14:30</div>
-        <div class="agenda-body"><h4>Panel II — Ratings, Risk & the Cost of African Capital</h4><p>Credit ratings, risk perception and their bearing on the true cost of capital for African issuers.</p><span class="tag">Main Stage</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">15:30</div>
-        <div class="agenda-body"><h4>Panel III — Regulatory Architecture for Cross-Border Capital</h4><p>Structuring, legal and regulatory considerations for capital moving into and across African markets.</p><span class="tag">Main Stage</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">16:30</div>
-        <div class="agenda-body"><h4>Networking Reception</h4></div>
+      <div class="t-track">
+        <div class="t-row"><div class="t-time">09:00</div><div class="t-dot"></div><div class="t-content"><h4>Registration & Welcome Coffee</h4></div></div>
+        <div class="t-row"><div class="t-time">09:45</div><div class="t-dot"></div><div class="t-content"><h4>Opening Keynote</h4></div></div>
+        <div class="t-row"><div class="t-time">10:30</div><div class="t-dot"></div><div class="t-content"><h4>MCCI — Sustainability Framework</h4><span class="tag">Presentation</span></div></div>
+        <div class="t-row"><div class="t-time">11:15</div><div class="t-dot"></div><div class="t-content"><h4>Panel I — Blended Finance & De-Risking African Deal Flow</h4><span class="tag">Main Stage</span></div></div>
+        <div class="t-row"><div class="t-time">12:15</div><div class="t-dot"></div><div class="t-content"><h4>Closed-Door Roundtables I–IV</h4><span class="tag">Chatham House Rule</span></div></div>
+        <div class="t-row"><div class="t-time">13:15</div><div class="t-dot"></div><div class="t-content"><h4>Networking Lunch</h4></div></div>
+        <div class="t-row"><div class="t-time">14:30</div><div class="t-dot"></div><div class="t-content"><h4>Panel II — Ratings, Risk & the Cost of African Capital</h4><span class="tag">Main Stage</span></div></div>
+        <div class="t-row"><div class="t-time">15:30</div><div class="t-dot"></div><div class="t-content"><h4>Panel III — Regulatory Architecture for Cross-Border Capital</h4><span class="tag">Main Stage</span></div></div>
+        <div class="t-row"><div class="t-time">16:30</div><div class="t-dot"></div><div class="t-content"><h4>Networking Reception</h4></div></div>
       </div>
     </div>
 
     <div class="agenda-day reveal">
       <div class="day-label"><span>Day 2</span><span>15 September 2026</span></div>
-      <div class="agenda-item">
-        <div class="agenda-time">09:30</div>
-        <div class="agenda-body"><h4>Panel IV — ESG, Climate Finance & GHG Reporting in Africa</h4><p>Practical structuring and reporting questions facing ESG-aligned and climate-linked capital.</p><span class="tag">Main Stage</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">10:30</div>
-        <div class="agenda-body"><h4>Closed-Door Roundtables V–VIII</h4><p>Parallel small-group sessions under Chatham House Rule.</p><span class="tag">Chatham House Rule</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">11:45</div>
-        <div class="agenda-body"><h4>Panel V — Capacity, Institutions & the Next Decade</h4><p>Closing panel on institution-building and capability as the long-term determinant of African capital markets.</p><span class="tag">Main Stage</span></div>
-      </div>
-      <div class="agenda-item">
-        <div class="agenda-time">12:45</div>
-        <div class="agenda-body"><h4>Closing Remarks & Farewell Lunch</h4></div>
+      <div class="t-track">
+        <div class="t-row"><div class="t-time">09:30</div><div class="t-dot"></div><div class="t-content"><h4>Panel IV — ESG, Climate Finance & GHG Reporting in Africa</h4><span class="tag">Main Stage</span></div></div>
+        <div class="t-row"><div class="t-time">10:30</div><div class="t-dot"></div><div class="t-content"><h4>Closed-Door Roundtables V–VIII</h4><span class="tag">Chatham House Rule</span></div></div>
+        <div class="t-row"><div class="t-time">11:45</div><div class="t-dot"></div><div class="t-content"><h4>Panel V — Capacity, Institutions & the Next Decade</h4><span class="tag">Main Stage</span></div></div>
+        <div class="t-row"><div class="t-time">12:45</div><div class="t-dot"></div><div class="t-content"><h4>Closing Remarks & Farewell Lunch</h4></div></div>
       </div>
     </div>
   </div>
@@ -395,15 +372,15 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
       <h2>Eight Rooms. One Rule.</h2>
       <p>All roundtables run under Chatham House Rule — participants are free to use the information shared, but may not attribute it to any individual or organisation.</p>
     </div>
-    <div class="rt-grid reveal">
-      <div class="rt-card"><div class="rt-num">I</div><h4>DFI Co-Investment Structures</h4><p>Blended finance mechanics and risk-sharing between DFIs and private capital.</p></div>
-      <div class="rt-card"><div class="rt-num">II</div><h4>Fund Structuring & Domiciliation</h4><p>Jurisdictional considerations for African-focused fund vehicles.</p></div>
-      <div class="rt-card"><div class="rt-num">III</div><h4>Capital Markets Access</h4><p>Pathways to listed and rated debt for African issuers.</p></div>
-      <div class="rt-card"><div class="rt-num">IV</div><h4>Regulatory & Legal Risk</h4><p>Cross-border structuring and regulatory exposure.</p></div>
-      <div class="rt-card"><div class="rt-num">V</div><h4>ESG & Climate-Linked Finance</h4><p>Reporting standards and structuring for climate-aligned capital.</p></div>
-      <div class="rt-card"><div class="rt-num">VI</div><h4>Family Office Perspectives</h4><p>Direct and co-investment appetite for African exposure.</p></div>
-      <div class="rt-card"><div class="rt-num">VII</div><h4>Agribusiness & Cooperative Finance</h4><p>Financing models for cooperative and regional agribusiness structures.</p></div>
-      <div class="rt-card"><div class="rt-num">VIII</div><h4>Institutional Capacity Building</h4><p>Training and capability gaps constraining deal execution.</p></div>
+    <div class="rt-track reveal">
+      <div class="rt-step"><div class="num">I</div><h4>DFI Co-Investment Structures</h4></div>
+      <div class="rt-step"><div class="num">II</div><h4>Fund Structuring & Domiciliation</h4></div>
+      <div class="rt-step"><div class="num">III</div><h4>Capital Markets Access</h4></div>
+      <div class="rt-step"><div class="num">IV</div><h4>Regulatory & Legal Risk</h4></div>
+      <div class="rt-step"><div class="num">V</div><h4>ESG & Climate-Linked Finance</h4></div>
+      <div class="rt-step"><div class="num">VI</div><h4>Family Office Perspectives</h4></div>
+      <div class="rt-step"><div class="num">VII</div><h4>Agribusiness & Cooperative Finance</h4></div>
+      <div class="rt-step"><div class="num">VIII</div><h4>Institutional Capacity Building</h4></div>
     </div>
     <div class="chatham reveal">Roundtable topics are indicative and refined with participating institutions ahead of the event. Seats are limited and allocated by application.</div>
   </div>
