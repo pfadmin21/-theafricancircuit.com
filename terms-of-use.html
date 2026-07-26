@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terms of Use — The African Circuit</title>
+<meta name="description" content="Terms of Use for The African Circuit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#03101b;--gold:#d0a149;--gold-light:#e0b763;--gold-dark:#a97d2d;
+  --text-primary:#f5f0e8;--text-secondary:#c2cbd4;
+  --border:rgba(255,255,255,.09);--border-gold:rgba(208,161,73,.55);
+  --max:1360px;--pad:clamp(24px,4vw,64px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 70% 12%,rgba(25,59,92,.18),transparent 32%),linear-gradient(180deg,#03101b 0%,#051522 100%);color:var(--text-primary);font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input{font:inherit}
+.wrap{width:min(var(--max),100%);margin:auto;padding-inline:var(--pad)}
+.kicker{font:500 10px/1.4 "DM Mono";letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+
+/* Header */
+.header{position:fixed;inset:0 0 auto;z-index:100;height:92px;background:linear-gradient(180deg,rgba(3,16,27,.98),rgba(3,16,27,.72),transparent);transition:.3s}
+.header.scrolled{background:rgba(3,16,27,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav{height:92px;display:flex;align-items:center;gap:26px}
+.brand{display:flex;align-items:center;gap:14px;min-width:310px}
+.brand-mark{width:58px;height:58px;border-radius:50%;object-fit:cover}
+.brand strong{display:block;font:500 22px/1 "EB Garamond";letter-spacing:.02em}
+.brand strong span{color:var(--gold)}
+.brand small{display:block;margin-top:7px;font:400 8px/1 "DM Mono";letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.links{margin-left:auto;display:flex;align-items:center;gap:2px}
+.links a{position:relative;padding:12px 10px;font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.66)}
+.links a:hover{color:#fff}
+.links .join{margin-left:12px;padding:17px 22px;background:var(--gold);color:var(--navy);font-weight:700}
+.menu{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:25px}
+.mobile{display:none;position:fixed;inset:0;background:var(--navy);z-index:90;padding:108px 28px 28px}
+.mobile.open{display:block}
+.mobile a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font:400 30px/1.1 "EB Garamond"}
+
+/* Legal doc layout */
+.legalhero{padding:162px 0 30px;border-bottom:1px solid var(--border)}
+.legalhero h1{font:400 clamp(36px,4vw,54px)/1.05 "EB Garamond";margin:14px 0 10px}
+.legalhero .updated{font:500 9px "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.legalbody{padding:60px 0 90px}
+.legalbody .inner{max-width:760px;margin:0 auto}
+.legalbody h2{font:400 24px "EB Garamond";margin:44px 0 14px;color:var(--gold-light)}
+.legalbody h2:first-child{margin-top:0}
+.legalbody h2 .num{color:var(--gold);margin-right:10px;font-family:"DM Mono"}
+.legalbody h3{font:600 13px "DM Mono";letter-spacing:.03em;margin:26px 0 10px;color:var(--text-primary)}
+.legalbody p{font-size:13px;line-height:1.9;color:var(--text-secondary);margin:0 0 14px}
+.legalbody ul,.legalbody ol{margin:0 0 14px;padding-left:20px}
+.legalbody li{font-size:13px;line-height:1.85;color:var(--text-secondary);margin-bottom:6px}
+.legalbody a.inline-link{color:var(--gold);text-decoration:underline}
+.legal-toc{border:1px solid var(--border);border-radius:6px;padding:22px 26px;margin-bottom:20px;background:#071522}
+.legal-toc .kicker{margin-bottom:12px;display:block}
+.legal-toc ol{margin:0;padding-left:18px;columns:2;column-gap:32px}
+.legal-toc li{font-size:11.5px;color:var(--text-secondary);margin-bottom:8px;break-inside:avoid}
+.legal-toc a{color:var(--text-secondary)}
+.legal-toc a:hover{color:var(--gold)}
+@media(max-width:600px){.legal-toc ol{columns:1}}
+
+/* Footer */
+footer{padding:48px 0 23px;border-top:1px solid var(--border)}
+.footer-grid{display:grid;grid-template-columns:1.15fr 1fr .7fr .7fr;gap:1px;background:var(--border)}
+.footer-cell{padding:30px;background:#071522}
+.footer-brand{display:flex;gap:13px;align-items:center}
+.footer-brand img{width:54px;height:54px;border-radius:50%}
+.footer-brand strong{font:500 19px "EB Garamond"}
+.footer-cell p,.footer-cell a{font-size:9px;line-height:1.75;color:rgba(255,255,255,.48)}
+.footer-cell a{display:block;margin-top:8px}
+.newsletter{display:flex;margin-top:16px}
+.newsletter input{min-width:0;flex:1;background:#03101b;border:1px solid var(--border);padding:12px;color:#fff}
+.newsletter button{border:0;background:var(--gold);padding:0 17px;font-size:8px;font-weight:700;text-transform:uppercase}
+.socials{display:flex;gap:10px;margin-top:18px}
+.socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;color:rgba(255,255,255,.7)}
+.footer-bottom{display:flex;justify-content:space-between;margin-top:22px;font:400 7px "DM Mono";letter-spacing:.07em;color:rgba(255,255,255,.32);text-transform:uppercase}
+
+@media(max-width:1100px){
+  .links{display:none}.menu{display:block}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .nav{height:76px}.header{height:76px}
+  .brand{min-width:auto}.brand-mark{width:46px;height:46px}.brand strong{font-size:17px}.brand small{display:none}
+  .legalhero{padding:130px 0 24px}
+  .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="The African Circuit home">
+      <img class="brand-mark" src="/images/african-circuit-logo.png" alt="The African Circuit logo">
+      <span><strong>THE AFRICAN <span>CIRCUIT</span></strong><small>Capital · Policy · Investment</small></span>
+    </a>
+    <nav class="links">
+      <a href="/">Home</a>
+      <a href="/conference/">Conference</a>
+      <a href="/about/">About</a>
+      <a class="join" href="/membership/">Join the Network</a>
+    </nav>
+    <button class="menu" aria-label="Open menu">☰</button>
+  </div>
+</header>
+<nav class="mobile">
+  <a href="/">Home</a>
+  <a href="/conference/">Conference</a>
+  <a href="/about/">About</a>
+  <a href="/membership/">Join the Network</a>
+</nav>
+
+<main>
+<section class="legalhero">
+  <div class="wrap">
+    <div class="kicker">Legal</div>
+    <h1>Terms of Use</h1>
+    <div class="updated">Effective date: July 2026 · Last updated: July 2026</div>
+  </div>
+</section>
+
+<section class="legalbody">
+  <div class="wrap inner">
+
+    <div class="legal-toc">
+      <span class="kicker">Contents</span>
+      <ol>
+        <li><a href="#tu-1">Acceptance of Terms</a></li>
+        <li><a href="#tu-2">Definitions</a></li>
+        <li><a href="#tu-3">Eligibility</a></li>
+        <li><a href="#tu-4">Description of Services</a></li>
+        <li><a href="#tu-5">Acceptable Use</a></li>
+        <li><a href="#tu-6">Intellectual Property Rights</a></li>
+        <li><a href="#tu-7">Event Registration and Attendance</a></li>
+        <li><a href="#tu-8">Confidentiality and Chatham House Rule</a></li>
+        <li><a href="#tu-9">No Investment, Financial or Legal Advice</a></li>
+        <li><a href="#tu-10">Third-Party Websites and Services</a></li>
+        <li><a href="#tu-11">Disclaimer of Warranties</a></li>
+        <li><a href="#tu-12">Limitation of Liability</a></li>
+        <li><a href="#tu-13">Indemnification</a></li>
+        <li><a href="#tu-14">Governing Law and Dispute Resolution</a></li>
+        <li><a href="#tu-15">Severability</a></li>
+        <li><a href="#tu-16">Entire Agreement</a></li>
+        <li><a href="#tu-17">Assignment</a></li>
+        <li><a href="#tu-18">No Waiver</a></li>
+        <li><a href="#tu-19">Force Majeure</a></li>
+        <li><a href="#tu-20">Changes to These Terms</a></li>
+        <li><a href="#tu-21">Contact</a></li>
+      </ol>
+    </div>
+
+    <h2 id="tu-1"><span class="num">1.</span>Acceptance of Terms</h2>
+    <p>These Terms of Use (these "Terms") constitute a binding agreement between you and The African Circuit ("The African Circuit," "we," "us," or "our") governing your access to and use of theafricancircuit.com (the "Site") and the conferences, roundtables, research, membership network and related services we offer (together, the "Services"). By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, you must not access or use the Site.</p>
+
+    <h2 id="tu-2"><span class="num">2.</span>Definitions</h2>
+    <p>"User" means any person who accesses or uses the Site, including prospective or confirmed delegates, speakers, partners and members. "Content" means all text, graphics, programme descriptions, research, branding and other materials made available on the Site. "Third-Party Platform" means any website or service operated by a party other than The African Circuit through which registration or attendance may be facilitated, including LinkedIn Events.</p>
+
+    <h2 id="tu-3"><span class="num">3.</span>Eligibility</h2>
+    <p>The Services are directed at institutional professionals, including investors, development finance institutions, regulators, fund managers, family offices and business leaders. By using the Site, you represent that you are accessing it in a professional capacity and are at least 18 years of age.</p>
+
+    <h2 id="tu-4"><span class="num">4.</span>Description of Services</h2>
+    <p>The African Circuit is a pan-African institutional finance conference platform convening capital, policy and investment stakeholders across a calendar of city editions, together with associated research, executive education and a private membership network. Descriptions of the Services on the Site are provided for general informational purposes and do not constitute a binding offer unless expressly stated.</p>
+
+    <h2 id="tu-5"><span class="num">5.</span>Acceptable Use</h2>
+    <p>You agree to use the Site only for lawful purposes and in a manner that does not infringe the rights of, or restrict or inhibit the use of the Site by, any third party. Without limitation, you shall not: (a) attempt to gain unauthorised access to the Site or its underlying systems; (b) reproduce, duplicate, copy or resell any part of the Site in contravention of these Terms; or (c) use any automated system to extract data from the Site without our prior written consent.</p>
+
+    <h2 id="tu-6"><span class="num">6.</span>Intellectual Property Rights</h2>
+    <p>The African Circuit name, logo, and all Content published on the Site are the property of The African Circuit or its licensors, protected by applicable intellectual property laws, unless otherwise stated. No right, title or interest in the Content is transferred to you. You may not reproduce, distribute, modify or create derivative works from the Content without our prior written permission.</p>
+
+    <h2 id="tu-7"><span class="num">7.</span>Event Registration and Attendance</h2>
+    <p>Attendance at Circuit editions is invitation-only and subject to our approval in our sole discretion. Submitting a registration of interest through the Site or a Third-Party Platform does not guarantee a place. Programme content, speakers, dates, venues and pricing are subject to change without notice, and we will make reasonable efforts to communicate material changes to registered delegates.</p>
+
+    <h2 id="tu-8"><span class="num">8.</span>Confidentiality and Chatham House Rule</h2>
+    <p>Certain sessions at Circuit editions, including closed-door roundtables, are conducted under the Chatham House Rule or an equivalent confidentiality framework. By attending such a session, you agree not to disclose, attribute, or otherwise identify the identity or affiliation of any speaker or participant in connection with statements made during that session, except with the express prior consent of that individual.</p>
+
+    <h2 id="tu-9"><span class="num">9.</span>No Investment, Financial or Legal Advice</h2>
+    <p>Content on the Site, and discussions at Circuit editions, are provided for general informational and convening purposes only. Nothing on the Site or presented at a Circuit edition constitutes investment, financial, tax or legal advice, or a recommendation, offer or solicitation to buy or sell any security, instrument or investment. You should seek independent professional advice before making any investment or business decision.</p>
+
+    <h2 id="tu-10"><span class="num">10.</span>Third-Party Websites and Services</h2>
+    <p>The Site links to Third-Party Platforms, including LinkedIn Events for registration and various social media channels. We do not control and are not responsible for the content, accuracy, security or practices of any Third-Party Platform. Your use of any Third-Party Platform is governed solely by that platform's own terms and policies.</p>
+
+    <h2 id="tu-11"><span class="num">11.</span>Disclaimer of Warranties</h2>
+    <p>The Site, the Content and the Services are provided on an "as is" and "as available" basis, without warranties of any kind, whether express or implied, including without limitation warranties of merchantability, fitness for a particular purpose, non-infringement, or that the Site will be uninterrupted, secure, or error-free. While we make reasonable efforts to keep programme, speaker and scheduling information accurate and current, we do not warrant the completeness or accuracy of any Content at all times.</p>
+
+    <h2 id="tu-12"><span class="num">12.</span>Limitation of Liability</h2>
+    <p>To the fullest extent permitted by applicable law, in no event shall The African Circuit, its officers, employees, or affiliated entities be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, arising out of or in connection with your access to or use of, or inability to access or use, the Site, the Services, or attendance at any Circuit edition, even if advised of the possibility of such damages.</p>
+
+    <h2 id="tu-13"><span class="num">13.</span>Indemnification</h2>
+    <p>You agree to indemnify and hold harmless The African Circuit and its officers, employees and affiliated entities from and against any claims, liabilities, damages, losses and expenses, including reasonable legal fees, arising out of or in any way connected with your breach of these Terms or your misuse of the Site or the Services.</p>
+
+    <h2 id="tu-14"><span class="num">14.</span>Governing Law and Dispute Resolution</h2>
+    <p>These Terms and any dispute or claim arising out of or in connection with them shall be governed by and construed in accordance with the laws of Mauritius, without regard to conflict-of-law principles, save where mandatory local law applicable to you requires otherwise. The parties shall first attempt in good faith to resolve any dispute through direct negotiation before pursuing formal proceedings.</p>
+
+    <h2 id="tu-15"><span class="num">15.</span>Severability</h2>
+    <p>If any provision of these Terms is held to be invalid, illegal or unenforceable, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall continue in full force and effect.</p>
+
+    <h2 id="tu-16"><span class="num">16.</span>Entire Agreement</h2>
+    <p>These Terms, together with our Privacy Policy and any other terms referenced herein, constitute the entire agreement between you and The African Circuit regarding your use of the Site and supersede any prior agreements or understandings, whether written or oral.</p>
+
+    <h2 id="tu-17"><span class="num">17.</span>Assignment</h2>
+    <p>You may not assign or transfer any of your rights or obligations under these Terms without our prior written consent. We may assign our rights and obligations under these Terms without restriction, including in connection with a merger, acquisition or restructuring.</p>
+
+    <h2 id="tu-18"><span class="num">18.</span>No Waiver</h2>
+    <p>No failure or delay by The African Circuit in exercising any right under these Terms shall operate as a waiver of that right, nor shall any single or partial exercise preclude any other or further exercise of that right.</p>
+
+    <h2 id="tu-19"><span class="num">19.</span>Force Majeure</h2>
+    <p>The African Circuit shall not be liable for any failure or delay in performance resulting from circumstances beyond its reasonable control, including but not limited to acts of God, natural disaster, war, civil unrest, government action, or failure of third-party infrastructure or platforms.</p>
+
+    <h2 id="tu-20"><span class="num">20.</span>Changes to These Terms</h2>
+    <p>We may revise these Terms from time to time to reflect changes in our practices or for other operational, legal or regulatory reasons. The "Last updated" date at the top of this page reflects the most recent revision. Continued use of the Site following the posting of revised Terms constitutes your acceptance of those changes.</p>
+
+    <h2 id="tu-21"><span class="num">21.</span>Contact</h2>
+    <p>Questions regarding these Terms may be directed to <a class="inline-link" href="mailto:connect@theafricancircuit.com">connect@theafricancircuit.com</a>.</p>
+
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-cell">
+        <div class="footer-brand"><img src="/images/african-circuit-logo.png" alt=""><strong>The African Circuit</strong></div>
+        <p>Capital. Policy. Investment.<br>Across Africa. For Africa's Future.</p>
+        <div class="socials"><a href="#">in</a><a href="#">𝕏</a><a href="#">▶</a><a href="mailto:connect@theafricancircuit.com">✉</a></div>
+      </div>
+      <div class="footer-cell">
+        <div class="kicker">Stay Connected</div>
+        <p>Subscribe for updates on events, research and opportunities.</p>
+        <form class="newsletter"><input type="email" placeholder="Enter your email"><button type="submit">Subscribe</button></form>
+      </div>
+      <div class="footer-cell">
+        <div class="kicker">Quick Links</div>
+        <a href="/conference/">Conference</a><a href="/institute/">Institute</a><a href="/research/">Research</a><a href="/exchange/">Exchange</a><a href="/membership/">Membership</a>
+      </div>
+      <div class="footer-cell">
+        <div class="kicker">Legal</div>
+        <a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-use.html">Terms of Use</a><a href="mailto:connect@theafricancircuit.com">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> The African Circuit. All rights reserved.</span>
+      <span>Capital · Policy · Investment</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const header=document.querySelector('.header');
+const mobile=document.querySelector('.mobile');
+const menu=document.querySelector('.menu');
+const updateHeader=()=>header.classList.toggle('scrolled',window.scrollY>24);
+updateHeader();
+window.addEventListener('scroll',updateHeader,{passive:true});
+menu.addEventListener('click',()=>mobile.classList.toggle('open'));
+document.querySelectorAll('.mobile a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
+document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
+</script>
+</body>
+</html>
