@@ -248,6 +248,51 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
   .field-row{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
 }
+
+/* ===== V2 CONFERENCE UX UPLIFT ===== */
+body{background:#03101b}
+.header{background:rgba(3,16,27,.94)}
+.hero{padding-top:92px;min-height:0;background:#03101b}
+.hero-in{min-height:620px;padding:0;display:flex;align-items:flex-end;background:
+linear-gradient(180deg,rgba(3,16,27,.04),rgba(3,16,27,.92)),
+url("images/mauritius-2026.png") center/cover no-repeat}
+.hero-shell{width:100%;padding:130px 0 42px}
+.hero-in h1{display:none}
+.hero-in>p{display:none}
+.hero-meta{margin:0 0 24px}
+.hero-actions{margin:0}
+.metrics{position:sticky;top:92px;z-index:20}
+.metric{min-height:116px}
+.section{padding:86px 0}
+.section-title{display:grid;grid-template-columns:1fr .8fr;gap:70px;align-items:end;margin-bottom:48px}
+.section-title h2{font-size:clamp(42px,4.5vw,66px)}
+.section-title p{margin:0}
+.expect-grid{grid-template-columns:repeat(3,1fr)}
+.expect-card{min-height:240px;padding:38px 30px}
+.expect-card h3{font-family:"EB Garamond";font-size:27px;font-weight:400;text-transform:none}
+.agenda-days{gap:80px}
+.agenda-day .day-label span:first-child{font-size:38px}
+.t-content h4{font-size:13px}
+.rt-track{border-radius:0}
+.rt-step{min-height:160px;padding:28px 24px}
+.rt-step h4{font-family:"EB Garamond";font-size:21px;font-weight:400}
+.linkedin-cta{padding:38px 40px;border-radius:0}
+.price-grid{max-width:900px}
+.price-card{padding:42px 36px}
+.price-card .amount{font-size:52px}
+.reg-wrap{max-width:760px}
+.field input,.field select,.field textarea{padding:15px 16px;background:#071522}
+.next-stop-grid{padding:52px;border-radius:0}
+footer{padding-top:64px}
+@media(max-width:1100px){
+.section-title{grid-template-columns:1fr;gap:16px}
+.metrics{position:static}
+}
+@media(max-width:700px){
+.hero-in{min-height:470px;background-position:center}
+.hero-shell{padding:100px 0 34px}
+}
+
 </style>
 </head>
 <body>
@@ -279,7 +324,10 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
 <main>
 
 <section class="hero">
-  <div class="wrap hero-in">
+  <div class="hero-in">
+    <div class="hero-shell">
+      <div class="wrap">
+        
     <div class="kicker">Mauritius Flagship · The African Circuit</div>
     <h1>Two Days Where Africa's <em>Institutional Capital</em> Convenes</h1>
     <p>Senior investors, DFIs, family offices, regulators and business leaders gather at the Caudan Arts Centre for closed-door dialogue on the capital, policy and investment architecture shaping Africa's next decade.</p>
@@ -289,8 +337,11 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
       <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Invitation & Application Only</div>
     </div>
     <div class="hero-actions">
-      <a class="btn gold" href="#register">Register Interest →</a>
-      <a class="btn ghost" href="#agenda">View Agenda →</a>
+      <a class="btn gold" href="#register">Apply for Delegate Access →</a>
+      <a class="btn ghost" href="#agenda">View Programme →</a>
+    </div>
+  
+      </div>
     </div>
   </div>
 </section>
@@ -308,7 +359,7 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
   <div class="wrap">
     <div class="section-title">
       <div class="kicker">What to Expect</div>
-      <h2>A Working Conference, Not a Trade Show</h2>
+      <h2>Built for Decisions, Not Spectacle</h2>
       <p>The Mauritius Flagship is built around substance over spectacle — a small, senior room structured for real dialogue and deal flow, not a large audience watching from the back.</p>
     </div>
     <div class="expect-grid reveal">
@@ -335,7 +386,7 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
   <div class="wrap">
     <div class="section-title">
       <div class="kicker">Programme</div>
-      <h2>Agenda at a Glance</h2>
+      <h2>The Programme Journey</h2>
       <p>Indicative programme — final running order and panel titles are confirmed closer to the event as speaker line-ups lock in.</p>
     </div>
 
@@ -446,7 +497,7 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
   <div class="wrap">
     <div class="section-title">
       <div class="kicker">Register Interest</div>
-      <h2>Reserve Your Seat</h2>
+      <h2>Apply for Delegate Access</h2>
       <p>Submit your details below and the team will follow up with confirmation and payment instructions. Roundtable seats are allocated separately by application.</p>
     </div>
     <div class="reg-wrap reveal">
