@@ -317,26 +317,11 @@ linear-gradient(180deg,#04111d 0%,#061827 100%);
 .pillar a{display:inline-block;margin-top:18px;font:500 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
 
 /* Partners */
-.partners{padding:34px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#061522;overflow:hidden}
-.partner-carousel{position:relative;display:flex;align-items:center;gap:18px;margin-top:32px}
-.partner-carousel:before,.partner-carousel:after{
-  content:"";
-  position:absolute;
-  top:0;
-  bottom:0;
-  width:56px;
-  z-index:2;
-  pointer-events:none
+.partners{padding:34px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#061522}
+.partner-grid{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:18px;margin-top:32px
 }
-.partner-carousel:before{left:54px;background:linear-gradient(90deg,#061522,rgba(6,21,34,0))}
-.partner-carousel:after{right:54px;background:linear-gradient(-90deg,#061522,rgba(6,21,34,0))}
-.partner-row{
-  display:flex;align-items:center;gap:22px;
-  overflow-x:auto;scroll-behavior:smooth;
-  scrollbar-width:none;-ms-overflow-style:none;
-  padding:6px 2px;flex:1;
-}
-.partner-row::-webkit-scrollbar{display:none}
 .partner-item{
   flex:0 0 auto;display:flex;align-items:center;justify-content:center;
   width:172px;height:84px;padding:14px 20px;
@@ -345,20 +330,10 @@ linear-gradient(180deg,#04111d 0%,#061827 100%);
   opacity:.95;transition:.25s
 }
 .partner-item:hover{opacity:1;transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.38)}
-.partner-item.dark{background:var(--navy-card);border:1px solid var(--border-gold)}
 .partner-item img{max-width:82%;max-height:68%;width:auto;height:auto;object-fit:contain;filter:none;opacity:1}
-.partner-nav{
-  flex:0 0 auto;width:36px;height:36px;border-radius:50%;
-  border:1px solid var(--border-gold);background:transparent;color:var(--gold);
-  font-size:16px;display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:.2s;
-  position:relative;z-index:3
-}
-.partner-nav:hover{background:var(--gold);color:var(--navy)}
 @media(max-width:700px){
-  .partner-row{gap:14px}.partner-item{width:140px;height:70px;padding:10px 14px}.partner-nav{width:30px;height:30px;font-size:14px}
-  .partner-carousel:before{left:44px;width:36px}
-  .partner-carousel:after{right:44px;width:36px}
+  .partner-grid{gap:12px}
+  .partner-item{width:140px;height:70px;padding:10px 14px}
 }
 
 /* Footer */
@@ -603,25 +578,21 @@ footer{padding:48px 0 23px}
 <section class="partners">
   <div class="wrap">
     <div class="section-title"><div class="kicker">Trusted by Leading Institutions</div></div>
-    <div class="partner-carousel">
-      <button class="partner-nav" id="partnerPrev" aria-label="Scroll partners left">‹</button>
-      <div class="partner-row" id="partnerRow">
-        <div class="partner-item"><img src="images/files%20(12)/afdb.png" alt="African Development Bank Group" loading="lazy"></div>
-        <div class="partner-item dark"><img src="images/files%20(12)/alsf.png" alt="African Legal Support Facility" loading="lazy"></div>
-        <div class="partner-item"><img src="images/files%20(12)/bioculture.png" alt="Bioculture Group" loading="lazy"></div>
-        <div class="partner-item dark"><img src="images/files%20(12)/caia.png" alt="CAIA Association" loading="lazy"></div>
-        <div class="partner-item"><img src="images/files%20(12)/careedge.png" alt="CareEdge Ratings Africa" loading="lazy"></div>
-        <div class="partner-item dark"><img src="images/files%20(12)/datura.png" alt="Datura" loading="lazy"></div>
-        <div class="partner-item dark"><img src="images/files%20(12)/dtos.png" alt="DTOS Group" loading="lazy"></div>
-        <div class="partner-item dark"><img src="images/files%20(12)/ess.png" alt="ESS" loading="lazy"></div>
-        <div class="partner-item"><img src="images/files%20(12)/pwc.png" alt="PwC" loading="lazy"></div>
-        <div class="partner-item dark"><img src="images/files%20(12)/sango.png" alt="Sango" loading="lazy"></div>
-        <div class="partner-item"><img src="images/files%20(12)/suntera.png" alt="Suntera Global" loading="lazy"></div>
-        <div class="partner-item"><img src="images/files%20(12)/tlg.png" alt="TLG Capital" loading="lazy"></div>
-        <div class="partner-item"><img src="images/files%20(12)/trimetys.png" alt="Trimetys" loading="lazy"></div>
-        <div class="partner-item"><img src="images/files%20(12)/ventures47.png" alt="47 Ventures" loading="lazy"></div>
-      </div>
-      <button class="partner-nav" id="partnerNext" aria-label="Scroll partners right">›</button>
+    <div class="partner-grid">
+      <div class="partner-item"><img src="images/files%20(12)/afdb.png" alt="African Development Bank Group" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/alsf.png" alt="African Legal Support Facility" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/bioculture.png" alt="Bioculture Group" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/caia.png" alt="CAIA Association" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/careedge.png" alt="CareEdge Ratings Africa" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/datura.png" alt="Datura" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/dtos.png" alt="DTOS Group" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/ess.png" alt="ESS" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/pwc.png" alt="PwC" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/sango.png" alt="Sango" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/suntera.png" alt="Suntera Global" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/tlg.png" alt="TLG Capital" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/trimetys.png" alt="Trimetys" loading="lazy"></div>
+      <div class="partner-item"><img src="images/files%20(12)/ventures47.png" alt="47 Ventures" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -670,16 +641,6 @@ const io=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
 }),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-
-// Partner row: arrow buttons scroll the row left/right.
-const partnerRow=document.getElementById('partnerRow');
-const partnerPrev=document.getElementById('partnerPrev');
-const partnerNext=document.getElementById('partnerNext');
-if(partnerRow && partnerPrev && partnerNext){
-  const scrollByAmount=()=>partnerRow.clientWidth*0.8;
-  partnerPrev.addEventListener('click',()=>partnerRow.scrollBy({left:-scrollByAmount(),behavior:'smooth'}));
-  partnerNext.addEventListener('click',()=>partnerRow.scrollBy({left:scrollByAmount(),behavior:'smooth'}));
-}
 </script>
 </body>
 </html>
