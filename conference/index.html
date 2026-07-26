@@ -89,7 +89,7 @@ button,input{font:inherit}
   background-size:100% 100%,72px 72px;
   mask-image:linear-gradient(90deg,transparent 0%,#000 58%,#000 100%)
 }
-.pagehero-inner{position:relative;z-index:2;padding:162px 0 70px}
+.pagehero-inner{position:relative;z-index:2;padding:162px clamp(24px,5vw,80px) 70px}
 .pagehero h1{position:relative;font:400 clamp(64px,6vw,100px)/.92 "EB Garamond";letter-spacing:-.045em;max-width:900px;margin:22px 0 26px}
 .pagehero h1 em{color:var(--gold);font-style:normal}
 .pagehero h1 .flick{color:var(--teal-light)}
@@ -230,7 +230,7 @@ footer{padding:48px 0 23px}
 @media(max-width:700px){
   .nav{height:76px}.header{height:76px}
   .brand{min-width:auto}.brand-mark{width:46px;height:46px}.brand strong{font-size:17px}.brand small{display:none}
-  .pagehero-inner{padding:130px 0 50px}
+  .pagehero-inner{padding:130px 22px 50px}
   .pagehero h1{font-size:52px}
   .kpi-grid{grid-template-columns:1fr 1fr}
   .register-card{padding:34px 26px}
