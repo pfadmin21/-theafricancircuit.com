@@ -137,13 +137,8 @@ background:radial-gradient(circle at 80% 20%,rgba(201,155,62,.12),transparent 35
 .t-content h4{margin:0;font-size:12.5px;line-height:1.4;font-weight:600;flex-basis:100%}
 .tag{display:inline-block;padding:3px 9px;border:1px solid var(--border-gold);font:500 8px "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
 .tag.gala{border-color:var(--gold);background:rgba(208,161,73,.12)}
-.rt-toggle{flex-basis:100%}
-.rt-toggle summary{cursor:pointer;list-style:none;font:500 9px "DM Mono";letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.rt-toggle summary::-webkit-details-marker{display:none}
-.rt-toggle summary:before{content:"+ ";color:var(--gold)}
-.rt-toggle[open] summary:before{content:"– "}
-.rt-toggle .rt-list{margin:8px 0 2px;display:flex;flex-direction:column;gap:6px}
-.rt-toggle .rt-list span{font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.62)}
+.rt-link{flex-basis:100%;font:500 9px "DM Mono";letter-spacing:.06em;text-transform:uppercase;color:var(--gold);opacity:.75}
+.rt-link:hover{opacity:1;text-decoration:underline}
 
 /* Roundtables strip */
 .rt-track{display:flex;flex-wrap:wrap;border:1px solid var(--border-gold);border-radius:6px;overflow:hidden}
@@ -349,18 +344,14 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
 
         <div class="t-row"><div class="t-time">10:00<br>–11:30</div><div class="t-dot"></div><div class="t-content">
           <h4>Panel I — Where Will Africa's Next $100 Billion Come From?</h4><span class="tag">Main Stage</span>
-          <details class="rt-toggle"><summary>2 Concurrent Roundtables</summary>
-            <div class="rt-list"><span>Can Compliance Become Africa's Competitive Advantage?</span><span>Building Institutional-Grade Fund Infrastructure in Africa</span></div>
-          </details>
+          <a class="rt-link" href="#roundtables">+ 2 roundtables ↓</a>
         </div></div>
 
         <div class="t-row"><div class="t-time">11:30</div><div class="t-dot"></div><div class="t-content"><h4>Networking Coffee Break</h4></div></div>
 
         <div class="t-row"><div class="t-time">12:15<br>–13:45</div><div class="t-dot"></div><div class="t-content">
           <h4>Panel II — Should Private Wealth Take More Risk in Africa?</h4><span class="tag">Main Stage</span>
-          <details class="rt-toggle"><summary>2 Concurrent Roundtables</summary>
-            <div class="rt-list"><span>Beyond First Loss: DFI–Private Wealth Co-Investment Models</span><span>How Family Offices Really Invest in Africa</span></div>
-          </details>
+          <a class="rt-link" href="#roundtables">+ 2 roundtables ↓</a>
         </div></div>
 
         <div class="t-row"><div class="t-time">13:45</div><div class="t-dot"></div><div class="t-content"><h4>Joint Networking Lunch</h4></div></div>
@@ -378,18 +369,14 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
 
         <div class="t-row"><div class="t-time">09:40<br>–11:10</div><div class="t-dot"></div><div class="t-content">
           <h4>Panel IV — From Mandate to Deployment</h4><span class="tag">Main Stage</span>
-          <details class="rt-toggle"><summary>2 Concurrent Roundtables</summary>
-            <div class="rt-list"><span>Sovereign Co-Investment Structures & Parastatal Partnerships</span><span>Smart Cities & Private Infrastructure Finance</span></div>
-          </details>
+          <a class="rt-link" href="#roundtables">+ 2 roundtables ↓</a>
         </div></div>
 
         <div class="t-row"><div class="t-time">11:10</div><div class="t-dot"></div><div class="t-content"><h4>Networking Coffee Break</h4></div></div>
 
         <div class="t-row"><div class="t-time">11:50<br>–13:20</div><div class="t-dot"></div><div class="t-content">
           <h4>Panel V — What Makes an African Fund Investable to Global Allocators?</h4><span class="tag">Main Stage</span>
-          <details class="rt-toggle"><summary>2 Concurrent Roundtables</summary>
-            <div class="rt-list"><span>Africa's Exit Problem: Myth or Structural Failure?</span><span>Investing in People: Capital into Health, Housing & Education</span></div>
-          </details>
+          <a class="rt-link" href="#roundtables">+ 2 roundtables ↓</a>
         </div></div>
 
         <div class="t-row"><div class="t-time">13:20</div><div class="t-dot"></div><div class="t-content"><h4>Joint Networking Lunch</h4></div></div>
@@ -400,7 +387,7 @@ footer{padding:48px 0 23px;border-top:1px solid var(--border)}
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="roundtables">
   <div class="wrap">
     <div class="section-title">
       <div class="kicker">Closed-Door Roundtables</div>
