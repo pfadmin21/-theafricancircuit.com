@@ -3,638 +3,760 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The African Circuit — Capital, Policy &amp; Investment</title>
+<meta name="theme-color" content="#000C1F">
+<title>The African Circuit | Capital. Policy. Investment.</title>
 <meta name="description" content="The African Circuit connects the institutions that mandate capital with those that structure and deploy it across Africa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#03101b;
-  --navy-soft:#051522;
-  --navy-card:#071927;
-  --navy-card-hover:#0a2031;
-  --gold:#d0a149;
-  --gold-light:#e0b763;
-  --gold-dark:#a97d2d;
-  --cream:#f5f0e8;
-  --white:#fff;
-  --text-primary:#f5f0e8;
-  --text-secondary:#c2cbd4;
-  --text-muted:#82909c;
-  --border:rgba(255,255,255,.09);
-  --border-gold:rgba(208,161,73,.55);
-  --max:1360px;
-  --pad:clamp(24px,4vw,64px);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:
-    radial-gradient(circle at 70% 12%,rgba(25,59,92,.18),transparent 32%),
-    linear-gradient(180deg,#03101b 0%,#051522 100%);
-  color:var(--text-primary);
-  font-family:Manrope,Arial,sans-serif;
-  -webkit-font-smoothing:antialiased
-}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-button,input{font:inherit}
-.wrap{width:min(var(--max),100%);margin:auto;padding-inline:var(--pad)}
-.kicker{
-  font:500 10px/1.4 "DM Mono";
-  letter-spacing:.22em;
-  text-transform:uppercase;
-  color:var(--gold)
-}
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  min-height:56px;
-  padding:0 28px;
-  border:1px solid transparent;
-  border-radius:0;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  transition:.25s ease
-}
-.btn:hover{transform:translateY(-2px)}
-.btn.gold{background:var(--gold);color:var(--navy)}
-.btn.gold:hover{background:var(--gold-light)}
-.btn.ghost{background:transparent;border-color:rgba(208,161,73,.65);color:#fff}
-
-/* Header */
-.header{
-  position:fixed;
-  inset:0 0 auto;
-  z-index:100;
-  height:92px;
-  background:linear-gradient(180deg,rgba(3,16,27,.98),rgba(3,16,27,.72),transparent);
-  transition:.3s
-}
-.header.scrolled{
-  background:rgba(3,16,27,.97);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border)
-}
-.nav{height:92px;display:flex;align-items:center;gap:26px}
-.brand{display:flex;align-items:center;gap:14px;min-width:310px}
-.brand-mark{width:58px;height:58px;border-radius:50%;object-fit:cover}
-.brand strong{display:block;font:500 22px/1 "EB Garamond";letter-spacing:.02em}
-.brand strong span{color:var(--gold)}
-.brand small{
-  display:block;
-  margin-top:7px;
-  font:400 8px/1 "DM Mono";
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.45)
-}
-.links{margin-left:auto;display:flex;align-items:center;gap:2px}
-.links a{
-  position:relative;
-  padding:12px 9px;
-  font-size:9px;
-  font-weight:500;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.66);
-  white-space:nowrap
-}
-.links a:hover,.links a.active{color:#fff}
-.links a.active:after{
-  content:"";
-  position:absolute;
-  left:10px;right:10px;bottom:5px;
-  height:1px;background:var(--gold)
-}
-.links .join{
-  margin-left:12px;
-  padding:17px 22px;
-  background:var(--gold);
-  color:var(--navy);
-  font-weight:700
-}
-.links .join:after{display:none}
-.menu{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:25px}
-.mobile{display:none;position:fixed;inset:0;background:var(--navy);z-index:90;padding:108px 28px 28px}
-.mobile.open{display:block}
-.mobile a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font:400 30px/1.1 "EB Garamond"}
-
-/* Hero */
-.hero{
-position:relative;
-min-height:720px;
-padding-top:92px;
-overflow:hidden;
-border-bottom:1px solid rgba(255,255,255,.08);
-background:
-radial-gradient(circle at 78% 30%, rgba(201,155,62,.16), transparent 22%),
-radial-gradient(circle at 90% 70%, rgba(24,50,84,.4), transparent 38%),
-linear-gradient(90deg, rgba(3,16,27,.94) 0%, rgba(3,16,27,.72) 45%, rgba(3,16,27,.5) 100%),
-linear-gradient(180deg, rgba(3,16,27,.3) 0%, rgba(4,17,29,.55) 55%, rgba(6,18,29,.95) 100%),
-url("images/South-Africa-Cityscape-Website.jpg") center/cover no-repeat;
-}
-.hero:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:
-    linear-gradient(90deg,transparent 0%,transparent 56%,rgba(255,255,255,.012) 56%,rgba(255,255,255,.012) 56.1%,transparent 56.1%),
-    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px);
-  background-size:100% 100%,72px 72px;
-  mask-image:linear-gradient(90deg,transparent 0%,#000 58%,#000 100%)
-}
-.hero-grid{
-  position:relative;
-  z-index:2;
-  min-height:620px;
-  display:grid;
-  grid-template-columns:minmax(0,760px) 1fr;
-  align-items:center;
-  gap:70px
-}
-.hero-copy{padding-block:70px}
-.hero-copy h1{
-  max-width:760px;
-  margin:22px 0 26px;
-  font:400 clamp(64px,6vw,100px)/.92 "EB Garamond";
-  letter-spacing:-.045em
-}
-.hero-copy h1 em{
-  display:block;
-  color:var(--gold);
-  font-style:normal
-}
-.hero-copy p{
-  max-width:590px;
-  font-size:15px;
-  line-height:1.85;
-  color:var(--text-secondary)
-}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
-.hero-aside{
-  align-self:stretch;
-  display:flex;
-  align-items:flex-end;
-  justify-content:flex-end;
-  padding:0 0 72px
-}
-.hero-note{
-  width:min(100%,420px);
-  padding:28px 0 0 34px;
-  border-left:1px solid rgba(208,161,73,.45)
-}
-.hero-note .label{
-  font:500 9px/1.4 "DM Mono";
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  color:var(--gold)
-}
-.hero-note h2{
-  margin:14px 0 14px;
-  font:400 38px/1.02 "EB Garamond";
-  letter-spacing:-.025em
-}
-.hero-note p{
-  margin:0;
-  font-size:12px;
-  line-height:1.8;
-  color:rgba(255,255,255,.56)
-}
-.hero-note .date{
-  display:block;
-  margin-top:22px;
-  font:500 9px/1.4 "DM Mono";
-  letter-spacing:.10em;
-  text-transform:uppercase;
-  color:#fff
-}
-
-/* Metrics */
-.metrics{background:#061522;border-bottom:1px solid var(--border)}
-.metrics-grid{display:grid;grid-template-columns:repeat(5,1fr)}
-.metric{
-  min-height:110px;
-  padding:24px 18px;
-  text-align:center;
-  border-right:1px solid var(--border);
-  display:flex;flex-direction:column;justify-content:center
-}
-.metric:last-child{border-right:0}
-.metric-icon{height:27px;margin-bottom:10px;color:var(--gold)}
-.metric-icon svg{width:27px;height:27px;stroke:currentColor;fill:none;stroke-width:1.5}
-.metric strong{font:400 38px/1 "EB Garamond";color:var(--gold)}
-.metric span{
-  display:block;margin-top:9px;
-  font:400 8px/1.45 "DM Mono";
-  letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(255,255,255,.55)
-}
-
-/* Four cities */
-.circuit{padding:48px 0 56px;border-bottom:1px solid var(--border);background:#05131f}
-.section-title{text-align:center;margin-bottom:32px}
-.section-title .kicker{display:flex;align-items:center;justify-content:center;gap:16px}
-.section-title .kicker:before,.section-title .kicker:after{content:"";width:78px;height:1px;background:var(--gold-dark)}
-.section-title h2{font:400 clamp(34px,3vw,46px)/1 "EB Garamond";margin:10px 0 0}
-.city-grid{display:grid;grid-template-columns:repeat(4,1fr)}
-.city-card{text-align:center;padding:10px 28px;border-right:1px solid var(--border)}
-.city-card:last-child{border-right:0}
-.city-card img,.city-card svg.flag-svg{width:48px;height:32px;object-fit:cover;margin:0 auto 14px;border-radius:2px;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
-.city-card h3{font-size:16px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin:0}
-.city-card .edition{margin-top:8px;font:500 8px/1.3 "DM Mono";letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
-.city-card .date{margin-top:10px;font:400 8px/1.4 "DM Mono";letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.66)}
-.city-card .city-cta{display:inline-block;margin-top:18px;padding:10px 18px;font:700 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--border-gold);color:var(--gold);border-radius:2px;transition:.2s}
-.city-card .city-cta:hover{background:var(--gold);color:var(--navy)}
-.city-card .city-cta.muted{border-color:var(--border);color:rgba(255,255,255,.5)}
-.city-card .city-cta.muted:hover{background:rgba(255,255,255,.08);color:#fff}
-.circuit-cta{text-align:center;margin-top:36px}
-
-/* Institutional intro */
-.institution{padding:70px 0 28px}
-.institution-grid{
-  display:grid;
-  grid-template-columns:40% 60%;
-  min-height:465px;
-  border:1px solid var(--border);
-  overflow:hidden;
-  background:#071622
-}
-.institution-copy{padding:48px 42px}
-.institution-copy h2{
-  font:400 clamp(42px,4vw,64px)/.96 "EB Garamond";
-  letter-spacing:-.03em;
-  margin:15px 0 20px
-}
-.institution-copy p{font-size:12px;line-height:1.85;color:rgba(255,255,255,.62)}
-.checks{display:grid;gap:10px;margin:24px 0 28px;padding:0;list-style:none}
-.checks li{font-size:10px;color:rgba(255,255,255,.8)}
-.checks li:before{content:"◎";color:var(--gold);margin-right:10px}
-.skyline{
-  min-height:420px;
-  background-color:#071c2c;
-  background-image:
-    linear-gradient(90deg,rgba(5,19,31,.25),rgba(5,19,31,.02)),
-    url("images/africa-circuit-map.svg");
-  background-position:center;
-  background-repeat:no-repeat;
-  background-size:contain;
-}
-
-/* Flagship */
-.flagship{padding:20px 0 62px}
-.flagship-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
-.stage{
-  min-height:390px;
-  border:1px solid var(--border);
-  background:url("images/tac-mauritius-2026.png") center/cover no-repeat
-}
-.stage.nairobi{background-image:url("images/nairobi-circuit-teaser.png")}
-.flagship-copy{padding:24px 12px}
-.flagship-actions{display:flex;gap:14px;flex-wrap:wrap}
-.flagship-copy h2{
-  font:400 clamp(42px,4vw,64px)/.96 "EB Garamond";
-  letter-spacing:-.03em;
-  margin:15px 0 19px
-}
-.flagship-copy p{font-size:12px;line-height:1.85;color:rgba(255,255,255,.62);max-width:590px}
-.event-meta{display:grid;gap:10px;margin:24px 0}
-.event-meta div{display:flex;align-items:center;gap:10px;font:500 9px/1.4 "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8)}
-.event-meta svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.6}
-
-/* Pillars */
-.pillars{padding:16px 0 66px}
-.pillar-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border)}
-.pillar{
-  min-height:240px;
-  padding:30px 22px;
-  text-align:center;
-  background:#071725;
-  transition:.25s
-}
-.pillar:hover{background:#0a1d2d;transform:translateY(-4px)}
-.pillar-icon{height:38px;color:var(--gold)}
-.pillar-icon svg{width:38px;height:38px;stroke:currentColor;fill:none;stroke-width:1.45}
-.pillar h3{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:20px 0 13px}
-.pillar p{font-size:10px;line-height:1.75;color:rgba(255,255,255,.56)}
-.pillar a{display:inline-block;margin-top:18px;font:500 8px "DM Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-
-/* Partners */
-.partners{padding:34px 0 42px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#061522}
-
-/* Footer */
-footer{padding:48px 0 23px}
-.footer-grid{display:grid;grid-template-columns:1.15fr 1fr .7fr .7fr;gap:1px;background:var(--border)}
-.footer-cell{padding:30px;background:#071522}
-.footer-brand{display:flex;gap:13px;align-items:center}
-.footer-brand img{width:54px;height:54px;border-radius:50%}
-.footer-brand strong{font:500 19px "EB Garamond"}
-.footer-cell p,.footer-cell a{font-size:9px;line-height:1.75;color:rgba(255,255,255,.48)}
-.footer-cell a{display:block;margin-top:8px}
-.newsletter{display:flex;margin-top:16px}
-.newsletter input{min-width:0;flex:1;background:#03101b;border:1px solid var(--border);padding:12px;color:#fff}
-.newsletter button{border:0;background:var(--gold);padding:0 17px;font-size:8px;font-weight:700;text-transform:uppercase}
-.socials{display:flex;gap:10px;margin-top:18px}
-.socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;color:rgba(255,255,255,.7)}
-.footer-bottom{display:flex;justify-content:space-between;margin-top:22px;font:400 7px "DM Mono";letter-spacing:.07em;color:rgba(255,255,255,.32);text-transform:uppercase}
-.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}.reveal.in{opacity:1;transform:none}
-
-@media(max-width:1100px){
-  .links{display:none}.menu{display:block}
-  .hero-grid,.institution-grid,.flagship-grid{grid-template-columns:1fr}
-  .hero-copy{padding-top:45px}
-  
-  .pillar-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:700px){
-  .nav{height:76px}.header{height:76px}
-  .brand{min-width:auto}.brand-mark{width:46px;height:46px}.brand strong{font-size:17px}.brand small{display:none}
-  .hero{padding-top:76px}.hero-copy h1{font-size:52px}
-  .metrics-grid{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1;border-top:1px solid var(--border)}
-  .city-grid{grid-template-columns:1fr 1fr}.city-card{padding:22px 10px;border-bottom:1px solid var(--border)}
-  .institution-copy{padding:34px 25px}.skyline{min-height:300px}.stage{min-height:300px}
-  .pillar-grid{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
-}
+:root{--navy:#000c1f;--navy2:#061a33;--paper:#f1ece2;--ink:#0a1322;--grey:#8e97a6;--gold:#d0a149;--ochre:#e8a63a;--red:#e0342b;--blue:#1db4f5;--line:rgba(241,236,226,.16);--pad:clamp(22px,4.5vw,72px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--navy);color:var(--paper);font-family:Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}img{max-width:100%;display:block}
+.wrap{width:min(1500px,100%);margin:auto;padding-left:var(--pad);padding-right:var(--pad)}.label{font:700 12px Archivo,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--ochre)}.serif{font-family:"EB Garamond",Georgia,serif}
+header{position:sticky;top:0;z-index:50;background:rgba(0,12,31,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{min-height:86px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:14px;margin-right:auto}.brand img{width:58px;height:58px;object-fit:contain}.brand-fallback{width:58px;height:58px;border:1px solid #748091;border-radius:50%;display:none;place-items:center;font:700 9px Archivo;letter-spacing:.08em;text-align:center}.brand-text b{font:600 clamp(20px,2vw,31px) "EB Garamond",serif;letter-spacing:.02em}.brand-text small{display:block;margin-top:3px;color:#8e97a6;font:600 9px Archivo;letter-spacing:.3em;text-transform:uppercase}nav{display:flex;align-items:center;gap:28px}nav a{font:600 12px Archivo;text-transform:uppercase;color:#b7bdc6}nav a:hover{color:#fff}.attend{background:var(--gold);color:var(--ink)!important;padding:18px 24px}
+.hero{min-height:calc(100vh - 86px);display:grid;align-items:end;padding:90px 0 76px;background:radial-gradient(circle at 72% 40%,rgba(208,161,73,.16),transparent 32%),linear-gradient(180deg,#061420 0%,#000c1f 100%)}.hero h1{font:500 clamp(64px,8.5vw,150px)/.82 "EB Garamond",serif;letter-spacing:-.055em;margin:28px 0 30px;max-width:1250px}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{font-size:clamp(17px,1.45vw,23px);line-height:1.65;color:#c9ced6;max-width:780px}
+.proofbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.proofgrid{display:grid;grid-template-columns:repeat(4,1fr)}.metric{padding:34px 28px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric strong{display:block;font:600 44px "EB Garamond",serif}.metric span{font-size:12px;color:#9da5b1;text-transform:uppercase;letter-spacing:.12em}
+section{scroll-margin-top:86px}.section{padding:clamp(80px,10vw,150px) 0;border-bottom:1px solid var(--line)}.light{background:var(--paper);color:var(--ink)}.section-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;margin-bottom:60px}.section h2{font:500 clamp(48px,6vw,100px)/.9 "EB Garamond",serif;letter-spacing:-.04em;margin:14px 0}.lead{font-size:clamp(18px,1.5vw,24px);line-height:1.65;color:#b9c2d0;max-width:760px}.light .lead{color:#49505a}
+.circuit-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.circuit-item{min-height:260px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}.circuit-item .n{font:700 11px Archivo;letter-spacing:.18em;color:var(--ochre)}.circuit-item h3{font:500 38px "EB Garamond",serif;margin:0}.circuit-item p{color:#aeb6c2;margin:7px 0}.status{font:600 10px Archivo;text-transform:uppercase;letter-spacing:.14em;color:var(--gold)}
+.people-tools{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}.people-tools p{max-width:640px;color:#aeb6c2;line-height:1.6}.speaker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.speaker-card{background:var(--navy)}.speaker-card:nth-child(n+9){display:none}.speaker-card.show{display:block}.speaker-open{width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer}.speaker-photo{aspect-ratio:1/1;background:#0a1b2d;position:relative;overflow:hidden}.speaker-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}.photo-placeholder{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:#667181;font:700 11px Archivo;letter-spacing:.12em;line-height:1.7;border:1px dashed rgba(241,236,226,.2)}.photo-placeholder small{display:block;font-size:8px;letter-spacing:0;color:#55606f;margin-top:8px}.speaker-copy{padding:22px;min-height:190px}.speaker-copy h3{font:500 28px/1 "EB Garamond",serif;margin:0 0 12px}.speaker-title{font-size:12px;line-height:1.5;color:#c1c7cf;margin:0 0 10px}.speaker-org{font:700 10px Archivo;text-transform:uppercase;letter-spacing:.12em;color:var(--ochre);margin:0}.bio-link{display:inline-block;margin-top:24px;font-size:11px;color:#9ba4af}
+.more{margin-top:32px;border:1px solid #435064;background:transparent;color:#fff;padding:15px 20px;cursor:pointer;text-transform:uppercase;font:700 10px Archivo;letter-spacing:.12em}
+.logos{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid #d6d0c5;border-left:1px solid #d6d0c5;margin-top:55px}.logo-cell{height:150px;border-right:1px solid #d6d0c5;border-bottom:1px solid #d6d0c5;display:flex;align-items:center;justify-content:center;padding:24px;background:#f7f3eb}.logo-cell img{max-width:135px;max-height:65px;object-fit:contain;filter:grayscale(100%)}.logo-placeholder{display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;text-align:center;font:700 10px Archivo;letter-spacing:.08em;text-transform:uppercase;color:#6e716f}.logo-placeholder small{font:400 8px Inter;text-transform:none;letter-spacing:0;margin-top:8px;color:#a19d94}
+.insights{display:grid;grid-template-columns:1.2fr .8fr;gap:1px;background:var(--line);border:1px solid var(--line)}.insight{background:#06172a;padding:40px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.insight h3{font:500 38px "EB Garamond",serif;margin:10px 0}.insight p{color:#aeb6c2;line-height:1.6}
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:260px;gap:10px}.gallery-slot{background:#091a2c;border:1px dashed #405066;display:flex;align-items:center;justify-content:center;text-align:center;color:#6d7887;font:700 10px Archivo;letter-spacing:.12em;text-transform:uppercase;padding:20px}.gallery-slot:first-child{grid-row:span 2}.gallery-slot small{display:block;font:400 9px Inter;letter-spacing:0;text-transform:none;margin-top:8px}
+.attend-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:80px;align-items:end}.cta{display:inline-block;background:var(--gold);color:var(--ink);padding:18px 24px;font:700 11px Archivo;letter-spacing:.1em;text-transform:uppercase}.attend-meta{border-left:1px solid var(--line);padding-left:34px}.attend-meta strong{font:500 34px "EB Garamond",serif;display:block;margin-bottom:8px}.attend-meta p{color:#aeb6c2}
+footer{padding:48px 0;color:#8e97a6}.foot{display:flex;justify-content:space-between;gap:30px;font-size:11px}.foot a{margin-left:18px}
+dialog{width:min(820px,calc(100% - 30px));background:#07182a;color:var(--paper);border:1px solid #334257;padding:0;box-shadow:0 30px 100px #000}dialog::backdrop{background:rgba(0,5,15,.8)}.modal{display:grid;grid-template-columns:260px 1fr}.modal-photo{min-height:340px;background:#0a1b2d}.modal-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}.modal-copy{padding:38px}.modal-copy h3{font:500 43px/1 "EB Garamond",serif;margin:8px 0 12px}.modal-copy .org{color:var(--ochre);font:700 10px Archivo;letter-spacing:.12em;text-transform:uppercase}.modal-copy p{color:#b9c2d0;line-height:1.7}.close{position:absolute;right:14px;top:12px;border:0;background:none;color:#fff;font-size:28px;cursor:pointer}
+@media(max-width:1050px){nav a:not(.attend){display:none}.proofgrid,.circuit-grid{grid-template-columns:repeat(2,1fr)}.speaker-grid{grid-template-columns:repeat(2,1fr)}.logos{grid-template-columns:repeat(3,1fr)}.section-head,.attend-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.brand-text b{font-size:18px}.brand-text small{display:none}.hero{min-height:760px}.hero h1{font-size:58px}.proofgrid,.circuit-grid,.speaker-grid,.logos,.insights{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr;grid-auto-rows:230px}.gallery-slot:first-child{grid-row:span 1}.modal{grid-template-columns:1fr}.modal-photo{min-height:260px}}
 </style>
 </head>
-<body>
-<header class="header">
+<body id="top">
+
+<!--
+IMAGE UPLOAD STRUCTURE
+/images/african-circuit-logo.png
+/images/speakers/[speaker-key].jpg
+/images/partners/[partner-key].png
+/images/gallery/01.jpg ... 06.jpg
+
+The page deliberately shows elegant placeholders until those files are uploaded.
+-->
+
+<header>
   <div class="wrap nav">
-    <a class="brand" href="/" aria-label="The African Circuit home">
-      <img class="brand-mark" src="images/african-circuit-logo.png" alt="The African Circuit logo">
-      <span><strong>THE AFRICAN <span>CIRCUIT</span></strong><small>Capital · Policy · Investment</small></span>
+    <a class="brand" href="#top">
+      <img src="images/african-circuit-logo.png" alt="The African Circuit"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <span class="brand-fallback">AFRICAN<br>CIRCUIT</span>
+      <span class="brand-text"><b>THE AFRICAN <span style="color:var(--gold)">CIRCUIT</span></b><small>Capital · Policy · Investment</small></span>
     </a>
-    <nav class="links">
-      <a class="active" href="/">Home</a>
-      <a href="/conference/">Conference</a>
-      <a href="/institute/">Institute</a>
-      <a href="/research/">Research</a>
-      <a href="/exchange/">Exchange</a>
-      <a href="/membership/">Membership</a>
-      <a href="/about/">The Platform</a>
-      <a class="join" href="/membership/">Join the Network</a>
+    <nav aria-label="Primary">
+      <a href="#circuit">The Circuit</a><a href="#editions">Editions</a><a href="#people">People</a>
+      <a href="#insights">Insights</a><a href="#gallery">Gallery</a><a class="attend" href="#attend">Attend</a>
     </nav>
-    <button class="menu" aria-label="Open menu">☰</button>
   </div>
 </header>
-<nav class="mobile">
-  <a href="/">Home</a>
-  <a href="/conference/">Conference</a>
-  <a href="/institute/">Institute</a>
-  <a href="/research/">Research</a>
-  <a href="/exchange/">Exchange</a>
-  <a href="/membership/">Membership</a>
-  <a href="/about/">The Platform</a>
-  <a href="/membership/">Join the Network</a>
-</nav>
 
 <main>
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="kicker">The African Circuit</div>
-      <h1>Capital exists. Mandates exist. <em>The gap is deployment.</em></h1>
-      <p>A pan-African circuit connecting the institutions that mandate capital with those that structure and deploy it — across Mauritius, Nairobi, Cape Town and Casablanca.</p>
-      <div class="hero-actions">
-        <a class="btn gold" href="/conference/">Explore the Circuit →</a>
-        <a class="btn ghost" href="/membership/">Join the Network →</a>
-      </div>
-    </div>
-
-    <aside class="hero-aside" aria-label="Mauritius flagship">
-      <div class="hero-note">
-        <div class="label">Mauritius Flagship</div>
-        <h2>Where the Circuit begins.</h2>
-        <p>Following the Mauritius flagship, the Circuit moves to Nairobi for two days of institutional dialogue around capital deployment, policy and investment in East Africa.</p>
-        <span class="date">19–20 November 2026 · Nairobi</span>
-      </div>
-    </aside>
-  </div>
-</section>
-
-<section class="metrics">
-  <div class="wrap metrics-grid">
-    <div class="metric">
-      <div class="metric-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
-      <strong>7</strong><span>Mauritius Panels</span>
-    </div>
-    <div class="metric">
-      <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M5 21v-4a7 7 0 0 1 14 0v4"/></svg></div>
-      <strong>4</strong><span>Circuit Cities</span>
-    </div>
-    <div class="metric">
-      <div class="metric-icon"><svg viewBox="0 0 24 24"><path d="M8 11a4 4 0 1 1 8 0v3a4 4 0 1 1-8 0zM5 21h14"/></svg></div>
-      <strong>250+</strong><span>Senior Delegates<br>Per Flagship</span>
-    </div>
-    <div class="metric">
-      <div class="metric-icon"><svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="12" rx="4"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
-      <strong>50+</strong><span>Global Speakers</span>
-    </div>
-    <div class="metric">
-      <div class="metric-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2 21v-3a6 6 0 0 1 12 0v3M10 21v-3a6 6 0 0 1 12 0v3"/></svg></div>
-      <strong>8</strong><span>Closed-Door<br>Roundtables</span>
-    </div>
-  </div>
-</section>
-
-<section class="circuit">
   <div class="wrap">
-    <div class="section-title">
-      <div class="kicker">The African Circuit</div>
-      <h2>A Pan-African Platform. Four Strategic Cities.</h2>
-    </div>
-    <div class="city-grid">
-      <article class="city-card">
-        <svg class="flag-svg" viewBox="0 0 60 40" role="img" aria-label="Mauritius flag">
-          <rect y="0" width="60" height="10" fill="#EA2839"/>
-          <rect y="10" width="60" height="10" fill="#1A206D"/>
-          <rect y="20" width="60" height="10" fill="#FFD500"/>
-          <rect y="30" width="60" height="10" fill="#00A551"/>
-        </svg>
-        <h3>Mauritius</h3><div class="edition">Flagship · Completed</div><div class="date">14–15 September 2026</div>
-        <a class="city-cta" href="https://www.linkedin.com/events/theafricancircuitflagship7481564043808518144/" target="_blank" rel="noopener">Register →</a>
-      </article>
-      <article class="city-card">
-        <svg class="flag-svg" viewBox="0 0 60 40" role="img" aria-label="Kenya flag">
-          <rect width="60" height="40" fill="#fff"/>
-          <rect y="0" width="60" height="12" fill="#000"/>
-          <rect y="12" width="60" height="2" fill="#fff"/>
-          <rect y="14" width="60" height="12" fill="#BB0000"/>
-          <rect y="26" width="60" height="2" fill="#fff"/>
-          <rect y="28" width="60" height="12" fill="#006600"/>
-          <g transform="translate(30,20)">
-            <ellipse cx="0" cy="0" rx="8" ry="10" fill="#BB0000" stroke="#000" stroke-width="1"/>
-            <ellipse cx="0" cy="0" rx="5" ry="7" fill="#fff"/>
-            <line x1="-10" y1="-14" x2="10" y2="14" stroke="#000" stroke-width="1.5"/>
-            <line x1="10" y1="-14" x2="-10" y2="14" stroke="#000" stroke-width="1.5"/>
-          </g>
-        </svg>
-        <h3>Nairobi</h3><div class="edition">East Africa Edition</div><div class="date">19–20 November 2026</div>
-        <a class="city-cta" href="/editions/nairobi.html" target="_blank" rel="noopener">Register →</a>
-      </article>
-      <article class="city-card">
-        <svg class="flag-svg" viewBox="0 0 9 6" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="South Africa flag">
-          <clipPath id="za-c"><path d="M0 0l4.5 3L0 6" id="za-b"/></clipPath>
-          <clipPath id="za-a"><path d="M0 0h9v6H0z"/></clipPath>
-          <g clip-path="url(#za-a)">
-            <path d="M0 0v6h9V0z" fill="#001489"/>
-            <path d="M0 0v3h9V0z" fill="#e03c31"/>
-            <g stroke-width="2" stroke="#fff">
-              <path d="M0 0l4.5 3L0 6m4.5-3H9" id="za-d"/>
-              <use xlink:href="#za-b" stroke="#ffb81c" clip-path="url(#za-c)"/>
-            </g>
-            <use xlink:href="#za-d" fill="none" stroke="#007749" stroke-width="1.2"/>
-          </g>
-        </svg>
-        <h3>Cape Town</h3><div class="edition">Southern Africa Edition</div><div class="date">February 2027</div>
-        <a class="city-cta muted" href="mailto:admin@philanthropicfoundation.net">Get Notified →</a>
-      </article>
-      <article class="city-card">
-        <svg class="flag-svg" viewBox="0 0 60 40" role="img" aria-label="Morocco flag">
-          <rect width="60" height="40" fill="#C1272D"/>
-          <g transform="translate(30,20)">
-            <polygon points="0,-9 2.1,-2.8 8.6,-2.8 3.3,1.1 5.3,7.3 0,3.5 -5.3,7.3 -3.3,1.1 -8.6,-2.8 -2.1,-2.8" fill="none" stroke="#006233" stroke-width="1.3"/>
-          </g>
-        </svg>
-        <h3>Casablanca</h3><div class="edition">North Africa Edition</div><div class="date">Coming Soon</div>
-        <a class="city-cta muted" href="mailto:admin@philanthropicfoundation.net">Get Notified →</a>
-      </article>
-    </div>
+    <span class="label">The African Circuit</span>
+    <h1>Capital exists.<br>Mandates exist.<br><em>The gap is deployment.</em></h1>
+    <p>A pan-African platform connecting the institutions that mandate capital with those that structure and deploy it.</p>
   </div>
 </section>
 
-<section class="institution">
+<div class="proofbar">
+  <div class="wrap proofgrid">
+    <div class="metric"><strong>30</strong><span>Speakers · Mauritius 2026</span></div>
+    <div class="metric"><strong>7</strong><span>Main-stage panels</span></div>
+    <div class="metric"><strong>32</strong><span>Institutions represented</span></div>
+    <div class="metric"><strong>4</strong><span>Cities in the Circuit</span></div>
+  </div>
+</div>
+
+<section class="section" id="circuit">
   <div class="wrap">
-    <div class="institution-grid reveal">
-      <div class="institution-copy">
-        <div class="kicker">What is The African Circuit?</div>
-        <h2>From Mandate to Deployment</h2>
-        <p>Capital exists. Mandates exist. Projects exist. The gap is deployment. The African Circuit brings together the institutions responsible for mandate, policy, structuring and deployment.</p>
-        <ul class="checks">
-          <li>High-level conferences and roundtables</li>
-          <li>Independent research and intelligence</li>
-          <li>Opportunity exchange and deal flow</li>
-          <li>Institutional network and membership</li>
-          <li>Strategic partnerships and collaborations</li>
-        </ul>
-        <a class="btn gold" href="/the-circuit/">Discover the Circuit →</a>
-      </div>
-      <div class="skyline" role="img" aria-label="Map of Africa highlighting The African Circuit host countries: Morocco, Kenya, Mauritius and South Africa"></div>
+    <div class="section-head">
+      <div><span class="label">The Circuit</span><h2>A stronger circuit of trust.</h2></div>
+      <div><p class="lead">Africa does not lack opportunity. Capital moves through relationships, governance, credible information and the right institutional vehicles. The African Circuit brings together the institutions responsible for mandate, policy, structuring and deployment.</p></div>
     </div>
   </div>
 </section>
 
-<section class="flagship">
-  <div class="wrap flagship-grid reveal">
-    <div class="stage" role="img" aria-label="The African Circuit Mauritius conference stage"></div>
-    <div class="flagship-copy">
-      <div class="kicker">Mauritius 2026 · Completed</div>
-      <h2>The Place Where Africa's Institutional Conversations Begin</h2>
-      <p>Mauritius anchors the Circuit as the gateway between global capital and the African continent — a stable, treaty-connected jurisdiction long trusted by DFIs, fund managers and family offices structuring African exposure. The flagship edition opened the Circuit here — establishing the first institutional conversations and relationships that now continue across the next cities.</p>
-      <p>Over two days at the Caudan Arts Centre, senior decision-makers and global speakers convened across closed-door roundtables, panel dialogue and structured networking — covering blended finance, regulatory architecture, ESG and climate finance, and the deal flow shaping the continent's next decade.</p>
-      <div class="event-meta">
-        <div><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>14–15 September 2026</div>
-        <div><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg>Caudan Arts Centre, Port Louis</div>
-      </div>
-      <div class="flagship-actions">
-        <a class="btn gold" href="https://www.linkedin.com/events/theafricancircuitflagship7481564043808518144/" target="_blank" rel="noopener">Explore Mauritius →</a>
-        <a class="btn ghost" href="/conference/mauritius.html#agenda">See the Debate →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="flagship">
-  <div class="wrap flagship-grid reveal">
-    <div class="flagship-copy">
-      <div class="kicker">Nairobi · East Africa Edition</div>
-      <h2>The Circuit Continues Into East Africa's Capital Markets Hub</h2>
-      <p>From Port Louis, the Circuit heads to Nairobi — venture and growth capital, sovereign debt, and the policy shifts drawing institutional capital deeper into the region. The East Africa Edition carries the same closed-door format into the market shaping the continent's next wave of deal flow.</p>
-      <p>Two days at the JW Marriott convene senior investors, DFIs and regional policymakers across panel dialogue and closed-door roundtables — building directly on the momentum set in Mauritius.</p>
-      <div class="event-meta">
-        <div><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>19–20 November 2026</div>
-        <div><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg>JW Marriott, Nairobi</div>
-      </div>
-      <div class="flagship-actions">
-        <a class="btn gold" href="/editions/nairobi.html" target="_blank" rel="noopener">View Conference →</a>
-        <a class="btn ghost" href="/editions/nairobi.html#programme">See the Debate →</a>
-      </div>
-    </div>
-    <div class="stage nairobi" role="img" aria-label="The African Circuit Nairobi East Africa Edition"></div>
-  </div>
-</section>
-
-<section class="pillars">
+<section class="section" id="editions">
   <div class="wrap">
-    <div class="section-title"><div class="kicker">Explore the Circuit</div><h2>People. Thinking. Evidence.</h2></div>
-    <div class="pillar-grid reveal" style="grid-template-columns:repeat(3,1fr)">
-      <article class="pillar"><h3>People</h3><p>Meet the speakers, moderators and institutional contributors shaping each edition.</p><a href="/people/">Meet the People →</a></article>
-      <article class="pillar"><h3>Insights</h3><p>The Mandate, debates, perspectives and publications emerging from the Circuit.</p><a href="/insights/">Explore Insights →</a></article>
-      <article class="pillar"><h3>Gallery</h3><p>A visual record of the Circuit — beginning with Mauritius 2026 and expanding with every edition.</p><a href="/gallery/">View Gallery →</a></article>
+    <span class="label">Editions</span><h2>One circuit.<br>Four cities.</h2>
+    <div class="circuit-grid">
+      <article class="circuit-item"><span class="n">01 / MRU</span><div><h3>Mauritius</h3><p>14–15 September 2026</p><span class="status">Completed · Flagship</span></div></article>
+      <article class="circuit-item"><span class="n">02 / NBO</span><div><h3>Nairobi</h3><p>19–20 November 2026</p><span class="status">Next edition</span></div></article>
+      <article class="circuit-item"><span class="n">03 / CPT</span><div><h3>Cape Town</h3><p>February 2027</p><span class="status">Announced</span></div></article>
+      <article class="circuit-item"><span class="n">04 / CMN</span><div><h3>Casablanca</h3><p>Coming soon</p><span class="status">Announced</span></div></article>
     </div>
   </div>
 </section>
 
-<section class="partners">
+<section class="section" id="people">
   <div class="wrap">
-    <div class="section-title"><div class="kicker">Trusted by Leading Institutions</div></div>
-    <img src="images/Logos%20Website.png" alt="The African Circuit — trusted by leading institutions including Suntera, African Development Bank Group, ALSF, Bioculture, CAIA Association, CareEdge Ratings Africa, Datura, DTOS, ESS, PwC, Sango, TLG Capital, Trimetys, and 47 Ventures" style="width:100%;height:auto;display:block;border-radius:8px">
+    <div class="people-tools">
+      <div><span class="label">Mauritius 2026</span><h2>The people<br>in the room.</h2></div>
+      <p>Speaker names, titles, organisations and biographies have been retained from the source site. Upload a portrait to the indicated filename and it appears automatically.</p>
+    </div>
+    <div class="speaker-grid">
+      
+      <article class="speaker-card" data-person="mupotola">
+        <button class="speaker-open" type="button" aria-label="Open biography for Moono Mupotola">
+          <div class="speaker-photo">
+            <img src="images/speakers/mupotola.jpg" alt="Moono Mupotola"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/mupotola.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Moono Mupotola</h3>
+            <p class="speaker-title">Deputy Director General, Southern Africa Regional Development, African Development Bank (AfDB)</p>
+            <p class="speaker-org">African Development Bank (AfDB)</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="eltawil">
+        <button class="speaker-open" type="button" aria-label="Open biography for Nadia El Tawil">
+          <div class="speaker-photo">
+            <img src="images/speakers/eltawil.jpg" alt="Nadia El Tawil"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/eltawil.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Nadia El Tawil</h3>
+            <p class="speaker-title">Coverage Manager, North Africa, British International Investment (BII)</p>
+            <p class="speaker-org">British International Investment (BII)</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="winterboer">
+        <button class="speaker-open" type="button" aria-label="Open biography for Leon Winterboer">
+          <div class="speaker-photo">
+            <img src="images/speakers/winterboer.jpg" alt="Leon Winterboer"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/winterboer.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Leon Winterboer</h3>
+            <p class="speaker-title">Senior Investment Officer, Financial Institutions, Africa, FMO (the Dutch Entrepreneurial Development Bank)</p>
+            <p class="speaker-org">FMO</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="nuvin">
+        <button class="speaker-open" type="button" aria-label="Open biography for Nuvin Sharma Bholah">
+          <div class="speaker-photo">
+            <img src="images/speakers/nuvin.jpg" alt="Nuvin Sharma Bholah"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/nuvin.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Nuvin Sharma Bholah</h3>
+            <p class="speaker-title">Investment Officer, International Finance Corporation (IFC), World Bank Group</p>
+            <p class="speaker-org">International Finance Corporation (IFC)</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="drishty">
+        <button class="speaker-open" type="button" aria-label="Open biography for Dr. Drishty Ramdenee">
+          <div class="speaker-photo">
+            <img src="images/speakers/drishty.jpg" alt="Dr. Drishty Ramdenee"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/drishty.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Dr. Drishty Ramdenee</h3>
+            <p class="speaker-title">Secretary General, Mauritius Chamber of Commerce and Industry (MCCI)</p>
+            <p class="speaker-org">Mauritius Chamber of Commerce and Industry (MCCI)</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="mbanefo">
+        <button class="speaker-open" type="button" aria-label="Open biography for Christopher Mbanefo">
+          <div class="speaker-photo">
+            <img src="images/speakers/mbanefo.jpg" alt="Christopher Mbanefo"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/mbanefo.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Christopher Mbanefo</h3>
+            <p class="speaker-title">Founder and CEO, OXI-ZEN Solutions LLC and YASAVA Solutions SA</p>
+            <p class="speaker-org">OXI-ZEN Solutions</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="chatterjee">
+        <button class="speaker-open" type="button" aria-label="Open biography for Saurav Chatterjee">
+          <div class="speaker-photo">
+            <img src="images/speakers/chatterjee.jpg" alt="Saurav Chatterjee"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/chatterjee.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Saurav Chatterjee</h3>
+            <p class="speaker-title">Director and CEO, CareEdge Ratings Africa</p>
+            <p class="speaker-org">CareEdge Ratings Africa</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="saraka">
+        <button class="speaker-open" type="button" aria-label="Open biography for Joseph Alain Saraka">
+          <div class="speaker-photo">
+            <img src="images/speakers/saraka.jpg" alt="Joseph Alain Saraka"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/saraka.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Joseph Alain Saraka</h3>
+            <p class="speaker-title">Founder, Cornerstone Strategies; Chief Strategy Officer and Head of M&amp;A, Arise IIP and Arise IS (AFC Group)</p>
+            <p class="speaker-org">Cornerstone Strategies</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="reinhart">
+        <button class="speaker-open" type="button" aria-label="Open biography for Fee Reinhart">
+          <div class="speaker-photo">
+            <img src="images/speakers/reinhart.jpg" alt="Fee Reinhart"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/reinhart.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Fee Reinhart</h3>
+            <p class="speaker-title">Co-Founder and Head of Product and Advisory, Datura</p>
+            <p class="speaker-org">Datura</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="hawkins">
+        <button class="speaker-open" type="button" aria-label="Open biography for Julia Hawkins">
+          <div class="speaker-photo">
+            <img src="images/speakers/hawkins.jpg" alt="Julia Hawkins"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/hawkins.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Julia Hawkins</h3>
+            <p class="speaker-title">Founder and Managing Director, Hawkins Eberdal Ltd</p>
+            <p class="speaker-org">Hawkins Eberdal</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="beeharry">
+        <button class="speaker-open" type="button" aria-label="Open biography for Ashween Beeharry">
+          <div class="speaker-photo">
+            <img src="images/speakers/beeharry.jpg" alt="Ashween Beeharry"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/beeharry.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Ashween Beeharry</h3>
+            <p class="speaker-title">Manager, International Operations, DTOS</p>
+            <p class="speaker-org">DTOS</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="marquis">
+        <button class="speaker-open" type="button" aria-label="Open biography for Chris Marquis">
+          <div class="speaker-photo">
+            <img src="images/speakers/marquis.jpg" alt="Chris Marquis"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/marquis.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Chris Marquis</h3>
+            <p class="speaker-title">Global Head of Private Wealth, Suntera Global</p>
+            <p class="speaker-org">Suntera Global</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="neal">
+        <button class="speaker-open" type="button" aria-label="Open biography for Richard Neal">
+          <div class="speaker-photo">
+            <img src="images/speakers/neal.jpg" alt="Richard Neal"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/neal.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Richard Neal</h3>
+            <p class="speaker-title">Commercial Director for Africa, The Sovereign Group</p>
+            <p class="speaker-org">The Sovereign Group</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="namarika">
+        <button class="speaker-open" type="button" aria-label="Open biography for Bisa Namarika">
+          <div class="speaker-photo">
+            <img src="images/speakers/namarika.jpg" alt="Bisa Namarika"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/namarika.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Bisa Namarika</h3>
+            <p class="speaker-title">Director General, Malawi Investment and Trade Centre (MITC)</p>
+            <p class="speaker-org">Malawi Investment and Trade Centre</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="hattann">
+        <button class="speaker-open" type="button" aria-label="Open biography for Frank Hattann">
+          <div class="speaker-photo">
+            <img src="images/speakers/hattann.jpg" alt="Frank Hattann"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/hattann.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Frank Hattann</h3>
+            <p class="speaker-title">Chief Commercial Officer, Suntera Global</p>
+            <p class="speaker-org">Suntera Global</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="danielson">
+        <button class="speaker-open" type="button" aria-label="Open biography for Mitzi Danielson-Kaslik">
+          <div class="speaker-photo">
+            <img src="images/speakers/danielson.jpg" alt="Mitzi Danielson-Kaslik"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/danielson.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Mitzi Danielson-Kaslik</h3>
+            <p class="speaker-title">Compliance specialist, Veritas</p>
+            <p class="speaker-org">Veritas</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="soobramanien">
+        <button class="speaker-open" type="button" aria-label="Open biography for Ganessen Soobramanien">
+          <div class="speaker-photo">
+            <img src="images/speakers/soobramanien.jpg" alt="Ganessen Soobramanien"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/soobramanien.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Ganessen Soobramanien</h3>
+            <p class="speaker-title">Managing Director, NWT (Mauritius) Ltd, part of the AXYS Group</p>
+            <p class="speaker-org">NWT (Mauritius) Ltd, AXYS Group</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="mulloo">
+        <button class="speaker-open" type="button" aria-label="Open biography for Jaya Mulloo">
+          <div class="speaker-photo">
+            <img src="images/speakers/mulloo.jpg" alt="Jaya Mulloo"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/mulloo.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Jaya Mulloo</h3>
+            <p class="speaker-title">PhD Candidate</p>
+            <p class="speaker-org">PhD Candidate</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="oomar">
+        <button class="speaker-open" type="button" aria-label="Open biography for Mehdi Oomar">
+          <div class="speaker-photo">
+            <img src="images/speakers/oomar.jpg" alt="Mehdi Oomar"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/oomar.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Mehdi Oomar</h3>
+            <p class="speaker-title">Legal Counsel and Regional Coordinator, Southern Africa, African Legal Support Facility (ALSF, hosted by the African Development Bank)</p>
+            <p class="speaker-org">African Legal Support Facility (ALSF)</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="lagesan">
+        <button class="speaker-open" type="button" aria-label="Open biography for Vidhyasagar Lingesan">
+          <div class="speaker-photo">
+            <img src="images/speakers/lagesan.jpg" alt="Vidhyasagar Lingesan"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/lagesan.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Vidhyasagar Lingesan</h3>
+            <p class="speaker-title">Chief Rating Officer, MLRO and Compliance Officer, CareEdge Africa</p>
+            <p class="speaker-org">CareEdge Africa</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="deludet">
+        <button class="speaker-open" type="button" aria-label="Open biography for Pierre Deludet">
+          <div class="speaker-photo">
+            <img src="images/speakers/deludet.jpg" alt="Pierre Deludet"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/deludet.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Pierre Deludet</h3>
+            <p class="speaker-title">Vice President of Investments, Sango Capital</p>
+            <p class="speaker-org">Sango Capital</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="oozeer">
+        <button class="speaker-open" type="button" aria-label="Open biography for Nawaz Oozeer">
+          <div class="speaker-photo">
+            <img src="images/speakers/oozeer.jpg" alt="Nawaz Oozeer"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/oozeer.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Nawaz Oozeer</h3>
+            <p class="speaker-title">CFA, LLM, Investment Advisor and Product Specialist, Absa Mauritius; Secretary and Board Member, CFA Society Mauritius</p>
+            <p class="speaker-org">Absa Mauritius</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="soleil">
+        <button class="speaker-open" type="button" aria-label="Open biography for Soleil Jones">
+          <div class="speaker-photo">
+            <img src="images/speakers/soleil.jpg" alt="Soleil Jones"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/soleil.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Soleil Jones</h3>
+            <p class="speaker-title">Principal Environmental and Social Specialist, ESS (Environmental and Social Sustainability)</p>
+            <p class="speaker-org">ESS</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="ishta">
+        <button class="speaker-open" type="button" aria-label="Open biography for Ishta Jhurry">
+          <div class="speaker-photo">
+            <img src="images/speakers/ishta.jpg" alt="Ishta Jhurry"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/ishta.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Ishta Jhurry</h3>
+            <p class="speaker-title">Associate Director, PwC Mauritius (Debt and Capital Advisory, Transaction Advisory)</p>
+            <p class="speaker-org">PwC Mauritius</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="girish">
+        <button class="speaker-open" type="button" aria-label="Open biography for Girish Peerthy">
+          <div class="speaker-photo">
+            <img src="images/speakers/girish.jpg" alt="Girish Peerthy"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/girish.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Girish Peerthy</h3>
+            <p class="speaker-title">Fund Manager, AXYS Investment Partners</p>
+            <p class="speaker-org">AXYS Investment Partners</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="niteen">
+        <button class="speaker-open" type="button" aria-label="Open biography for Niteen Heerasing">
+          <div class="speaker-photo">
+            <img src="images/speakers/niteen.jpg" alt="Niteen Heerasing"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/niteen.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Niteen Heerasing</h3>
+            <p class="speaker-title">Associate Director, Transactions and Valuations, PwC Mauritius</p>
+            <p class="speaker-org">PwC Mauritius</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="kian">
+        <button class="speaker-open" type="button" aria-label="Open biography for Kian Jhuboo">
+          <div class="speaker-photo">
+            <img src="images/speakers/kian.jpg" alt="Kian Jhuboo"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/kian.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Kian Jhuboo</h3>
+            <p class="speaker-title">Director, Trimetys Group</p>
+            <p class="speaker-org">Trimetys Group</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="vinesh">
+        <button class="speaker-open" type="button" aria-label="Open biography for Vinesh Chintaram">
+          <div class="speaker-photo">
+            <img src="images/speakers/vinesh.jpg" alt="Vinesh Chintaram"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/vinesh.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Vinesh Chintaram</h3>
+            <p class="speaker-title">Managing Partner and CEO, VISIO Architecture; Secretary General, Africa Union of Architects</p>
+            <p class="speaker-org">VISIO Architecture</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="laura">
+        <button class="speaker-open" type="button" aria-label="Open biography for Laura Merlini">
+          <div class="speaker-photo">
+            <img src="images/speakers/laura.jpg" alt="Laura Merlini"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/laura.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Laura Merlini</h3>
+            <p class="speaker-title">Managing Director, EMEA, CAIA Association</p>
+            <p class="speaker-org">CAIA Association</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+      <article class="speaker-card" data-person="oumila">
+        <button class="speaker-open" type="button" aria-label="Open biography for Oumila Sibartie">
+          <div class="speaker-photo">
+            <img src="images/speakers/oumila.jpg" alt="Oumila Sibartie"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+            <span class="photo-placeholder">UPLOAD<br>PHOTO<br><small>images/speakers/oumila.jpg</small></span>
+          </div>
+          <div class="speaker-copy">
+            <h3>Oumila Sibartie</h3>
+            <p class="speaker-title">Co-Founder and Director, Lineage Investment Services; Founder, EarthenVest</p>
+            <p class="speaker-org">Lineage Investment Services</p>
+            <span class="bio-link">View biography ↗</span>
+          </div>
+        </button>
+      </article>
+    </div>
+    <button class="more" id="morePeople" type="button">View all 30 speakers</button>
+  </div>
+</section>
+
+<section class="section light" id="ecosystem">
+  <div class="wrap">
+    <span class="label" style="color:var(--red)">Institutional ecosystem</span>
+    <h2>Capital does not<br>move in isolation.</h2>
+    <p class="lead">The logo wall keeps the positioning and hierarchy of the original concept, but all logos now live as normal image files that you can upload or replace.</p>
+    <div class="logos">
+      <div class="logo-cell" title="Suntera Global">
+        <img src="images/partners/suntera.png" alt="Suntera Global"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Suntera Global<small>images/partners/suntera.png</small></span>
+      </div>
+      <div class="logo-cell" title="DTOS">
+        <img src="images/partners/dtos.png" alt="DTOS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">DTOS<small>images/partners/dtos.png</small></span>
+      </div>
+      <div class="logo-cell" title="TLG Capital">
+        <img src="images/partners/tlg_capital.png" alt="TLG Capital"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">TLG Capital<small>images/partners/tlg_capital.png</small></span>
+      </div>
+      <div class="logo-cell" title="Sango Capital">
+        <img src="images/partners/sango.png" alt="Sango Capital"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Sango Capital<small>images/partners/sango.png</small></span>
+      </div>
+      <div class="logo-cell" title="CAIA Association">
+        <img src="images/partners/caia_association.png" alt="CAIA Association"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">CAIA Association<small>images/partners/caia_association.png</small></span>
+      </div>
+      <div class="logo-cell" title="CFA Society Mauritius">
+        <img src="images/partners/cfa_society_mauritius.png" alt="CFA Society Mauritius"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">CFA Society Mauritius<small>images/partners/cfa_society_mauritius.png</small></span>
+      </div>
+      <div class="logo-cell" title="African Development Bank Group">
+        <img src="images/partners/african_development_bank_group.png" alt="African Development Bank Group"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">African Development Bank Group<small>images/partners/african_development_bank_group.png</small></span>
+      </div>
+      <div class="logo-cell" title="FMO">
+        <img src="images/partners/fmo.png" alt="FMO"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">FMO<small>images/partners/fmo.png</small></span>
+      </div>
+      <div class="logo-cell" title="PwC Mauritius">
+        <img src="images/partners/pwc.png" alt="PwC Mauritius"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">PwC Mauritius<small>images/partners/pwc.png</small></span>
+      </div>
+      <div class="logo-cell" title="OXI-ZEN Solutions">
+        <img src="images/partners/oxi_zen.png" alt="OXI-ZEN Solutions"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">OXI-ZEN Solutions<small>images/partners/oxi_zen.png</small></span>
+      </div>
+      <div class="logo-cell" title="Bioculture">
+        <img src="images/partners/bioculture.png" alt="Bioculture"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Bioculture<small>images/partners/bioculture.png</small></span>
+      </div>
+      <div class="logo-cell" title="CareEdge Ratings Africa">
+        <img src="images/partners/careedge_ratings_africa.png" alt="CareEdge Ratings Africa"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">CareEdge Ratings Africa<small>images/partners/careedge_ratings_africa.png</small></span>
+      </div>
+      <div class="logo-cell" title="British International Investment">
+        <img src="images/partners/british_international_investment.png" alt="British International Investment"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">British International Investment<small>images/partners/british_international_investment.png</small></span>
+      </div>
+      <div class="logo-cell" title="ESS">
+        <img src="images/partners/ess.png" alt="ESS"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">ESS<small>images/partners/ess.png</small></span>
+      </div>
+      <div class="logo-cell" title="Datura">
+        <img src="images/partners/datura.png" alt="Datura"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Datura<small>images/partners/datura.png</small></span>
+      </div>
+      <div class="logo-cell" title="47 Ventures">
+        <img src="images/partners/47_ventures.png" alt="47 Ventures"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">47 Ventures<small>images/partners/47_ventures.png</small></span>
+      </div>
+      <div class="logo-cell" title="African Legal Support Facility (ALSF)">
+        <img src="images/partners/alsf.png" alt="African Legal Support Facility (ALSF)"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">African Legal Support Facility (ALSF)<small>images/partners/alsf.png</small></span>
+      </div>
+      <div class="logo-cell" title="Regional Investment Agency">
+        <img src="images/partners/regional_investment_agency.png" alt="Regional Investment Agency"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Regional Investment Agency<small>images/partners/regional_investment_agency.png</small></span>
+      </div>
+      <div class="logo-cell" title="Mauritius Chamber of Commerce and Industry (MCCI)">
+        <img src="images/partners/mcci.png" alt="Mauritius Chamber of Commerce and Industry (MCCI)"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Mauritius Chamber of Commerce and Industry (MCCI)<small>images/partners/mcci.png</small></span>
+      </div>
+      <div class="logo-cell" title="Nexus">
+        <img src="images/partners/nexus.png" alt="Nexus"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Nexus<small>images/partners/nexus.png</small></span>
+      </div>
+      <div class="logo-cell" title="The Sovereign Group">
+        <img src="images/partners/sovereign.png" alt="The Sovereign Group"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">The Sovereign Group<small>images/partners/sovereign.png</small></span>
+      </div>
+      <div class="logo-cell" title="Trimetys Group">
+        <img src="images/partners/trimetys.png" alt="Trimetys Group"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Trimetys Group<small>images/partners/trimetys.png</small></span>
+      </div>
+      <div class="logo-cell" title="Cornerstone Strategies">
+        <img src="images/partners/cornerstone_strategies.png" alt="Cornerstone Strategies"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">Cornerstone Strategies<small>images/partners/cornerstone_strategies.png</small></span>
+      </div>
+      <div class="logo-cell" title="AXYS Group">
+        <img src="images/partners/axys.png" alt="AXYS Group"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="logo-placeholder">AXYS Group<small>images/partners/axys.png</small></span>
+      </div></div>
+  </div>
+</section>
+
+<section class="section" id="insights">
+  <div class="wrap">
+    <span class="label">Insights</span><h2>Ideas between<br>the Circuits.</h2>
+    <div class="insights">
+      <article class="insight"><div><span class="label">The Mandate</span><h3>Institutional briefings on capital deployment across Africa.</h3></div><p>Long-form perspectives connecting the questions raised inside the Circuit with the practical architecture of deployment.</p></article>
+      <article class="insight"><div><span class="label">From the room</span><h3>Debates, perspectives and publications.</h3></div><p>Conference debates and selected contributions can be added here without creating another website.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <div class="wrap">
+    <span class="label" style="color:var(--blue)">Gallery · Mauritius 2026</span><h2>The first<br>Circuit.</h2>
+    <p class="lead">These are upload slots. Add the files below to <b>images/gallery/</b> and replace each placeholder with an image whenever you are ready.</p>
+    <div class="gallery-grid">
+      <div class="gallery-slot">Hero conference photograph<small>images/gallery/01.jpg</small></div>
+      <div class="gallery-slot">Panel<small>images/gallery/02.jpg</small></div>
+      <div class="gallery-slot">People<small>images/gallery/03.jpg</small></div>
+      <div class="gallery-slot">The Conduit<small>images/gallery/04.jpg</small></div>
+      <div class="gallery-slot">Roundtable<small>images/gallery/05.jpg</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="attend">
+  <div class="wrap attend-grid">
+    <div><span class="label">Next edition</span><h2>The Circuit continues<br>in Nairobi.</h2><p class="lead">19–20 November 2026. Institutional investors, DFIs, regulators, family offices, fund managers and market participants meeting on the continent.</p><a class="cta" href="mailto:contact@theafricancircuit.com?subject=Nairobi%202026%20Attendance">Attend Nairobi →</a></div>
+    <div class="attend-meta"><strong>Nairobi · Kenya</strong><p>19–20 November 2026</p><p>Programme, speaker and partner information can continue to be added directly inside this single index.</p></div>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-cell">
-        <div class="footer-brand"><img src="images/african-circuit-logo.png" alt=""><strong>The African Circuit</strong></div>
-        <p>Capital. Policy. Investment.<br>Across Africa. For Africa's Future.</p>
-        <div class="socials"><a href="#">in</a><a href="#">𝕏</a><a href="#">▶</a><a href="mailto:admin@philanthropicfoundation.net">✉</a></div>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Stay Connected</div>
-        <p>Follow us for updates from each edition, new insights and the people shaping the Circuit.</p>
-        <a class="btn gold" href="https://mu.linkedin.com/company/the-african-circuit" target="_blank" rel="noopener">Follow on LinkedIn →</a>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Quick Links</div>
-        <a href="/the-circuit/">The Circuit</a><a href="/editions/">Editions</a><a href="/people/">People</a><a href="/insights/">Insights</a><a href="/gallery/">Gallery</a><a href="/attend/">Attend</a>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Legal</div>
-        <a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-use.html">Terms of Use</a><a href="mailto:admin@philanthropicfoundation.net">Contact Us</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span data-year></span> The African Circuit. All rights reserved.</span>
-      <span>Capital · Policy · Investment</span>
+<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="privacy-policy.html">Privacy</a><a href="terms-of-use.html">Terms</a></span></div></footer>
+
+<dialog id="bioDialog">
+  <button class="close" type="button" aria-label="Close">×</button>
+  <div class="modal">
+    <div class="modal-photo" id="modalPhoto"></div>
+    <div class="modal-copy">
+      <span class="org" id="modalOrg"></span>
+      <h3 id="modalName"></h3>
+      <p id="modalTitle"></p>
+      <p id="modalBio"></p>
+      <p id="modalAbout"></p>
     </div>
   </div>
-</footer>
+</dialog>
 
 <script>
-const header=document.querySelector('.header');
-const mobile=document.querySelector('.mobile');
-const menu=document.querySelector('.menu');
-const updateHeader=()=>header.classList.toggle('scrolled',window.scrollY>24);
-updateHeader();
-window.addEventListener('scroll',updateHeader,{passive:true});
-menu.addEventListener('click',()=>mobile.classList.toggle('open'));
-document.querySelectorAll('.mobile a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
-document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
-}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const PEOPLE = {"drishty": {"name": "Dr. Drishty Ramdenee", "org": "Mauritius Chamber of Commerce and Industry (MCCI)", "title": "Secretary General, Mauritius Chamber of Commerce and Industry (MCCI)", "bio": "Leads the MCCI. Delivered the Sustainable Finance Framework presentation and moderated Panel 01.", "about": "The Mauritius Chamber of Commerce and Industry (MCCI) represents businesses in Mauritius."}, "mbanefo": {"name": "Christopher Mbanefo", "org": "OXI-ZEN Solutions", "title": "Founder and CEO, OXI-ZEN Solutions LLC and YASAVA Solutions SA", "bio": "Christopher leads OXI-ZEN Solutions, focused on blockchain-powered carbon market solutions, and YASAVA Solutions, active in highly advanced aeronautical engineering and design. He also sits on the Board of the Club of Rome.", "about": "OXI-ZEN Solutions focuses on blockchain-powered carbon market solutions; YASAVA Solutions is active in advanced aeronautical engineering and design."}, "chatterjee": {"name": "Saurav Chatterjee", "org": "CareEdge Ratings Africa", "title": "Director and CEO, CareEdge Ratings Africa", "bio": "Saurav has led CARE Ratings Africa since 2016, bringing 18 years in corporate and business risk management, including a background in corporate banking at Standard Chartered. He is a CFA charterholder.", "about": ""}, "saraka": {"name": "Joseph Alain Saraka", "org": "Cornerstone Strategies", "title": "Founder, Cornerstone Strategies; Chief Strategy Officer and Head of M&A, Arise IIP and Arise IS (AFC Group)", "bio": "Joseph founded Cornerstone Strategies and also serves as Chief Strategy Officer and Head of M&A for Arise IIP and Arise IS, both under the Africa Finance Corporation (AFC) Group. His wider career spans project finance and credit risk, including roles at Africa Finance Corporation, GDF Suez-Gaselys, Calyon Corporate and Investment Banking, and KPMG.", "about": ""}, "reinhart": {"name": "Fee Reinhart", "org": "Datura", "title": "Co-Founder and Head of Product and Advisory, Datura", "bio": "Fee co-leads Datura, a Berlin-based nature finance and climate risk data firm, and has spent over seven years translating environmental risk into financial decision-making tools, having previously helped pioneer nature finance approaches at WWF Switzerland.", "about": "Datura is a Berlin-based nature finance and climate risk data firm."}, "hawkins": {"name": "Julia Hawkins", "org": "Hawkins Eberdal", "title": "Founder and Managing Director, Hawkins Eberdal Ltd", "bio": "Julia founded Hawkins Eberdal, a boutique advisory firm raising international capital for sustainable ventures across Africa. She has 15 years in corporate and project finance, including over a decade in London, and has been based in Mauritius since 2021.", "about": ""}, "beeharry": {"name": "Ashween Beeharry", "org": "DTOS", "title": "Manager, International Operations, DTOS", "bio": "Ashween has over 20 years’ experience in fund structuring, fund administration and cross-border investment solutions across Mauritius and Africa.", "about": "DTOS is an independent corporate and fund services provider based in Mauritius, with more than three decades of experience, over 1,000 clients and a team of 235+ professionals."}, "marquis": {"name": "Chris Marquis", "org": "Suntera Global", "title": "Global Head of Private Wealth, Suntera Global", "bio": "Chris has 25 years in trust and fiduciary services across Europe and Asia, most recently as Global Head of Private Clients at Vistra, and before that over a decade at HSBC. He is a Chartered Accountant.", "about": "Suntera Global is a fund, corporate and private wealth services provider with a global team of more than 500 specialists."}, "neal": {"name": "Richard Neal", "org": "The Sovereign Group", "title": "Commercial Director for Africa, The Sovereign Group", "bio": "Richard has spent over 13 years with Sovereign, including Managing Director roles for both its South African and Mauritian operations.", "about": "The Sovereign Group is an international professional services group serving individuals and businesses."}, "namarika": {"name": "Bisa Namarika", "org": "Malawi Investment and Trade Centre", "title": "Director General, Malawi Investment and Trade Centre (MITC)", "bio": "Bisa leads Malawi’s national investment and trade promotion agency.", "about": "The Malawi Investment and Trade Centre (MITC) is Malawi’s national investment and trade promotion agency."}, "hattann": {"name": "Frank Hattann", "org": "Suntera Global", "title": "Chief Commercial Officer, Suntera Global", "bio": "Frank joined Suntera in April 2026 and sits on its Executive Committee leading commercial strategy. He brings over 20 years in growth leadership across global technology and financial-services organisations.", "about": "Suntera Global is a fund, corporate and private wealth services provider with a global team of more than 500 specialists."}, "danielson": {"name": "Mitzi Danielson-Kaslik", "org": "Veritas", "title": "Compliance specialist, Veritas", "bio": "Mitzi is an ICA-qualified compliance professional based in the Isle of Man, recognised with an award for excellence in compliance practice.", "about": ""}, "soobramanien": {"name": "Ganessen Soobramanien", "org": "NWT (Mauritius) Ltd, AXYS Group", "title": "Managing Director, NWT (Mauritius) Ltd, part of the AXYS Group", "bio": "Ganessen is FCCA and FICA qualified with over 25 years administering investment and trade structures across Mauritius and Singapore.", "about": ""}, "mulloo": {"name": "Jaya Mulloo", "org": "PhD Candidate", "title": "PhD Candidate", "bio": "", "about": ""}, "oomar": {"name": "Mehdi Oomar", "org": "African Legal Support Facility (ALSF)", "title": "Legal Counsel and Regional Coordinator, Southern Africa, African Legal Support Facility (ALSF, hosted by the African Development Bank)", "bio": "Mehdi has been on ALSF’s Projects Team since February 2020, advising African governments on complex commercial transactions. He was previously a Barrister-at-Law in Mauritius and worked at international law firms in Paris. He is a native French speaker.", "about": "The African Legal Support Facility (ALSF) is hosted by the African Development Bank and provides legal advice and technical assistance to African governments."}, "mupotola": {"name": "Moono Mupotola", "org": "African Development Bank (AfDB)", "title": "Deputy Director General, Southern Africa Regional Development, African Development Bank (AfDB)", "bio": "Moono is a Zambian national with over 25 years of African development experience in infrastructure, trade and regional integration. She joined the African Development Bank in 2009 as Division Manager for Regional Integration and Trade, became Director of NEPAD, Regional Integration and Trade in 2015 and Director of the Regional Integration Coordination Office in 2018, and served as Country Manager for Zimbabwe from December 2020. She was appointed Deputy Director General for Southern Africa in October 2024. She initiated the Bank’s Africa Trade Fund, the Visa Openness Index and, with the UN Economic Commission for Africa and the African Union Commission, the Regional Integration Index. She holds a BA in Economics from Bennington College and an MPhil in Development and Sociology from the University of Cambridge.", "about": "The African Development Bank Group is the continent’s multilateral development finance institution."}, "eltawil": {"name": "Nadia El Tawil", "org": "British International Investment (BII)", "title": "Coverage Manager, North Africa, British International Investment (BII)", "bio": "Nadia has over 15 years across corporate strategy, private equity and venture capital, driving impact investments across emerging markets.", "about": "British International Investment is the UK’s development finance institution and impact investor."}, "winterboer": {"name": "Leon Winterboer", "org": "FMO", "title": "Senior Investment Officer, Financial Institutions, Africa, FMO (the Dutch Entrepreneurial Development Bank)", "bio": "Leon is based in the Netherlands with a focus on Sub-Saharan Africa, and previously worked in corporate banking with China Construction Bank Corporation in Johannesburg.", "about": "FMO is the Dutch entrepreneurial development bank, supporting private sector growth in emerging markets."}, "lagesan": {"name": "Vidhyasagar Lingesan", "org": "CareEdge Africa", "title": "Chief Rating Officer, MLRO and Compliance Officer, CareEdge Africa", "bio": "Vidhyasagar brings nearly 15 years with CareEdge, having previously led the agency’s credit rating operations across Southern India and the Maldives. He is a CFA and FRM charterholder.", "about": ""}, "deludet": {"name": "Pierre Deludet", "org": "Sango Capital", "title": "Vice President of Investments, Sango Capital", "bio": "Pierre works with Sango Capital, a South Africa, Nigeria and Mauritius-based private equity firm investing institutional capital, including sovereign wealth funds and family offices, into African mid-market enterprises.", "about": "Founded in 2011, Sango Capital invests in African private equity, venture capital and private credit on behalf of institutional investors."}, "oozeer": {"name": "Nawaz Oozeer", "org": "Absa Mauritius", "title": "CFA, LLM, Investment Advisor and Product Specialist, Absa Mauritius; Secretary and Board Member, CFA Society Mauritius", "bio": "Nawaz is a senior investment professional who advises private and institutional clients on navigating complex markets and developing tailored investment strategies. With over a decade of experience across leading regional banks, his expertise spans asset allocation, portfolio construction and structured investments. He also serves as Secretary and Board Member of CFA Society Mauritius.", "about": ""}, "nuvin": {"name": "Nuvin Sharma Bholah", "org": "International Finance Corporation (IFC)", "title": "Investment Officer, International Finance Corporation (IFC), World Bank Group", "bio": "Nuvin’s background includes roles at MCB Group, SBM Holdings and the Stock Exchange of Mauritius. He holds degrees from University College London and the University of Manchester, and focuses on macroeconomics and sustainable finance in emerging African markets.", "about": "IFC, a member of the World Bank Group, focuses on private sector development in emerging markets."}, "soleil": {"name": "Soleil Jones", "org": "ESS", "title": "Principal Environmental and Social Specialist, ESS (Environmental and Social Sustainability)", "bio": "Soleil has significant experience managing projects across Africa in line with international standards, including IFC Performance Standards, the Equator Principles and World Bank EHS Guidelines.", "about": ""}, "ishta": {"name": "Ishta Jhurry", "org": "PwC Mauritius", "title": "Associate Director, PwC Mauritius (Debt and Capital Advisory, Transaction Advisory)", "bio": "Ishta advises clients on capital raising, IPO readiness, listing and delisting processes, rights issues and bond issues, including work with the Stock Exchange of Mauritius.", "about": "PwC Mauritius is the Mauritian member firm of the PwC network."}, "girish": {"name": "Girish Peerthy", "org": "AXYS Investment Partners", "title": "Fund Manager, AXYS Investment Partners", "bio": "Girish joined AXYS in 2018 and now manages in-house funds using a blended quantitative and fundamental approach. He holds two degrees from the University of Cape Town.", "about": ""}, "niteen": {"name": "Niteen Heerasing", "org": "PwC Mauritius", "title": "Associate Director, Transactions and Valuations, PwC Mauritius", "bio": "Niteen leads PwC Mauritius’s Valuations and Modeling team, with 15 plus years in financial analysis and corporate finance, including feasibility studies for Smart City initiatives. He is a CFA charterholder.", "about": "PwC Mauritius is the Mauritian member firm of the PwC network."}, "kian": {"name": "Kian Jhuboo", "org": "Trimetys Group", "title": "Director, Trimetys Group", "bio": "Kian is a Director at Trimetys, the developer behind Cap Tamarin, Mauritius’s flagship Smart Village mixed-use coastal development.", "about": "Trimetys is the developer behind Cap Tamarin, Mauritius’s flagship Smart Village mixed-use coastal development."}, "vinesh": {"name": "Vinesh Chintaram", "org": "VISIO Architecture", "title": "Managing Partner and CEO, VISIO Architecture; Secretary General, Africa Union of Architects", "bio": "Vinesh co-founded VISIO Architecture, active across Africa, and has contributed to the AU-ECOSOCC on infrastructure and heritage since 2018, with 15 to 20 years of experience across 30 plus African countries.", "about": ""}, "laura": {"name": "Laura Merlini", "org": "CAIA Association", "title": "Managing Director, EMEA, CAIA Association", "bio": "Laura has led CAIA’s EMEA operations since 2012 and has been a CAIA Charterholder since 2007. Contribution by pre-recorded video.", "about": "The CAIA Association is a global professional body for alternative investment professionals and awards the CAIA Charter.", "video": true}, "oumila": {"name": "Oumila Sibartie", "org": "Lineage Investment Services", "title": "Co-Founder and Director, Lineage Investment Services; Founder, EarthenVest", "bio": "Oumila is an independent non-executive director on the boards of HV Holdings Ltd and Island Life Assurance Co. Ltd, with prior executive roles in business development and fund management at SBM and Absa (formerly Barclays Mauritius), and earlier experience as an investment analyst at Bloomberg LP.", "about": ""}};
+const dlg=document.getElementById('bioDialog');
+document.querySelectorAll('.speaker-open').forEach(btn=>btn.addEventListener('click',()=>{
+  const card=btn.closest('[data-person]'), k=card.dataset.person, p=PEOPLE[k];
+  document.getElementById('modalPhoto').innerHTML=`<img src="images/speakers/${k}.jpg" alt="${p.name}" onerror="this.style.display='none'">`;
+  document.getElementById('modalOrg').textContent=p.org||'';
+  document.getElementById('modalName').textContent=p.name||'';
+  document.getElementById('modalTitle').textContent=p.title||'';
+  document.getElementById('modalBio').textContent=p.bio||'';
+  const about=document.getElementById('modalAbout');
+  about.textContent=p.about ? 'About '+p.org+' — '+p.about : '';
+  dlg.showModal();
+}));
+document.querySelector('.close').addEventListener('click',()=>dlg.close());
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+const more=document.getElementById('morePeople');
+more.addEventListener('click',()=>{
+  document.querySelectorAll('.speaker-card').forEach(x=>x.classList.add('show'));
+  more.remove();
+});
+document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-</body>
-</html>
+</body></html>
