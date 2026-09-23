@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Invitation Letter · The African Circuit (internal)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f2ecde;--ink:#07131d;--navy:#000c1f;--gold:#b88932;--cyan:#05bcd4;--rust:#9e4d38;--grey:#5d6670;--line:rgba(7,19,29,.16)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:#e6dfcf;color:var(--ink);font-family:Inter,Arial,sans-serif}
+.app{display:grid;grid-template-columns:360px 1fr;min-height:100vh}
+.panel{background:var(--navy);color:#e8ecef;padding:26px 24px;overflow:auto;max-height:100vh;position:sticky;top:0}
+.panel h1{font:500 28px/1 "EB Garamond",serif;margin:0 0 6px;color:#f4ecd9}
+.panel .sub{font-size:12px;color:#9fa9b4;margin:0 0 20px;line-height:1.5}
+.k{font:700 10px Archivo,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.panel .k{color:var(--cyan);display:block;margin:18px 0 8px}
+.panel label{display:block;font:700 9px Archivo;letter-spacing:.12em;text-transform:uppercase;color:#8d98a4;margin:10px 0 4px}
+.panel input,.panel select,.panel textarea{width:100%;background:#0b2238;border:1px solid rgba(255,255,255,.18);color:#f4ecd9;padding:9px 10px;font:14px Inter,sans-serif}
+.panel textarea{min-height:60px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:13px;line-height:1.4;color:#dfe4e8}
+.chk input{width:auto;margin-top:2px}
+.btn{display:block;width:100%;margin-top:18px;padding:15px;border:0;background:var(--cyan);color:var(--navy);font:800 11px Archivo;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.btn.ghost{background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#f4ecd9;margin-top:10px}
+.warn{margin-top:14px;padding:12px;border-left:3px solid #e3a78f;background:rgba(227,167,143,.1);font-size:12.5px;line-height:1.5;color:#f1d5c9}
+.stage{padding:40px;display:flex;justify-content:center;overflow:auto}
+
+/* A4 letter */
+.letter{width:210mm;min-height:297mm;height:297mm;background:#fffdf8;box-shadow:0 20px 60px rgba(0,12,31,.18);padding:15mm 19mm 12mm;position:relative;display:flex;flex-direction:column;font-size:9.8pt;line-height:1.45;color:#1b2430}
+.lh{display:flex;align-items:center;gap:14px;padding-bottom:7mm;border-bottom:1.5px solid var(--ink)}
+.lh img{width:15mm;height:15mm;object-fit:contain}
+.lh b{display:block;font:600 19pt/1 "EB Garamond",serif;letter-spacing:.02em;color:var(--ink)}
+.lh b span{color:var(--gold)}
+.lh small{display:block;margin-top:4px;font:700 6.5pt Archivo;letter-spacing:.22em;text-transform:uppercase;color:#7a828c}
+.lh .route{margin-left:auto;text-align:right;font:800 20pt/1 Archivo;letter-spacing:-.02em;color:var(--cyan)}
+.lh .route small{color:#7a828c;letter-spacing:.14em;font-size:6.5pt}
+.meta{display:flex;justify-content:space-between;margin:7mm 0 5mm;font-size:9.5pt;color:#46505b}
+.to{margin-bottom:4mm}
+.subject{font:600 10.5pt Inter;margin:0 0 4mm;color:var(--ink);border-left:3px solid var(--gold);padding-left:10px}
+.letter p{margin:0 0 3mm}
+table.details{width:100%;border-collapse:collapse;margin:1mm 0 4mm;font-size:9.5pt}
+table.details th{text-align:left;font:700 7.5pt Archivo;letter-spacing:.12em;text-transform:uppercase;color:#7a828c;width:42%;padding:3px 8px 3px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.details td{padding:3px 0;border-bottom:1px solid var(--line);font-weight:500;color:var(--ink)}
+.sign{margin-top:5mm}
+.sign .line{width:62mm;border-bottom:1px solid var(--ink);height:12mm}
+.sign b{display:block;margin-top:3mm;font-weight:600;color:var(--ink)}
+.sign span{display:block;font-size:9.5pt;color:#46505b}
+.foot{margin-top:auto;padding-top:6mm;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;font-size:7.5pt;color:#7a828c;line-height:1.5}
+.draft{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;font:900 70pt Archivo;color:rgba(158,77,56,.12);transform:rotate(-28deg)}
+[contenteditable]:hover{outline:1px dashed rgba(5,188,212,.6)}
+[contenteditable]:focus{outline:1px solid var(--cyan)}
+
+@media(max-width:1100px){.app{grid-template-columns:1fr}.panel{position:relative;max-height:none}.stage{padding:16px}.letter{transform-origin:top left}}
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff}
+  .panel{display:none}
+  .app{display:block}
+  .stage{padding:0;display:block}
+  .letter{box-shadow:none;width:210mm;height:297mm;margin:0;overflow:hidden}
+  [contenteditable]:hover,[contenteditable]:focus{outline:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="panel">
+    <h1>Invitation letter</h1>
+    <p class="sub">Internal tool. Opens pre-filled from the link in the registration email. Check the details, then print or save as PDF. You can also click any text on the letter to edit it.</p>
+
+    <span class="k">Delegate</span>
+    <label>Full name as in passport</label><input data-f="n">
+    <div class="two"><div><label>Nationality</label><input data-f="na"></div><div><label>Passport no.</label><input data-f="p"></div></div>
+    <div class="two"><div><label>Passport expiry</label><input type="date" data-f="x"></div><div><label>Country of residence</label><input data-f="c"></div></div>
+    <label>Job title</label><input data-f="t">
+    <label>Organisation</label><input data-f="o">
+    <label>Access</label><input data-f="s">
+    <div class="two"><div><label>Arrival</label><input type="date" data-f="a"></div><div><label>Departure</label><input type="date" data-f="d"></div></div>
+
+    <span class="k">Letter</span>
+    <label>Reference</label><input data-f="ref">
+    <label>Date</label><input type="date" data-f="date">
+    <label>Addressed to</label><textarea data-f="to"></textarea>
+    <label>Costs</label>
+    <select data-f="cost">
+      <option value="own">Borne by the delegate / their organisation</option>
+      <option value="none">Do not mention</option>
+    </select>
+    <span class="k">Signatory</span>
+    <label>Name</label><input data-f="sn">
+    <label>Title</label><input data-f="st">
+
+    <label class="chk"><input type="checkbox" id="confirmed"> Registration confirmed and invoice paid</label>
+    <div class="warn" id="warn">Until the box above is ticked, the letter prints with a DRAFT watermark. Only issue letters for confirmed, paid registrations.</div>
+
+    <button class="btn" type="button" onclick="window.print()">Print / Save as PDF</button>
+    <button class="btn ghost" type="button" id="clear">Clear all fields</button>
+  </aside>
+
+  <main class="stage">
+    <article class="letter" id="letter">
+      <div class="draft" id="draft">DRAFT</div>
+      <header class="lh">
+        <img src="https://raw.githubusercontent.com/pfadmin21/-theafricancircuit.com/main/images/african-circuit-logo.png" alt="">
+        <div><b>THE AFRICAN <span>CIRCUIT</span></b><small>Capital · Policy · Investment</small></div>
+        <div class="route">NBO<small>Edition 02 · Nairobi</small></div>
+      </header>
+
+      <div class="meta"><span>Ref: <b data-o="ref"></b></span><span data-o="dateLong"></span></div>
+      <div class="to" data-o="to" contenteditable="true"></div>
+
+      <p class="subject" contenteditable="true">Letter of invitation: The African Circuit, Nairobi, 17–18 November 2026</p>
+
+      <p contenteditable="true">Dear Sir or Madam,</p>
+      <p contenteditable="true">We are pleased to confirm that <b data-o="n"></b>, <span data-o="role"></span>, is registered to attend <b>The African Circuit — Nairobi edition</b>, an institutional finance conference to be held on <b>17 and 18 November 2026</b> at the <b>Trademark Hotel, Village Market, Limuru Road, Nairobi, Kenya</b>.</p>
+      <p contenteditable="true">The African Circuit is a pan-African platform bringing together development finance institutions, institutional investors, fund managers, regulators and policymakers to discuss capital deployment across Africa. The purpose of the delegate's visit to Kenya is solely to attend this conference and its associated business meetings.</p>
+
+      <table class="details">
+        <tr><th>Full name (as in passport)</th><td data-o="n"></td></tr>
+        <tr><th>Nationality</th><td data-o="na"></td></tr>
+        <tr><th>Passport number</th><td data-o="p"></td></tr>
+        <tr data-row="x"><th>Passport expiry</th><td data-o="xLong"></td></tr>
+        <tr><th>Organisation</th><td data-o="o"></td></tr>
+        <tr><th>Registration</th><td data-o="s"></td></tr>
+        <tr><th>Intended stay in Kenya</th><td data-o="stay"></td></tr>
+      </table>
+
+      <p data-o="costTxt" contenteditable="true"></p>
+      <p contenteditable="true">We kindly request that the relevant authorities grant the delegate any assistance required to facilitate entry into Kenya for this purpose. Should you require any verification, please contact us at <b>admin@philanthropicfoundation.net</b>.</p>
+      <p contenteditable="true">Yours faithfully,</p>
+
+      <div class="sign">
+        <div class="line"></div>
+        <b data-o="sn"></b>
+        <span data-o="st"></span>
+        <span>On behalf of The African Circuit</span>
+      </div>
+
+      <footer class="foot">
+        <span>The African Circuit is operated by The Philanthropic Foundation, registered in Mauritius under the Foundations Act 2012, Reg. No. 679.</span>
+        <span>admin@philanthropicfoundation.net<br>theafricancircuit.com</span>
+      </footer>
+    </article>
+  </main>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const today=new Date().toISOString().slice(0,10);
+const fmt=d=>{if(!d)return '';const x=new Date(d+'T00:00:00');return isNaN(x)?d:x.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})};
+
+const D={n:'',na:'',p:'',x:'',c:'',t:'',o:'',s:'',a:'',d:'',e:'',
+  ref:'TAC-NBO26-'+String(Math.floor(Math.random()*9000)+1000),date:today,
+  to:'To whom it may concern\nDirectorate of Immigration Services\nRepublic of Kenya',
+  cost:'own',sn:'Shidan Ragavoodoo',st:'Acting Chief Executive Officer, The Philanthropic Foundation'};
+
+/* read details from the URL fragment (never sent to the server) */
+try{
+  const h=location.hash.slice(1);
+  if(h){const j=JSON.parse(decodeURIComponent(escape(atob(h.replace(/-/g,'+').replace(/_/g,'/')))));Object.assign(D,j);}
+}catch(e){console.warn('Could not read letter data from link',e)}
+
+function render(){
+  const role=[D.t,D.o].filter(Boolean).join(', ');
+  const out={...D,
+    dateLong:fmt(D.date), xLong:fmt(D.x), role:role||'—',
+    stay:(D.a||D.d)?`From ${fmt(D.a)||'—'} to ${fmt(D.d)||'—'}`:'—',
+    costTxt:D.cost==='own'?'All travel, accommodation and subsistence costs related to this visit will be borne by the delegate or their organisation.':''};
+  $$('[data-o]').forEach(el=>{const k=el.dataset.o;const v=out[k];
+    if(k==='to'){el.innerHTML=String(v||'').split('\n').map(l=>l.replace(/[<>&]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]))).join('<br>');return;}
+    el.textContent=(v===undefined||v==='')?'—':v;});
+  $('[data-row="x"]').hidden=!D.x;
+  $('[data-o="costTxt"]').hidden=!out.costTxt;
+  const ok=$('#confirmed').checked;
+  $('#draft').hidden=ok; $('#warn').hidden=ok;
+  document.title=`Invitation letter · ${D.n||'delegate'} · The African Circuit`;
+}
+$$('[data-f]').forEach(i=>{i.value=D[i.dataset.f]||'';i.addEventListener('input',()=>{D[i.dataset.f]=i.value;render()})});
+$('#confirmed').addEventListener('change',render);
+$('#clear').addEventListener('click',()=>{['n','na','p','x','c','t','o','s','a','d'].forEach(k=>D[k]='');$$('[data-f]').forEach(i=>i.value=D[i.dataset.f]||'');history.replaceState(null,'',location.pathname);render()});
+render();
+</script>
+</body>
+</html>
