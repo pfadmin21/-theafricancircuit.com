@@ -92,6 +92,18 @@ button{font:inherit}
 .ed-meta svg{width:15px;height:15px;stroke:var(--gold);fill:none;stroke-width:1.6}
 @media(max-width:900px){.ed-grid{grid-template-columns:1fr}.premise-grid{grid-template-columns:1fr}}
 
+/* Gallery */
+.gallery-preview{padding:88px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.gallery-grid{display:grid;grid-template-columns:1.35fr .65fr .65fr;grid-template-rows:220px 220px;gap:8px;margin-top:34px}
+.gallery-item{position:relative;overflow:hidden;background:#071725;border:1px solid var(--border)}
+.gallery-item:first-child{grid-row:1/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.03);transition:transform .45s ease,filter .45s ease}
+.gallery-item:hover img{transform:scale(1.025);filter:saturate(1) contrast(1.03)}
+.gallery-item .ph{width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#0b2030,#071725);font:500 9px "DM Mono";letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.38)}
+.gallery-actions{display:flex;justify-content:center;gap:10px;margin-top:28px}
+@media(max-width:900px){.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:280px 180px 180px}.gallery-item:first-child{grid-column:1/3;grid-row:auto}}
+@media(max-width:600px){.gallery-grid{display:grid;grid-template-columns:1fr;grid-template-rows:280px 180px 180px 180px 180px}.gallery-item:first-child{grid-column:auto}.gallery-actions{flex-direction:column}.gallery-actions .btn{width:100%}}
+
 /* Footer */
 footer{padding:48px 0 23px}
 .footer-grid{display:grid;grid-template-columns:1.15fr 1fr .7fr .7fr;gap:1px;background:var(--border)}
@@ -130,36 +142,32 @@ footer{padding:48px 0 23px}
       <span><strong>THE AFRICAN <span>CIRCUIT</span></strong><small>Capital · Policy · Investment</small></span>
     </a>
     <nav class="links">
-      <a href="/">Home</a>
-      <a class="active" href="/conference/">Conference</a>
-      <a href="/institute/">Institute</a>
-      <a href="/research/">Research</a>
-      <a href="/exchange/">Exchange</a>
-      <a href="/membership/">Membership</a>
-      <a href="/about/">The Platform</a>
-      <a class="join" href="/membership/">Join the Network</a>
+      <a href="/the-circuit/">The Circuit</a>
+      <a class="active" href="/conference/">Editions</a>
+      <a href="/people/">People</a>
+      <a href="/insights/">Insights</a>
+      <a href="/gallery/">Gallery</a>
+      <a class="join" href="/conference/nairobi.html">Attend</a>
     </nav>
     <button class="menu" aria-label="Open menu">☰</button>
   </div>
 </header>
 <nav class="mobile">
-  <a href="/">Home</a>
-  <a href="/conference/">Conference</a>
-  <a href="/institute/">Institute</a>
-  <a href="/research/">Research</a>
-  <a href="/exchange/">Exchange</a>
-  <a href="/membership/">Membership</a>
-  <a href="/about/">The Platform</a>
-  <a href="/membership/">Join the Network</a>
+  <a href="/the-circuit/">The Circuit</a>
+  <a href="/conference/">Editions</a>
+  <a href="/people/">People</a>
+  <a href="/insights/">Insights</a>
+  <a href="/gallery/">Gallery</a>
+  <a href="/conference/nairobi.html">Attend</a>
 </nav>
 
 <main>
 <section class="pagehero">
   <div class="pagehero-bg"></div>
   <div class="wrap pagehero-inner">
-    <div class="kicker">The Conference Calendar</div>
-    <h1>Africa's Capital Story, <em>Told From Africa</em></h1>
-    <p>The conversations that decide where African capital goes have too often happened in London, Dubai or New York — about the continent, without it in the room. The African Circuit exists to move that dialogue home: institutional investors, DFIs, regulators and family offices, meeting on the continent itself, across the jurisdictions actually shaping its next decade.</p>
+    <div class="kicker">The African Circuit</div>
+    <h1>One circuit. <em>Four cities.</em></h1>
+    <p>The African Circuit brings together the institutions responsible for mandate, policy, structuring and deployment — on the continent, across the jurisdictions shaping Africa's next investment cycle. Mauritius · Nairobi · Cape Town · Casablanca.</p>
   </div>
 </section>
 
@@ -193,15 +201,15 @@ footer{padding:48px 0 23px}
     </div>
     <div class="ed-grid">
       <a class="ed-card" href="/conference/mauritius.html">
-        <span class="ed-status open">Registration Open</span>
-        <div class="ed-sub">Flagship</div>
+        <span class="ed-status soon">Completed</span>
+        <div class="ed-sub">Flagship Edition</div>
         <h2>Mauritius</h2>
         <p>Where the Circuit begins — the gateway jurisdiction long trusted by DFIs, fund managers and family offices structuring African exposure.</p>
         <div class="ed-meta">
           <div><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>14–15 Sept 2026</div>
           <div><svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 1 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2"/></svg>Port Louis</div>
         </div>
-        <span class="btn gold">View Conference →</span>
+        <span class="btn ghost">Explore Mauritius →</span>
       </a>
       <a class="ed-card" href="/conference/nairobi.html">
         <span class="ed-status open">Registration Open</span>
@@ -237,6 +245,27 @@ footer{padding:48px 0 23px}
     </div>
   </div>
 </section>
+
+<section class="gallery-preview">
+  <div class="wrap">
+    <div class="section-title">
+      <div class="kicker">From the Circuit</div>
+      <h2>Mauritius 2026</h2>
+    </div>
+    <div class="gallery-grid" aria-label="Mauritius 2026 gallery preview">
+      <a class="gallery-item" href="/gallery/"><div class="ph">Conference</div></a>
+      <a class="gallery-item" href="/gallery/"><div class="ph">Panels</div></a>
+      <a class="gallery-item" href="/gallery/"><div class="ph">The Conduit</div></a>
+      <a class="gallery-item" href="/gallery/"><div class="ph">Roundtables</div></a>
+      <a class="gallery-item" href="/gallery/"><div class="ph">People</div></a>
+    </div>
+    <div class="gallery-actions">
+      <a class="btn ghost" href="/conference/mauritius.html">Explore Mauritius 2026 →</a>
+      <a class="btn gold" href="/gallery/">View Full Gallery →</a>
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer>
@@ -244,17 +273,17 @@ footer{padding:48px 0 23px}
     <div class="footer-grid">
     <div class="footer-cell">
         <div class="kicker">Stay Connected</div>
-        <p>Follow us for updates on events, research and opportunities.</p>
+        <p>Follow the Circuit for new editions, institutional conversations and insights.</p>
         <a class="btn gold" href="https://mu.linkedin.com/company/the-african-circuit" target="_blank" rel="noopener">Follow on LinkedIn →</a>
       </div>
       <div class="footer-cell">
         <div class="kicker">Stay Connected</div>
-        <p>Subscribe for updates on events, research and opportunities.</p>
+        <p>Subscribe for updates from the Circuit, new editions and insights.</p>
         <form class="newsletter"><input type="email" placeholder="Enter your email"><button type="submit">Subscribe</button></form>
       </div>
       <div class="footer-cell">
         <div class="kicker">Quick Links</div>
-        <a href="/conference/">Conference</a><a href="/institute/">Institute</a><a href="/research/">Research</a><a href="/exchange/">Exchange</a><a href="/membership/">Membership</a>
+        <a href="/the-circuit/">The Circuit</a><a href="/conference/">Editions</a><a href="/people/">People</a><a href="/insights/">Insights</a><a href="/gallery/">Gallery</a><a href="/conference/nairobi.html">Attend</a>
       </div>
       <div class="footer-cell">
         <div class="kicker">Legal</div>
