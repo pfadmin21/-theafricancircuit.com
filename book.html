@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000C1F">
+<title>Your Pass to Nairobi · 17–18 November 2026 | The African Circuit</title>
+<meta name="description" content="Register for The African Circuit Nairobi, 17–18 November 2026, Trademark Hotel, Village Market, Nairobi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=EB+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   BOOKING — "the pass" concept
+   The Circuit uses airport codes (MRU, NBO, CPT, CMN): the
+   page treats every access type as a pass you are issued.
+   ========================================================= */
+:root{
+  --paper:#f2ecde;--paper-2:#e9e1cd;--card:#fbf7ec;
+  --ink:#07131d;--navy:#000c1f;--grey:#5d6670;--soft:#8a929b;
+  --gold:#b88932;--cyan:#05bcd4;--cyan-d:#087f98;--rust:#9e4d38;
+  --line:rgba(7,19,29,.16);--pad:clamp(20px,4.5vw,72px);--head:86px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.26;
+  background:repeating-linear-gradient(8deg,rgba(7,19,29,.024) 0 1px,transparent 1px 5px),repeating-linear-gradient(97deg,rgba(255,255,255,.14) 0 1px,transparent 1px 8px)}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{width:min(1400px,100%);margin:auto;padding-left:var(--pad);padding-right:var(--pad)}
+.k{font:700 10px Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--soft)}
+.raw-word{font-family:Archivo,Arial,sans-serif;font-weight:800}
+.raw-hand{font-family:"EB Garamond",Georgia,serif;font-style:italic;font-weight:600}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(242,236,222,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:var(--head);display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:14px;margin-right:auto}
+.brand img{width:58px;height:58px;object-fit:contain}
+.brand-text b{font:600 clamp(19px,2vw,31px) "EB Garamond",serif;letter-spacing:.02em}
+.brand-text b span{color:var(--gold)}
+.brand-text small{display:block;margin-top:3px;color:#8e97a6;font:600 9px Archivo;letter-spacing:.3em;text-transform:uppercase}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font:600 12px Archivo;text-transform:uppercase;color:#5f6873}
+nav a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:#f6f2e9!important;padding:18px 24px}
+
+/* ---------- ticket primitive ---------- */
+.ticket{--bg:var(--card);--stub:170px;position:relative;display:grid;grid-template-columns:minmax(0,1fr) var(--stub);background:var(--bg);filter:drop-shadow(0 1px 0 rgba(7,19,29,.18)) drop-shadow(0 14px 28px rgba(7,19,29,.07));
+  -webkit-mask:radial-gradient(circle 13px at calc(100% - var(--stub)) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at calc(100% - var(--stub)) 100%,#0000 98%,#000) bottom/100% 51% no-repeat;
+          mask:radial-gradient(circle 13px at calc(100% - var(--stub)) 0,#0000 98%,#000) top/100% 51% no-repeat,radial-gradient(circle 13px at calc(100% - var(--stub)) 100%,#0000 98%,#000) bottom/100% 51% no-repeat}
+.ticket .stub{border-left:2px dashed rgba(7,19,29,.25);padding:26px 24px;display:flex;flex-direction:column;justify-content:space-between}
+.barcode{height:44px;background:repeating-linear-gradient(90deg,currentColor 0 2px,transparent 2px 4px,currentColor 4px 5px,transparent 5px 8px,currentColor 8px 11px,transparent 11px 12px,currentColor 12px 13px,transparent 13px 16px);opacity:.85}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(56px,7vw,100px) 0 clamp(60px,7vw,110px);position:relative;overflow:hidden}
+.hero-top{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,64px)}
+.hero h1{font:500 clamp(54px,7.2vw,128px)/.86 "EB Garamond",serif;letter-spacing:-.05em;margin:0}
+.hero h1 i{font-style:italic;color:var(--rust)}
+.hero-note{max-width:380px;color:var(--grey);line-height:1.7;margin:0}
+.hero-note b{color:var(--ink);font-weight:600}
+.big-pass{--bg:var(--navy);--stub:clamp(200px,24vw,330px);color:#f6f2e9}
+.big-pass .body{padding:clamp(26px,3.4vw,46px);position:relative;overflow:hidden}
+.route{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:clamp(14px,2vw,28px)}
+.code{font:900 clamp(56px,9vw,150px)/.8 Archivo,sans-serif;letter-spacing:-.04em}
+.code small{display:block;font:700 10px Archivo;letter-spacing:.2em;color:#9fa9b4;margin-top:14px}
+.code.to{color:var(--cyan)}
+.path{position:relative;height:40px}
+.path svg{width:100%;height:100%;overflow:visible}
+.pass-fields{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:clamp(28px,3.5vw,48px);padding-top:22px;border-top:1px solid rgba(255,255,255,.16)}
+.pass-fields div{min-width:0}
+.pass-fields .k{color:#8d98a4;display:block;margin-bottom:8px}
+.pass-fields b{font:500 clamp(18px,1.7vw,24px)/1.15 "EB Garamond",serif;display:block}
+.big-pass .stub{border-left-color:rgba(255,255,255,.3);gap:20px}
+.big-pass .stub .k{color:#8d98a4}
+.stub-city{font:900 clamp(40px,4.4vw,64px)/.9 Archivo;letter-spacing:-.03em;color:var(--gold)}
+.stub-cta{display:block;text-align:center;background:var(--cyan);color:var(--navy);padding:16px 12px;font:800 11px Archivo;letter-spacing:.14em;text-transform:uppercase}
+.stub-cta:hover{background:#3fd3e6}
+.big-pass .barcode{color:#f6f2e9;opacity:.6}
+.scribble{position:absolute;pointer-events:none}
+.scribble.s1{right:4%;top:14px;width:180px;opacity:.9}
+
+/* ---------- fare board (releases) ---------- */
+.section{padding:clamp(70px,9vw,130px) 0;border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px;align-items:end;margin-bottom:46px}
+.sec-head h2{font:500 clamp(46px,5.6vw,92px)/.88 "EB Garamond",serif;letter-spacing:-.045em;margin:12px 0 0}
+.sec-head p{color:var(--grey);line-height:1.7;max-width:540px;margin:0;font-size:clamp(16px,1.25vw,19px)}
+.board{background:var(--navy);color:#f6f2e9;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;padding:1px;margin-bottom:34px}
+.board div{background:#06182c;padding:18px 20px;position:relative}
+.board .k{color:#7f8b98}
+.board b{display:block;font:700 15px Archivo;letter-spacing:.04em;margin:8px 0 4px;text-transform:uppercase}
+.board span.d{font-size:13px;color:#9fa9b4}
+.board .now{background:#0b2740}
+.board .now{box-shadow:inset 0 3px 0 var(--cyan)}.board .now .k{color:var(--cyan)}
+.board .past{opacity:.35}
+.board .past b{text-decoration:line-through}
+
+/* ---------- access tickets ---------- */
+.passes{display:grid;gap:16px}
+.acc{--stub:230px;cursor:pointer;transition:transform .2s}
+.acc:hover{transform:translateY(-2px)}
+.acc input{position:absolute;opacity:0;pointer-events:none}
+.acc .body{padding:28px 32px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:30px;align-items:start;position:relative}
+.acc h3{font:500 40px/1 "EB Garamond",serif;margin:10px 0 10px;letter-spacing:-.02em}
+.acc .tag{color:var(--gold)}
+.acc p{margin:0;color:var(--grey);line-height:1.6;font-size:14px}
+.acc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.acc li{font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:#3f4852}
+.acc .stub{text-align:left}
+.acc .price{font:500 58px/1 "EB Garamond",serif;letter-spacing:-.03em}
+.acc .price small{font:700 11px Archivo;letter-spacing:.14em;color:var(--soft);margin-left:4px}
+.acc .from{color:var(--soft)}
+.acc .rise{font:600 11px Archivo;letter-spacing:.04em;color:var(--rust);margin-top:6px;display:block}
+.acc .pick{margin-top:16px;font:800 10px Archivo;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.acc .pick::before{content:"";width:18px;height:18px;border:1.6px solid currentColor;border-radius:50%}
+.acc.featured{--bg:var(--navy);color:#f6f2e9}
+.acc.featured p,.acc.featured .from,.acc.featured .price small{color:#9fa9b4}
+.acc.featured li{border-color:rgba(255,255,255,.2);color:#dfe4e8}
+.acc.featured .tag{color:var(--cyan)}
+.acc.featured .stub{border-left-color:rgba(255,255,255,.3)}
+.acc.featured .rise{color:#e8a88f}
+.stamp{position:absolute;right:26px;top:22px;transform:rotate(-8deg) scale(.6);opacity:0;transition:opacity .2s,transform .25s cubic-bezier(.2,1.6,.4,1);
+  font:900 13px Archivo;letter-spacing:.18em;color:var(--rust);border:3px solid var(--rust);padding:8px 12px;border-radius:4px;pointer-events:none}
+.acc.featured .stamp{color:var(--cyan);border-color:var(--cyan)}
+.acc.selected .stamp{opacity:.95;transform:rotate(-8deg) scale(1)}
+.acc.selected .pick::before{background:radial-gradient(circle,currentColor 0 4px,transparent 5px)}
+.acc.selected{transform:none}
+.acc.selected:not(.featured){--bg:#fffdf6}
+.notes{display:flex;flex-wrap:wrap;gap:8px 30px;margin-top:22px;font-size:13px;color:var(--grey)}
+details.compare{margin-top:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+details.compare summary{cursor:pointer;padding:18px 0;font:800 11px Archivo;letter-spacing:.16em;text-transform:uppercase;list-style:none;display:flex;justify-content:space-between}
+details.compare summary::after{content:"+";font-size:18px}
+details.compare[open] summary::after{content:"−"}
+.tbl-wrap{overflow-x:auto;padding-bottom:18px}
+table{width:100%;min-width:620px;border-collapse:collapse;font-size:14px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left}
+thead th{font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid var(--ink)}
+.hl{background:rgba(5,188,212,.08);font-weight:600}
+tbody th{font-weight:500;color:#46505b}
+
+/* ---------- registration ---------- */
+#register{background:var(--paper-2)}
+.reg{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:clamp(30px,4vw,64px);align-items:start}
+.step{display:grid;grid-template-columns:54px minmax(0,1fr);gap:18px;padding:34px 0;border-top:1px solid var(--line)}
+.step:first-child{border-top:0;padding-top:0}
+.step-n{font:900 30px/1 Archivo;color:transparent;-webkit-text-stroke:1.2px var(--ink)}
+.step h3{font:500 32px/1 "EB Garamond",serif;margin:0 0 6px}
+.step .sub{color:var(--grey);font-size:14px;margin:0 0 22px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.full{grid-column:1/-1}
+.f label{font:700 10px Archivo;letter-spacing:.14em;text-transform:uppercase;color:#46505b}
+.f label i{font-style:normal;color:var(--rust)}
+.f input,.f select,.f textarea{width:100%;background:transparent;border:0;border-bottom:1.5px solid rgba(7,19,29,.35);padding:10px 2px;font-size:16px;border-radius:0}
+.f select{background:transparent}
+.f textarea{border:1.5px solid rgba(7,19,29,.25);padding:12px;min-height:100px;resize:vertical;background:rgba(255,255,255,.35)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 2px 0 var(--cyan)}
+.f input:user-invalid,.f select:user-invalid{border-color:var(--rust)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:block;padding:10px 14px;border:1.5px solid rgba(7,19,29,.25);border-radius:999px;font-size:13px;background:rgba(255,255,255,.35);transition:background .15s}
+.chip input:checked+span{background:var(--ink);color:#f6f2e9;border-color:var(--ink)}
+.chip input:focus-visible+span{outline:2px solid var(--cyan);outline-offset:2px}
+.seats{display:inline-flex;align-self:flex-start;align-items:center;border:1.5px solid rgba(7,19,29,.35)}
+.seats button{width:46px;height:46px;border:0;background:transparent;font-size:20px;cursor:pointer}
+.seats button:hover{background:rgba(255,255,255,.5)}
+.seats input{width:60px;height:46px;text-align:center;border:0;border-left:1.5px solid rgba(7,19,29,.35);border-right:1.5px solid rgba(7,19,29,.35);background:transparent;font-weight:600;-moz-appearance:textfield}
+.seats input::-webkit-inner-spin-button{-webkit-appearance:none}
+.consent{display:flex;gap:12px;font-size:14px;line-height:1.55;color:#3d4650;margin-top:8px}
+.consent input{margin-top:3px;accent-color:var(--ink);width:17px;height:17px;flex:none}
+.hp{position:absolute;left:-9999px}
+.submit{margin-top:26px;display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:#f6f2e9;border:0;padding:22px 30px;font:800 11px Archivo;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.submit:hover{background:#12263a}
+.submit[disabled]{opacity:.6;cursor:wait}
+.status{margin-top:16px;font-size:14px;line-height:1.6}
+.status.err{color:var(--rust)}
+
+/* live pass preview */
+.preview{position:sticky;top:calc(var(--head) + 24px)}
+.preview .k.cap{display:block;margin-bottom:12px}
+.live{--bg:var(--navy);--stub:0px;color:#f6f2e9;display:block;-webkit-mask:none;mask:none}
+.live-top{padding:26px 26px 20px;display:flex;justify-content:space-between;align-items:start;gap:10px}
+.live-top .code{font-size:58px}
+.live-top .who{text-align:right}
+.live-name{font:500 26px/1.05 "EB Garamond",serif;display:block;min-height:28px;word-break:break-word}
+.live-org{font-size:12px;color:#9fa9b4;display:block;margin-top:4px}
+.tear{height:26px;position:relative;margin:0 -1px}
+.tear::before{content:"";position:absolute;left:18px;right:18px;top:50%;border-top:2px dashed rgba(255,255,255,.3)}
+.tear::after{content:"";position:absolute;inset:0;background:radial-gradient(circle 13px at 0 50%,var(--paper-2) 98%,transparent) left/50% 100% no-repeat,radial-gradient(circle 13px at 100% 50%,var(--paper-2) 98%,transparent) right/50% 100% no-repeat}
+.live-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:6px 26px 20px}
+.live-grid .k{color:#7f8b98;display:block;margin-bottom:5px}
+.live-grid b{font-size:14px;font-weight:600}
+.live-total{display:flex;justify-content:space-between;align-items:baseline;padding:18px 26px;border-top:1px solid rgba(255,255,255,.14)}
+.live-total strong{font:500 42px "EB Garamond",serif}
+.live .barcode{margin:0 26px 22px;color:#f6f2e9;opacity:.5}
+.preview p{font-size:12px;line-height:1.6;color:var(--grey);margin:14px 0 0}
+.sent-stamp{position:absolute;right:22px;top:120px;transform:rotate(-10deg);font:900 15px Archivo;letter-spacing:.2em;color:var(--cyan);border:3px solid var(--cyan);padding:8px 12px;border-radius:4px;display:none}
+.sent .sent-stamp{display:block}
+.done{display:none;padding:40px 0}
+.done h3{font:500 clamp(40px,4vw,60px)/.95 "EB Garamond",serif;margin:12px 0 16px;letter-spacing:-.03em}
+.done p{color:var(--grey);line-height:1.7;max-width:520px}
+.sent .done{display:block}
+.sent #bookingForm{display:none}
+
+/* ---------- venue ---------- */
+.venue{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.venue-card{--stub:120px}
+.venue-card .body{padding:34px}
+.venue-card h3{font:500 clamp(34px,3.4vw,50px)/.95 "EB Garamond",serif;margin:12px 0 18px;letter-spacing:-.03em}
+.venue-card dl{margin:0;display:grid;grid-template-columns:120px 1fr;gap:12px 18px;font-size:15px;line-height:1.5}
+.venue-card dt{font:700 10px Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+.venue-card dd{margin:0}
+.venue-card .stub{align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);font:900 26px Archivo;letter-spacing:.2em;color:var(--rust)}
+.venue-map svg{width:100%;height:auto;display:block}
+.link{display:inline-block;margin-top:24px;font:800 11px Archivo;letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid var(--gold);padding-bottom:4px}
+
+footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;gap:30px;font-size:11px;flex-wrap:wrap}
+.foot a{margin-left:18px}
+
+@media(max-width:1100px){
+  nav a:not(.nav-cta){display:none}
+  .reg{grid-template-columns:1fr}
+  .preview{position:relative;top:0;order:-1}
+  .acc .body{grid-template-columns:1fr;gap:16px}
+}
+@media(max-width:900px){
+  .pass-fields{grid-template-columns:1fr 1fr}
+  .board{grid-template-columns:1fr 1fr}
+  .sec-head,.venue{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+  .brand img{width:46px;height:46px}.brand-text b{font-size:17px}.brand-text small{display:none}
+  .nav-cta{padding:14px 16px}
+  .ticket{grid-template-columns:1fr}
+  .ticket,.big-pass,.acc,.venue-card{-webkit-mask:none;mask:none}
+  .ticket .stub{border-left:0;border-top:2px dashed rgba(7,19,29,.25)}
+  .big-pass .stub,.acc.featured .stub{border-top-color:rgba(255,255,255,.3)}
+  .route{grid-template-columns:1fr;gap:6px}
+  .path{height:28px;transform:rotate(90deg);width:40px}
+  .scribble.s1{display:none}
+  .acc .body{padding:24px}
+  .acc .stub{flex-direction:row;align-items:end;flex-wrap:wrap;gap:10px}
+  .step{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .venue-card .stub{writing-mode:horizontal-tb;transform:none;padding:14px 24px;justify-content:flex-start}
+  .venue-card dl{grid-template-columns:1fr;gap:2px}
+  .venue-card dd{margin-bottom:10px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* =================== MOBILE LAYER =================== */
+[hidden]{display:none!important}
+.menu-btn{display:none;border:1.5px solid var(--line);background:transparent;padding:12px 14px;font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.mbar{display:none}
+@media(max-width:1100px){
+  .menu-btn{display:block}
+  nav{position:absolute;top:var(--head);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:flex}
+  nav a,nav a:not(.nav-cta){display:block;padding:18px var(--pad);border-top:1px solid var(--line);font-size:13px}
+  .nav-cta{padding:18px var(--pad)!important}
+  .preview{order:0}
+}
+@media(max-width:650px){
+  :root{--head:70px}
+  .nav{gap:12px}
+  .brand img{width:40px;height:40px}
+  .hero{padding:36px 0 44px}
+  .hero-top{margin-bottom:26px;gap:16px}
+  .hero h1{font-size:clamp(46px,14vw,60px)}
+  .hero-note{font-size:15px}
+  /* big pass: horizontal route, compact stub */
+  .big-pass .body{padding:24px 20px}
+  .route{grid-template-columns:auto 1fr auto!important;gap:10px!important}
+  .code{font-size:clamp(40px,13vw,54px)}
+  .code small{display:none}
+  .path{height:24px;transform:none;width:auto}
+  .pass-fields{gap:16px 14px;margin-top:22px;padding-top:18px}
+  .pass-fields b{font-size:17px}
+  .big-pass .stub{flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px}
+  .big-pass .stub > div:first-child,.big-pass .barcode{display:none}
+  .big-pass .stub .k{font-size:9px;letter-spacing:.12em}
+  .stub-cta{padding:14px 16px;flex:none}
+  /* sections */
+  .section{padding:56px 0}
+  .sec-head{margin-bottom:28px;gap:14px}
+  .sec-head h2{font-size:clamp(42px,12vw,54px)}
+  .sec-head p{font-size:15px}
+  .board{grid-template-columns:repeat(4,72%);overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin-left:calc(var(--pad)*-1);margin-right:calc(var(--pad)*-1);padding:1px var(--pad);background:transparent;gap:6px}
+  .board div{scroll-snap-align:start;border:1px solid #0b2740}
+  /* compact access tickets */
+  .passes{gap:12px}
+  .acc .body{padding:20px 20px 16px}
+  .acc h3{font-size:30px;margin:6px 0 6px}
+  .acc p{font-size:13px}
+  .acc ul,.stamp{display:none}
+  .acc .stub{flex-direction:row!important;align-items:center!important;justify-content:space-between;padding:14px 20px!important}
+  .acc .price{font-size:40px}
+  .acc .pick{margin-top:0}
+  .acc.selected{outline:2px solid var(--cyan);outline-offset:-2px}
+  .notes{flex-direction:column;gap:6px;font-size:12px}
+  /* form */
+  .step{padding:26px 0;gap:10px}
+  .step-n{font-size:22px}
+  .step h3{font-size:28px}
+  .chip span{padding:11px 14px}
+  .submit{width:100%;justify-content:center}
+  .live-top .code{font-size:46px}
+  .live-name{font-size:22px}
+  .done h3{font-size:40px}
+  /* venue */
+  .venue-card .body{padding:24px 20px}
+  /* sticky bottom bar */
+  body{padding-bottom:76px}
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;align-items:center;gap:12px;background:var(--navy);color:#f6f2e9;padding:12px var(--pad) calc(12px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .25s ease;box-shadow:0 -10px 30px rgba(0,12,31,.25)}
+  .mbar.show{transform:none}
+  .mbar div{flex:1;min-width:0}
+  .mbar .k{color:#8d98a4;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mbar strong{font:500 26px/1.1 "EB Garamond",serif}
+  .mbar a{background:var(--cyan);color:var(--navy);padding:14px 16px;font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;flex:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="https://raw.githubusercontent.com/pfadmin21/-theafricancircuit.com/main/images/african-circuit-logo.png" alt="The African Circuit">
+      <span class="brand-text"><b>THE AFRICAN <span>CIRCUIT</span></b><small>Capital · Policy · Investment</small></span>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+    <nav id="primaryNav" aria-label="Primary">
+      <a href="index.html#circuit">The Circuit</a><a href="index.html#programme">Programme</a><a href="#access">Access</a><a href="#venue">Venue</a>
+      <a class="nav-cta" href="#register">Register</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HERO: the pass ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <h1>Your pass<br>to <i>Nairobi.</i></h1>
+      <p class="hero-note">The second edition of the Circuit. Two days on one question: <b>how does capital move from mandate to actual deployment?</b></p>
+    </div>
+
+    <div class="ticket big-pass">
+      <div class="body">
+        
+        <div class="route">
+          <div class="code">MRU<small>01 · Mauritius · Completed</small></div>
+          <div class="path" aria-hidden="true">
+            <svg viewBox="0 0 300 40" preserveAspectRatio="none"><path d="M4 20 Q150 -6 296 20" fill="none" stroke="#b88932" stroke-width="2" stroke-dasharray="7 7" vector-effect="non-scaling-stroke"/><circle cx="4" cy="20" r="4" fill="#f6f2e9"/><circle cx="296" cy="20" r="5" fill="#05bcd4"/></svg>
+          </div>
+          <div class="code to">NBO<small>02 · Nairobi · Next</small></div>
+        </div>
+        <div class="pass-fields">
+          <div><span class="k">Dates</span><b>17–18 November 2026</b></div>
+          <div><span class="k">Venue</span><b>Trademark Hotel</b></div>
+          <div><span class="k">Area</span><b>Village Market, Gigiri</b></div>
+          <div><span class="k">Capacity</span><b>300 seats</b></div>
+        </div>
+      </div>
+      <div class="stub">
+        <div><span class="k">Edition 02</span><div class="stub-city">NBO</div></div>
+        <div><span class="k" id="heroRelease">First release</span></div>
+        <a class="stub-cta" href="#access">Choose access</a>
+        <div class="barcode" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACCESS ============ -->
+<section class="section" id="access">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="k">Access</span><h2>Pick your pass.</h2></div>
+      <p>Prices rise with each release, so the earlier you register the lower the rate. Choose a pass and it is carried into your registration below.</p>
+    </div>
+
+    <div class="board" id="board" aria-label="Price releases"></div>
+    <div class="passes" id="passes"></div>
+
+    <div class="notes"><span id="taxNote"></span><span>Closed-door sessions are curated by invitation and are not part of any access category.</span></div>
+
+    <details class="compare">
+      <summary>Compare what's included</summary>
+      <div class="tbl-wrap"><table id="compare"></table></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ REGISTER ============ -->
+<section class="section" id="register">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="k">Registration</span><h2>Issue your pass.</h2></div>
+      <p>Fill in your details and watch your pass take shape. We confirm your registration by email and send an invoice with payment details. Taxes and fees are confirmed before payment.</p>
+    </div>
+
+    <div class="reg" id="regWrap">
+      <div>
+        <form id="bookingForm" novalidate>
+          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="_subject" id="subjectField" value="Nairobi 2026 registration">
+          <input type="hidden" name="edition" value="Nairobi · 17–18 November 2026 · Trademark Hotel, Village Market">
+          <input type="hidden" name="access" id="passField">
+          <input type="hidden" name="release" id="releaseField">
+          <input type="hidden" name="unit_price" id="priceField">
+          <input type="hidden" name="estimated_total" id="totalField">
+
+          <div class="step">
+            <div class="step-n">01</div>
+            <div>
+              <h3>Your pass</h3>
+              <p class="sub">Selected: <strong id="passLabel">—</strong> · <a href="#access" style="border-bottom:1px solid var(--gold)">change</a></p>
+              <div class="f" id="dayField" hidden style="margin-bottom:20px">
+                <label>Which day?</label>
+                <div class="chips">
+                  <label class="chip"><input type="radio" name="day" value="Day 1 · Tuesday 17 November" checked><span>Day 1 · Tue 17 Nov</span></label>
+                  <label class="chip"><input type="radio" name="day" value="Day 2 · Wednesday 18 November"><span>Day 2 · Wed 18 Nov</span></label>
+                </div>
+              </div>
+              <div class="f">
+                <label for="f-seats">Seats</label>
+                <div class="seats">
+                  <button type="button" data-step="-1" aria-label="Fewer seats">−</button>
+                  <input id="f-seats" name="seats" type="number" min="1" max="20" value="1" inputmode="numeric">
+                  <button type="button" data-step="1" aria-label="More seats">+</button>
+                </div>
+              </div>
+              <div class="f full" style="margin-top:20px" id="othersField" hidden><label for="f-others">Other delegates (name, title, email — one per line)</label><textarea id="f-others" name="additional_delegates"></textarea></div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">02</div>
+            <div>
+              <h3>Delegate</h3>
+              <p class="sub">The person attending, or the lead delegate for a group.</p>
+              <div class="row">
+                <div class="f"><label for="f-first">First name <i>*</i></label><input id="f-first" name="first_name" required autocomplete="given-name"></div>
+                <div class="f"><label for="f-last">Last name <i>*</i></label><input id="f-last" name="last_name" required autocomplete="family-name"></div>
+                <div class="f"><label for="f-title">Job title <i>*</i></label><input id="f-title" name="job_title" required autocomplete="organization-title"></div>
+                <div class="f"><label for="f-org">Organisation <i>*</i></label><input id="f-org" name="organisation" required autocomplete="organization"></div>
+                <div class="f"><label for="f-email">Work email <i>*</i></label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+                <div class="f"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+254 …"></div>
+                <div class="f"><label for="f-country">Country <i>*</i></label><input id="f-country" name="country" required autocomplete="country-name"></div>
+                <div class="f"><label for="f-type">Institution type <i>*</i></label>
+                  <select id="f-type" name="institution_type" required>
+                    <option value="">Select…</option>
+                    <option>Development finance institution</option>
+                    <option>Institutional investor / pension fund</option>
+                    <option>Fund manager / private equity</option>
+                    <option>Family office</option>
+                    <option>Bank / financial institution</option>
+                    <option>Government / regulator / agency</option>
+                    <option>Advisory / legal / fund services</option>
+                    <option>Corporate / project developer</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="f full"><label for="f-linkedin">LinkedIn profile</label><input id="f-linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/…"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">03</div>
+            <div>
+              <h3>Your interests</h3>
+              <p class="sub">Helps us shape introductions in the room. Pick any.</p>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="interests[]" value="Blended finance"><span>Blended finance</span></label>
+                <label class="chip"><input type="checkbox" name="interests[]" value="Private capital & fund structuring"><span>Private capital &amp; fund structuring</span></label>
+                <label class="chip"><input type="checkbox" name="interests[]" value="DFI mandates & co-investment"><span>DFI mandates &amp; co-investment</span></label>
+                <label class="chip"><input type="checkbox" name="interests[]" value="Climate & nature finance"><span>Climate &amp; nature finance</span></label>
+                <label class="chip"><input type="checkbox" name="interests[]" value="Infrastructure & project finance"><span>Infrastructure &amp; project finance</span></label>
+                <label class="chip"><input type="checkbox" name="interests[]" value="Capital markets & ratings"><span>Capital markets &amp; ratings</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-n">04</div>
+            <div>
+              <h3>Invoicing</h3>
+              <p class="sub">Who the invoice should be addressed to.</p>
+              <div class="row">
+                <div class="f"><label for="f-bill">Billing entity <i>*</i></label><input id="f-bill" name="billing_entity" required></div>
+                <div class="f"><label for="f-tax">VAT / tax number</label><input id="f-tax" name="tax_number"></div>
+                <div class="f full"><label for="f-billaddr">Billing address</label><input id="f-billaddr" name="billing_address" autocomplete="street-address"></div>
+                <div class="f full"><label for="f-billemail">Accounts email (if different)</label><input id="f-billemail" name="billing_email" type="email"></div>
+                <div class="f full"><label for="f-source">How did you hear about the Circuit?</label>
+                  <select id="f-source" name="source"><option value="">Select…</option><option>Invitation from the Circuit team</option><option>LinkedIn</option><option>Colleague or partner</option><option>Attended Mauritius 2026</option><option>Other</option></select>
+                </div>
+                <div class="f full"><label for="f-msg">Notes (dietary, accessibility, meeting requests)</label><textarea id="f-msg" name="notes"></textarea></div>
+              </div>
+              <label class="consent" style="margin-top:22px"><input type="checkbox" name="consent" value="yes" required><span>I agree that The African Circuit may use these details to process my registration and contact me about this edition. <a href="privacy-policy.html" style="border-bottom:1px solid var(--gold)">Privacy policy</a></span></label>
+              <button class="submit" type="submit" id="submitBtn">Send registration</button>
+              <div class="status" id="formStatus" role="status" aria-live="polite"></div>
+            </div>
+          </div>
+        </form>
+
+        <div class="done" id="done" tabindex="-1">
+          <span class="k">Registration received</span>
+          <h3>Your pass is on its way.</h3>
+          <p>We will confirm your registration by email and send the invoice with payment details. The rate shown on your pass was locked when you submitted.</p>
+          <p><a class="link" href="index.html#programme">View the programme</a></p>
+        </div>
+      </div>
+
+      <aside class="preview" aria-label="Your pass preview">
+        <span class="k cap">Your pass · live preview</span>
+        <div class="ticket live">
+          <div class="live-top">
+            <div class="code to">NBO</div>
+            <div class="who"><span class="live-name" id="lvName">Your name</span><span class="live-org" id="lvOrg">Organisation</span></div>
+          </div>
+          <div class="sent-stamp">Request sent</div>
+          <div class="tear" aria-hidden="true"></div>
+          <div class="live-grid">
+            <div><span class="k">Access</span><b id="lvPass">—</b></div>
+            <div><span class="k">Seats</span><b id="lvSeats">1</b></div>
+            <div><span class="k">Release</span><b id="lvRelease">—</b></div>
+            <div><span class="k">Per seat</span><b id="lvPrice">—</b></div>
+            <div><span class="k">Dates</span><b id="lvDates">17–18 Nov 2026</b></div>
+            <div><span class="k">Venue</span><b>Trademark Hotel</b></div>
+          </div>
+          <div class="live-total"><span class="k" style="color:#9fa9b4">Estimated total</span><strong id="lvTotal">—</strong></div>
+          <div class="barcode" aria-hidden="true"></div>
+        </div>
+        <p>Nothing is charged now. Taxes and fees are confirmed before payment. Prices exclude travel and accommodation.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VENUE ============ -->
+<section class="section" id="venue">
+  <div class="wrap venue">
+    <div class="ticket venue-card">
+      <div class="body">
+        <span class="k">Venue</span>
+        <h3>Trademark Hotel, Nairobi.</h3>
+        <dl>
+          <dt>Address</dt><dd>Village Market, Limuru Road, Nairobi, Kenya</dd>
+          <dt>District</dt><dd>Gigiri, Nairobi's diplomatic quarter, close to the UN Office at Nairobi</dd>
+          <dt>Dates</dt><dd>Tuesday 17 – Wednesday 18 November 2026</dd>
+          <dt>The Conduit</dt><dd>Evening of Tuesday 17 November</dd>
+        </dl>
+        <a class="link" href="https://www.google.com/maps/search/?api=1&query=Trademark+Hotel+Village+Market+Nairobi" target="_blank" rel="noopener">Open in Maps ↗</a>
+      </div>
+      <div class="stub">GIGIRI</div>
+    </div>
+    <div class="venue-map" aria-hidden="true">
+      <svg viewBox="0 0 520 420">
+        <defs><pattern id="vh" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(18)"><line x1="0" y1="0" x2="0" y2="7" stroke="#07131d" stroke-width=".9"/></pattern></defs>
+        <path d="M40 360L120 300l50 30 80-110 60 80 70-130 60 110 40-30v120H40z" fill="url(#vh)" opacity=".16" stroke="#07131d" stroke-width="1.6"/>
+        <path d="M20 372Q170 340 300 368T510 356" fill="none" stroke="#05bcd4" stroke-width="3"/>
+        <path d="M60 120Q200 60 300 170T470 230" fill="none" stroke="#b88932" stroke-width="2" stroke-dasharray="7 8"/>
+        <circle cx="300" cy="170" r="54" fill="none" stroke="#9e4d38" stroke-width="3"/>
+        <circle cx="304" cy="166" r="64" fill="none" stroke="#07131d" stroke-width="1.4" stroke-dasharray="12 9"/>
+        <circle cx="300" cy="170" r="7" fill="#05bcd4" stroke="#07131d" stroke-width="2"/>
+        <text x="236" y="258" class="raw-word" font-size="15" fill="#07131d">TRADEMARK HOTEL</text>
+        <text x="60" y="104" class="raw-hand" font-size="22" fill="#9e4d38" transform="rotate(-6 60 104)">Limuru Road</text>
+        <text x="390" y="252" class="raw-hand" font-size="20" fill="#07131d" transform="rotate(4 390 252)">Village Market</text>
+        <path d="M40 40l20-18 20 18 20-18 20 18" fill="none" stroke="#9e4d38" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="mbar" id="mbar" aria-label="Your selection">
+  <div><span class="k" id="mbPass">Full Circuit · 1 seat</span><strong id="mbTotal">—</strong></div>
+  <a href="#register" id="mbBtn">Register</a>
+</div>
+
+<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="index.html">Home</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-use.html">Terms</a></span></div></footer>
+
+<script>
+/* ============ EDIT HERE ============ */
+const CONFIG = {
+  formspree: "https://formspree.io/f/YOUR_FORM_ID",   // ← paste your Formspree endpoint
+  currency: "USD",
+  taxes_note: "Taxes and fees are confirmed before payment.",
+  releases: [
+    { id:"first",    name:"First release",   start:"2026-09-20", label:"Limited availability",
+      prices:{ day1:225, day2:225, two:350, full:425, conduit:125 } },
+    { id:"second",   name:"Second release",  start:"2026-10-05", label:"",
+      prices:{ day1:250, day2:250, two:395, full:475, conduit:150 } },
+    { id:"standard", name:"Standard access", start:"2026-10-20", label:"",
+      prices:{ day1:275, day2:275, two:425, full:525, conduit:150 } },
+    { id:"final",    name:"Final access",    start:"2026-11-05", label:"Limited remaining availability",
+      prices:{ day1:325, day2:325, two:475, full:595, conduit:175 } }
+  ],
+  products: [
+    { id:"oneday",  key:"day1", name:"One day", tag:"Day 1 or Day 2",
+      text:"For participants who can attend only one day.",
+      included:["Selected day's programme","Keynotes and panels","Networking areas","Lunch and refreshments","Delegate materials"] },
+    { id:"twodays", key:"two", name:"Two days", tag:"Both days",
+      text:"The complete Nairobi conference programme.",
+      included:["Both conference days","All main-stage sessions","Keynotes and panels","Networking areas","Lunch and refreshments","Delegate materials"] },
+    { id:"full",    key:"full", name:"Full Circuit", tag:"The complete experience", featured:true,
+      text:"Two conference days and The Conduit.",
+      included:["Both conference days","All main-stage sessions","Networking","Lunch and refreshments","Delegate materials","The Conduit"] },
+    { id:"conduit", key:"conduit", name:"The Conduit", tag:"Evening · 17 November",
+      text:"Standalone access to the evening of 17 November.",
+      included:["The Conduit, evening of 17 November"] }
+  ],
+  comparison: [
+    ["Conference days","Day 1 or Day 2","Both days","Both days"],
+    ["Main-stage sessions","Selected day","All","All"],
+    ["Keynotes and panels","Included","Included","Included"],
+    ["Networking areas","Included","Included","Included"],
+    ["Lunch and refreshments","Included","Included","Included"],
+    ["Delegate materials","Included","Included","Included"],
+    ["The Conduit","—","—","Included"]
+  ],
+  defaultProduct: "full"
+};
+/* =================================== */
+
+const $ = s => document.querySelector(s);
+const money = n => n==null ? "—" : CONFIG.currency + " " + Number(n).toLocaleString("en-US");
+const fmtDate = d => new Date(d+"T00:00:00").toLocaleDateString("en-GB",{day:"numeric",month:"long"});
+const today = new Date().toISOString().slice(0,10);
+const RI = Math.max(0, CONFIG.releases.reduce((a,r,i)=> r.start<=today ? i : a, -1));
+const REL = CONFIG.releases[RI], NEXT = CONFIG.releases[RI+1];
+const dayVal = () => document.querySelector('input[name=day]:checked').value;
+const priceKey = p => p.id==='oneday' ? (dayVal().startsWith('Day 2') ? 'day2':'day1') : p.key;
+
+$('#heroRelease').textContent = REL.name + (NEXT ? ' · until ' + fmtDate(NEXT.start) : '');
+$('#taxNote').textContent = CONFIG.taxes_note;
+
+$('#board').innerHTML = CONFIG.releases.map((r,i)=>`<div class="${i<RI?'past':i===RI?'now':''}"><span class="k">${i===RI?'Now'+(NEXT?' · until '+fmtDate(NEXT.start):''):'From '+fmtDate(r.start)}</span><b>${r.name}</b><span class="d">${r.label||'&nbsp;'}</span></div>`).join('');
+
+$('#passes').innerHTML = CONFIG.products.map(p=>{
+  const now=REL.prices[p.key], nx=NEXT?NEXT.prices[p.key]:null;
+  return `<label class="ticket acc${p.featured?' featured':''}" data-id="${p.id}">
+    <input type="radio" name="pass_choice" value="${p.id}">
+    <div class="body">
+      <div><span class="k tag">${p.tag}</span><h3>${p.name}</h3><p>${p.text}</p></div>
+      <ul>${p.included.map(i=>`<li>${i}</li>`).join('')}</ul>
+      <span class="stamp">Selected</span>
+    </div>
+    <div class="stub">
+      <div><span class="k from">${p.id==='oneday'?'From · ':''}${REL.name}</span>
+      <div class="price">${now.toLocaleString('en-US')}<small>${CONFIG.currency}</small></div>
+      ${nx && nx>now ? `<span class="rise">${money(nx)} from ${fmtDate(NEXT.start)}</span>`:''}</div>
+      <span class="pick">Select</span>
+    </div>
+  </label>`}).join('');
+
+$('#compare').innerHTML = `<thead><tr><th></th><th>One day</th><th>Two days</th><th class="hl">Full Circuit</th></tr></thead><tbody>${
+  CONFIG.comparison.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td><td>${r[2]}</td><td class="hl">${r[3]}</td></tr>`).join('')}</tbody>`;
+
+const seatsInput = $('#f-seats');
+let selected = null;
+
+function selectPass(id, scroll){
+  const p = CONFIG.products.find(x=>x.id===id); if(!p) return;
+  selected = p;
+  document.querySelectorAll('.acc').forEach(el=>{
+    const on = el.dataset.id===id;
+    el.classList.toggle('selected',on);
+    el.querySelector('input').checked = on;
+    el.querySelector('.pick').textContent = on ? 'Selected' : 'Select';
+  });
+  $('#dayField').hidden = id!=='oneday';
+  update();
+  if(scroll) $('#register').scrollIntoView({behavior:'smooth'});
+}
+
+function update(){
+  const n = Math.max(1, Math.min(20, parseInt(seatsInput.value)||1));
+  seatsInput.value = n;
+  $('#othersField').hidden = n < 2;
+  const unit = selected ? REL.prices[priceKey(selected)] : null;
+  const oneDay = selected && selected.id==='oneday';
+  const label = selected ? selected.name + (oneDay ? ' · ' + dayVal().split(' · ')[0] : '') : '—';
+  const dates = !selected ? '17–18 Nov 2026' : oneDay ? (dayVal().startsWith('Day 2') ? '18 Nov 2026' : '17 Nov 2026') : selected.id==='conduit' ? '17 Nov 2026 · Evening' : '17–18 Nov 2026';
+  $('#passLabel').textContent = label;
+  $('#lvPass').textContent = label;
+  $('#lvRelease').textContent = REL.name;
+  $('#lvPrice').textContent = money(unit);
+  $('#lvSeats').textContent = n;
+  $('#lvDates').textContent = dates;
+  $('#lvTotal').textContent = selected ? money(unit*n) : '—';
+  $('#passField').value = label;
+  $('#releaseField').value = REL.name;
+  $('#priceField').value = money(unit);
+  $('#totalField').value = selected ? money(unit*n) + ' (excl. taxes and fees)' : '';
+  if (typeof syncMb === 'function' && document.getElementById('mbar')) syncMb();
+}
+function updateName(){
+  const nm = ($('#f-first').value + ' ' + $('#f-last').value).trim();
+  $('#lvName').textContent = nm || 'Your name';
+  $('#lvOrg').textContent = $('#f-org').value.trim() || 'Organisation';
+}
+
+document.querySelectorAll('.acc').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();selectPass(el.dataset.id,true)}));
+document.querySelectorAll('.seats button').forEach(b=>b.addEventListener('click',()=>{seatsInput.value=(parseInt(seatsInput.value)||1)+(+b.dataset.step);update()}));
+document.querySelectorAll('input[name=day]').forEach(r=>r.addEventListener('change',update));
+seatsInput.addEventListener('input',update);
+seatsInput.addEventListener('blur',update);
+['#f-first','#f-last','#f-org'].forEach(s=>$(s).addEventListener('input',updateName));
+selectPass(CONFIG.defaultProduct,false);
+
+/* Formspree submission */
+const form = $('#bookingForm'), status = $('#formStatus'), btn = $('#submitBtn');
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  status.className = 'status'; status.textContent = '';
+  if (!selected) { status.className='status err'; status.textContent='Please choose a pass.'; return; }
+  if (!form.checkValidity()) { form.reportValidity(); status.className='status err'; status.textContent='Please complete the required fields marked *.'; return; }
+  $('#subjectField').value = `Nairobi 2026 registration — ${form.first_name.value} ${form.last_name.value} (${form.organisation.value}) · ${$('#passField').value} × ${seatsInput.value}`;
+  const data = new FormData(form);
+  data.set('_replyto', form.email.value);
+  btn.disabled = true; btn.textContent = 'Sending…';
+  try {
+    const res = await fetch(CONFIG.formspree, { method:'POST', body:data, headers:{ 'Accept':'application/json' } });
+    if (!res.ok) throw new Error('fail');
+    $('#regWrap').classList.add('sent');
+    $('#done').focus();
+    $('#register').scrollIntoView({behavior:'smooth'});
+  } catch (err) {
+    status.className = 'status err';
+    status.innerHTML = 'Your registration could not be sent. Please try again, or email <a href="mailto:contact@theafricancircuit.com" style="border-bottom:1px solid">contact@theafricancircuit.com</a>.';
+  } finally { btn.disabled = false; btn.textContent = 'Send registration'; }
+});
+
+/* mobile: menu */
+const menuBtn=$('.menu-btn'), navEl=$('#primaryNav');
+menuBtn.addEventListener('click',()=>{const o=navEl.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
+navEl.addEventListener('click',e=>{if(e.target.tagName==='A'){navEl.classList.remove('open');menuBtn.setAttribute('aria-expanded',false)}});
+
+/* mobile: sticky selection bar — visible after the hero, hidden once the submit button is on screen */
+const mbar=$('#mbar'); let pastHero=false, submitVisible=false;
+const syncBar=()=>mbar.classList.toggle('show', pastHero && !submitVisible && !$('#regWrap').classList.contains('sent'));
+new IntersectionObserver(([e])=>{pastHero=!e.isIntersecting;syncBar()}).observe($('.big-pass'));
+new IntersectionObserver(([e])=>{submitVisible=e.isIntersecting;syncBar()}).observe($('#submitBtn'));
+function syncMb(){const n=seatsInput.value;
+  $('#mbPass').textContent=$('#passField').value+' · '+n+' seat'+(n>1?'s':'');
+  $('#mbTotal').textContent=$('#lvTotal').textContent;}
+syncMb();
+$('#mbBtn').addEventListener('click',e=>{const inReg=$('#register').getBoundingClientRect().top<200;if(inReg){e.preventDefault();const t=[...form.querySelectorAll('[required]')].find(x=>!x.value&&x.type!=='checkbox')||$('#submitBtn');t.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>t.focus({preventScroll:true}),400)}});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
