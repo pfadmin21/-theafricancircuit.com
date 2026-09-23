@@ -176,6 +176,7 @@ tbody th{font-weight:500;color:#46505b}
 .submit:hover{background:#12263a}
 .submit[disabled]{opacity:.6;cursor:wait}
 .status{margin-top:16px;font-size:14px;line-height:1.6}
+.inv-box{margin-top:16px;padding:20px;border:1.5px solid rgba(7,19,29,.2);background:rgba(255,255,255,.35)}
 .status.err{color:var(--rust)}
 
 /* live pass preview */
@@ -432,6 +433,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
           <input type="hidden" name="release" id="releaseField">
           <input type="hidden" name="unit_price" id="priceField">
           <input type="hidden" name="estimated_total" id="totalField">
+          <input type="hidden" name="invitation_letter_link" id="letterLink">
 
           <div class="step">
             <div class="step-n">01</div>
@@ -520,7 +522,18 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
                 </div>
                 <div class="f full"><label for="f-msg">Notes (dietary, accessibility, meeting requests)</label><textarea id="f-msg" name="notes" maxlength="2000"></textarea></div>
               </div>
-              <label class="consent" style="margin-top:22px"><input type="checkbox" name="invitation_letter" value="Yes — invitation letter requested"><span>I need an <strong>invitation letter</strong> for my eTA or travel. We send it once your registration is confirmed and will ask for your passport details by email.</span></label>
+              <label class="consent" style="margin-top:22px"><input type="checkbox" id="f-inv" name="invitation_letter" value="Yes — invitation letter requested"><span>I need an <strong>invitation letter</strong> for my eTA or travel.</span></label>
+              <div class="inv-box" id="invBox" hidden>
+                <p class="sub" style="margin:0 0 16px">Enter your details exactly as they appear in your passport. We issue the letter by email once your registration is confirmed.</p>
+                <div class="row">
+                  <div class="f full"><label for="f-pname">Full name as in passport <i>*</i></label><input id="f-pname" name="passport_full_name" maxlength="120" data-inv></div>
+                  <div class="f"><label for="f-nat">Nationality <i>*</i></label><input id="f-nat" name="nationality" maxlength="80" data-inv></div>
+                  <div class="f"><label for="f-pno">Passport number <i>*</i></label><input id="f-pno" name="passport_number" maxlength="30" autocomplete="off" data-inv></div>
+                  <div class="f"><label for="f-pexp">Passport expiry date <i>*</i></label><input id="f-pexp" name="passport_expiry" type="date" data-inv></div>
+                  <div class="f"><label for="f-arr">Arrival in Kenya <i>*</i></label><input id="f-arr" name="arrival_date" type="date" min="2026-10-01" max="2026-12-31" data-inv></div>
+                  <div class="f"><label for="f-dep">Departure from Kenya <i>*</i></label><input id="f-dep" name="departure_date" type="date" min="2026-10-01" max="2027-01-31" data-inv></div>
+                </div>
+              </div>
               <label class="consent" style="margin-top:14px"><input type="checkbox" name="consent" value="yes" required><span>I agree that The African Circuit may use these details to process my registration and contact me about this edition. <a href="privacy-policy.html" style="border-bottom:1px solid var(--gold)">Privacy policy</a></span></label>
               <button class="submit" type="submit" id="submitBtn">Send registration</button>
               <div class="status" id="formStatus" role="status" aria-live="polite"></div>
@@ -776,6 +789,10 @@ seatsInput.addEventListener('blur',update);
 ['#f-first','#f-last','#f-org'].forEach(s=>$(s).addEventListener('input',updateName));
 selectPass(CONFIG.defaultProduct,false);
 
+/* invitation letter fields */
+const invChk=$('#f-inv'), invBox=$('#invBox');
+invChk.addEventListener('change',()=>{invBox.hidden=!invChk.checked;invBox.querySelectorAll('[data-inv]').forEach(i=>{i.required=invChk.checked;if(!invChk.checked)i.value=''})});
+
 /* Formspree submission */
 const PAGE_OPENED = Date.now();
 const form = $('#bookingForm'), status = $('#formStatus'), btn = $('#submitBtn');
@@ -792,6 +809,12 @@ form.addEventListener('submit', async e => {
   const last = +sessionStorage.getItem('tac_last_submit') || 0;
   if (Date.now() - last < 60000) { status.className='status err'; status.textContent='Your registration was just sent. Please wait a minute before sending another.'; return; }
 
+  if (invChk.checked) {
+    if ($('#f-dep').value && $('#f-arr').value && $('#f-dep').value < $('#f-arr').value) { status.className='status err'; status.textContent='Departure date must be after arrival date.'; return; }
+    const L={n:$('#f-pname').value.trim(),na:$('#f-nat').value.trim(),p:$('#f-pno').value.trim(),x:$('#f-pexp').value,a:$('#f-arr').value,d:$('#f-dep').value,t:form.job_title.value.trim(),o:form.organisation.value.trim(),c:form.country.value.trim(),e:form.email.value.trim(),s:$('#passField').value};
+    const b64=btoa(unescape(encodeURIComponent(JSON.stringify(L)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    $('#letterLink').value='https://theafricancircuit.com/invitation-letter.html#'+b64;
+  } else { $('#letterLink').value=''; }
   const data = new FormData(form);
   data.set('_replyto', form.email.value.trim());
   data.set('_started', new Date(PAGE_OPENED).toISOString());
@@ -800,12 +823,17 @@ form.addEventListener('submit', async e => {
   try {
     const res = await fetch(CONFIG.formspree, { method:'POST', body:data, headers:{ 'Accept':'application/json' }, signal:ctrl.signal });
     clearTimeout(timer);
-    if (!res.ok) throw new Error('fail');
+    if (!res.ok) {
+      let msg = 'HTTP ' + res.status;
+      try { const j = await res.json(); if (j.errors) msg = j.errors.map(x => x.message).join(', '); else if (j.error) msg = j.error; } catch(_) {}
+      console.error('Formspree error:', msg);
+      throw new Error(msg);
+    }
     try { sessionStorage.setItem('tac_last_submit', Date.now()); } catch(_) {}
     showSent();
   } catch (err) {
     status.className = 'status err';
-    status.innerHTML = 'Your registration could not be sent. Please try again, or email <a href="mailto:admin@philanthropicfoundation.net" style="border-bottom:1px solid">admin@philanthropicfoundation.net</a>.';
+    status.innerHTML = 'Your registration could not be sent (' + String(err && err.message || 'network error').replace(/[<>&]/g,'') + '). Please try again, or email <a href="mailto:admin@philanthropicfoundation.net" style="border-bottom:1px solid">admin@philanthropicfoundation.net</a>.';
   } finally { btn.disabled = false; btn.textContent = 'Send registration'; }
 });
 
