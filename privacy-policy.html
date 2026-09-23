@@ -3,248 +3,381 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Privacy Policy — The African Circuit</title>
-<meta name="description" content="Privacy Policy for The African Circuit.">
+<meta name="theme-color" content="#000C1F">
+<title>Privacy Policy | The African Circuit</title>
+<meta name="description" content="How The African Circuit collects, uses and protects personal data across its website, registrations and events.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#03101b;--gold:#d0a149;--gold-light:#e0b763;--gold-dark:#a97d2d;
-  --text-primary:#f5f0e8;--text-secondary:#c2cbd4;
-  --border:rgba(255,255,255,.09);--border-gold:rgba(208,161,73,.55);
-  --max:1360px;--pad:clamp(24px,4vw,64px);
+  --paper:#f2ecde;--paper-2:#e9e1cd;--card:#fbf7ec;
+  --ink:#07131d;--navy:#000c1f;--grey:#4f5863;--soft:#7a828c;
+  --gold:#b88932;--cyan:#05bcd4;--cyan-d:#087f98;--rust:#9e4d38;
+  --line:rgba(7,19,29,.15);--pad:clamp(20px,4.5vw,72px);--head:86px
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 70% 12%,rgba(25,59,92,.18),transparent 32%),linear-gradient(180deg,#03101b 0%,#051522 100%);color:var(--text-primary);font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-button,input{font:inherit}
-.wrap{width:min(var(--max),100%);margin:auto;padding-inline:var(--pad)}
-.kicker{font:500 10px/1.4 "DM Mono";letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.26;
+  background:repeating-linear-gradient(8deg,rgba(7,19,29,.024) 0 1px,transparent 1px 5px)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{width:min(1300px,100%);margin:auto;padding-left:var(--pad);padding-right:var(--pad)}
+.k{font:700 10px Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+[hidden]{display:none!important}
 
-/* Header */
-.header{position:fixed;inset:0 0 auto;z-index:100;height:92px;background:linear-gradient(180deg,rgba(3,16,27,.98),rgba(3,16,27,.72),transparent);transition:.3s}
-.header.scrolled{background:rgba(3,16,27,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav{height:92px;display:flex;align-items:center;gap:26px}
-.brand{display:flex;align-items:center;gap:14px;min-width:310px}
-.brand-mark{width:58px;height:58px;border-radius:50%;object-fit:cover}
-.brand strong{display:block;font:500 22px/1 "EB Garamond";letter-spacing:.02em}
-.brand strong span{color:var(--gold)}
-.brand small{display:block;margin-top:7px;font:400 8px/1 "DM Mono";letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-.links{margin-left:auto;display:flex;align-items:center;gap:2px}
-.links a{position:relative;padding:12px 10px;font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.66)}
-.links a:hover{color:#fff}
-.links .join{margin-left:12px;padding:17px 22px;background:var(--gold);color:var(--navy);font-weight:700}
-.menu{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:25px}
-.mobile{display:none;position:fixed;inset:0;background:var(--navy);z-index:90;padding:108px 28px 28px}
-.mobile.open{display:block}
-.mobile a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font:400 30px/1.1 "EB Garamond"}
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(242,236,222,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:var(--head);display:flex;align-items:center;gap:28px;position:relative}
+.brand{display:flex;align-items:center;gap:14px;margin-right:auto;text-decoration:none}
+.brand img{width:58px;height:58px;object-fit:contain}
+.brand-text b{font:600 clamp(19px,2vw,31px) "EB Garamond",serif;letter-spacing:.02em}
+.brand-text b span{color:var(--gold)}
+.brand-text small{display:block;margin-top:3px;color:#8e97a6;font:600 9px Archivo;letter-spacing:.3em;text-transform:uppercase}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font:600 12px Archivo;text-transform:uppercase;color:#5f6873;text-decoration:none}
+nav a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:#f6f2e9!important;padding:18px 24px}
+.menu-btn{display:none;border:1.5px solid var(--line);background:transparent;padding:12px 14px;font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
 
-/* Legal doc layout */
-.legalhero{padding:162px 0 30px;border-bottom:1px solid var(--border)}
-.legalhero h1{font:400 clamp(36px,4vw,54px)/1.05 "EB Garamond";margin:14px 0 10px}
-.legalhero .updated{font:500 9px "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
-.legalbody{padding:60px 0 90px}
-.legalbody .inner{max-width:760px;margin:0 auto}
-.legalbody h2{font:400 24px "EB Garamond";margin:44px 0 14px;color:var(--gold-light)}
-.legalbody h2:first-child{margin-top:0}
-.legalbody h2 .num{color:var(--gold);margin-right:10px;font-family:"DM Mono"}
-.legalbody h3{font:600 13px "DM Mono";letter-spacing:.03em;margin:26px 0 10px;color:var(--text-primary)}
-.legalbody p{font-size:13px;line-height:1.9;color:var(--text-secondary);margin:0 0 14px}
-.legalbody ul,.legalbody ol{margin:0 0 14px;padding-left:20px}
-.legalbody li{font-size:13px;line-height:1.85;color:var(--text-secondary);margin-bottom:6px}
-.legalbody a.inline-link{color:var(--gold);text-decoration:underline}
-.legal-toc{border:1px solid var(--border);border-radius:6px;padding:22px 26px;margin-bottom:20px;background:#071522}
-.legal-toc .kicker{margin-bottom:12px;display:block}
-.legal-toc ol{margin:0;padding-left:18px;columns:2;column-gap:32px}
-.legal-toc li{font-size:11.5px;color:var(--text-secondary);margin-bottom:8px;break-inside:avoid}
-.legal-toc a{color:var(--text-secondary)}
-.legal-toc a:hover{color:var(--gold)}
-@media(max-width:600px){.legal-toc ol{columns:1}}
+/* hero */
+.hero{padding:clamp(56px,7vw,100px) 0 clamp(36px,4vw,56px);border-bottom:1px solid var(--line)}
+.hero h1{font:500 clamp(54px,7vw,116px)/.86 "EB Garamond",serif;letter-spacing:-.05em;margin:16px 0 22px}
+.hero h1 i{color:var(--rust)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 30px;font:700 10px Archivo;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.summary{margin-top:36px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(7,19,29,.22);border-bottom:1px solid rgba(7,19,29,.22)}
+.summary div{padding:22px 20px 22px 0;border-right:1px solid var(--line);padding-left:20px}
+.summary div:first-child{padding-left:0}
+.summary div:last-child{border-right:0}
+.summary b{display:block;font:700 10px Archivo;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.summary p{margin:0;font-size:14px;line-height:1.55;color:var(--grey)}
 
-/* Footer */
-footer{padding:48px 0 23px;border-top:1px solid var(--border)}
-.footer-grid{display:grid;grid-template-columns:1.15fr 1fr .7fr .7fr;gap:1px;background:var(--border)}
-.footer-cell{padding:30px;background:#071522}
-.footer-brand{display:flex;gap:13px;align-items:center}
-.footer-brand img{width:54px;height:54px;border-radius:50%}
-.footer-brand strong{font:500 19px "EB Garamond"}
-.footer-cell p,.footer-cell a{font-size:9px;line-height:1.75;color:rgba(255,255,255,.48)}
-.footer-cell a{display:block;margin-top:8px}
-.newsletter{display:flex;margin-top:16px}
-.newsletter input{min-width:0;flex:1;background:#03101b;border:1px solid var(--border);padding:12px;color:#fff}
-.newsletter button{border:0;background:var(--gold);padding:0 17px;font-size:8px;font-weight:700;text-transform:uppercase}
-.socials{display:flex;gap:10px;margin-top:18px}
-.socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;color:rgba(255,255,255,.7)}
-.footer-bottom{display:flex;justify-content:space-between;margin-top:22px;font:400 7px "DM Mono";letter-spacing:.07em;color:rgba(255,255,255,.32);text-transform:uppercase}
+/* body layout */
+.doc{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(30px,5vw,80px);padding-top:clamp(50px,6vw,90px);padding-bottom:clamp(70px,8vw,120px)}
+.toc{position:sticky;top:calc(var(--head) + 28px);align-self:start;max-height:calc(100vh - var(--head) - 56px);overflow:auto}
+.toc ol{list-style:none;margin:14px 0 0;padding:0;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{display:flex;gap:10px;padding:7px 0;font-size:13px;color:var(--grey);text-decoration:none;border-left:2px solid transparent;padding-left:12px;margin-left:-14px}
+.toc a::before{content:counter(t,decimal-leading-zero);font:700 10px Archivo;color:var(--soft);padding-top:2px}
+.toc a:hover,.toc a.on{color:var(--ink);border-left-color:var(--cyan)}
+.content{max-width:760px}
+.content section{padding-top:8px;margin-bottom:46px;scroll-margin-top:calc(var(--head) + 20px)}
+.content h2{font:500 clamp(30px,3vw,40px)/1.05 "EB Garamond",serif;letter-spacing:-.02em;margin:0 0 16px;display:flex;gap:16px;align-items:baseline}
+.content h2 .n{font:800 12px Archivo;letter-spacing:.12em;color:var(--gold);flex:none}
+.content h3{font:700 11px Archivo;letter-spacing:.14em;text-transform:uppercase;margin:26px 0 10px}
+.content p,.content li{font-size:15.5px;line-height:1.8;color:#2c3540}
+.content p{margin:0 0 14px}
+.content ul{margin:0 0 16px;padding-left:20px}
+.content li{margin-bottom:6px}
+.content li::marker{color:var(--gold)}
+.content a{border-bottom:1.5px solid var(--gold);text-decoration:none}
+.content strong{color:var(--ink);font-weight:600}
+.tbl{overflow-x:auto;margin:10px 0 20px}
+table{width:100%;min-width:560px;border-collapse:collapse;font-size:14px;background:rgba(251,247,236,.6)}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.5}
+thead th{font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid var(--ink);background:transparent}
+.note{background:var(--navy);color:#e8ecef;padding:24px 26px;margin:22px 0}
+.note .k{color:var(--cyan)}
+.note p{color:#c9d1d8;margin:8px 0 0;font-size:14.5px}
+.contact-card{border:1px solid var(--line);background:var(--card);padding:28px}
+.contact-card dl{margin:0;display:grid;grid-template-columns:150px 1fr;gap:10px 20px;font-size:15px}
+.contact-card dt{font:700 10px Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+.contact-card dd{margin:0}
 
-@media(max-width:1100px){
-  .links{display:none}.menu{display:block}
-  .footer-grid{grid-template-columns:1fr 1fr}
+footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;gap:30px;font-size:11px;flex-wrap:wrap}
+.foot a{margin-left:18px;text-decoration:none}
+
+@media(max-width:1000px){
+  .menu-btn{display:block}
+  nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:flex}
+  nav a{padding:18px var(--pad);border-top:1px solid var(--line);font-size:13px}
+  .nav-cta{padding:18px var(--pad)!important}
+  .doc{grid-template-columns:minmax(0,1fr)}.toc{min-width:0}
+  .toc{position:relative;top:0;max-height:none;border:1px solid var(--line);background:var(--card);padding:20px 22px}
+  .toc ol{columns:2;column-gap:24px}
+  .toc a{margin-left:0;padding-left:0;border-left:0}
+  .summary{grid-template-columns:1fr 1fr}
+  .summary div{padding-left:0!important;border-right:0;border-bottom:1px solid var(--line)}
+  .summary div:nth-child(odd){padding-right:20px}
 }
-@media(max-width:700px){
-  .nav{height:76px}.header{height:76px}
-  .brand{min-width:auto}.brand-mark{width:46px;height:46px}.brand strong{font-size:17px}.brand small{display:none}
-  .legalhero{padding:130px 0 24px}
-  .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
+@media(max-width:650px){
+  :root{--head:70px}
+  .brand img{width:40px;height:40px}.brand-text b{font-size:17px}.brand-text small{display:none}
+  .hero h1{font-size:clamp(48px,14vw,62px)}
+  .summary{grid-template-columns:1fr}
+  .toc ol{columns:1}
+  .content p,.content li{font-size:15px}
+  .contact-card dl{grid-template-columns:1fr;gap:2px}
+  .contact-card dd{margin-bottom:10px}
+  .foot{flex-direction:column;gap:12px}.foot a{margin:0 18px 0 0}
 }
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{header,.toc,footer,.menu-btn{display:none}.doc{grid-template-columns:1fr}body::before{display:none}}
 </style>
 </head>
 <body>
-<header class="header">
+
+<header>
   <div class="wrap nav">
-    <a class="brand" href="/" aria-label="The African Circuit home">
-      <img class="brand-mark" src="/images/african-circuit-logo.png" alt="The African Circuit logo">
-      <span><strong>THE AFRICAN <span>CIRCUIT</span></strong><small>Capital · Policy · Investment</small></span>
+    <a class="brand" href="index.html">
+      <img src="https://raw.githubusercontent.com/pfadmin21/-theafricancircuit.com/main/images/african-circuit-logo.png" alt="The African Circuit">
+      <span class="brand-text"><b>THE AFRICAN <span>CIRCUIT</span></b><small>Capital · Policy · Investment</small></span>
     </a>
-    <nav class="links">
-      <a href="/">Home</a>
-      <a href="/conference/">Conference</a>
-      <a href="/about/">About</a>
-      <a class="join" href="/membership/">Join the Network</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+    <nav id="primaryNav" aria-label="Primary">
+      <a href="index.html#circuit">The Circuit</a><a href="index.html#programme">Programme</a><a href="index.html#people">People</a>
+      <a class="nav-cta" href="book.html">Register</a>
     </nav>
-    <button class="menu" aria-label="Open menu">☰</button>
   </div>
 </header>
-<nav class="mobile">
-  <a href="/">Home</a>
-  <a href="/conference/">Conference</a>
-  <a href="/about/">About</a>
-  <a href="/membership/">Join the Network</a>
-</nav>
 
 <main>
-<section class="legalhero">
+<section class="hero">
   <div class="wrap">
-    <div class="kicker">Legal</div>
-    <h1>Privacy Policy</h1>
-    <div class="updated">Effective date: July 2026 · Last updated: July 2026</div>
-  </div>
-</section>
+    <span class="k">Legal</span>
+    <h1>Privacy <i>Policy.</i></h1>
+    <div class="hero-meta"><span>Effective 23 September 2026</span><span>Last updated 23 September 2026</span></div>
 
-<section class="legalbody">
-  <div class="wrap inner">
-
-    <div class="legal-toc">
-      <span class="kicker">Contents</span>
-      <ol>
-        <li><a href="#pp-1">Introduction and Scope</a></li>
-        <li><a href="#pp-2">Definitions</a></li>
-        <li><a href="#pp-3">Information We Collect</a></li>
-        <li><a href="#pp-4">Legal Bases for Processing</a></li>
-        <li><a href="#pp-5">How We Use Information</a></li>
-        <li><a href="#pp-6">Disclosure of Information</a></li>
-        <li><a href="#pp-7">International Transfers</a></li>
-        <li><a href="#pp-8">Data Retention</a></li>
-        <li><a href="#pp-9">Data Security</a></li>
-        <li><a href="#pp-10">Cookies and Tracking Technologies</a></li>
-        <li><a href="#pp-11">Your Rights</a></li>
-        <li><a href="#pp-12">Children's Privacy</a></li>
-        <li><a href="#pp-13">Third-Party Websites</a></li>
-        <li><a href="#pp-14">Changes to This Policy</a></li>
-        <li><a href="#pp-15">Contact and Data Controller</a></li>
-      </ol>
+    <div class="summary" aria-label="Summary">
+      <div><b>What we collect</b><p>What you give us when you register, write to us or speak at an edition.</p></div>
+      <div><b>Why</b><p>To run your registration, invoice you, organise the event and keep you informed about it.</p></div>
+      <div><b>What we don't do</b><p>We don't sell your data, run ad trackers or take card payments on this site.</p></div>
+      <div><b>Your control</b><p>Ask us at any time to see, correct or delete your data.</p></div>
     </div>
-
-    <h2 id="pp-1"><span class="num">1.</span>Introduction and Scope</h2>
-    <p>This Privacy Policy (this "Policy") is issued by The African Circuit ("The African Circuit," "we," "us," or "our") and describes how we collect, use, disclose, retain and protect information in connection with theafricancircuit.com (the "Site") and our related conferences, roundtables, research publications and membership network (together, the "Services").</p>
-    <p>This Policy applies to visitors to the Site, subscribers to our communications, prospective and confirmed delegates, speakers, partners and members (each, a "User," and collectively, "Users"). By accessing or using the Site, you acknowledge that you have read and understood this Policy.</p>
-
-    <h2 id="pp-2"><span class="num">2.</span>Definitions</h2>
-    <p>"Personal Data" means any information relating to an identified or identifiable natural person. "Processing" means any operation performed on Personal Data, including collection, storage, use, disclosure and erasure. "Third-Party Platform" means any website, application or service operated by a party other than The African Circuit, including but not limited to LinkedIn Events, through which a User may register interest in or attend a Circuit edition.</p>
-
-    <h2 id="pp-3"><span class="num">3.</span>Information We Collect</h2>
-    <h3>3.1 Information You Provide Directly</h3>
-    <ul>
-      <li>Contact information, including name and email address, submitted via our newsletter subscription or "Get Notified" forms;</li>
-      <li>Correspondence you send us regarding membership, partnership, sponsorship, speaking opportunities or general enquiries;</li>
-      <li>Information you submit when registering interest in a Circuit edition, including where such registration is facilitated through a Third-Party Platform.</li>
-    </ul>
-    <h3>3.2 Information We Do Not Directly Process</h3>
-    <p>We do not directly process conference registration, ticketing or payment data on the Site. Registration for our events is currently facilitated through Third-Party Platforms, which maintain their own privacy practices governing any information you submit to them. We encourage you to review the applicable third party's privacy policy before submitting information through it.</p>
-    <h3>3.3 Automatically Collected Information</h3>
-    <p>We may collect limited technical information necessary for the Site to function correctly, such as browser type and general usage patterns, through cookies and similar technologies as described in Section 10.</p>
-
-    <h2 id="pp-4"><span class="num">4.</span>Legal Bases for Processing</h2>
-    <p>Where applicable data protection law requires a legal basis for Processing, we rely on one or more of the following: (a) your consent, such as when you subscribe to our newsletter; (b) our legitimate interests in operating and improving the Services, provided such interests are not overridden by your rights; (c) the necessity of Processing to respond to your enquiries or take steps prior to entering into an arrangement with you; and (d) compliance with a legal obligation to which we are subject.</p>
-
-    <h2 id="pp-5"><span class="num">5.</span>How We Use Information</h2>
-    <p>We use the information described in Section 3 to: (a) send newsletters, programme updates and announcements you have requested; (b) respond to enquiries regarding membership, partnership, sponsorship or speaking; (c) administer and improve the Site and the Services; and (d) meet applicable legal, regulatory or compliance obligations. We do not sell or rent Personal Data to third parties.</p>
-
-    <h2 id="pp-6"><span class="num">6.</span>Disclosure of Information</h2>
-    <p>We may disclose Personal Data to: (a) service providers who perform functions on our behalf, such as email delivery, subject to obligations of confidentiality; (b) professional advisers, including legal, financial and other consultants, where necessary; (c) regulatory or governmental authorities, where required by applicable law or legal process; and (d) a successor entity in the event of a merger, acquisition or restructuring of The African Circuit or its affiliated ecosystem.</p>
-
-    <h2 id="pp-7"><span class="num">7.</span>International Transfers</h2>
-    <p>Given the pan-African and international nature of our Services, Personal Data may be transferred to, stored, and processed in jurisdictions other than your own, including Mauritius. Where such transfers occur, we take reasonable steps to ensure the information continues to be protected in a manner consistent with this Policy.</p>
-
-    <h2 id="pp-8"><span class="num">8.</span>Data Retention</h2>
-    <p>We retain Personal Data for as long as necessary to fulfil the purposes described in this Policy, including the duration of any newsletter subscription, membership or ongoing correspondence, or as required to comply with legal, accounting or reporting obligations. You may request deletion of your Personal Data at any time as set out in Section 11.</p>
-
-    <h2 id="pp-9"><span class="num">9.</span>Data Security</h2>
-    <p>We implement reasonable administrative, technical and organisational measures designed to protect Personal Data against unauthorised access, alteration, disclosure or destruction. No method of transmission or storage is completely secure, and we cannot guarantee absolute security of information transmitted to us.</p>
-
-    <h2 id="pp-10"><span class="num">10.</span>Cookies and Tracking Technologies</h2>
-    <p>The Site may use strictly necessary cookies required for standard site functionality. We do not currently deploy third-party advertising or behavioural tracking cookies. Should this change, we will update this Policy accordingly.</p>
-
-    <h2 id="pp-11"><span class="num">11.</span>Your Rights</h2>
-    <p>Depending on your jurisdiction, you may have the right to: (a) request access to the Personal Data we hold about you; (b) request correction of inaccurate Personal Data; (c) request erasure of your Personal Data; (d) object to or request restriction of certain Processing; (e) request portability of your Personal Data; and (f) withdraw consent at any time where Processing is based on consent. To exercise any of these rights, contact us using the details in Section 15.</p>
-
-    <h2 id="pp-12"><span class="num">12.</span>Children's Privacy</h2>
-    <p>The Services are intended for institutional professionals and are not directed to individuals under the age of 18. We do not knowingly collect Personal Data from minors. If you believe a minor has provided us with Personal Data, please contact us so we may take appropriate action.</p>
-
-    <h2 id="pp-13"><span class="num">13.</span>Third-Party Websites</h2>
-    <p>The Site contains links to Third-Party Platforms, including LinkedIn Events and various social media channels. This Policy does not apply to, and we are not responsible for, the privacy practices of any third party. We encourage you to review the privacy policy of each third-party service before providing any Personal Data to it.</p>
-
-    <h2 id="pp-14"><span class="num">14.</span>Changes to This Policy</h2>
-    <p>We may amend this Policy from time to time to reflect changes in our practices or for other operational, legal or regulatory reasons. The "Last updated" date at the top of this page reflects the most recent revision. Material changes will be reflected through an updated effective date.</p>
-
-    <h2 id="pp-15"><span class="num">15.</span>Contact and Data Controller</h2>
-    <p>The African Circuit is the data controller in respect of Personal Data described in this Policy. Questions, requests or complaints regarding this Policy or our data practices may be directed to <a class="inline-link" href="mailto:admin@philanthropicfoundation.net">admin@philanthropicfoundation.net</a>.</p>
-
   </div>
 </section>
+
+<div class="wrap doc">
+  <aside class="toc" aria-label="Contents">
+    <span class="k">Contents</span>
+    <ol id="tocList">
+      <li><a href="#who">Who we are</a></li>
+      <li><a href="#scope">Scope</a></li>
+      <li><a href="#collect">What we collect</a></li>
+      <li><a href="#use">How we use it</a></li>
+      <li><a href="#bases">Legal bases</a></li>
+      <li><a href="#events">At our events</a></li>
+      <li><a href="#share">Who we share with</a></li>
+      <li><a href="#transfers">International transfers</a></li>
+      <li><a href="#retention">How long we keep it</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#cookies">Cookies &amp; storage</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#minors">Under-18s</a></li>
+      <li><a href="#links">Other websites</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </aside>
+
+  <article class="content">
+
+    <section id="who">
+      <h2><span class="n">01</span>Who we are</h2>
+      <p>The African Circuit (“the Circuit”, “we”, “us”) is a pan-African conference platform operated by <strong>The Philanthropic Foundation</strong>, a foundation registered in Mauritius under the Foundations Act 2012 (Registration No. 679).</p>
+      <p>The Philanthropic Foundation is the <strong>data controller</strong> for the personal data described in this policy. This means it decides why and how that data is used and is responsible for protecting it.</p>
+    </section>
+
+    <section id="scope">
+      <h2><span class="n">02</span>Scope</h2>
+      <p>This policy covers personal data we handle through:</p>
+      <ul>
+        <li>theafricancircuit.com, including the registration page (the “Site”);</li>
+        <li>registrations, invoicing and attendance for each edition of the Circuit, including Mauritius and Nairobi;</li>
+        <li>speakers, moderators, partners and sponsors we work with;</li>
+        <li>emails and other correspondence with us.</li>
+      </ul>
+      <p>It applies to anyone whose data we handle in these ways: visitors, delegates, speakers, partners and anyone who contacts us.</p>
+    </section>
+
+    <section id="collect">
+      <h2><span class="n">03</span>What we collect</h2>
+
+      <h3>When you register for an edition</h3>
+      <ul>
+        <li><strong>Identity and role:</strong> name, job title, organisation, institution type and country.</li>
+        <li><strong>Contact details:</strong> work email, phone number and, if you provide it, your LinkedIn profile.</li>
+        <li><strong>Registration details:</strong> the access type you choose, the day (for one-day access), number of seats, the price release and the estimated total shown to you.</li>
+        <li><strong>Other delegates:</strong> names, titles and emails of colleagues you register with you. Please only include them if they are aware you are doing so.</li>
+        <li><strong>Invoicing details:</strong> billing entity, billing address, VAT or tax number and accounts email.</li>
+        <li><strong>Your preferences:</strong> the topics you are interested in and how you heard about the Circuit.</li>
+        <li><strong>Notes you choose to add</strong>, such as meeting requests.</li>
+      </ul>
+
+      <div class="note">
+        <span class="k">Dietary and accessibility needs</span>
+        <p>If you tell us about dietary or accessibility requirements, this may reveal information about your health or beliefs. We use it only to cater for you and make the event accessible to you. We share it only with the venue or caterer where needed, and delete it after the edition. Providing it is always optional.</p>
+      </div>
+
+      <h3>When you speak or moderate</h3>
+      <p>We collect your name, title, organisation, biography and photograph, and we publish them on the Site and in event materials with your agreement.</p>
+
+      <h3>When you contact us</h3>
+      <p>We keep the content of your message and your contact details so that we can reply and keep a record of the exchange.</p>
+
+      <h3>Collected automatically</h3>
+      <p>When you send the registration form, we record the time you opened it. We use this only to filter out automated spam. The form also contains a hidden field that people never see; if an automated program fills it in, the submission is discarded. Our hosting and service providers also process technical data such as your IP address and browser type so the Site can be delivered to you (see <a href="#share">section 07</a>).</p>
+
+      <h3>What we do not collect</h3>
+      <p>We do not take card or other payment details on the Site. Payment is made against an invoice sent to you after your registration is confirmed.</p>
+    </section>
+
+    <section id="use">
+      <h2><span class="n">04</span>How we use it</h2>
+      <ul>
+        <li>to process and confirm your registration and allocate your seat;</li>
+        <li>to issue invoices, receive payment and keep accounting records;</li>
+        <li>to send you practical information about the edition you registered for: programme, venue, timings and changes;</li>
+        <li>to organise the event, including badges, delegate lists for access control, catering and seating;</li>
+        <li>to shape introductions and sessions around the interests you share with us;</li>
+        <li>to publish speaker profiles and programme information;</li>
+        <li>to answer your questions and manage our relationships with partners;</li>
+        <li>to protect the Site and our forms from spam and misuse;</li>
+        <li>to meet our legal, tax and regulatory obligations.</li>
+      </ul>
+      <p>We will only send you news about future editions or other Circuit activities if you have agreed to it, or if you are an existing delegate and have not opted out. Every such email lets you unsubscribe.</p>
+      <p>We do not sell or rent personal data, and we do not use it for automated decisions that have legal or similarly significant effects on you.</p>
+    </section>
+
+    <section id="bases">
+      <h2><span class="n">05</span>Legal bases</h2>
+      <p>We handle personal data in line with the Mauritius Data Protection Act 2017. Where other laws apply to you, such as the EU/UK GDPR or the Kenya Data Protection Act 2019, we apply their requirements too. We rely on the following legal bases:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Purpose</th><th>Legal basis</th></tr></thead>
+          <tbody>
+            <tr><td>Registration, invoicing and delivering the event</td><td>Taking steps at your request before entering into, and then performing, a contract with you or your organisation</td></tr>
+            <tr><td>Accounting, tax and legal records</td><td>Legal obligation</td></tr>
+            <tr><td>Event organisation, security, spam prevention and partner relationships</td><td>Our legitimate interests in running a secure, well-organised event, balanced against your rights</td></tr>
+            <tr><td>Dietary and accessibility information</td><td>Your explicit consent, given when you provide it</td></tr>
+            <tr><td>News about future editions</td><td>Your consent, or our legitimate interest for existing delegates, with an easy opt-out</td></tr>
+            <tr><td>Speaker profiles and photographs</td><td>Your consent or our agreement with you</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Where we rely on consent, you can withdraw it at any time. Withdrawal does not affect what we did before it.</p>
+    </section>
+
+    <section id="events">
+      <h2><span class="n">06</span>At our events</h2>
+      <h3>Photography and filming</h3>
+      <p>We photograph and sometimes film our editions and use selected images on the Site, social media and in reports. Signage at the venue will tell you when this is happening. If you would prefer not to appear, tell our team on the day or email us before the event. If you ask us to remove an image that has already been published, we will do so where reasonably possible.</p>
+      <h3>Closed-door sessions</h3>
+      <p>Closed-door sessions are not recorded unless all participants are told in advance. Where a session is held under the Chatham House Rule, we do not attribute remarks to individuals in anything we publish.</p>
+      <h3>Delegate lists</h3>
+      <p>We do not publish delegate lists or give them to sponsors or other delegates. The exception is your name, title and organisation on your badge, and any introductions you ask us to make.</p>
+    </section>
+
+    <section id="share">
+      <h2><span class="n">07</span>Who we share with</h2>
+      <p>We share personal data only as needed, and with providers bound by confidentiality and data protection obligations:</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Recipient</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Formspree (form processing)</td><td>Receives registration form submissions and forwards them to us by email</td></tr>
+            <tr><td>Our email and office software providers</td><td>Store and handle our correspondence and records</td></tr>
+            <tr><td>Website hosting (GitHub) and font delivery (Google Fonts)</td><td>Deliver the Site to your browser. They process technical data such as IP addresses.</td></tr>
+            <tr><td>Event venues and on-site suppliers, such as the Trademark Hotel for the Nairobi edition</td><td>Access control, catering and accessibility, limited to what each supplier needs</td></tr>
+            <tr><td>Accountants, auditors, banks and legal advisers</td><td>Invoicing, payment, audit and legal compliance</td></tr>
+            <tr><td>Authorities</td><td>Where the law requires it</td></tr>
+            <tr><td>A successor organisation</td><td>If the Circuit is restructured or transferred, under equivalent protections</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="transfers">
+      <h2><span class="n">08</span>International transfers</h2>
+      <p>We are based in Mauritius and our editions take place in several African countries. Some of our providers, including Formspree, GitHub and Google, process data in the United States and elsewhere.</p>
+      <p>When personal data leaves the country where it was collected, we rely on appropriate safeguards. These include the provider's standard contractual clauses or equivalent commitments, and the transfer rules of the Mauritius Data Protection Act 2017 and other applicable law. You can ask us for more detail about these safeguards.</p>
+    </section>
+
+    <section id="retention">
+      <h2><span class="n">09</span>How long we keep it</h2>
+      <ul>
+        <li><strong>Registration and invoicing records:</strong> for as long as accounting and tax law requires, then deleted.</li>
+        <li><strong>Dietary and accessibility information:</strong> deleted after the edition concerned.</li>
+        <li><strong>Form submissions stored with Formspree:</strong> deleted from Formspree once they have been transferred into our records.</li>
+        <li><strong>Contact for future editions:</strong> until you unsubscribe or ask us to stop.</li>
+        <li><strong>Speaker profiles:</strong> kept as part of the record of each edition, unless you ask us to remove them.</li>
+        <li><strong>General correspondence:</strong> for as long as needed to deal with it and for a reasonable period afterwards.</li>
+      </ul>
+    </section>
+
+    <section id="security">
+      <h2><span class="n">10</span>Security</h2>
+      <p>The Site is served over encrypted HTTPS connections, and form data is sent to Formspree over encrypted connections. Registration data is only accessible to the team members who need it. We use spam controls on our forms, and we choose providers with recognised security practices.</p>
+      <p>No system is completely secure. If a personal data breach is likely to put your rights at risk, we will notify the Data Protection Office of Mauritius and, where required, you, in line with the law.</p>
+    </section>
+
+    <section id="cookies">
+      <h2><span class="n">11</span>Cookies &amp; storage</h2>
+      <p>We do not use advertising, analytics or tracking cookies.</p>
+      <p>The registration page stores a single time marker in your browser's session storage to stop the same form being sent twice within a minute. It is deleted when you close the tab.</p>
+      <p>Our hosting and font providers may receive technical data when your browser loads the Site. If we add analytics or other cookies in the future, we will update this policy and ask for your consent where the law requires it.</p>
+    </section>
+
+    <section id="rights">
+      <h2><span class="n">12</span>Your rights</h2>
+      <p>Under the Mauritius Data Protection Act 2017, and other laws that may apply to you, you can:</p>
+      <ul>
+        <li>ask for a copy of the personal data we hold about you;</li>
+        <li>ask us to correct inaccurate or incomplete data;</li>
+        <li>ask us to delete your data, where we no longer need to keep it;</li>
+        <li>object to, or ask us to restrict, certain uses of your data, including marketing at any time;</li>
+        <li>ask to receive your data in a portable format, where applicable;</li>
+        <li>withdraw your consent where we rely on it.</li>
+      </ul>
+      <p>To use any of these rights, email us (see <a href="#contact">section 16</a>). We may need to confirm your identity first. We aim to respond within one month.</p>
+      <p>If you are not satisfied with our response, you can complain to the <strong>Data Protection Office of Mauritius</strong>, or to the data protection authority where you live or work.</p>
+    </section>
+
+    <section id="minors">
+      <h2><span class="n">13</span>Under-18s</h2>
+      <p>The Circuit is for professionals and is not directed at anyone under 18. We do not knowingly collect their data. If you believe a minor has sent us personal data, contact us and we will delete it.</p>
+    </section>
+
+    <section id="links">
+      <h2><span class="n">14</span>Other websites</h2>
+      <p>The Site links to third-party websites such as LinkedIn, hotel pages and map services. They have their own privacy practices, which this policy does not cover.</p>
+    </section>
+
+    <section id="changes">
+      <h2><span class="n">15</span>Changes</h2>
+      <p>We may update this policy as the Circuit and the law evolve. The date at the top shows the latest version. If we make significant changes that affect registered delegates, we will tell them by email.</p>
+    </section>
+
+    <section id="contact">
+      <h2><span class="n">16</span>Contact</h2>
+      <div class="contact-card">
+        <dl>
+          <dt>Data controller</dt><dd>The Philanthropic Foundation (Reg. No. 679), operator of The African Circuit, Mauritius</dd>
+          <dt>Email</dt><dd><a href="mailto:admin@philanthropicfoundation.net">admin@philanthropicfoundation.net</a></dd>
+          <dt>Subject line</dt><dd>“Privacy request”, so we can route it quickly</dd>
+          <dt>Supervisory authority</dt><dd>Data Protection Office, Republic of Mauritius</dd>
+        </dl>
+      </div>
+    </section>
+
+  </article>
+</div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-cell">
-        <div class="footer-brand"><img src="/images/african-circuit-logo.png" alt=""><strong>The African Circuit</strong></div>
-        <p>Capital. Policy. Investment.<br>Across Africa. For Africa's Future.</p>
-        <div class="socials"><a href="#">in</a><a href="#">𝕏</a><a href="#">▶</a><a href="mailto:admin@philanthropicfoundation.net">✉</a></div>
-      <div class="footer-cell">
-        <div class="kicker">Stay Connected</div>
-        <p>Follow us for updates on events, research and opportunities.</p>
-        <a class="btn gold" href="https://mu.linkedin.com/company/the-african-circuit" target="_blank" rel="noopener">Follow on LinkedIn →</a>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Quick Links</div>
-        <a href="/conference/">Conference</a><a href="/institute/">Institute</a><a href="/research/">Research</a><a href="/exchange/">Exchange</a><a href="/membership/">Membership</a>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Legal</div>
-        <a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-use.html">Terms of Use</a><a href="mailto:admin@philanthropicfoundation.net">Contact Us</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span data-year></span> The African Circuit. All rights reserved.</span>
-      <span>Capital · Policy · Investment</span>
-    </div>
-  </div>
-</footer>
+<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="index.html">Home</a><a href="book.html">Register</a><a href="terms-of-use.html">Terms</a></span></div></footer>
 
 <script>
-const header=document.querySelector('.header');
-const mobile=document.querySelector('.mobile');
-const menu=document.querySelector('.menu');
-const updateHeader=()=>header.classList.toggle('scrolled',window.scrollY>24);
-updateHeader();
-window.addEventListener('scroll',updateHeader,{passive:true});
-menu.addEventListener('click',()=>mobile.classList.toggle('open'));
-document.querySelectorAll('.mobile a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
-document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
+document.getElementById('year').textContent=new Date().getFullYear();
+const mb=document.querySelector('.menu-btn'),nv=document.getElementById('primaryNav');
+mb.addEventListener('click',()=>{const o=nv.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+nv.addEventListener('click',e=>{if(e.target.tagName==='A'){nv.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
+/* highlight the section being read */
+const links=[...document.querySelectorAll('#tocList a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('.content section').forEach(s=>io.observe(s));
 </script>
 </body>
 </html>
