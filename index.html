@@ -1168,6 +1168,71 @@ html.bio-open{overflow:hidden}
   #bioDialog::before{content:"";display:block;width:44px;height:5px;border-radius:3px;background:rgba(7,19,29,.25);margin:8px auto 0;position:sticky;top:6px;z-index:4}
 }
 </style>
+
+<style id="partner-section">
+#partner{background:#07131d!important;color:#f4ecd9;overflow:hidden}
+#partner .label{color:#05bcd4}
+#partner h2{color:#f4ecd9}
+#partner .lead{color:#b9c1cb}
+.pt-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:end}
+.pt-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16)}
+.pt-stats div{padding:24px 20px 24px 0}
+.pt-stats strong{display:block;font:500 42px/1 "EB Garamond",serif;color:#f4ecd9}
+.pt-stats span{font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8d98a4}
+.pt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);margin-top:56px}
+.pt-card{background:#07131d;padding:30px 28px;display:flex;flex-direction:column;min-height:280px;transition:background .2s}
+.pt-card:hover{background:#0b2238}
+.pt-card .n{font:700 10px Archivo,sans-serif;letter-spacing:.18em;color:#b88932}
+.pt-card h3{font:500 32px/1 "EB Garamond",serif;margin:14px 0 10px;color:#f4ecd9}
+.pt-card p{font-size:14px;line-height:1.6;color:#b9c1cb;margin:0 0 16px}
+.pt-card ul{list-style:none;margin:auto 0 0;padding:14px 0 0;border-top:1px solid rgba(255,255,255,.12);font-size:13px;line-height:1.5;color:#dfe4e8}
+.pt-card li{padding:4px 0 4px 16px;position:relative}
+.pt-card li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:1.5px;background:#05bcd4}
+.pt-card.feature{background:#0d2a44}
+.pt-card.feature .n{color:#05bcd4}
+.pt-form-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:60px;margin-top:80px;align-items:start}
+.pt-form-wrap h3{font:500 clamp(36px,3.6vw,56px)/.95 "EB Garamond",serif;margin:14px 0 16px;letter-spacing:-.03em}
+.pt-form-wrap .side p{color:#b9c1cb;line-height:1.7;font-size:15px}
+.pt-li{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:14px 18px;border:1.5px solid rgba(255,255,255,.3);font:700 11px Archivo,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#f4ecd9}
+.pt-li:hover{border-color:#05bcd4}
+.pt-li b{display:grid;place-items:center;width:22px;height:22px;background:#0a66c2;color:#fff;font:700 13px Arial;border-radius:3px}
+#partnerForm{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+#partnerForm .f{display:flex;flex-direction:column;gap:7px}
+#partnerForm .full{grid-column:1/-1}
+#partnerForm label{font:700 10px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9fa9b4}
+#partnerForm label i{font-style:normal;color:#e3a78f}
+#partnerForm input,#partnerForm select,#partnerForm textarea{width:100%;background:transparent;border:0;border-bottom:1.5px solid rgba(255,255,255,.3);padding:10px 2px;font:16px Inter,sans-serif;color:#f4ecd9;border-radius:0}
+#partnerForm select option{color:#07131d}
+#partnerForm textarea{border:1.5px solid rgba(255,255,255,.25);padding:12px;min-height:110px;resize:vertical}
+#partnerForm input:focus,#partnerForm select:focus,#partnerForm textarea:focus{outline:none;border-color:#05bcd4}
+#partnerForm .hp-wrap{display:none!important}
+#partnerForm button{justify-self:start;background:#05bcd4;color:#07131d;border:0;padding:18px 26px;font:800 11px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+#partnerForm button[disabled]{opacity:.6}
+.pt-status{grid-column:1/-1;font-size:14px;color:#b9c1cb}
+.pt-status.err{color:#e3a78f}
+.pt-done{display:none;border:1px solid rgba(255,255,255,.2);border-top:3px solid #05bcd4;padding:34px}
+.pt-done h4{font:500 34px "EB Garamond",serif;margin:0 0 10px}
+.pt-done p{color:#b9c1cb}
+.pt-sent #partnerForm{display:none}.pt-sent .pt-done{display:block}
+.li-nav{display:inline-grid!important;place-items:center;width:30px;height:30px;padding:0!important;background:#0a66c2;color:#fff!important;font:700 14px Arial!important;border-radius:4px;text-transform:none!important}
+.foot .li-foot{display:inline-flex;align-items:center;gap:6px}
+.li-nav .li-txt{display:none}
+@media(max-width:1050px){
+  .pt-head,.pt-form-wrap{grid-template-columns:1fr;gap:26px}
+  .pt-grid{grid-template-columns:1fr 1fr}
+  .li-nav{width:auto!important;height:auto!important;display:block!important;background:transparent;color:inherit!important;font:600 13px Archivo!important;text-transform:uppercase!important;padding:18px var(--pad)!important;border-radius:0}
+  .li-nav .li-ico{display:none}.li-nav .li-txt{display:inline}
+}
+@media(max-width:650px){
+  .pt-stats{grid-template-columns:1fr 1fr}
+  .pt-stats strong{font-size:32px}
+  .pt-grid{grid-template-columns:1fr}
+  .pt-card{min-height:0;padding:24px 22px}
+  #partnerForm{grid-template-columns:1fr}
+  #partnerForm button{width:100%}
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"The African Circuit","url":"https://theafricancircuit.com","logo":"https://raw.githubusercontent.com/pfadmin21/-theafricancircuit.com/main/images/african-circuit-logo.png","sameAs":["https://www.linkedin.com/company/the-african-circuit/"],"email":"admin@philanthropicfoundation.net"}</script>
 </head>
 <body id="top">
 
@@ -1195,7 +1260,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primaryNav">Menu</button>
     <nav id="primaryNav" aria-label="Primary">
       <a href="#circuit">The Circuit</a><a href="#editions">Editions</a><a href="#programme">Programme</a><a href="#people">People</a>
-      <a href="#insights">Insights</a><a href="#gallery">Gallery</a><a class="attend" href="book.html">Attend</a>
+      <a href="#partner">Partner</a><a href="#insights">Insights</a><a href="#gallery">Gallery</a><a class="li-nav" href="https://www.linkedin.com/company/the-african-circuit/" target="_blank" rel="noopener" aria-label="The African Circuit on LinkedIn"><span class="li-ico">in</span><span class="li-txt">LinkedIn ↗</span></a><a class="attend" href="book.html">Attend</a>
     </nav>
   </div>
 </header>
@@ -2151,6 +2216,52 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
+
+<section class="section" id="partner">
+  <div class="wrap">
+    <div class="pt-head">
+      <div><span class="label">Partner with the Circuit</span><h2>Put your mandate<br>in the room.</h2></div>
+      <div><p class="lead">The Circuit brings together the institutions that mandate, structure and deploy capital across Africa. Partners do more than appear on a banner: they help set the conversation and meet the counterparts who can turn it into deals.</p></div>
+    </div>
+
+    <div class="pt-stats">
+      <div><strong>4</strong><span>Cities on the Circuit</span></div>
+      <div><strong>250+</strong><span>Participants · Mauritius</span></div>
+      <div><strong>30</strong><span>Speakers · Mauritius</span></div>
+      <div><strong>DFIs · LPs · GPs</strong><span>Regulators · family offices</span></div>
+    </div>
+
+    <div class="pt-grid"><article class="pt-card feature"><span class="n">01</span><h3>Host partner</h3><p>Co-host an edition in your city or region and anchor its agenda.</p><ul><li>Co-host branding across the edition</li><li>Shape the edition's opening and themes</li><li>Priority seats for your institution and guests</li></ul></article><article class="pt-card"><span class="n">02</span><h3>Strategic partner</h3><p>A visible presence across every city of the Circuit.</p><ul><li>Recognition across all editions</li><li>A seat in programme planning</li><li>Year-round visibility through The Mandate</li></ul></article><article class="pt-card"><span class="n">03</span><h3>Session partner</h3><p>Align your institution with a keynote or panel that matches your mandate.</p><ul><li>Session branding and introduction</li><li>Speaking or moderating role, subject to fit</li><li>Delegate seats for your team</li></ul></article><article class="pt-card"><span class="n">04</span><h3>The Conduit partner</h3><p>Host the evening where capital, conversation and introductions meet.</p><ul><li>Evening branding and welcome</li><li>Curated guest invitations</li><li>A setting built for introductions</li></ul></article><article class="pt-card"><span class="n">05</span><h3>Knowledge partner</h3><p>Put your research and expertise at the centre of the conversation.</p><ul><li>Featured interviews and briefings in The Mandate</li><li>Research or data presented to delegates</li><li>Co-authored insights between editions</li></ul></article><article class="pt-card"><span class="n">06</span><h3>Institutional delegation</h3><p>Bring a team to meet the ecosystem in one room.</p><ul><li>Group access for your team</li><li>Introductions to the right counterparts</li><li>A single invoice for your delegation</li></ul></article></div>
+
+    <div class="pt-form-wrap" id="ptWrap">
+      <div class="side">
+        <span class="label">Start the conversation</span>
+        <h3>Request the partnership brief.</h3>
+        <p>Tell us which edition and format you are considering. We will send the partnership brief and set up a call to shape a package around your objectives.</p>
+        <a class="pt-li" href="https://www.linkedin.com/company/the-african-circuit/" target="_blank" rel="noopener"><b>in</b>Follow the Circuit on LinkedIn</a>
+      </div>
+      <div>
+        <form id="partnerForm" action="https://formspree.io/f/xeaoklgq" method="POST" novalidate>
+          <div class="hp-wrap" aria-hidden="true"><label for="p-gotcha">Leave empty</label><input type="text" id="p-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="form_type" value="Partnership enquiry">
+          <input type="hidden" name="_subject" id="pSubject" value="Partnership enquiry">
+          <div class="f"><label for="p-name">Full name <i>*</i></label><input id="p-name" name="name" required maxlength="120" autocomplete="name"></div>
+          <div class="f"><label for="p-title">Job title <i>*</i></label><input id="p-title" name="job_title" required maxlength="120" autocomplete="organization-title"></div>
+          <div class="f"><label for="p-org">Organisation <i>*</i></label><input id="p-org" name="organisation" required maxlength="160" autocomplete="organization"></div>
+          <div class="f"><label for="p-email">Work email <i>*</i></label><input id="p-email" name="email" type="email" required maxlength="160" autocomplete="email"></div>
+          <div class="f"><label for="p-format">Format of interest</label>
+            <select id="p-format" name="partnership_format"><option value="">Select…</option><option>Host partner</option><option>Strategic partner</option><option>Session partner</option><option>The Conduit partner</option><option>Knowledge partner</option><option>Institutional delegation</option><option>Not sure yet</option></select></div>
+          <div class="f"><label for="p-edition">Edition</label>
+            <select id="p-edition" name="edition"><option value="">Select…</option><option>Nairobi · 17–18 November 2026</option><option>Cape Town · February 2027</option><option>Casablanca · to be announced</option><option>Across the Circuit</option></select></div>
+          <div class="f full"><label for="p-msg">What would you like to achieve?</label><textarea id="p-msg" name="message" maxlength="2000"></textarea></div>
+          <button type="submit" id="pBtn">Request the brief</button>
+          <div class="pt-status" id="pStatus" role="status" aria-live="polite"></div>
+        </form>
+        <div class="pt-done" tabindex="-1" id="pDone"><h4>Thank you, we'll be in touch.</h4><p>Your enquiry has reached the Circuit team. We will reply by email with the partnership brief.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 <section class="section" id="insights"><div class="section-mark" aria-hidden="true"></div>
   <div class="wrap">
     <span class="label">Insights</span><h2>Ideas between<br>the Circuits.</h2>
@@ -2232,7 +2343,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 </section>
 </main>
 
-<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="privacy-policy.html">Privacy</a><a href="terms-of-use.html">Terms</a></span></div></footer>
+<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a class="li-foot" href="https://www.linkedin.com/company/the-african-circuit/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="book.html">Register</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-use.html">Terms</a></span></div></footer>
 
 <dialog id="bioDialog">
   <button class="close" type="button" aria-label="Close biography">×</button>
@@ -2314,6 +2425,19 @@ imgs.forEach(i=>{if(i.complete&&i.naturalWidth===0)c();else i.addEventListener('
   d.addEventListener('touchstart',e=>{y0=d.scrollTop<=0?e.touches[0].clientY:null},{passive:true});
   d.addEventListener('touchend',e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>90)d.close();y0=null},{passive:true});
 })();
+
+/* Partnership enquiry → Formspree */
+(()=>{const f=document.getElementById('partnerForm');if(!f)return;const opened=Date.now();const st=document.getElementById('pStatus'),btn=document.getElementById('pBtn');
+f.addEventListener('submit',async e=>{e.preventDefault();st.className='pt-status';st.textContent='';
+  const done=()=>{document.getElementById('ptWrap').classList.add('pt-sent');document.getElementById('pDone').focus();};
+  if(document.getElementById('p-gotcha').value){done();return;}
+  if(Date.now()-opened<4000){st.className='pt-status err';st.textContent='Please review your details, then send again.';return;}
+  if(!f.checkValidity()){f.reportValidity();st.className='pt-status err';st.textContent='Please complete the required fields marked *.';return;}
+  document.getElementById('pSubject').value='Partnership enquiry — '+f.organisation.value+(f.partnership_format.value?' · '+f.partnership_format.value:'');
+  const d=new FormData(f);d.set('_replyto',f.email.value.trim());btn.disabled=true;btn.textContent='Sending…';
+  try{const r=await fetch('https://formspree.io/f/xeaoklgq',{method:'POST',body:d,headers:{Accept:'application/json'}});if(!r.ok)throw 0;done();}
+  catch(_){st.className='pt-status err';st.innerHTML='Could not send. Email <a href="mailto:admin@philanthropicfoundation.net" style="border-bottom:1px solid">admin@philanthropicfoundation.net</a>.';}
+  finally{btn.disabled=false;btn.textContent='Request the brief';}});})();
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body></html>
