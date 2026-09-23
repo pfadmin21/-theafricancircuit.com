@@ -1152,6 +1152,22 @@ footer{background:#ece3d2!important}
   footer .foot a{margin:0 18px 0 0}
 }
 </style>
+
+<style id="bio-close-fix">
+/* Speaker bio: always-visible close + back button */
+#bioDialog{overscroll-behavior:contain}
+#bioDialog .close{position:sticky!important;top:12px;float:right;margin:12px 12px -56px 0;width:44px;height:44px;border-radius:50%;
+  background:rgba(250,247,238,.95)!important;color:#07131d!important;font-size:26px;line-height:1;display:grid;place-items:center;
+  box-shadow:0 4px 16px rgba(0,12,31,.25);z-index:5;right:auto!important}
+.bio-back{display:none;width:100%;margin-top:22px;padding:16px;border:1.5px solid #07131d;background:transparent;color:#07131d;
+  font:700 11px Archivo,sans-serif;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+html.bio-open{overflow:hidden}
+@media(max-width:650px){
+  .bio-back{display:block}
+  #bioDialog{border-radius:14px 14px 0 0;padding-top:0}
+  #bioDialog::before{content:"";display:block;width:44px;height:5px;border-radius:3px;background:rgba(7,19,29,.25);margin:8px auto 0;position:sticky;top:6px;z-index:4}
+}
+</style>
 </head>
 <body id="top">
 
@@ -2219,7 +2235,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 <footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="privacy-policy.html">Privacy</a><a href="terms-of-use.html">Terms</a></span></div></footer>
 
 <dialog id="bioDialog">
-  <button class="close" type="button" aria-label="Close">×</button>
+  <button class="close" type="button" aria-label="Close biography">×</button>
   <div class="modal">
     <div class="modal-photo" id="modalPhoto"></div>
     <div class="modal-copy">
@@ -2228,6 +2244,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
       <p id="modalTitle"></p>
       <p id="modalBio"></p>
       <p id="modalAbout"></p>
+      <button class="bio-back" type="button">← Back to speakers</button>
     </div>
   </div>
 </dialog>
@@ -2248,7 +2265,13 @@ document.querySelectorAll('.speaker-open').forEach(btn=>btn.addEventListener('cl
   dlg.showModal();
 }));
 document.querySelector('.close').addEventListener('click',()=>dlg.close());
-dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+dlg.addEventListener('click',e=>{
+  /* close when the click lands on the dark overlay, i.e. outside the content box */
+  if(e.target!==dlg) return;
+  const r=dlg.getBoundingClientRect();
+  const inside=e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom;
+  if(!inside||!e.target.closest('.modal')) dlg.close();
+});
 const more=document.getElementById('morePeople');
 more.addEventListener('click',()=>{
   document.querySelectorAll('.speaker-card').forEach(x=>x.classList.add('show'));
@@ -2270,6 +2293,27 @@ n.addEventListener('click',e=>{if(e.target.tagName==='A'){n.classList.remove('op
 /* gallery: hide the section until at least one photo exists */
 (()=>{const imgs=[...document.querySelectorAll('#gallery img')];let f=0;const c=()=>{if(++f===imgs.length){document.getElementById('gallery').hidden=true;const a=document.querySelector('nav a[href="#gallery"]');if(a)a.hidden=true}};
 imgs.forEach(i=>{if(i.complete&&i.naturalWidth===0)c();else i.addEventListener('error',c)});})();
+
+/* Bio dialog: close button, back button, phone back gesture, scroll lock */
+(()=>{
+  const d=document.getElementById('bioDialog'); let pushed=false;
+  const obs=new MutationObserver(()=>{
+    if(d.open){
+      document.documentElement.classList.add('bio-open'); d.scrollTop=0;
+      if(!pushed){history.pushState({bio:true},'');pushed=true;}
+    }else{
+      document.documentElement.classList.remove('bio-open');
+      if(pushed){pushed=false;history.back();}
+    }
+  });
+  obs.observe(d,{attributes:true,attributeFilter:['open']});
+  window.addEventListener('popstate',()=>{if(d.open){pushed=false;d.close();}});
+  d.querySelector('.bio-back').addEventListener('click',()=>d.close());
+  /* swipe down on the sheet to close (mobile) */
+  let y0=null;
+  d.addEventListener('touchstart',e=>{y0=d.scrollTop<=0?e.touches[0].clientY:null},{passive:true});
+  d.addEventListener('touchend',e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>90)d.close();y0=null},{passive:true});
+})();
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body></html>
