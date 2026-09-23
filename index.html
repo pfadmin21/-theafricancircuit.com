@@ -258,6 +258,12 @@ footer::before{content:"";display:block;position:absolute;left:var(--pad);right:
 @media(max-width:900px){.hero-art{width:70vw;opacity:.5}.band-art{opacity:.3}}
 @media(max-width:650px){.hero-art{width:100vw;opacity:.22}.band-art{width:100vw;opacity:.2}}
 
+/* --- Hover reveals colour: photos and logos sit in grayscale, colour on hover / keyboard focus --- */
+.speaker-photo img,.logo-cell img{transition:filter .45s ease}
+.speaker-card:hover .speaker-photo img,.speaker-open:focus-visible .speaker-photo img,
+.logo-cell:hover img{filter:grayscale(0)}
+@media(prefers-reduced-motion:reduce){.speaker-photo img,.logo-cell img{transition:none}}
+
 @media(max-width:1050px){.circuit-item:nth-child(2n)::before{display:none}}
 @media(max-width:900px){.sweep{display:none}}
 @media(max-width:650px){
