@@ -999,6 +999,24 @@ footer{background:#ece3d2!important}
 @media(max-width:800px){.hero .pa-raw-canvas{opacity:.48}}
 </style>
 
+
+<style id="speaker-photo-crop-fix">
+/* Speaker portraits: reduce the overly tight crop without changing card dimensions */
+.speaker-photo {
+  overflow: hidden;
+  background: #e4e0d6;
+}
+
+.speaker-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center 35% !important;
+  transform: scale(0.88);
+  transform-origin: center center;
+}
+</style>
+
 </head>
 <body id="top">
 
