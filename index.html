@@ -2506,17 +2506,18 @@ f.addEventListener('submit',async e=>{e.preventDefault();st.className='pt-status
     const r=await fetch(ROOT+'gallery.json',{cache:'no-cache'}); if(!r.ok) throw 0;
     const j=await r.json(); return (j.items||j).map(it=>({
       type:it.youtube?'youtube':(VID.test(it.src||'')?'video':'image'),
-      src:it.youtube?it.youtube:(it.src.startsWith('http')||it.src.startsWith('images/')?it.src:ROOT+it.src),
-      poster:it.poster?(it.poster.startsWith('http')||it.poster.startsWith('images/')?it.poster:ROOT+it.poster):'',
+      src:it.youtube?it.youtube:(/^(https?:|images\/)/.test(it.src)?it.src:ROOT+it.src),
+      poster:it.poster?(/^(https?:|images\/)/.test(it.poster)?it.poster:ROOT+it.poster):'',
       caption:it.caption||'', edition:it.edition||'' }));
   }
   async function fromRepo(){
-    const k='tac_gallery_tree', c=sessionStorage.getItem(k);
-    let paths;
-    if(c){paths=JSON.parse(c);}else{
+    const k='tac_gallery_tree_v2', TTL=10*60*1000;
+    let paths=null;
+    try{const c=JSON.parse(sessionStorage.getItem(k)||'null');if(c&&Date.now()-c.t<TTL&&c.p.length)paths=c.p;}catch(_){}
+    if(!paths){
       const r=await fetch(`https://api.github.com/repos/${REPO}/git/trees/${BRANCH}?recursive=1`); if(!r.ok) throw 0;
       paths=(await r.json()).tree.filter(t=>t.type==='blob'&&t.path.startsWith(ROOT)).map(t=>t.path);
-      try{sessionStorage.setItem(k,JSON.stringify(paths))}catch(_){}
+      if(paths.length){try{sessionStorage.setItem(k,JSON.stringify({t:Date.now(),p:paths}))}catch(_){}}
     }
     const posters=new Set(paths.filter(p=>/\.poster\.(webp|jpe?g|png)$/i.test(p)));
     return paths.filter(p=>(IMG.test(p)&&!posters.has(p))||VID.test(p)).sort(natural).map(p=>{
@@ -2524,6 +2525,13 @@ f.addEventListener('submit',async e=>{e.preventDefault();st.className='pt-status
       const base=p.replace(/\.[^.]+$/,''), poster=[...posters].find(x=>x.startsWith(base+'.poster.'))||'';
       return {type:VID.test(p)?'video':'image',src:p,poster,caption:'',edition:ed};
     });
+  }
+  /* gallery.json = reliable list (order + captions). Repo scan = picks up anything uploaded since. */
+  async function loadAll(){
+    const [js,repo]=await Promise.allSettled([fromJson(),fromRepo()]);
+    const J=js.status==='fulfilled'?js.value:[], R=repo.status==='fulfilled'?repo.value:[];
+    const seen=new Set(J.map(i=>i.src));
+    return J.concat(R.filter(i=>!seen.has(i.src)));
   }
   const ytId=u=>(u.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{11})/)||[])[1]||u;
 
@@ -2586,7 +2594,7 @@ f.addEventListener('submit',async e=>{e.preventDefault();st.className='pt-status
 
   /* load: gallery.json if present, otherwise scan the repo folder */
   (async()=>{
-    try{ALL=await fromJson();}catch(_){try{ALL=await fromRepo();}catch(__){ALL=[];}}
+    try{ALL=await loadAll();}catch(_){ALL=[];}
     if(!ALL.length){sec.hidden=true;return;}
     sec.hidden=false;buildFilters();apply();
     const a=document.querySelector('nav a[href="#gallery"]');if(a)a.hidden=false;
