@@ -33,65 +33,78 @@ dialog{width:min(820px,calc(100% - 30px));background:#fff;color:var(--ink);borde
 .dark-band .lead,.dark-band .attend-meta p{color:#b9c1cb}
 .dark-band .attend-meta{border-left-color:rgba(255,255,255,.18)}
 
-/* --- Minimal African identity: geometric linework, deliberately restrained --- */
-.african-mark{
-  --motif: rgba(184,137,50,.18);
-  position:absolute; pointer-events:none; overflow:hidden;
+
+
+/* --- Minimal tribal identity: sparse, architectural, not decorative wallpaper --- */
+.tribal-rail{
+  position:absolute; pointer-events:none; z-index:1;
+  width:42px; overflow:hidden; opacity:.58;
 }
-.african-mark::before,.african-mark::after{
+.tribal-rail::before{
   content:""; position:absolute; inset:0;
   background:
-    repeating-linear-gradient(45deg, transparent 0 16px, var(--motif) 16px 18px, transparent 18px 34px),
-    repeating-linear-gradient(-45deg, transparent 0 16px, var(--motif) 16px 18px, transparent 18px 34px);
-  -webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
-  mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+    linear-gradient(135deg,transparent 38%,rgba(184,137,50,.55) 39% 44%,transparent 45%) 0 0/28px 28px,
+    linear-gradient(45deg,transparent 38%,rgba(0,12,31,.20) 39% 44%,transparent 45%) 14px 0/28px 28px;
 }
-.african-mark::after{transform:scale(.72) rotate(45deg);opacity:.65}
 .hero{position:relative;overflow:hidden}
-.hero .african-mark{right:-40px;top:70px;width:260px;height:460px;opacity:.7}
 .hero-copy{position:relative;z-index:2;max-width:1280px}
+.hero .tribal-rail{right:0;top:50px;height:430px}
 .hero-rule{display:flex;align-items:center;gap:16px;margin-top:30px;color:#747b84;font:700 9px Archivo;letter-spacing:.24em;text-transform:uppercase}
 .hero-rule::before{content:"";width:44px;height:1px;background:var(--gold)}
-.section-accent{position:relative}
-.section-accent::before{content:"";position:absolute;left:0;top:0;width:52px;height:2px;background:var(--gold)}
+
+.tribal-tab{
+  width:72px;height:14px;margin:0 0 28px 0;position:relative;
+  background:
+    linear-gradient(135deg,transparent 42%,var(--gold) 43% 49%,transparent 50%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 42%,rgba(0,12,31,.32) 43% 49%,transparent 50%) 9px 0/18px 18px;
+  opacity:.62
+}
 .city-code{display:inline-flex;align-items:center;gap:10px}
 .city-code::before{content:"";width:18px;height:1px;background:var(--gold)}
-.motif-strip{height:42px;position:relative;overflow:hidden;background:#f3f2ee;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.motif-strip::before{
- content:"";position:absolute;inset:0;opacity:.42;
- background:
- linear-gradient(45deg,transparent 46%,rgba(184,137,50,.18) 47% 53%,transparent 54%) 0 0/42px 42px,
- linear-gradient(-45deg,transparent 46%,rgba(0,12,31,.09) 47% 53%,transparent 54%) 21px 0/42px 42px;
+
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:64px}
+.pillar{padding:34px 28px;text-align:center;border-right:1px solid var(--line)}
+.pillar:last-child{border-right:0}
+.pillar-icon{width:34px;height:34px;margin:0 auto 18px;position:relative}
+.pillar-icon::before,.pillar-icon::after{content:"";position:absolute;inset:7px;border:2px solid var(--gold);transform:rotate(45deg)}
+.pillar:nth-child(2) .pillar-icon::after{transform:rotate(0);inset:10px 4px;border-left:0;border-right:0}
+.pillar:nth-child(3) .pillar-icon::before{border-radius:50%;transform:none}
+.pillar:nth-child(4) .pillar-icon::before{transform:rotate(45deg);border-top:0;border-bottom:0}
+.pillar b{display:block;font:700 10px Archivo;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+.pillar p{font-size:12px;line-height:1.55;color:#66707c;margin:0 auto;max-width:190px}
+
+.section{position:relative}
+.section-mark{
+  position:absolute;left:0;top:42px;width:24px;height:110px;opacity:.45;
+  background:
+    linear-gradient(135deg,transparent 40%,rgba(184,137,50,.55) 41% 47%,transparent 48%) 0 0/20px 20px,
+    linear-gradient(45deg,transparent 40%,rgba(0,12,31,.18) 41% 47%,transparent 48%) 10px 0/20px 20px;
 }
-.people-tools,.section-head{position:relative}
-.people-tools::after,.section-head::after{
- content:"";position:absolute;right:0;top:0;width:92px;height:92px;opacity:.14;
- background:
- linear-gradient(45deg,transparent 43%,var(--gold) 44% 48%,transparent 49%) 0 0/24px 24px,
- linear-gradient(-45deg,transparent 43%,var(--navy) 44% 48%,transparent 49%) 12px 0/24px 24px;
-}
-.logos{position:relative}
-.logo-cell{transition:background .2s ease}
-.logo-cell:hover{background:#fff}
 .insight{position:relative}
 .insight::before{content:"";position:absolute;left:40px;top:0;width:38px;height:2px;background:var(--gold)}
 .gallery-grid{position:relative}
-.gallery-grid::after{content:"";position:absolute;right:-18px;bottom:-18px;width:80px;height:80px;z-index:-1;opacity:.18;background:repeating-linear-gradient(45deg,var(--gold) 0 2px,transparent 2px 12px)}
+.gallery-slot{position:relative;overflow:hidden}
+.gallery-slot img{width:100%;height:100%;object-fit:cover}
+.gallery-fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:#747b84;font:700 10px Archivo;letter-spacing:.12em;text-transform:uppercase}
+.gallery-fallback small{display:block;font:400 9px Inter;letter-spacing:0;text-transform:none;margin-top:8px}
+
 .dark-band{position:relative;overflow:hidden}
 .dark-band::before{
- content:"";position:absolute;left:-55px;top:-80px;width:270px;height:330px;opacity:.16;
- background:
- repeating-linear-gradient(45deg,transparent 0 18px,#d0a149 18px 20px,transparent 20px 38px),
- repeating-linear-gradient(-45deg,transparent 0 18px,#d0a149 18px 20px,transparent 20px 38px);
- transform:rotate(8deg)
+  content:"";position:absolute;left:0;top:0;bottom:0;width:58px;opacity:.42;
+  background:
+    linear-gradient(135deg,transparent 38%,rgba(208,161,73,.8) 39% 44%,transparent 45%) 0 0/30px 30px,
+    linear-gradient(45deg,transparent 38%,rgba(255,255,255,.22) 39% 44%,transparent 45%) 15px 0/30px 30px;
 }
 .dark-band .wrap{position:relative;z-index:2}
 footer{position:relative}
 footer::before{content:"";display:block;position:absolute;left:var(--pad);right:var(--pad);top:0;height:1px;background:var(--line)}
+
+@media(max-width:1050px){.pillars{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){
- .hero .african-mark{right:-110px;top:90px;opacity:.45}
- .people-tools::after,.section-head::after{display:none}
- .motif-strip{height:28px}
+  .hero .tribal-rail{right:-15px;opacity:.35}
+  .pillars{grid-template-columns:1fr}
+  .pillar{border-right:0;border-bottom:1px solid var(--line)}
+  .section-mark{display:none}
 }
 
 </style>
@@ -125,7 +138,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 
 <main>
 <section class="hero">
-  <div class="african-mark" aria-hidden="true"></div>
+  <div class="tribal-rail" aria-hidden="true"></div>
   <div class="wrap hero-copy">
     <span class="label">The African Circuit</span>
     <h1>Capital exists.<br>Mandates exist.<br><em>The gap is deployment.</em></h1>
@@ -142,12 +155,11 @@ The page deliberately shows elegant placeholders until those files are uploaded.
     <div class="metric"><strong>4</strong><span>Cities in the Circuit</span></div>
   </div>
 </div>
-<div class="motif-strip" aria-hidden="true"></div>
 
 <section class="section" id="circuit">
   <div class="wrap">
-    <div class="section-head section-accent">
-      <div><span class="label">The Circuit</span><h2>A stronger circuit of trust.</h2></div>
+    <div class="section-head">
+      <div><div class="tribal-tab" aria-hidden="true"></div><span class="label">The Circuit</span><h2>A stronger circuit of trust.</h2></div>
       <div><p class="lead">Africa does not lack opportunity. Capital moves through relationships, governance, credible information and the right institutional vehicles. The African Circuit brings together the institutions responsible for mandate, policy, structuring and deployment.</p></div>
     </div>
   </div>
@@ -162,14 +174,20 @@ The page deliberately shows elegant placeholders until those files are uploaded.
       <article class="circuit-item"><span class="n city-code">03 / CPT</span><div><h3>Cape Town</h3><p>February 2027</p><span class="status">Announced</span></div></article>
       <article class="circuit-item"><span class="n city-code">04 / CMN</span><div><h3>Casablanca</h3><p>Coming soon</p><span class="status">Announced</span></div></article>
     </div>
+    <div class="pillars" aria-label="How the Circuit works">
+      <div class="pillar"><div class="pillar-icon" aria-hidden="true"></div><b>Convene</b><p>Decision-makers across the investment ecosystem.</p></div>
+      <div class="pillar"><div class="pillar-icon" aria-hidden="true"></div><b>Connect</b><p>Capital with high-impact opportunities.</p></div>
+      <div class="pillar"><div class="pillar-icon" aria-hidden="true"></div><b>Catalyse</b><p>Practical solutions and partnerships.</p></div>
+      <div class="pillar"><div class="pillar-icon" aria-hidden="true"></div><b>Deploy</b><p>From mandate to investable action.</p></div>
+    </div>
   </div>
 </section>
 
-<section class="section" id="people">
+<section class="section" id="people"><div class="section-mark" aria-hidden="true"></div><div class="section-mark" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="people-tools section-accent">
+    <div class="people-tools">
       <div><span class="label">Mauritius 2026</span><h2>The people<br>in the room.</h2></div>
-      <p>Speaker names, titles, organisations and biographies have been retained from the source site. Upload a portrait to the indicated filename and it appears automatically.</p>
+      <p>Institutional voices shaping the conversation across capital, policy and investment.</p>
     </div>
     <div class="speaker-grid">
       
@@ -628,11 +646,11 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
-<section class="section light" id="ecosystem">
+<section class="section light" id="ecosystem"><div class="section-mark" aria-hidden="true"></div>
   <div class="wrap">
     <span class="label" style="color:var(--red)">Institutional ecosystem</span>
     <h2>Capital does not<br>move in isolation.</h2>
-    <p class="lead">The logo wall keeps the positioning and hierarchy of the original concept, but all logos now live as normal image files that you can upload or replace.</p>
+    <p class="lead">Institutions across capital, policy, advisory and deployment.</p>
     <div class="logos">
       <div class="logo-cell" title="Suntera Global">
         <img src="images/partners/suntera.png" alt="Suntera Global"
@@ -757,8 +775,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
-<div class="motif-strip" aria-hidden="true"></div>
-<section class="section" id="insights">
+<section class="section" id="insights"><div class="section-mark" aria-hidden="true"></div>
   <div class="wrap">
     <span class="label">Insights</span><h2>Ideas between<br>the Circuits.</h2>
     <div class="insights">
@@ -768,16 +785,16 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
-<section class="section" id="gallery">
+<section class="section" id="gallery"><div class="section-mark" aria-hidden="true"></div>
   <div class="wrap">
     <span class="label" style="color:var(--blue)">Gallery · Mauritius 2026</span><h2>The first<br>Circuit.</h2>
-    <p class="lead">These are upload slots. Add the files below to <b>images/gallery/</b> and replace each placeholder with an image whenever you are ready.</p>
+    <p class="lead">Two days. One room. The beginning of the Circuit.</p>
     <div class="gallery-grid">
-      <div class="gallery-slot">Hero conference photograph<small>images/gallery/01.jpg</small></div>
-      <div class="gallery-slot">Panel<small>images/gallery/02.jpg</small></div>
-      <div class="gallery-slot">People<small>images/gallery/03.jpg</small></div>
-      <div class="gallery-slot">The Conduit<small>images/gallery/04.jpg</small></div>
-      <div class="gallery-slot">Roundtable<small>images/gallery/05.jpg</small></div>
+      <div class="gallery-slot"><img src="images/gallery/01.jpg" alt="The African Circuit Mauritius 2026" onerror="this.style.display='none'"><span class="gallery-fallback">Mauritius 2026<small>Conference</small></span></div>
+      <div class="gallery-slot"><img src="images/gallery/02.jpg" alt="Panel at The African Circuit Mauritius 2026" onerror="this.style.display='none'"><span class="gallery-fallback">Panel<small>Mauritius 2026</small></span></div>
+      <div class="gallery-slot"><img src="images/gallery/03.jpg" alt="Participants at The African Circuit Mauritius 2026" onerror="this.style.display='none'"><span class="gallery-fallback">People<small>Mauritius 2026</small></span></div>
+      <div class="gallery-slot"><img src="images/gallery/04.jpg" alt="The Conduit at The African Circuit Mauritius 2026" onerror="this.style.display='none'"><span class="gallery-fallback">The Conduit<small>Mauritius 2026</small></span></div>
+      <div class="gallery-slot"><img src="images/gallery/05.jpg" alt="Roundtable at The African Circuit Mauritius 2026" onerror="this.style.display='none'"><span class="gallery-fallback">Roundtable<small>Mauritius 2026</small></span></div>
     </div>
   </div>
 </section>
