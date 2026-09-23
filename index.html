@@ -2435,8 +2435,8 @@ f.addEventListener('submit',async e=>{e.preventDefault();st.className='pt-status
   if(!f.checkValidity()){f.reportValidity();st.className='pt-status err';st.textContent='Please complete the required fields marked *.';return;}
   document.getElementById('pSubject').value='Partnership enquiry — '+f.organisation.value+(f.partnership_format.value?' · '+f.partnership_format.value:'');
   const d=new FormData(f);d.set('_replyto',f.email.value.trim());btn.disabled=true;btn.textContent='Sending…';
-  try{const r=await fetch('https://formspree.io/f/xeaoklgq',{method:'POST',body:d,headers:{Accept:'application/json'}});if(!r.ok)throw 0;done();}
-  catch(_){st.className='pt-status err';st.innerHTML='Could not send. Email <a href="mailto:admin@philanthropicfoundation.net" style="border-bottom:1px solid">admin@philanthropicfoundation.net</a>.';}
+  try{const r=await fetch('https://formspree.io/f/xeaoklgq',{method:'POST',body:d,headers:{Accept:'application/json'}});if(!r.ok){let m='HTTP '+r.status;try{const j=await r.json();if(j.errors)m=j.errors.map(x=>x.message).join(', ');}catch(_){}console.error('Formspree error:',m);throw new Error(m);}done();}
+  catch(err){st.className='pt-status err';st.innerHTML='Could not send ('+String(err&&err.message||'network error').replace(/[<>&]/g,'')+'). Email <a href="mailto:admin@philanthropicfoundation.net" style="border-bottom:1px solid">admin@philanthropicfoundation.net</a>.';}
   finally{btn.disabled=false;btn.textContent='Request the brief';}});})();
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
