@@ -3,263 +3,352 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Terms of Use — The African Circuit</title>
-<meta name="description" content="Terms of Use for The African Circuit.">
+<meta name="theme-color" content="#000C1F">
+<title>Terms of Use | The African Circuit</title>
+<meta name="description" content="Terms governing use of theafricancircuit.com and registration for and attendance at The African Circuit.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#03101b;--gold:#d0a149;--gold-light:#e0b763;--gold-dark:#a97d2d;
-  --text-primary:#f5f0e8;--text-secondary:#c2cbd4;
-  --border:rgba(255,255,255,.09);--border-gold:rgba(208,161,73,.55);
-  --max:1360px;--pad:clamp(24px,4vw,64px);
+  --paper:#f2ecde;--paper-2:#e9e1cd;--card:#fbf7ec;
+  --ink:#07131d;--navy:#000c1f;--grey:#4f5863;--soft:#7a828c;
+  --gold:#b88932;--cyan:#05bcd4;--cyan-d:#087f98;--rust:#9e4d38;
+  --line:rgba(7,19,29,.15);--pad:clamp(20px,4.5vw,72px);--head:86px
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(circle at 70% 12%,rgba(25,59,92,.18),transparent 32%),linear-gradient(180deg,#03101b 0%,#051522 100%);color:var(--text-primary);font-family:Manrope,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-button,input{font:inherit}
-.wrap{width:min(var(--max),100%);margin:auto;padding-inline:var(--pad)}
-.kicker{font:500 10px/1.4 "DM Mono";letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.26;
+  background:repeating-linear-gradient(8deg,rgba(7,19,29,.024) 0 1px,transparent 1px 5px)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{width:min(1300px,100%);margin:auto;padding-left:var(--pad);padding-right:var(--pad)}
+.k{font:700 10px Archivo,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+[hidden]{display:none!important}
 
-/* Header */
-.header{position:fixed;inset:0 0 auto;z-index:100;height:92px;background:linear-gradient(180deg,rgba(3,16,27,.98),rgba(3,16,27,.72),transparent);transition:.3s}
-.header.scrolled{background:rgba(3,16,27,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
-.nav{height:92px;display:flex;align-items:center;gap:26px}
-.brand{display:flex;align-items:center;gap:14px;min-width:310px}
-.brand-mark{width:58px;height:58px;border-radius:50%;object-fit:cover}
-.brand strong{display:block;font:500 22px/1 "EB Garamond";letter-spacing:.02em}
-.brand strong span{color:var(--gold)}
-.brand small{display:block;margin-top:7px;font:400 8px/1 "DM Mono";letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.45)}
-.links{margin-left:auto;display:flex;align-items:center;gap:2px}
-.links a{position:relative;padding:12px 10px;font-size:9px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.66)}
-.links a:hover{color:#fff}
-.links .join{margin-left:12px;padding:17px 22px;background:var(--gold);color:var(--navy);font-weight:700}
-.menu{display:none;margin-left:auto;background:none;border:0;color:#fff;font-size:25px}
-.mobile{display:none;position:fixed;inset:0;background:var(--navy);z-index:90;padding:108px 28px 28px}
-.mobile.open{display:block}
-.mobile a{display:block;padding:15px 0;border-bottom:1px solid var(--border);font:400 30px/1.1 "EB Garamond"}
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(242,236,222,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:var(--head);display:flex;align-items:center;gap:28px;position:relative}
+.brand{display:flex;align-items:center;gap:14px;margin-right:auto;text-decoration:none}
+.brand img{width:58px;height:58px;object-fit:contain}
+.brand-text b{font:600 clamp(19px,2vw,31px) "EB Garamond",serif;letter-spacing:.02em}
+.brand-text b span{color:var(--gold)}
+.brand-text small{display:block;margin-top:3px;color:#8e97a6;font:600 9px Archivo;letter-spacing:.3em;text-transform:uppercase}
+nav{display:flex;align-items:center;gap:28px}
+nav a{font:600 12px Archivo;text-transform:uppercase;color:#5f6873;text-decoration:none}
+nav a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:#f6f2e9!important;padding:18px 24px}
+.menu-btn{display:none;border:1.5px solid var(--line);background:transparent;padding:12px 14px;font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
 
-/* Legal doc layout */
-.legalhero{padding:162px 0 30px;border-bottom:1px solid var(--border)}
-.legalhero h1{font:400 clamp(36px,4vw,54px)/1.05 "EB Garamond";margin:14px 0 10px}
-.legalhero .updated{font:500 9px "DM Mono";letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
-.legalbody{padding:60px 0 90px}
-.legalbody .inner{max-width:760px;margin:0 auto}
-.legalbody h2{font:400 24px "EB Garamond";margin:44px 0 14px;color:var(--gold-light)}
-.legalbody h2:first-child{margin-top:0}
-.legalbody h2 .num{color:var(--gold);margin-right:10px;font-family:"DM Mono"}
-.legalbody h3{font:600 13px "DM Mono";letter-spacing:.03em;margin:26px 0 10px;color:var(--text-primary)}
-.legalbody p{font-size:13px;line-height:1.9;color:var(--text-secondary);margin:0 0 14px}
-.legalbody ul,.legalbody ol{margin:0 0 14px;padding-left:20px}
-.legalbody li{font-size:13px;line-height:1.85;color:var(--text-secondary);margin-bottom:6px}
-.legalbody a.inline-link{color:var(--gold);text-decoration:underline}
-.legal-toc{border:1px solid var(--border);border-radius:6px;padding:22px 26px;margin-bottom:20px;background:#071522}
-.legal-toc .kicker{margin-bottom:12px;display:block}
-.legal-toc ol{margin:0;padding-left:18px;columns:2;column-gap:32px}
-.legal-toc li{font-size:11.5px;color:var(--text-secondary);margin-bottom:8px;break-inside:avoid}
-.legal-toc a{color:var(--text-secondary)}
-.legal-toc a:hover{color:var(--gold)}
-@media(max-width:600px){.legal-toc ol{columns:1}}
+/* hero */
+.hero{padding:clamp(56px,7vw,100px) 0 clamp(36px,4vw,56px);border-bottom:1px solid var(--line)}
+.hero h1{font:500 clamp(54px,7vw,116px)/.86 "EB Garamond",serif;letter-spacing:-.05em;margin:16px 0 22px}
+.hero h1 i{color:var(--rust)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 30px;font:700 10px Archivo;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.summary{margin-top:36px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(7,19,29,.22);border-bottom:1px solid rgba(7,19,29,.22)}
+.summary div{padding:22px 20px 22px 0;border-right:1px solid var(--line);padding-left:20px}
+.summary div:first-child{padding-left:0}
+.summary div:last-child{border-right:0}
+.summary b{display:block;font:700 10px Archivo;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.summary p{margin:0;font-size:14px;line-height:1.55;color:var(--grey)}
 
-/* Footer */
-footer{padding:48px 0 23px;border-top:1px solid var(--border)}
-.footer-grid{display:grid;grid-template-columns:1.15fr 1fr .7fr .7fr;gap:1px;background:var(--border)}
-.footer-cell{padding:30px;background:#071522}
-.footer-brand{display:flex;gap:13px;align-items:center}
-.footer-brand img{width:54px;height:54px;border-radius:50%}
-.footer-brand strong{font:500 19px "EB Garamond"}
-.footer-cell p,.footer-cell a{font-size:9px;line-height:1.75;color:rgba(255,255,255,.48)}
-.footer-cell a{display:block;margin-top:8px}
-.newsletter{display:flex;margin-top:16px}
-.newsletter input{min-width:0;flex:1;background:#03101b;border:1px solid var(--border);padding:12px;color:#fff}
-.newsletter button{border:0;background:var(--gold);padding:0 17px;font-size:8px;font-weight:700;text-transform:uppercase}
-.socials{display:flex;gap:10px;margin-top:18px}
-.socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);display:grid;place-items:center;color:rgba(255,255,255,.7)}
-.footer-bottom{display:flex;justify-content:space-between;margin-top:22px;font:400 7px "DM Mono";letter-spacing:.07em;color:rgba(255,255,255,.32);text-transform:uppercase}
+/* body layout */
+.doc{display:grid;grid-template-columns:260px minmax(0,1fr);gap:clamp(30px,5vw,80px);padding-top:clamp(50px,6vw,90px);padding-bottom:clamp(70px,8vw,120px)}
+.toc{position:sticky;top:calc(var(--head) + 28px);align-self:start;max-height:calc(100vh - var(--head) - 56px);overflow:auto}
+.toc ol{list-style:none;margin:14px 0 0;padding:0;counter-reset:t}
+.toc li{counter-increment:t}
+.toc a{display:flex;gap:10px;padding:7px 0;font-size:13px;color:var(--grey);text-decoration:none;border-left:2px solid transparent;padding-left:12px;margin-left:-14px}
+.toc a::before{content:counter(t,decimal-leading-zero);font:700 10px Archivo;color:var(--soft);padding-top:2px}
+.toc a:hover,.toc a.on{color:var(--ink);border-left-color:var(--cyan)}
+.content{max-width:760px}
+.content section{padding-top:8px;margin-bottom:46px;scroll-margin-top:calc(var(--head) + 20px)}
+.content h2{font:500 clamp(30px,3vw,40px)/1.05 "EB Garamond",serif;letter-spacing:-.02em;margin:0 0 16px;display:flex;gap:16px;align-items:baseline}
+.content h2 .n{font:800 12px Archivo;letter-spacing:.12em;color:var(--gold);flex:none}
+.content h3{font:700 11px Archivo;letter-spacing:.14em;text-transform:uppercase;margin:26px 0 10px}
+.content p,.content li{font-size:15.5px;line-height:1.8;color:#2c3540}
+.content p{margin:0 0 14px}
+.content ul{margin:0 0 16px;padding-left:20px}
+.content li{margin-bottom:6px}
+.content li::marker{color:var(--gold)}
+.content a{border-bottom:1.5px solid var(--gold);text-decoration:none}
+.content strong{color:var(--ink);font-weight:600}
+.tbl{overflow-x:auto;margin:10px 0 20px}
+table{width:100%;min-width:560px;border-collapse:collapse;font-size:14px;background:rgba(251,247,236,.6)}
+th,td{padding:12px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.5}
+thead th{font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid var(--ink);background:transparent}
+.note{background:var(--navy);color:#e8ecef;padding:24px 26px;margin:22px 0}
+.note .k{color:var(--cyan)}
+.note p{color:#c9d1d8;margin:8px 0 0;font-size:14.5px}
+.contact-card{border:1px solid var(--line);background:var(--card);padding:28px}
+.contact-card dl{margin:0;display:grid;grid-template-columns:150px 1fr;gap:10px 20px;font-size:15px}
+.contact-card dt{font:700 10px Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+.contact-card dd{margin:0}
 
-@media(max-width:1100px){
-  .links{display:none}.menu{display:block}
-  .footer-grid{grid-template-columns:1fr 1fr}
+footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
+.foot{display:flex;justify-content:space-between;gap:30px;font-size:11px;flex-wrap:wrap}
+.foot a{margin-left:18px;text-decoration:none}
+
+@media(max-width:1000px){
+  .menu-btn{display:block}
+  nav{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--paper);border-bottom:1px solid var(--line);display:none}
+  nav.open{display:flex}
+  nav a{padding:18px var(--pad);border-top:1px solid var(--line);font-size:13px}
+  .nav-cta{padding:18px var(--pad)!important}
+  .doc{grid-template-columns:minmax(0,1fr)}.toc{min-width:0}
+  .toc{position:relative;top:0;max-height:none;border:1px solid var(--line);background:var(--card);padding:20px 22px}
+  .toc ol{columns:2;column-gap:24px}
+  .toc a{margin-left:0;padding-left:0;border-left:0}
+  .summary{grid-template-columns:1fr 1fr}
+  .summary div{padding-left:0!important;border-right:0;border-bottom:1px solid var(--line)}
+  .summary div:nth-child(odd){padding-right:20px}
 }
-@media(max-width:700px){
-  .nav{height:76px}.header{height:76px}
-  .brand{min-width:auto}.brand-mark{width:46px;height:46px}.brand strong{font-size:17px}.brand small{display:none}
-  .legalhero{padding:130px 0 24px}
-  .footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px}
+@media(max-width:650px){
+  :root{--head:70px}
+  .brand img{width:40px;height:40px}.brand-text b{font-size:17px}.brand-text small{display:none}
+  .hero h1{font-size:clamp(48px,14vw,62px)}
+  .summary{grid-template-columns:1fr}
+  .toc ol{columns:1}
+  .content p,.content li{font-size:15px}
+  .contact-card dl{grid-template-columns:1fr;gap:2px}
+  .contact-card dd{margin-bottom:10px}
+  .foot{flex-direction:column;gap:12px}.foot a{margin:0 18px 0 0}
 }
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{header,.toc,footer,.menu-btn{display:none}.doc{grid-template-columns:1fr}body::before{display:none}}
 </style>
 </head>
 <body>
-<header class="header">
+
+<header>
   <div class="wrap nav">
-    <a class="brand" href="/" aria-label="The African Circuit home">
-      <img class="brand-mark" src="/images/african-circuit-logo.png" alt="The African Circuit logo">
-      <span><strong>THE AFRICAN <span>CIRCUIT</span></strong><small>Capital · Policy · Investment</small></span>
+    <a class="brand" href="index.html">
+      <img src="https://raw.githubusercontent.com/pfadmin21/-theafricancircuit.com/main/images/african-circuit-logo.png" alt="The African Circuit">
+      <span class="brand-text"><b>THE AFRICAN <span>CIRCUIT</span></b><small>Capital · Policy · Investment</small></span>
     </a>
-    <nav class="links">
-      <a href="/">Home</a>
-      <a href="/conference/">Conference</a>
-      <a href="/about/">About</a>
-      <a class="join" href="/membership/">Join the Network</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+    <nav id="primaryNav" aria-label="Primary">
+      <a href="index.html#circuit">The Circuit</a><a href="index.html#programme">Programme</a><a href="index.html#people">People</a>
+      <a class="nav-cta" href="book.html">Register</a>
     </nav>
-    <button class="menu" aria-label="Open menu">☰</button>
   </div>
 </header>
-<nav class="mobile">
-  <a href="/">Home</a>
-  <a href="/conference/">Conference</a>
-  <a href="/about/">About</a>
-  <a href="/membership/">Join the Network</a>
-</nav>
 
 <main>
-<section class="legalhero">
+<section class="hero">
   <div class="wrap">
-    <div class="kicker">Legal</div>
-    <h1>Terms of Use</h1>
-    <div class="updated">Effective date: July 2026 · Last updated: July 2026</div>
-  </div>
-</section>
+    <span class="k">Legal</span>
+    <h1>Terms of <i>Use.</i></h1>
+    <div class="hero-meta"><span>Effective 23 September 2026</span><span>Last updated 23 September 2026</span></div>
 
-<section class="legalbody">
-  <div class="wrap inner">
-
-    <div class="legal-toc">
-      <span class="kicker">Contents</span>
-      <ol>
-        <li><a href="#tu-1">Acceptance of Terms</a></li>
-        <li><a href="#tu-2">Definitions</a></li>
-        <li><a href="#tu-3">Eligibility</a></li>
-        <li><a href="#tu-4">Description of Services</a></li>
-        <li><a href="#tu-5">Acceptable Use</a></li>
-        <li><a href="#tu-6">Intellectual Property Rights</a></li>
-        <li><a href="#tu-7">Event Registration and Attendance</a></li>
-        <li><a href="#tu-8">Confidentiality and Chatham House Rule</a></li>
-        <li><a href="#tu-9">No Investment, Financial or Legal Advice</a></li>
-        <li><a href="#tu-10">Third-Party Websites and Services</a></li>
-        <li><a href="#tu-11">Disclaimer of Warranties</a></li>
-        <li><a href="#tu-12">Limitation of Liability</a></li>
-        <li><a href="#tu-13">Indemnification</a></li>
-        <li><a href="#tu-14">Governing Law and Dispute Resolution</a></li>
-        <li><a href="#tu-15">Severability</a></li>
-        <li><a href="#tu-16">Entire Agreement</a></li>
-        <li><a href="#tu-17">Assignment</a></li>
-        <li><a href="#tu-18">No Waiver</a></li>
-        <li><a href="#tu-19">Force Majeure</a></li>
-        <li><a href="#tu-20">Changes to These Terms</a></li>
-        <li><a href="#tu-21">Contact</a></li>
-      </ol>
+    <div class="summary" aria-label="Summary">
+      <div><b>Registering</b><p>Your registration is a request. It becomes a booking when we confirm it and you pay the invoice.</p></div>
+      <div><b>In the room</b><p>Closed-door sessions follow the Chatham House Rule. Respect the room and the people in it.</p></div>
+      <div><b>No advice</b><p>Nothing said on the site or on stage is investment, financial or legal advice.</p></div>
+      <div><b>Law</b><p>These terms are governed by the laws of Mauritius.</p></div>
     </div>
-
-    <h2 id="tu-1"><span class="num">1.</span>Acceptance of Terms</h2>
-    <p>These Terms of Use (these "Terms") constitute a binding agreement between you and The African Circuit ("The African Circuit," "we," "us," or "our") governing your access to and use of theafricancircuit.com (the "Site") and the conferences, roundtables, research, membership network and related services we offer (together, the "Services"). By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, you must not access or use the Site.</p>
-
-    <h2 id="tu-2"><span class="num">2.</span>Definitions</h2>
-    <p>"User" means any person who accesses or uses the Site, including prospective or confirmed delegates, speakers, partners and members. "Content" means all text, graphics, programme descriptions, research, branding and other materials made available on the Site. "Third-Party Platform" means any website or service operated by a party other than The African Circuit through which registration or attendance may be facilitated, including LinkedIn Events.</p>
-
-    <h2 id="tu-3"><span class="num">3.</span>Eligibility</h2>
-    <p>The Services are directed at institutional professionals, including investors, development finance institutions, regulators, fund managers, family offices and business leaders. By using the Site, you represent that you are accessing it in a professional capacity and are at least 18 years of age.</p>
-
-    <h2 id="tu-4"><span class="num">4.</span>Description of Services</h2>
-    <p>The African Circuit is a pan-African institutional finance conference platform convening capital, policy and investment stakeholders across a calendar of city editions, together with associated research, executive education and a private membership network. Descriptions of the Services on the Site are provided for general informational purposes and do not constitute a binding offer unless expressly stated.</p>
-
-    <h2 id="tu-5"><span class="num">5.</span>Acceptable Use</h2>
-    <p>You agree to use the Site only for lawful purposes and in a manner that does not infringe the rights of, or restrict or inhibit the use of the Site by, any third party. Without limitation, you shall not: (a) attempt to gain unauthorised access to the Site or its underlying systems; (b) reproduce, duplicate, copy or resell any part of the Site in contravention of these Terms; or (c) use any automated system to extract data from the Site without our prior written consent.</p>
-
-    <h2 id="tu-6"><span class="num">6.</span>Intellectual Property Rights</h2>
-    <p>The African Circuit name, logo, and all Content published on the Site are the property of The African Circuit or its licensors, protected by applicable intellectual property laws, unless otherwise stated. No right, title or interest in the Content is transferred to you. You may not reproduce, distribute, modify or create derivative works from the Content without our prior written permission.</p>
-
-    <h2 id="tu-7"><span class="num">7.</span>Event Registration and Attendance</h2>
-    <p>Attendance at Circuit editions is invitation-only and subject to our approval in our sole discretion. Submitting a registration of interest through the Site or a Third-Party Platform does not guarantee a place. Programme content, speakers, dates, venues and pricing are subject to change without notice, and we will make reasonable efforts to communicate material changes to registered delegates.</p>
-
-    <h2 id="tu-8"><span class="num">8.</span>Confidentiality and Chatham House Rule</h2>
-    <p>Certain sessions at Circuit editions, including closed-door roundtables, are conducted under the Chatham House Rule or an equivalent confidentiality framework. By attending such a session, you agree not to disclose, attribute, or otherwise identify the identity or affiliation of any speaker or participant in connection with statements made during that session, except with the express prior consent of that individual.</p>
-
-    <h2 id="tu-9"><span class="num">9.</span>No Investment, Financial or Legal Advice</h2>
-    <p>Content on the Site, and discussions at Circuit editions, are provided for general informational and convening purposes only. Nothing on the Site or presented at a Circuit edition constitutes investment, financial, tax or legal advice, or a recommendation, offer or solicitation to buy or sell any security, instrument or investment. You should seek independent professional advice before making any investment or business decision.</p>
-
-    <h2 id="tu-10"><span class="num">10.</span>Third-Party Websites and Services</h2>
-    <p>The Site links to Third-Party Platforms, including LinkedIn Events for registration and various social media channels. We do not control and are not responsible for the content, accuracy, security or practices of any Third-Party Platform. Your use of any Third-Party Platform is governed solely by that platform's own terms and policies.</p>
-
-    <h2 id="tu-11"><span class="num">11.</span>Disclaimer of Warranties</h2>
-    <p>The Site, the Content and the Services are provided on an "as is" and "as available" basis, without warranties of any kind, whether express or implied, including without limitation warranties of merchantability, fitness for a particular purpose, non-infringement, or that the Site will be uninterrupted, secure, or error-free. While we make reasonable efforts to keep programme, speaker and scheduling information accurate and current, we do not warrant the completeness or accuracy of any Content at all times.</p>
-
-    <h2 id="tu-12"><span class="num">12.</span>Limitation of Liability</h2>
-    <p>To the fullest extent permitted by applicable law, in no event shall The African Circuit, its officers, employees, or affiliated entities be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, arising out of or in connection with your access to or use of, or inability to access or use, the Site, the Services, or attendance at any Circuit edition, even if advised of the possibility of such damages.</p>
-
-    <h2 id="tu-13"><span class="num">13.</span>Indemnification</h2>
-    <p>You agree to indemnify and hold harmless The African Circuit and its officers, employees and affiliated entities from and against any claims, liabilities, damages, losses and expenses, including reasonable legal fees, arising out of or in any way connected with your breach of these Terms or your misuse of the Site or the Services.</p>
-
-    <h2 id="tu-14"><span class="num">14.</span>Governing Law and Dispute Resolution</h2>
-    <p>These Terms and any dispute or claim arising out of or in connection with them shall be governed by and construed in accordance with the laws of Mauritius, without regard to conflict-of-law principles, save where mandatory local law applicable to you requires otherwise. The parties shall first attempt in good faith to resolve any dispute through direct negotiation before pursuing formal proceedings.</p>
-
-    <h2 id="tu-15"><span class="num">15.</span>Severability</h2>
-    <p>If any provision of these Terms is held to be invalid, illegal or unenforceable, that provision shall be limited or eliminated to the minimum extent necessary, and the remaining provisions shall continue in full force and effect.</p>
-
-    <h2 id="tu-16"><span class="num">16.</span>Entire Agreement</h2>
-    <p>These Terms, together with our Privacy Policy and any other terms referenced herein, constitute the entire agreement between you and The African Circuit regarding your use of the Site and supersede any prior agreements or understandings, whether written or oral.</p>
-
-    <h2 id="tu-17"><span class="num">17.</span>Assignment</h2>
-    <p>You may not assign or transfer any of your rights or obligations under these Terms without our prior written consent. We may assign our rights and obligations under these Terms without restriction, including in connection with a merger, acquisition or restructuring.</p>
-
-    <h2 id="tu-18"><span class="num">18.</span>No Waiver</h2>
-    <p>No failure or delay by The African Circuit in exercising any right under these Terms shall operate as a waiver of that right, nor shall any single or partial exercise preclude any other or further exercise of that right.</p>
-
-    <h2 id="tu-19"><span class="num">19.</span>Force Majeure</h2>
-    <p>The African Circuit shall not be liable for any failure or delay in performance resulting from circumstances beyond its reasonable control, including but not limited to acts of God, natural disaster, war, civil unrest, government action, or failure of third-party infrastructure or platforms.</p>
-
-    <h2 id="tu-20"><span class="num">20.</span>Changes to These Terms</h2>
-    <p>We may revise these Terms from time to time to reflect changes in our practices or for other operational, legal or regulatory reasons. The "Last updated" date at the top of this page reflects the most recent revision. Continued use of the Site following the posting of revised Terms constitutes your acceptance of those changes.</p>
-
-    <h2 id="tu-21"><span class="num">21.</span>Contact</h2>
-    <p>Questions regarding these Terms may be directed to <a class="inline-link" href="mailto:admin@philanthropicfoundation.net">admin@philanthropicfoundation.net</a>.</p>
-
   </div>
 </section>
+
+<div class="wrap doc">
+  <aside class="toc" aria-label="Contents">
+    <span class="k">Contents</span>
+    <ol id="tocList">
+      <li><a href="#about">About these terms</a></li>
+      <li><a href="#eligibility">Who can use the Circuit</a></li>
+      <li><a href="#registration">Registration</a></li>
+      <li><a href="#pricing">Prices &amp; payment</a></li>
+      <li><a href="#changes-cancel">Substitutions &amp; cancellations</a></li>
+      <li><a href="#programme">Programme changes</a></li>
+      <li><a href="#conduct">Conduct at our events</a></li>
+      <li><a href="#chatham">Confidentiality</a></li>
+      <li><a href="#media">Photography &amp; recording</a></li>
+      <li><a href="#advice">No advice</a></li>
+      <li><a href="#site">Using the site</a></li>
+      <li><a href="#ip">Intellectual property</a></li>
+      <li><a href="#third">Third-party services</a></li>
+      <li><a href="#liability">Liability</a></li>
+      <li><a href="#force">Events beyond our control</a></li>
+      <li><a href="#law">Governing law &amp; disputes</a></li>
+      <li><a href="#general">General</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </aside>
+
+  <article class="content">
+
+    <section id="about">
+      <h2><span class="n">01</span>About these terms</h2>
+      <p>The African Circuit (“the Circuit”, “we”, “us”) is operated by <strong>The Philanthropic Foundation</strong>, registered in Mauritius under the Foundations Act 2012 (Registration No. 679).</p>
+      <p>These terms apply to your use of theafricancircuit.com (the “Site”) and to your registration for and attendance at any edition of the Circuit. By using the Site or registering, you accept them.</p>
+      <p>Our <a href="privacy-policy.html">Privacy Policy</a> explains how we handle personal data and forms part of these terms. Any specific terms in your confirmation or invoice also apply. If they conflict with these terms, the specific terms apply.</p>
+    </section>
+
+    <section id="eligibility">
+      <h2><span class="n">02</span>Who can use the Circuit</h2>
+      <p>The Circuit is for professionals, including investors, development finance institutions, regulators, fund managers, family offices, advisers and project owners. By registering, you confirm that:</p>
+      <ul>
+        <li>you are at least 18;</li>
+        <li>you are acting in a professional capacity;</li>
+        <li>if you register on behalf of an organisation or colleagues, you are authorised to do so.</li>
+      </ul>
+    </section>
+
+    <section id="registration">
+      <h2><span class="n">03</span>Registration</h2>
+      <ul>
+        <li>Sending the registration form is a <strong>request for a place</strong>. It is not yet a booking.</li>
+        <li>A booking is made when we confirm it by email. It is secured when the invoice is paid.</li>
+        <li>We may decline or cancel a registration at our discretion. Examples include when an edition is full or the participant profile does not fit the edition. If we cancel after you have paid, we refund what you paid.</li>
+        <li>Each access pass is personal to the named delegate and gives access only to the sessions included in that access category.</li>
+        <li>Closed-door sessions are curated by invitation and are not part of any access category.</li>
+        <li>You must give accurate information. We may refuse entry if the person attending is not the confirmed delegate.</li>
+      </ul>
+    </section>
+
+    <section id="pricing">
+      <h2><span class="n">04</span>Prices &amp; payment</h2>
+      <ul>
+        <li>Prices are in US dollars and follow a release schedule, rising as each release opens. The price shown on the Site when you submit your registration is the price that applies to you, as long as the invoice is paid by its due date.</li>
+        <li>Prices shown on the Site exclude taxes and fees. Any applicable taxes and fees are confirmed on your invoice before you pay.</li>
+        <li>Payment is made against our invoice, using the methods and within the time stated on it. We do not take card payments on the Site.</li>
+        <li>If an invoice is not paid on time, we may release the place. Any new booking is then at the prices in force at that time.</li>
+        <li>Prices do not include travel, accommodation, visas or insurance. These are your responsibility.</li>
+        <li>If a price on the Site is clearly wrong, we will tell you before invoicing and you may withdraw your registration.</li>
+      </ul>
+    </section>
+
+    <section id="changes-cancel">
+      <h2><span class="n">05</span>Substitutions &amp; cancellations</h2>
+      <h3>Substitutions</h3>
+      <p>If you cannot attend, a colleague from the same organisation may take your place at no extra cost. Let us know in writing with their details before the edition.</p>
+      <h3>Cancellations by you</h3>
+      <p>Cancellations must be sent to us in writing. Any refund depends on the cancellation terms stated in your confirmation or invoice.</p>
+      <h3>Cancellation by us</h3>
+      <p>If we cancel an edition, we will offer you either a full refund of the fees you paid or a transfer to another date or edition. If we postpone an edition, you may choose to keep your place or receive a full refund. We are not responsible for travel or accommodation costs you have incurred, so we recommend flexible bookings and travel insurance.</p>
+    </section>
+
+    <section id="programme">
+      <h2><span class="n">06</span>Programme changes</h2>
+      <p>We may need to change the programme, speakers, timings, format or, in exceptional cases, the venue. We will tell registered delegates about significant changes as early as possible.</p>
+      <p>Changes to individual speakers or sessions do not entitle you to a refund. If we change the dates or city of an edition, the postponement and cancellation terms in <a href="#changes-cancel">section 05</a> apply.</p>
+    </section>
+
+    <section id="conduct">
+      <h2><span class="n">07</span>Conduct at our events</h2>
+      <p>We expect everyone at the Circuit to behave professionally and respectfully. You must not:</p>
+      <ul>
+        <li>harass, discriminate against or intimidate anyone;</li>
+        <li>disrupt sessions;</li>
+        <li>record closed-door sessions;</li>
+        <li>use delegate contacts for unsolicited bulk marketing;</li>
+        <li>break the venue's rules or local law.</li>
+      </ul>
+      <p>We may remove anyone who breaches these rules, without a refund, and may decline their future registrations.</p>
+    </section>
+
+    <section id="chatham">
+      <h2><span class="n">08</span>Confidentiality</h2>
+      <p>Closed-door sessions and roundtables are held under the Chatham House Rule unless we say otherwise. You may use the information you receive, but you must not reveal the identity or affiliation of any speaker or participant in connection with what they said, unless that person has expressly agreed.</p>
+    </section>
+
+    <section id="media">
+      <h2><span class="n">09</span>Photography &amp; recording</h2>
+      <p>We photograph and film main-stage sessions and public areas, and may use the material to promote the Circuit. If you would prefer not to appear, see our <a href="privacy-policy.html#events">Privacy Policy</a> for how to tell us.</p>
+      <p>Speakers agree separately how their sessions and materials may be recorded and shared.</p>
+      <p>You may take photographs for personal or professional use in public areas. You may not record sessions or distribute them commercially without our written permission.</p>
+    </section>
+
+    <section id="advice">
+      <h2><span class="n">10</span>No advice</h2>
+      <p>Content on the Site, programme material and discussions at the Circuit are for general information and convening purposes only. Nothing said or published is investment, financial, tax or legal advice, or an offer or solicitation to buy or sell any security or investment.</p>
+      <p>The views of speakers are their own and not necessarily ours. Take independent professional advice before making any decision.</p>
+    </section>
+
+    <section id="site">
+      <h2><span class="n">11</span>Using the site</h2>
+      <p>Use the Site lawfully and in good faith. You must not:</p>
+      <ul>
+        <li>try to gain unauthorised access to the Site, our forms or the systems behind them;</li>
+        <li>submit false, automated or spam registrations;</li>
+        <li>scrape or bulk-extract content or speaker information without our written consent;</li>
+        <li>use the Site in a way that could damage it or interfere with other people's use of it.</li>
+      </ul>
+      <p>We try to keep the Site accurate and available but cannot guarantee it will always be complete, current or uninterrupted.</p>
+    </section>
+
+    <section id="ip">
+      <h2><span class="n">12</span>Intellectual property</h2>
+      <p>The African Circuit name and logo, the Site's design and artwork, programme content and our publications belong to us or our licensors.</p>
+      <p>Speaker names, photographs and biographies are used with permission. Partner logos belong to their owners.</p>
+      <p>You may share links and short quotations with attribution. Anything more requires our written permission.</p>
+    </section>
+
+    <section id="third">
+      <h2><span class="n">13</span>Third-party services</h2>
+      <p>We rely on third parties for parts of the service, including the form processor that receives registrations, hosting and the venue. The Site also links to other websites such as LinkedIn and map services.</p>
+      <p>We are not responsible for third-party websites, and your use of them is governed by their own terms. The venue's own policies apply while you are on its premises.</p>
+    </section>
+
+    <section id="liability">
+      <h2><span class="n">14</span>Liability</h2>
+      <ul>
+        <li>Nothing in these terms limits liability that cannot be limited by law, including liability for death or personal injury caused by negligence, or for fraud.</li>
+        <li>Subject to that, we are not liable for any indirect or consequential loss, or for loss of profit, revenue, business or opportunity. This covers anything arising from the Site, your registration or your attendance.</li>
+        <li>Subject to that, our total liability to you for any registration is limited to the fees you paid us for it.</li>
+        <li>You are responsible for your own belongings at the event, and for any loss or damage you cause to the venue or others.</li>
+      </ul>
+    </section>
+
+    <section id="force">
+      <h2><span class="n">15</span>Events beyond our control</h2>
+      <p>We are not liable for failing to deliver an edition, or for delays, caused by events beyond our reasonable control. Examples include natural disasters, epidemics, war, civil unrest, government action, travel disruption, and failure of the venue or critical suppliers.</p>
+      <p>In those cases, the postponement and cancellation terms in <a href="#changes-cancel">section 05</a> apply as far as reasonably possible.</p>
+    </section>
+
+    <section id="law">
+      <h2><span class="n">16</span>Governing law &amp; disputes</h2>
+      <p>These terms are governed by the laws of the Republic of Mauritius. This does not affect any mandatory consumer or other protection that the law of your country gives you.</p>
+      <p>We will first try to resolve any dispute through good-faith discussion. If that fails within 30 days, the dispute goes to the courts of Mauritius.</p>
+    </section>
+
+    <section id="general">
+      <h2><span class="n">17</span>General</h2>
+      <ul>
+        <li>If any part of these terms is found invalid, the rest stays in force.</li>
+        <li>If we don't enforce a right straight away, we can still enforce it later.</li>
+        <li>You may not transfer your rights under these terms, other than by a substitution under <a href="#changes-cancel">section 05</a>. We may transfer ours to a successor organisation that continues the Circuit.</li>
+        <li>We may update these terms. The version in force when you register applies to that registration. Changes apply to your use of the Site from the date they are published.</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2><span class="n">18</span>Contact</h2>
+      <div class="contact-card">
+        <dl>
+          <dt>Operator</dt><dd>The Philanthropic Foundation (Reg. No. 679), operator of The African Circuit, Mauritius</dd>
+          <dt>Email</dt><dd><a href="mailto:admin@philanthropicfoundation.net">admin@philanthropicfoundation.net</a></dd>
+          <dt>Registrations</dt><dd><a href="book.html">theafricancircuit.com/book</a></dd>
+        </dl>
+      </div>
+    </section>
+
+  </article>
+</div>
+
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-cell">
-        <div class="footer-brand"><img src="/images/african-circuit-logo.png" alt=""><strong>The African Circuit</strong></div>
-        <p>Capital. Policy. Investment.<br>Across Africa. For Africa's Future.</p>
-        <div class="socials"><a href="#">in</a><a href="#">𝕏</a><a href="#">▶</a><a href="mailto:admin@philanthropicfoundation.net">✉</a></div>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Stay Connected</div>
-        <p>Follow us for updates on events, research and opportunities.</p>
-        <a class="btn gold" href="https://mu.linkedin.com/company/the-african-circuit" target="_blank" rel="noopener">Follow on LinkedIn →</a>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Quick Links</div>
-        <a href="/conference/">Conference</a><a href="/institute/">Institute</a><a href="/research/">Research</a><a href="/exchange/">Exchange</a><a href="/membership/">Membership</a>
-      </div>
-      <div class="footer-cell">
-        <div class="kicker">Legal</div>
-        <a href="/privacy-policy.html">Privacy Policy</a><a href="/terms-of-use.html">Terms of Use</a><a href="mailto:admin@philanthropicfoundation.net">Contact Us</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span data-year></span> The African Circuit. All rights reserved.</span>
-      <span>Capital · Policy · Investment</span>
-    </div>
-  </div>
-</footer>
+<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="index.html">Home</a><a href="book.html">Register</a><a href="privacy-policy.html">Privacy</a></span></div></footer>
 
 <script>
-const header=document.querySelector('.header');
-const mobile=document.querySelector('.mobile');
-const menu=document.querySelector('.menu');
-const updateHeader=()=>header.classList.toggle('scrolled',window.scrollY>24);
-updateHeader();
-window.addEventListener('scroll',updateHeader,{passive:true});
-menu.addEventListener('click',()=>mobile.classList.toggle('open'));
-document.querySelectorAll('.mobile a').forEach(a=>a.addEventListener('click',()=>mobile.classList.remove('open')));
-document.querySelectorAll('[data-year]').forEach(x=>x.textContent=new Date().getFullYear());
+document.getElementById('year').textContent=new Date().getFullYear();
+const mb=document.querySelector('.menu-btn'),nv=document.getElementById('primaryNav');
+mb.addEventListener('click',()=>{const o=nv.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+nv.addEventListener('click',e=>{if(e.target.tagName==='A'){nv.classList.remove('open');mb.setAttribute('aria-expanded',false)}});
+/* highlight the section being read */
+const links=[...document.querySelectorAll('#tocList a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('.content section').forEach(s=>io.observe(s));
 </script>
 </body>
 </html>
