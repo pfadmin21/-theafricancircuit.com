@@ -532,7 +532,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
           <span class="k">Registration received</span>
           <h3>Your pass is on its way.</h3>
           <p>We will confirm your registration by email and send the invoice with payment details. The rate shown on your pass was locked when you submitted.</p>
-          <p><a class="link" href="index.html#programme">View the programme</a></p>
+          <p style="display:flex;gap:22px;flex-wrap:wrap"><a class="link" id="liShare" href="#" target="_blank" rel="noopener">Share that you're attending on LinkedIn ↗</a><a class="link" href="index.html#programme">View the programme</a></p>
         </div>
       </div>
 
@@ -645,7 +645,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
   <a href="#register" id="mbBtn">Register</a>
 </div>
 
-<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="index.html">Home</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-use.html">Terms</a></span></div></footer>
+<footer><div class="wrap foot"><span>© <span id="year"></span> The African Circuit · Capital. Policy. Investment.</span><span><a href="https://www.linkedin.com/company/the-african-circuit/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="index.html">Home</a><a href="privacy-policy.html">Privacy</a><a href="terms-of-use.html">Terms</a></span></div></footer>
 
 <script>
 /* ============ EDIT HERE ============ */
@@ -825,6 +825,7 @@ function syncMb(){const n=seatsInput.value;
 syncMb();
 $('#mbBtn').addEventListener('click',e=>{const inReg=$('#register').getBoundingClientRect().top<200;if(inReg){e.preventDefault();const t=[...form.querySelectorAll('[required]')].find(x=>!x.value&&x.type!=='checkbox')||$('#submitBtn');t.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>t.focus({preventScroll:true}),400)}});
 
+document.getElementById('liShare').href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent('https://theafricancircuit.com/book.html');
 document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
