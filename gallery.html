@@ -464,6 +464,15 @@ navEl.addEventListener('click',e=>{if(e.target.tagName==='A'){navEl.classList.re
   const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const natural=(a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:'base'});
   let ALL=[], VIEW=[], shown=0, filter='all', cur=0, pushed=false;
+  function drop(src){
+    const vi=VIEW.findIndex(i=>i.src===src); if(vi<0) return;
+    ALL=ALL.filter(i=>i.src!==src); VIEW.splice(vi,1);
+    if(vi<shown) shown--;
+    grid.querySelectorAll('.gl-item').forEach((b,k)=>b.dataset.i=k);
+    count.textContent=VIEW.length?`${Math.min(shown,VIEW.length)} of ${VIEW.length}`:'';
+    if(box.open){ if(!VIEW.length){close();return;} if(vi<=cur) cur=Math.max(0,cur-(vi<cur?1:0)); show(cur); }
+  }
+  window.__glDrop=drop;
 
   async function fromJson(){
     const r=await fetch(ROOT+'gallery.json',{cache:'no-cache'}); if(!r.ok) throw 0;
@@ -492,7 +501,11 @@ navEl.addEventListener('click',e=>{if(e.target.tagName==='A'){navEl.classList.re
   /* gallery.json = reliable list (order + captions). Repo scan = picks up anything uploaded since. */
   async function loadAll(){
     const [js,repo]=await Promise.allSettled([fromJson(),fromRepo()]);
-    const J=js.status==='fulfilled'?js.value:[], R=repo.status==='fulfilled'?repo.value:[];
+    let J=js.status==='fulfilled'?js.value:[]; const R=repo.status==='fulfilled'?repo.value:[];
+    if(repo.status==='fulfilled'&&R.length){           /* drop list entries whose file was deleted from the repo */
+      const exists=new Set(R.map(i=>i.src));
+      J=J.filter(i=>i.type==='youtube'||/^https?:/.test(i.src)||exists.has(i.src));
+    }
     const seen=new Set(J.map(i=>i.src));
     return J.concat(R.filter(i=>!seen.has(i.src)));
   }
@@ -500,7 +513,7 @@ navEl.addEventListener('click',e=>{if(e.target.tagName==='A'){navEl.classList.re
 
   function tile(it,i){
     const cap=it.caption||it.edition||'The African Circuit';
-    if(it.type==='image') return `<button class="gl-item" data-i="${i}" type="button" aria-label="Open photo: ${esc(cap)}"><img src="${esc(it.src)}" alt="${esc(cap)}" loading="lazy" decoding="async" onerror="this.closest('.gl-item').remove()"></button>`;
+    if(it.type==='image') return `<button class="gl-item" data-i="${i}" type="button" aria-label="Open photo: ${esc(cap)}"><img src="${esc(it.src)}" alt="${esc(cap)}" loading="lazy" decoding="async" onerror="const b=this.closest('.gl-item'),s=this.getAttribute('src');b.remove();window.__glDrop&&window.__glDrop(s)"></button>`;
     if(it.type==='youtube') return `<button class="gl-item" data-i="${i}" type="button" aria-label="Play film: ${esc(cap)}"><img src="https://i.ytimg.com/vi/${ytId(it.src)}/hqdefault.jpg" alt="${esc(cap)}" loading="lazy"><span class="play">Film</span></button>`;
     return `<button class="gl-item" data-i="${i}" type="button" aria-label="Play video: ${esc(cap)}">${it.poster?`<img src="${esc(it.poster)}" alt="${esc(cap)}" loading="lazy">`:`<video src="${esc(it.src)}#t=0.5" muted playsinline preload="metadata"></video>`}<span class="play">Video</span></button>`;
   }
@@ -532,7 +545,8 @@ navEl.addEventListener('click',e=>{if(e.target.tagName==='A'){navEl.classList.re
   function show(i){
     cur=(i+VIEW.length)%VIEW.length; const it=VIEW[cur];
     stage.querySelectorAll('video').forEach(v=>v.pause());
-    if(it.type==='image') stage.innerHTML=`<img src="${esc(it.src)}" alt="${esc(it.caption||it.edition)}">`;
+    if(it.type==='image'){ stage.innerHTML=`<img src="${esc(it.src)}" alt="${esc(it.caption||it.edition)}">`;
+      stage.querySelector('img').onerror=()=>{const t=grid.querySelector(`.gl-item img[src="${CSS.escape(it.src)}"]`);if(t)t.closest('.gl-item').remove();drop(it.src);}; }
     else if(it.type==='youtube') stage.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${ytId(it.src)}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${esc(it.caption||'Film')}"></iframe>`;
     else stage.innerHTML=`<video src="${esc(it.src)}" ${it.poster?`poster="${esc(it.poster)}"`:''} controls autoplay playsinline></video>`;
     cap.innerHTML=it.caption?`${esc(it.caption)}${it.edition?`<small>${esc(it.edition)}</small>`:''}`:(it.edition?`<small>${esc(it.edition)}</small>`:'');
