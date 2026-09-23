@@ -171,7 +171,7 @@ tbody th{font-weight:500;color:#46505b}
 .seats input::-webkit-inner-spin-button{-webkit-appearance:none}
 .consent{display:flex;gap:12px;font-size:14px;line-height:1.55;color:#3d4650;margin-top:8px}
 .consent input{margin-top:3px;accent-color:var(--ink);width:17px;height:17px;flex:none}
-.hp{position:absolute;left:-9999px}
+.hp,.hp-wrap{display:none!important}
 .submit{margin-top:26px;display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:#f6f2e9;border:0;padding:22px 30px;font:800 11px Archivo;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
 .submit:hover{background:#12263a}
 .submit[disabled]{opacity:.6;cursor:wait}
@@ -406,8 +406,9 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
 
     <div class="reg" id="regWrap">
       <div>
-        <form id="bookingForm" novalidate>
-          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <form id="bookingForm" action="https://formspree.io/f/xeaoklgq" method="POST" novalidate>
+          <div class="hp-wrap" aria-hidden="true"><label for="f-gotcha">Leave this field empty</label><input type="text" name="_gotcha" id="f-gotcha" class="hp" tabindex="-1" autocomplete="off"></div>
+          <input type="hidden" name="_started" id="startedField">
           <input type="hidden" name="_subject" id="subjectField" value="Nairobi 2026 registration">
           <input type="hidden" name="edition" value="Nairobi · 17–18 November 2026 · Trademark Hotel, Village Market">
           <input type="hidden" name="access" id="passField">
@@ -435,7 +436,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
                   <button type="button" data-step="1" aria-label="More seats">+</button>
                 </div>
               </div>
-              <div class="f full" style="margin-top:20px" id="othersField" hidden><label for="f-others">Other delegates (name, title, email — one per line)</label><textarea id="f-others" name="additional_delegates"></textarea></div>
+              <div class="f full" style="margin-top:20px" id="othersField" hidden><label for="f-others">Other delegates (name, title, email — one per line)</label><textarea id="f-others" name="additional_delegates" maxlength="2000"></textarea></div>
             </div>
           </div>
 
@@ -445,13 +446,13 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
               <h3>Delegate</h3>
               <p class="sub">The person attending, or the lead delegate for a group.</p>
               <div class="row">
-                <div class="f"><label for="f-first">First name <i>*</i></label><input id="f-first" name="first_name" required autocomplete="given-name"></div>
-                <div class="f"><label for="f-last">Last name <i>*</i></label><input id="f-last" name="last_name" required autocomplete="family-name"></div>
-                <div class="f"><label for="f-title">Job title <i>*</i></label><input id="f-title" name="job_title" required autocomplete="organization-title"></div>
-                <div class="f"><label for="f-org">Organisation <i>*</i></label><input id="f-org" name="organisation" required autocomplete="organization"></div>
-                <div class="f"><label for="f-email">Work email <i>*</i></label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-                <div class="f"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="+254 …"></div>
-                <div class="f"><label for="f-country">Country <i>*</i></label><input id="f-country" name="country" required autocomplete="country-name"></div>
+                <div class="f"><label for="f-first">First name <i>*</i></label><input id="f-first" name="first_name" maxlength="80" required autocomplete="given-name"></div>
+                <div class="f"><label for="f-last">Last name <i>*</i></label><input id="f-last" name="last_name" maxlength="80" required autocomplete="family-name"></div>
+                <div class="f"><label for="f-title">Job title <i>*</i></label><input id="f-title" name="job_title" maxlength="120" required autocomplete="organization-title"></div>
+                <div class="f"><label for="f-org">Organisation <i>*</i></label><input id="f-org" name="organisation" maxlength="160" required autocomplete="organization"></div>
+                <div class="f"><label for="f-email">Work email <i>*</i></label><input id="f-email" name="email" maxlength="160" type="email" required autocomplete="email"></div>
+                <div class="f"><label for="f-phone">Phone</label><input id="f-phone" name="phone" maxlength="40" type="tel" autocomplete="tel" placeholder="+254 …"></div>
+                <div class="f"><label for="f-country">Country <i>*</i></label><input id="f-country" name="country" maxlength="80" required autocomplete="country-name"></div>
                 <div class="f"><label for="f-type">Institution type <i>*</i></label>
                   <select id="f-type" name="institution_type" required>
                     <option value="">Select…</option>
@@ -466,7 +467,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
                     <option>Other</option>
                   </select>
                 </div>
-                <div class="f full"><label for="f-linkedin">LinkedIn profile</label><input id="f-linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/…"></div>
+                <div class="f full"><label for="f-linkedin">LinkedIn profile</label><input id="f-linkedin" name="linkedin" type="url" maxlength="200" placeholder="https://linkedin.com/in/…"></div>
               </div>
             </div>
           </div>
@@ -493,14 +494,14 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
               <h3>Invoicing</h3>
               <p class="sub">Who the invoice should be addressed to.</p>
               <div class="row">
-                <div class="f"><label for="f-bill">Billing entity <i>*</i></label><input id="f-bill" name="billing_entity" required></div>
-                <div class="f"><label for="f-tax">VAT / tax number</label><input id="f-tax" name="tax_number"></div>
-                <div class="f full"><label for="f-billaddr">Billing address</label><input id="f-billaddr" name="billing_address" autocomplete="street-address"></div>
-                <div class="f full"><label for="f-billemail">Accounts email (if different)</label><input id="f-billemail" name="billing_email" type="email"></div>
+                <div class="f"><label for="f-bill">Billing entity <i>*</i></label><input id="f-bill" name="billing_entity" maxlength="160" required></div>
+                <div class="f"><label for="f-tax">VAT / tax number</label><input id="f-tax" name="tax_number" maxlength="60"></div>
+                <div class="f full"><label for="f-billaddr">Billing address</label><input id="f-billaddr" name="billing_address" maxlength="240" autocomplete="street-address"></div>
+                <div class="f full"><label for="f-billemail">Accounts email (if different)</label><input id="f-billemail" name="billing_email" maxlength="160" type="email"></div>
                 <div class="f full"><label for="f-source">How did you hear about the Circuit?</label>
                   <select id="f-source" name="source"><option value="">Select…</option><option>Invitation from the Circuit team</option><option>LinkedIn</option><option>Colleague or partner</option><option>Attended Mauritius 2026</option><option>Other</option></select>
                 </div>
-                <div class="f full"><label for="f-msg">Notes (dietary, accessibility, meeting requests)</label><textarea id="f-msg" name="notes"></textarea></div>
+                <div class="f full"><label for="f-msg">Notes (dietary, accessibility, meeting requests)</label><textarea id="f-msg" name="notes" maxlength="2000"></textarea></div>
               </div>
               <label class="consent" style="margin-top:22px"><input type="checkbox" name="consent" value="yes" required><span>I agree that The African Circuit may use these details to process my registration and contact me about this edition. <a href="privacy-policy.html" style="border-bottom:1px solid var(--gold)">Privacy policy</a></span></label>
               <button class="submit" type="submit" id="submitBtn">Send registration</button>
@@ -589,7 +590,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
 <script>
 /* ============ EDIT HERE ============ */
 const CONFIG = {
-  formspree: "https://formspree.io/f/YOUR_FORM_ID",   // ← paste your Formspree endpoint
+  formspree: "https://formspree.io/f/xeaoklgq",   // submissions are forwarded to admin@philanthropicfoundation.net (set in Formspree)
   currency: "USD",
   taxes_note: "Taxes and fees are confirmed before payment.",
   releases: [
@@ -716,6 +717,7 @@ seatsInput.addEventListener('blur',update);
 selectPass(CONFIG.defaultProduct,false);
 
 /* Formspree submission */
+const PAGE_OPENED = Date.now();
 const form = $('#bookingForm'), status = $('#formStatus'), btn = $('#submitBtn');
 form.addEventListener('submit', async e => {
   e.preventDefault();
@@ -723,18 +725,27 @@ form.addEventListener('submit', async e => {
   if (!selected) { status.className='status err'; status.textContent='Please choose a pass.'; return; }
   if (!form.checkValidity()) { form.reportValidity(); status.className='status err'; status.textContent='Please complete the required fields marked *.'; return; }
   $('#subjectField').value = `Nairobi 2026 registration — ${form.first_name.value} ${form.last_name.value} (${form.organisation.value}) · ${$('#passField').value} × ${seatsInput.value}`;
+  /* --- anti-spam guards --- */
+  const showSent = () => { $('#regWrap').classList.add('sent'); $('#done').focus(); $('#register').scrollIntoView({behavior:'smooth'}); };
+  if ($('#f-gotcha').value) { showSent(); return; }                       // honeypot filled → bot: pretend success, send nothing
+  if (Date.now() - PAGE_OPENED < 4000) { status.className='status err'; status.textContent='Please take a moment to review your details, then send again.'; return; }
+  const last = +sessionStorage.getItem('tac_last_submit') || 0;
+  if (Date.now() - last < 60000) { status.className='status err'; status.textContent='Your registration was just sent. Please wait a minute before sending another.'; return; }
+
   const data = new FormData(form);
-  data.set('_replyto', form.email.value);
+  data.set('_replyto', form.email.value.trim());
+  data.set('_started', new Date(PAGE_OPENED).toISOString());
   btn.disabled = true; btn.textContent = 'Sending…';
+  const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 20000);
   try {
-    const res = await fetch(CONFIG.formspree, { method:'POST', body:data, headers:{ 'Accept':'application/json' } });
+    const res = await fetch(CONFIG.formspree, { method:'POST', body:data, headers:{ 'Accept':'application/json' }, signal:ctrl.signal });
+    clearTimeout(timer);
     if (!res.ok) throw new Error('fail');
-    $('#regWrap').classList.add('sent');
-    $('#done').focus();
-    $('#register').scrollIntoView({behavior:'smooth'});
+    try { sessionStorage.setItem('tac_last_submit', Date.now()); } catch(_) {}
+    showSent();
   } catch (err) {
     status.className = 'status err';
-    status.innerHTML = 'Your registration could not be sent. Please try again, or email <a href="mailto:contact@theafricancircuit.com" style="border-bottom:1px solid">contact@theafricancircuit.com</a>.';
+    status.innerHTML = 'Your registration could not be sent. Please try again, or email <a href="mailto:admin@philanthropicfoundation.net" style="border-bottom:1px solid">admin@philanthropicfoundation.net</a>.';
   } finally { btn.disabled = false; btn.textContent = 'Send registration'; }
 });
 
