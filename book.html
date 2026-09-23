@@ -252,6 +252,23 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
+
+/* travel & entry */
+.travel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tcard{background:var(--card);border:1px solid var(--line);padding:26px 24px;position:relative}
+.tcard.dark{background:var(--navy);color:#f6f2e9;border-color:var(--navy)}
+.tcard .k{display:block;margin-bottom:10px}
+.tcard.dark .k{color:var(--cyan)}
+.tcard h3{font:500 28px/1.05 "EB Garamond",serif;margin:0 0 12px;letter-spacing:-.01em}
+.tcard p,.tcard li{font-size:14px;line-height:1.65;color:var(--grey)}
+.tcard.dark p,.tcard.dark li{color:#c9d1d8}
+.tcard ul{margin:0;padding-left:18px}
+.tcard li{margin-bottom:6px}
+.tcard a{border-bottom:1.5px solid var(--gold)}
+.tcard.dark a{border-bottom-color:var(--cyan)}
+.travel-note{margin-top:20px;font-size:12.5px;color:var(--soft);line-height:1.6;max-width:880px}
+@media(max-width:900px){.travel-grid{grid-template-columns:1fr}}
+
 /* =================== MOBILE LAYER =================== */
 [hidden]{display:none!important}
 .menu-btn{display:none;border:1.5px solid var(--line);background:transparent;padding:12px 14px;font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
@@ -334,7 +351,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
     </a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="primaryNav">Menu</button>
     <nav id="primaryNav" aria-label="Primary">
-      <a href="index.html#circuit">The Circuit</a><a href="index.html#programme">Programme</a><a href="#access">Access</a><a href="#venue">Venue</a>
+      <a href="index.html#circuit">The Circuit</a><a href="index.html#programme">Programme</a><a href="#access">Access</a><a href="#venue">Venue</a><a href="#travel">Travel</a>
       <a class="nav-cta" href="#register">Register</a>
     </nav>
   </div>
@@ -503,7 +520,8 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
                 </div>
                 <div class="f full"><label for="f-msg">Notes (dietary, accessibility, meeting requests)</label><textarea id="f-msg" name="notes" maxlength="2000"></textarea></div>
               </div>
-              <label class="consent" style="margin-top:22px"><input type="checkbox" name="consent" value="yes" required><span>I agree that The African Circuit may use these details to process my registration and contact me about this edition. <a href="privacy-policy.html" style="border-bottom:1px solid var(--gold)">Privacy policy</a></span></label>
+              <label class="consent" style="margin-top:22px"><input type="checkbox" name="invitation_letter" value="Yes — invitation letter requested"><span>I need an <strong>invitation letter</strong> for my eTA or travel. We send it once your registration is confirmed and will ask for your passport details by email.</span></label>
+              <label class="consent" style="margin-top:14px"><input type="checkbox" name="consent" value="yes" required><span>I agree that The African Circuit may use these details to process my registration and contact me about this edition. <a href="privacy-policy.html" style="border-bottom:1px solid var(--gold)">Privacy policy</a></span></label>
               <button class="submit" type="submit" id="submitBtn">Send registration</button>
               <div class="status" id="formStatus" role="status" aria-live="polite"></div>
             </div>
@@ -576,6 +594,48 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
         <path d="M40 40l20-18 20 18 20-18 20 18" fill="none" stroke="#9e4d38" stroke-width="4" stroke-linecap="round"/>
       </svg>
     </div>
+  </div>
+</section>
+
+<!-- ============ TRAVEL & ENTRY ============ -->
+<section class="section" id="travel">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="k">Travel &amp; entry</span><h2>Getting into Kenya.</h2></div>
+      <p>Kenya no longer issues traditional visas. Depending on your passport, you either enter visa-free or apply online for an Electronic Travel Authorisation (eTA) before you fly.</p>
+    </div>
+    <div class="travel-grid">
+      <div class="tcard">
+        <span class="k">Most African passports</span>
+        <h3>No eTA needed</h3>
+        <ul>
+          <li>Citizens of most African countries, including Mauritius, can enter visa-free for short stays.</li>
+          <li>East African Community citizens can stay up to 180 days.</li>
+          <li>Libya and Somalia are excluded and still need an eTA.</li>
+        </ul>
+      </div>
+      <div class="tcard">
+        <span class="k">Most other passports</span>
+        <h3>Apply for an eTA</h3>
+        <ul>
+          <li>Apply only on the official portal, <a href="https://etakenya.go.ke" target="_blank" rel="noopener">etakenya.go.ke</a>. Other websites charge extra fees.</li>
+          <li>Apply at least two weeks before travel. The minimum is 3 days, and applications open 90 days ahead.</li>
+          <li>The fee is around USD 30–35 and is non-refundable.</li>
+        </ul>
+      </div>
+      <div class="tcard dark">
+        <span class="k">Before you fly</span>
+        <h3>Your checklist</h3>
+        <ul>
+          <li>Passport valid for at least 6 months, with blank pages.</li>
+          <li>Your return ticket and hotel booking.</li>
+          <li>A yellow fever certificate, if you are arriving from a country with yellow fever risk.</li>
+          <li>Travel health insurance, which we strongly recommend.</li>
+          <li>An invitation letter from us, if you need one. Tick the box when you register.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="travel-note">This is general guidance, current as of September 2026. It is not immigration advice. Entry rules change and depend on your nationality, so always confirm your requirements on the official portal <a href="https://etakenya.go.ke" target="_blank" rel="noopener" style="border-bottom:1px solid var(--gold)">etakenya.go.ke</a> or with the nearest Kenyan mission before travelling. Travel documents are the delegate's responsibility.</p>
   </div>
 </section>
 </main>
