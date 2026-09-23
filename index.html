@@ -1017,6 +1017,32 @@ footer{background:#ece3d2!important}
 }
 </style>
 
+
+<style id="overlap-fix">
+/* The hero copy was laid out as a ROW (label | headline | paragraph | rule side by side) — stack it */
+.hero .hero-copy{flex-direction:column;justify-content:center;align-items:flex-start}
+/* Keeps text and artwork in separate zones. Positions only; artwork unchanged. */
+@media(min-width:901px){
+  .hero .hero-copy{padding-right:calc(var(--pad) + 44vw)}
+  .hero h1{font-size:clamp(54px,5.7vw,112px)!important;max-width:none!important}
+  .hero-engraving{width:min(40vw,720px)!important;right:-2%!important}
+  .pa-note.one{right:24%!important}
+  .culture-band .wrap{grid-template-columns:1fr!important;gap:22px!important;padding-right:calc(var(--pad) + 36%);padding-top:150px;padding-bottom:100px}
+  .dark-band .attend-grid{grid-template-columns:1fr!important;gap:34px!important;padding-right:calc(var(--pad) + 36%)}
+  .dark-band .attend-meta{max-width:520px}
+}
+@media(max-width:900px){
+  /* artwork moves into a band under the text instead of behind it */
+  .hero{padding-bottom:340px!important}
+  .hero .wrap{min-height:0!important;align-items:flex-start!important}
+  .hero .pa-raw-canvas,.hero .pa-hero-drawing,.hero .hero-engraving{top:auto!important;bottom:0!important;height:320px!important;right:0!important;width:100%!important}
+  .hero .pa-hero-drawing{opacity:.55!important}
+  .hero .pa-raw-canvas{opacity:.9!important}
+  .culture-band,.dark-band{padding-bottom:300px!important}
+  .culture-band .pa-raw-canvas,.dark-band .pa-raw-canvas{top:auto;bottom:0;height:290px}
+  .dark-band .pa-attend-art,.dark-band .nairobi-engraving{opacity:.18!important}
+}
+</style>
 </head>
 <body id="top">
 
@@ -1052,7 +1078,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 <section class="hero">
 
 <div class="pa-raw-canvas" aria-hidden="true">
-<svg viewBox="0 0 1500 760" preserveAspectRatio="none">
+<svg class="fit-art" viewBox="0 0 1500 760" preserveAspectRatio="xMaxYMid meet">
   <!-- rough hand marks -->
   <g fill="none" stroke-linecap="round" stroke-linejoin="round">
     <path d="M1040 90l25 18 27-16 21 20 28-18 18 25" stroke="#07131d" stroke-width="5"/>
@@ -1236,7 +1262,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 <section class="culture-band" aria-label="Pan-African institutionalism">
 
 <div class="pa-raw-canvas" aria-hidden="true">
-<svg viewBox="0 0 1500 430" preserveAspectRatio="none">
+<svg class="fit-art" viewBox="0 0 1500 430" preserveAspectRatio="xMaxYMid meet">
  <g fill="none" stroke-linecap="round">
   <path d="M55 66l27-25 26 25 27-25 27 25" stroke="#05bcd4" stroke-width="5"/>
   <path d="M1020 78l38 18 34-21 32 25 38-20 34 23" stroke="#f4ecd9" stroke-width="4"/>
@@ -1925,7 +1951,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
     <span class="label">Insights</span><h2>Ideas between<br>the Circuits.</h2>
     <div class="insights">
       <article class="insight"><div><span class="label">The Mandate</span><h3>Institutional briefings on capital deployment across Africa.</h3></div><p>Long-form perspectives connecting the questions raised inside the Circuit with the practical architecture of deployment.</p></article>
-      <article class="insight"><div><span class="label">From the room</span><h3>Debates, perspectives and publications.</h3></div><p>Conference debates and selected contributions can be added here without creating another website.</p></article>
+      <article class="insight"><div><span class="label">From the room</span><h3>Debates, perspectives and publications.</h3></div><p>Selected debates and contributions from each edition of the Circuit.</p></article>
     </div>
   </div>
 </section>
@@ -1947,7 +1973,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 <section class="section dark-band" id="attend">
 
 <div class="pa-raw-canvas" aria-hidden="true">
-<svg viewBox="0 0 1500 560" preserveAspectRatio="none">
+<svg class="fit-art" viewBox="0 0 1500 560" preserveAspectRatio="xMaxYMid meet">
  <g fill="none" stroke-linecap="round">
    <path d="M1030 80l31-28 30 28 31-28 30 28 31-28 30 28" stroke="#05bcd4" stroke-width="6"/>
    <path d="M990 160q90-52 185 3t190-7" stroke="#f4ecd9" stroke-width="3"/>
@@ -1996,7 +2022,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 
   <div class="wrap attend-grid">
     <div><span class="label">Next edition</span><h2>The Circuit continues<br>in Nairobi.</h2><p class="lead">19–20 November 2026. Institutional investors, DFIs, regulators, family offices, fund managers and market participants meeting on the continent.</p><a class="cta" href="mailto:contact@theafricancircuit.com?subject=Nairobi%202026%20Attendance">Attend Nairobi →</a></div>
-    <div class="attend-meta"><strong>Nairobi · Kenya</strong><p>19–20 November 2026</p><p>Programme, speaker and partner information can continue to be added directly inside this single index.</p></div>
+    <div class="attend-meta"><strong>Nairobi · Kenya</strong><p>19–20 November 2026</p><p>Programme and speaker announcements to follow.</p></div>
   </div>
 </section>
 </main>
@@ -2039,6 +2065,9 @@ more.addEventListener('click',()=>{
   document.querySelectorAll('.speaker-card').forEach(x=>x.classList.add('show'));
   more.remove();
 });
+
+function fitArt(){const m=matchMedia('(max-width:900px)').matches;document.querySelectorAll('.fit-art').forEach(v=>v.setAttribute('preserveAspectRatio',m?'xMaxYMid slice':'xMaxYMid meet'))}
+fitArt();addEventListener('resize',fitArt);
 document.getElementById('year').textContent=new Date().getFullYear();
 </script>
 </body></html>
