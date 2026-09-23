@@ -107,6 +107,131 @@ footer::before{content:"";display:block;position:absolute;left:var(--pad);right:
   .section-mark{display:none}
 }
 
+
+/* --- Stage-art inspired brand layer: printmaking + cyan, kept minimal on white --- */
+:root{--cyan:#05bcd4;--cyan-soft:rgba(5,188,212,.10)}
+
+.hero-art{
+  position:absolute;right:0;top:0;width:min(47vw,720px);height:100%;
+  pointer-events:none;overflow:hidden;z-index:1;
+  background:
+    linear-gradient(90deg,rgba(250,250,248,1) 0%,rgba(250,250,248,.18) 28%,rgba(250,250,248,0) 52%),
+    repeating-linear-gradient(0deg,rgba(0,12,31,.045) 0 1px,transparent 1px 6px);
+  opacity:.88;
+}
+.hero-art::before{
+  content:"";position:absolute;right:-12%;top:4%;width:105%;height:36%;
+  border:2px solid rgba(5,188,212,.35);
+  border-radius:50%;
+  transform:rotate(9deg);
+  box-shadow:
+    0 0 0 12px rgba(5,188,212,.025),
+    0 0 0 25px rgba(0,12,31,.018);
+}
+.hero-art::after{
+  content:"";position:absolute;right:-5%;bottom:7%;width:78%;height:48%;
+  opacity:.18;
+  background:
+    repeating-linear-gradient(165deg,transparent 0 9px,rgba(0,12,31,.8) 10px 11px,transparent 12px 18px),
+    linear-gradient(135deg,transparent 0 40%,rgba(5,188,212,.45) 41% 43%,transparent 44% 100%);
+  clip-path:polygon(0 78%,12% 62%,22% 70%,34% 38%,45% 55%,58% 18%,68% 45%,79% 28%,100% 66%,100% 100%,0 100%);
+}
+.hero .tribal-rail{width:52px;opacity:.75}
+.hero .tribal-rail::before{
+  background:
+    linear-gradient(135deg,transparent 35%,rgba(5,188,212,.72) 36% 42%,transparent 43%) 0 0/30px 30px,
+    linear-gradient(45deg,transparent 35%,rgba(0,12,31,.24) 36% 42%,transparent 43%) 15px 0/30px 30px;
+}
+.hero-rule::before{background:var(--cyan)}
+.label.cyan,.cyan-label{color:#087f98}
+.print-rule{height:3px;width:54px;background:var(--cyan);margin-top:16px}
+
+.sweep{
+  position:absolute;right:-70px;top:-56px;width:420px;height:120px;
+  border:2px solid rgba(5,188,212,.25);border-radius:50%;
+  transform:rotate(8deg);pointer-events:none
+}
+.sweep::after{
+  content:"";position:absolute;inset:13px -4px;
+  border:1px solid rgba(0,12,31,.12);border-radius:50%
+}
+
+.edition-art{position:relative;overflow:hidden}
+.edition-art::after{
+  content:"";position:absolute;right:-50px;top:80px;width:170px;height:270px;opacity:.08;
+  background:
+    repeating-linear-gradient(0deg,var(--navy) 0 1px,transparent 1px 6px);
+  clip-path:polygon(50% 0,65% 20%,58% 36%,78% 58%,62% 100%,38% 82%,20% 57%,37% 34%,28% 18%);
+}
+.circuit-item:nth-child(2){box-shadow:inset 0 2px 0 var(--cyan)}
+.circuit-item:nth-child(2) .status{color:#087f98}
+
+.stage-band{
+  height:56px;position:relative;overflow:hidden;background:#fff;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.stage-band::before{
+  content:"";position:absolute;left:-4%;top:-54px;width:70%;height:115px;
+  border:2px solid rgba(5,188,212,.28);border-radius:50%;transform:rotate(4deg)
+}
+.stage-band::after{
+  content:"";position:absolute;right:0;inset-block:0;width:210px;opacity:.22;
+  background:
+    linear-gradient(135deg,transparent 35%,var(--cyan) 36% 40%,transparent 41%) 0 0/28px 28px,
+    linear-gradient(45deg,transparent 35%,var(--navy) 36% 40%,transparent 41%) 14px 0/28px 28px
+}
+
+.section-mark{
+  background:
+    linear-gradient(135deg,transparent 40%,rgba(5,188,212,.65) 41% 47%,transparent 48%) 0 0/20px 20px,
+    linear-gradient(45deg,transparent 40%,rgba(0,12,31,.18) 41% 47%,transparent 48%) 10px 0/20px 20px;
+}
+.tribal-tab{
+  background:
+    linear-gradient(135deg,transparent 42%,var(--cyan) 43% 49%,transparent 50%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 42%,rgba(0,12,31,.32) 43% 49%,transparent 50%) 9px 0/18px 18px;
+}
+.pillar-icon::before,.pillar-icon::after{border-color:#159ab0}
+.speaker-photo::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--cyan);
+  opacity:0;transition:opacity .2s ease
+}
+.speaker-card:hover .speaker-photo::after{opacity:1}
+
+.gallery-heading{position:relative}
+.gallery-heading::after{
+  content:"";position:absolute;right:0;top:10px;width:110px;height:42px;opacity:.16;
+  background:
+    linear-gradient(135deg,transparent 36%,var(--cyan) 37% 42%,transparent 43%) 0 0/24px 24px,
+    linear-gradient(45deg,transparent 36%,var(--navy) 37% 42%,transparent 43%) 12px 0/24px 24px;
+}
+.dark-band{
+  background:
+    linear-gradient(90deg,rgba(0,12,31,.98),rgba(0,21,38,.96)),
+    var(--navy);
+}
+.dark-band::before{
+  width:74px;opacity:.72;
+  background:
+    linear-gradient(135deg,transparent 35%,rgba(5,188,212,.9) 36% 42%,transparent 43%) 0 0/32px 32px,
+    linear-gradient(45deg,transparent 35%,rgba(255,255,255,.25) 36% 42%,transparent 43%) 16px 0/32px 32px;
+}
+.dark-band::after{
+  content:"";position:absolute;right:-10%;top:-80px;width:58%;height:240px;
+  border:2px solid rgba(5,188,212,.28);border-radius:50%;transform:rotate(8deg)
+}
+.dark-band .label{color:var(--cyan)}
+.dark-band .cta{background:var(--cyan);color:var(--navy)}
+
+@media(max-width:900px){
+  .hero-art{width:55vw;opacity:.45}
+  .sweep{display:none}
+}
+@media(max-width:650px){
+  .hero-art{width:78vw;opacity:.25}
+  .stage-band{height:36px}
+}
+
 </style>
 </head>
 <body id="top">
@@ -138,9 +263,10 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 
 <main>
 <section class="hero">
+  <div class="hero-art" aria-hidden="true"></div>
   <div class="tribal-rail" aria-hidden="true"></div>
   <div class="wrap hero-copy">
-    <span class="label">The African Circuit</span>
+    <span class="label cyan">From mandate to deployment</span>
     <h1>Capital exists.<br>Mandates exist.<br><em>The gap is deployment.</em></h1>
     <p>A pan-African platform connecting the institutions that mandate capital with those that structure and deploy it.</p>
     <div class="hero-rule">Capital · Policy · Investment</div>
@@ -156,7 +282,8 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </div>
 
-<section class="section" id="circuit">
+<div class="stage-band" aria-hidden="true"></div>
+<section class="section" id="circuit"><div class="sweep" aria-hidden="true"></div>
   <div class="wrap">
     <div class="section-head">
       <div><div class="tribal-tab" aria-hidden="true"></div><span class="label">The Circuit</span><h2>A stronger circuit of trust.</h2></div>
@@ -165,7 +292,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
-<section class="section" id="editions">
+<section class="section edition-art" id="editions">
   <div class="wrap">
     <span class="label">Editions</span><h2>One circuit.<br>Four cities.</h2>
     <div class="circuit-grid">
@@ -183,6 +310,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
+<div class="stage-band" aria-hidden="true"></div>
 <section class="section" id="people"><div class="section-mark" aria-hidden="true"></div><div class="section-mark" aria-hidden="true"></div>
   <div class="wrap">
     <div class="people-tools">
@@ -787,7 +915,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 
 <section class="section" id="gallery"><div class="section-mark" aria-hidden="true"></div>
   <div class="wrap">
-    <span class="label" style="color:var(--blue)">Gallery · Mauritius 2026</span><h2>The first<br>Circuit.</h2>
+    <div class="gallery-heading"><span class="label cyan">Gallery · Mauritius 2026</span><h2>The first<br>Circuit.</h2></div>
     <p class="lead">Two days. One room. The beginning of the Circuit.</p>
     <div class="gallery-grid">
       <div class="gallery-slot"><img src="images/gallery/01.jpg" alt="The African Circuit Mauritius 2026" onerror="this.style.display='none'"><span class="gallery-fallback">Mauritius 2026<small>Conference</small></span></div>
