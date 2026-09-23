@@ -10,24 +10,90 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=EB+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#000c1f;--navy2:#061a33;--paper:#f1ece2;--ink:#0a1322;--grey:#8e97a6;--gold:#d0a149;--ochre:#e8a63a;--red:#e0342b;--blue:#1db4f5;--line:rgba(241,236,226,.16);--pad:clamp(22px,4.5vw,72px)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--navy);color:var(--paper);font-family:Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}img{max-width:100%;display:block}
+:root{--navy:#000c1f;--navy2:#061a33;--paper:#fafaf8;--white:#ffffff;--ink:#0a1322;--grey:#6f7782;--gold:#b88932;--ochre:#b88932;--red:#b92d27;--blue:#147da8;--line:#deded9;--pad:clamp(22px,4.5vw,72px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}img{max-width:100%;display:block}
 .wrap{width:min(1500px,100%);margin:auto;padding-left:var(--pad);padding-right:var(--pad)}.label{font:700 12px Archivo,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--ochre)}.serif{font-family:"EB Garamond",Georgia,serif}
-header{position:sticky;top:0;z-index:50;background:rgba(0,12,31,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{min-height:86px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:14px;margin-right:auto}.brand img{width:58px;height:58px;object-fit:contain}.brand-fallback{width:58px;height:58px;border:1px solid #748091;border-radius:50%;display:none;place-items:center;font:700 9px Archivo;letter-spacing:.08em;text-align:center}.brand-text b{font:600 clamp(20px,2vw,31px) "EB Garamond",serif;letter-spacing:.02em}.brand-text small{display:block;margin-top:3px;color:#8e97a6;font:600 9px Archivo;letter-spacing:.3em;text-transform:uppercase}nav{display:flex;align-items:center;gap:28px}nav a{font:600 12px Archivo;text-transform:uppercase;color:#b7bdc6}nav a:hover{color:#fff}.attend{background:var(--gold);color:var(--ink)!important;padding:18px 24px}
-.hero{min-height:calc(100vh - 86px);display:grid;align-items:end;padding:90px 0 76px;background:radial-gradient(circle at 72% 40%,rgba(208,161,73,.16),transparent 32%),linear-gradient(180deg,#061420 0%,#000c1f 100%)}.hero h1{font:500 clamp(64px,8.5vw,150px)/.82 "EB Garamond",serif;letter-spacing:-.055em;margin:28px 0 30px;max-width:1250px}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{font-size:clamp(17px,1.45vw,23px);line-height:1.65;color:#c9ced6;max-width:780px}
-.proofbar{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.proofgrid{display:grid;grid-template-columns:repeat(4,1fr)}.metric{padding:34px 28px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric strong{display:block;font:600 44px "EB Garamond",serif}.metric span{font-size:12px;color:#9da5b1;text-transform:uppercase;letter-spacing:.12em}
-section{scroll-margin-top:86px}.section{padding:clamp(80px,10vw,150px) 0;border-bottom:1px solid var(--line)}.light{background:var(--paper);color:var(--ink)}.section-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;margin-bottom:60px}.section h2{font:500 clamp(48px,6vw,100px)/.9 "EB Garamond",serif;letter-spacing:-.04em;margin:14px 0}.lead{font-size:clamp(18px,1.5vw,24px);line-height:1.65;color:#b9c2d0;max-width:760px}.light .lead{color:#49505a}
-.circuit-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.circuit-item{min-height:260px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}.circuit-item .n{font:700 11px Archivo;letter-spacing:.18em;color:var(--ochre)}.circuit-item h3{font:500 38px "EB Garamond",serif;margin:0}.circuit-item p{color:#aeb6c2;margin:7px 0}.status{font:600 10px Archivo;text-transform:uppercase;letter-spacing:.14em;color:var(--gold)}
-.people-tools{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}.people-tools p{max-width:640px;color:#aeb6c2;line-height:1.6}.speaker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.speaker-card{background:var(--navy)}.speaker-card:nth-child(n+9){display:none}.speaker-card.show{display:block}.speaker-open{width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer}.speaker-photo{aspect-ratio:1/1;background:#0a1b2d;position:relative;overflow:hidden}.speaker-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}.photo-placeholder{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:#667181;font:700 11px Archivo;letter-spacing:.12em;line-height:1.7;border:1px dashed rgba(241,236,226,.2)}.photo-placeholder small{display:block;font-size:8px;letter-spacing:0;color:#55606f;margin-top:8px}.speaker-copy{padding:22px;min-height:190px}.speaker-copy h3{font:500 28px/1 "EB Garamond",serif;margin:0 0 12px}.speaker-title{font-size:12px;line-height:1.5;color:#c1c7cf;margin:0 0 10px}.speaker-org{font:700 10px Archivo;text-transform:uppercase;letter-spacing:.12em;color:var(--ochre);margin:0}.bio-link{display:inline-block;margin-top:24px;font-size:11px;color:#9ba4af}
-.more{margin-top:32px;border:1px solid #435064;background:transparent;color:#fff;padding:15px 20px;cursor:pointer;text-transform:uppercase;font:700 10px Archivo;letter-spacing:.12em}
+header{position:sticky;top:0;z-index:50;background:rgba(250,250,248,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{min-height:86px;display:flex;align-items:center;gap:28px}.brand{display:flex;align-items:center;gap:14px;margin-right:auto}.brand img{width:58px;height:58px;object-fit:contain}.brand-fallback{width:58px;height:58px;border:1px solid #748091;border-radius:50%;display:none;place-items:center;font:700 9px Archivo;letter-spacing:.08em;text-align:center}.brand-text b{font:600 clamp(20px,2vw,31px) "EB Garamond",serif;letter-spacing:.02em}.brand-text small{display:block;margin-top:3px;color:#8e97a6;font:600 9px Archivo;letter-spacing:.3em;text-transform:uppercase}nav{display:flex;align-items:center;gap:28px}nav a{font:600 12px Archivo;text-transform:uppercase;color:#68717d}nav a:hover{color:var(--ink)}.attend{background:var(--gold);color:var(--ink)!important;padding:18px 24px}
+.hero{min-height:calc(100vh - 86px);display:grid;align-items:end;padding:90px 0 76px;background:radial-gradient(circle at 78% 28%,rgba(184,137,50,.08),transparent 30%),linear-gradient(180deg,#ffffff 0%,#f7f6f2 100%)}.hero h1{font:500 clamp(64px,8.5vw,150px)/.82 "EB Garamond",serif;letter-spacing:-.055em;margin:28px 0 30px;max-width:1250px}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{font-size:clamp(17px,1.45vw,23px);line-height:1.65;color:#515a66;max-width:780px}
+.proofbar{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.proofgrid{display:grid;grid-template-columns:repeat(4,1fr)}.metric{padding:34px 28px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metric strong{display:block;font:600 44px "EB Garamond",serif}.metric span{font-size:12px;color:#9da5b1;text-transform:uppercase;letter-spacing:.12em}
+section{scroll-margin-top:86px}.section{padding:clamp(80px,10vw,150px) 0;border-bottom:1px solid var(--line)}.light{background:#f3f2ee;color:var(--ink)}.section-head{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;margin-bottom:60px}.section h2{font:500 clamp(48px,6vw,100px)/.9 "EB Garamond",serif;letter-spacing:-.04em;margin:14px 0}.lead{font-size:clamp(18px,1.5vw,24px);line-height:1.65;color:#515a66;max-width:760px}.light .lead{color:#49505a}
+.circuit-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}.circuit-item{min-height:260px;padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between}.circuit-item .n{font:700 11px Archivo;letter-spacing:.18em;color:var(--ochre)}.circuit-item h3{font:500 38px "EB Garamond",serif;margin:0}.circuit-item p{color:#66707c;margin:7px 0}.status{font:600 10px Archivo;text-transform:uppercase;letter-spacing:.14em;color:var(--gold)}
+.people-tools{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}.people-tools p{max-width:640px;color:#66707c;line-height:1.6}.speaker-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#deded9;border:1px solid #deded9}.speaker-card{background:#fff}.speaker-card:nth-child(n+9){display:none}.speaker-card.show{display:block}.speaker-open{width:100%;padding:0;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer}.speaker-photo{aspect-ratio:1/1;background:#efeee9;position:relative;overflow:hidden}.speaker-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}.photo-placeholder{position:absolute;inset:0;display:none;place-items:center;text-align:center;color:#667181;font:700 11px Archivo;letter-spacing:.12em;line-height:1.7;border:1px dashed #c9c8c2}.photo-placeholder small{display:block;font-size:8px;letter-spacing:0;color:#55606f;margin-top:8px}.speaker-copy{padding:22px;min-height:190px}.speaker-copy h3{font:500 28px/1 "EB Garamond",serif;margin:0 0 12px}.speaker-title{font-size:12px;line-height:1.5;color:#525b66;margin:0 0 10px}.speaker-org{font:700 10px Archivo;text-transform:uppercase;letter-spacing:.12em;color:var(--ochre);margin:0}.bio-link{display:inline-block;margin-top:24px;font-size:11px;color:#6f7782}
+.more{margin-top:32px;border:1px solid #aeb1b4;background:transparent;color:var(--ink);padding:15px 20px;cursor:pointer;text-transform:uppercase;font:700 10px Archivo;letter-spacing:.12em}
 .logos{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid #d6d0c5;border-left:1px solid #d6d0c5;margin-top:55px}.logo-cell{height:150px;border-right:1px solid #d6d0c5;border-bottom:1px solid #d6d0c5;display:flex;align-items:center;justify-content:center;padding:24px;background:#f7f3eb}.logo-cell img{max-width:135px;max-height:65px;object-fit:contain;filter:grayscale(100%)}.logo-placeholder{display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;text-align:center;font:700 10px Archivo;letter-spacing:.08em;text-transform:uppercase;color:#6e716f}.logo-placeholder small{font:400 8px Inter;text-transform:none;letter-spacing:0;margin-top:8px;color:#a19d94}
-.insights{display:grid;grid-template-columns:1.2fr .8fr;gap:1px;background:var(--line);border:1px solid var(--line)}.insight{background:#06172a;padding:40px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.insight h3{font:500 38px "EB Garamond",serif;margin:10px 0}.insight p{color:#aeb6c2;line-height:1.6}
-.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:260px;gap:10px}.gallery-slot{background:#091a2c;border:1px dashed #405066;display:flex;align-items:center;justify-content:center;text-align:center;color:#6d7887;font:700 10px Archivo;letter-spacing:.12em;text-transform:uppercase;padding:20px}.gallery-slot:first-child{grid-row:span 2}.gallery-slot small{display:block;font:400 9px Inter;letter-spacing:0;text-transform:none;margin-top:8px}
-.attend-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:80px;align-items:end}.cta{display:inline-block;background:var(--gold);color:var(--ink);padding:18px 24px;font:700 11px Archivo;letter-spacing:.1em;text-transform:uppercase}.attend-meta{border-left:1px solid var(--line);padding-left:34px}.attend-meta strong{font:500 34px "EB Garamond",serif;display:block;margin-bottom:8px}.attend-meta p{color:#aeb6c2}
-footer{padding:48px 0;color:#8e97a6}.foot{display:flex;justify-content:space-between;gap:30px;font-size:11px}.foot a{margin-left:18px}
-dialog{width:min(820px,calc(100% - 30px));background:#07182a;color:var(--paper);border:1px solid #334257;padding:0;box-shadow:0 30px 100px #000}dialog::backdrop{background:rgba(0,5,15,.8)}.modal{display:grid;grid-template-columns:260px 1fr}.modal-photo{min-height:340px;background:#0a1b2d}.modal-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}.modal-copy{padding:38px}.modal-copy h3{font:500 43px/1 "EB Garamond",serif;margin:8px 0 12px}.modal-copy .org{color:var(--ochre);font:700 10px Archivo;letter-spacing:.12em;text-transform:uppercase}.modal-copy p{color:#b9c2d0;line-height:1.7}.close{position:absolute;right:14px;top:12px;border:0;background:none;color:#fff;font-size:28px;cursor:pointer}
+.insights{display:grid;grid-template-columns:1.2fr .8fr;gap:1px;background:#deded9;border:1px solid #deded9}.insight{background:#ffffff;padding:40px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.insight h3{font:500 38px "EB Garamond",serif;margin:10px 0}.insight p{color:#66707c;line-height:1.6}
+.gallery-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:260px;gap:10px}.gallery-slot{background:#f0efeb;border:1px dashed #c6c5bf;display:flex;align-items:center;justify-content:center;text-align:center;color:#747b84;font:700 10px Archivo;letter-spacing:.12em;text-transform:uppercase;padding:20px}.gallery-slot:first-child{grid-row:span 2}.gallery-slot small{display:block;font:400 9px Inter;letter-spacing:0;text-transform:none;margin-top:8px}
+.attend-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:80px;align-items:end}.cta{display:inline-block;background:var(--gold);color:var(--ink);padding:18px 24px;font:700 11px Archivo;letter-spacing:.1em;text-transform:uppercase}.attend-meta{border-left:1px solid #d8d8d2;padding-left:34px}.attend-meta strong{font:500 34px "EB Garamond",serif;display:block;margin-bottom:8px}.attend-meta p{color:#66707c}
+footer{padding:48px 0;color:#737b84;background:#fff}.foot{display:flex;justify-content:space-between;gap:30px;font-size:11px}.foot a{margin-left:18px}
+dialog{width:min(820px,calc(100% - 30px));background:#fff;color:var(--ink);border:1px solid #d8d8d2;padding:0;box-shadow:0 30px 100px #000}dialog::backdrop{background:rgba(0,5,15,.8)}.modal{display:grid;grid-template-columns:260px 1fr}.modal-photo{min-height:340px;background:#efeee9}.modal-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%)}.modal-copy{padding:38px}.modal-copy h3{font:500 43px/1 "EB Garamond",serif;margin:8px 0 12px}.modal-copy .org{color:var(--ochre);font:700 10px Archivo;letter-spacing:.12em;text-transform:uppercase}.modal-copy p{color:#59626d;line-height:1.7}.close{position:absolute;right:14px;top:12px;border:0;background:none;color:var(--ink);font-size:28px;cursor:pointer}
 @media(max-width:1050px){nav a:not(.attend){display:none}.proofgrid,.circuit-grid{grid-template-columns:repeat(2,1fr)}.speaker-grid{grid-template-columns:repeat(2,1fr)}.logos{grid-template-columns:repeat(3,1fr)}.section-head,.attend-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.brand-text b{font-size:18px}.brand-text small{display:none}.hero{min-height:760px}.hero h1{font-size:58px}.proofgrid,.circuit-grid,.speaker-grid,.logos,.insights{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr;grid-auto-rows:230px}.gallery-slot:first-child{grid-row:span 1}.modal{grid-template-columns:1fr}.modal-photo{min-height:260px}}
+
+.dark-band{background:var(--navy);color:#f6f2e9;border-bottom:0}
+.dark-band .lead,.dark-band .attend-meta p{color:#b9c1cb}
+.dark-band .attend-meta{border-left-color:rgba(255,255,255,.18)}
+
+/* --- Minimal African identity: geometric linework, deliberately restrained --- */
+.african-mark{
+  --motif: rgba(184,137,50,.18);
+  position:absolute; pointer-events:none; overflow:hidden;
+}
+.african-mark::before,.african-mark::after{
+  content:""; position:absolute; inset:0;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 16px, var(--motif) 16px 18px, transparent 18px 34px),
+    repeating-linear-gradient(-45deg, transparent 0 16px, var(--motif) 16px 18px, transparent 18px 34px);
+  -webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);
+}
+.african-mark::after{transform:scale(.72) rotate(45deg);opacity:.65}
+.hero{position:relative;overflow:hidden}
+.hero .african-mark{right:-40px;top:70px;width:260px;height:460px;opacity:.7}
+.hero-copy{position:relative;z-index:2;max-width:1280px}
+.hero-rule{display:flex;align-items:center;gap:16px;margin-top:30px;color:#747b84;font:700 9px Archivo;letter-spacing:.24em;text-transform:uppercase}
+.hero-rule::before{content:"";width:44px;height:1px;background:var(--gold)}
+.section-accent{position:relative}
+.section-accent::before{content:"";position:absolute;left:0;top:0;width:52px;height:2px;background:var(--gold)}
+.city-code{display:inline-flex;align-items:center;gap:10px}
+.city-code::before{content:"";width:18px;height:1px;background:var(--gold)}
+.motif-strip{height:42px;position:relative;overflow:hidden;background:#f3f2ee;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.motif-strip::before{
+ content:"";position:absolute;inset:0;opacity:.42;
+ background:
+ linear-gradient(45deg,transparent 46%,rgba(184,137,50,.18) 47% 53%,transparent 54%) 0 0/42px 42px,
+ linear-gradient(-45deg,transparent 46%,rgba(0,12,31,.09) 47% 53%,transparent 54%) 21px 0/42px 42px;
+}
+.people-tools,.section-head{position:relative}
+.people-tools::after,.section-head::after{
+ content:"";position:absolute;right:0;top:0;width:92px;height:92px;opacity:.14;
+ background:
+ linear-gradient(45deg,transparent 43%,var(--gold) 44% 48%,transparent 49%) 0 0/24px 24px,
+ linear-gradient(-45deg,transparent 43%,var(--navy) 44% 48%,transparent 49%) 12px 0/24px 24px;
+}
+.logos{position:relative}
+.logo-cell{transition:background .2s ease}
+.logo-cell:hover{background:#fff}
+.insight{position:relative}
+.insight::before{content:"";position:absolute;left:40px;top:0;width:38px;height:2px;background:var(--gold)}
+.gallery-grid{position:relative}
+.gallery-grid::after{content:"";position:absolute;right:-18px;bottom:-18px;width:80px;height:80px;z-index:-1;opacity:.18;background:repeating-linear-gradient(45deg,var(--gold) 0 2px,transparent 2px 12px)}
+.dark-band{position:relative;overflow:hidden}
+.dark-band::before{
+ content:"";position:absolute;left:-55px;top:-80px;width:270px;height:330px;opacity:.16;
+ background:
+ repeating-linear-gradient(45deg,transparent 0 18px,#d0a149 18px 20px,transparent 20px 38px),
+ repeating-linear-gradient(-45deg,transparent 0 18px,#d0a149 18px 20px,transparent 20px 38px);
+ transform:rotate(8deg)
+}
+.dark-band .wrap{position:relative;z-index:2}
+footer{position:relative}
+footer::before{content:"";display:block;position:absolute;left:var(--pad);right:var(--pad);top:0;height:1px;background:var(--line)}
+@media(max-width:650px){
+ .hero .african-mark{right:-110px;top:90px;opacity:.45}
+ .people-tools::after,.section-head::after{display:none}
+ .motif-strip{height:28px}
+}
+
 </style>
 </head>
 <body id="top">
@@ -59,10 +125,12 @@ The page deliberately shows elegant placeholders until those files are uploaded.
 
 <main>
 <section class="hero">
-  <div class="wrap">
+  <div class="african-mark" aria-hidden="true"></div>
+  <div class="wrap hero-copy">
     <span class="label">The African Circuit</span>
     <h1>Capital exists.<br>Mandates exist.<br><em>The gap is deployment.</em></h1>
     <p>A pan-African platform connecting the institutions that mandate capital with those that structure and deploy it.</p>
+    <div class="hero-rule">Capital · Policy · Investment</div>
   </div>
 </section>
 
@@ -74,10 +142,11 @@ The page deliberately shows elegant placeholders until those files are uploaded.
     <div class="metric"><strong>4</strong><span>Cities in the Circuit</span></div>
   </div>
 </div>
+<div class="motif-strip" aria-hidden="true"></div>
 
 <section class="section" id="circuit">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head section-accent">
       <div><span class="label">The Circuit</span><h2>A stronger circuit of trust.</h2></div>
       <div><p class="lead">Africa does not lack opportunity. Capital moves through relationships, governance, credible information and the right institutional vehicles. The African Circuit brings together the institutions responsible for mandate, policy, structuring and deployment.</p></div>
     </div>
@@ -88,17 +157,17 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   <div class="wrap">
     <span class="label">Editions</span><h2>One circuit.<br>Four cities.</h2>
     <div class="circuit-grid">
-      <article class="circuit-item"><span class="n">01 / MRU</span><div><h3>Mauritius</h3><p>14–15 September 2026</p><span class="status">Completed · Flagship</span></div></article>
-      <article class="circuit-item"><span class="n">02 / NBO</span><div><h3>Nairobi</h3><p>19–20 November 2026</p><span class="status">Next edition</span></div></article>
-      <article class="circuit-item"><span class="n">03 / CPT</span><div><h3>Cape Town</h3><p>February 2027</p><span class="status">Announced</span></div></article>
-      <article class="circuit-item"><span class="n">04 / CMN</span><div><h3>Casablanca</h3><p>Coming soon</p><span class="status">Announced</span></div></article>
+      <article class="circuit-item"><span class="n city-code">01 / MRU</span><div><h3>Mauritius</h3><p>14–15 September 2026</p><span class="status">Completed · Flagship</span></div></article>
+      <article class="circuit-item"><span class="n city-code">02 / NBO</span><div><h3>Nairobi</h3><p>19–20 November 2026</p><span class="status">Next edition</span></div></article>
+      <article class="circuit-item"><span class="n city-code">03 / CPT</span><div><h3>Cape Town</h3><p>February 2027</p><span class="status">Announced</span></div></article>
+      <article class="circuit-item"><span class="n city-code">04 / CMN</span><div><h3>Casablanca</h3><p>Coming soon</p><span class="status">Announced</span></div></article>
     </div>
   </div>
 </section>
 
 <section class="section" id="people">
   <div class="wrap">
-    <div class="people-tools">
+    <div class="people-tools section-accent">
       <div><span class="label">Mauritius 2026</span><h2>The people<br>in the room.</h2></div>
       <p>Speaker names, titles, organisations and biographies have been retained from the source site. Upload a portrait to the indicated filename and it appears automatically.</p>
     </div>
@@ -688,6 +757,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
+<div class="motif-strip" aria-hidden="true"></div>
 <section class="section" id="insights">
   <div class="wrap">
     <span class="label">Insights</span><h2>Ideas between<br>the Circuits.</h2>
@@ -712,7 +782,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
   </div>
 </section>
 
-<section class="section" id="attend">
+<section class="section dark-band" id="attend">
   <div class="wrap attend-grid">
     <div><span class="label">Next edition</span><h2>The Circuit continues<br>in Nairobi.</h2><p class="lead">19–20 November 2026. Institutional investors, DFIs, regulators, family offices, fund managers and market participants meeting on the continent.</p><a class="cta" href="mailto:contact@theafricancircuit.com?subject=Nairobi%202026%20Attendance">Attend Nairobi →</a></div>
     <div class="attend-meta"><strong>Nairobi · Kenya</strong><p>19–20 November 2026</p><p>Programme, speaker and partner information can continue to be added directly inside this single index.</p></div>
