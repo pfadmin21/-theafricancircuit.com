@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>The African Circuit | Insights</title>
+    <link>https://theafricancircuit.com/</link>
+    <description>Institutional briefings, debates and perspectives on capital, policy and investment across Africa.</description>
+    <language>en</language>
+    <copyright>The African Circuit</copyright>
+    <managingEditor>info@theafricancircuit.com (The African Circuit)</managingEditor>
+    <atom:link href="https://theafricancircuit.com/insights/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>The Mandate | Institutional briefings on capital deployment across Africa</title>
+      <link>https://theafricancircuit.com/#insights</link>
+      <guid isPermaLink="false">african-circuit-the-mandate</guid>
+      <description><![CDATA[
+        Long-form perspectives connecting the questions raised inside The African Circuit with the practical architecture of capital deployment across Africa.
+      ]]></description>
+      <category>The Mandate</category>
+    </item>
+
+    <item>
+      <title>From the Room | Debates, perspectives and publications</title>
+      <link>https://theafricancircuit.com/#insights</link>
+      <guid isPermaLink="false">african-circuit-from-the-room</guid>
+      <description><![CDATA[
+        Selected debates, perspectives and contributions emerging from each edition of The African Circuit.
+      ]]></description>
+      <category>From the Room</category>
+    </item>
+  </channel>
+</rss>
