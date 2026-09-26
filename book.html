@@ -353,16 +353,24 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
 }
 
 /* ---------- payment card marks ---------- */
-.card-acceptance{margin:18px 0 4px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.card-acceptance .card-label{display:block;margin-bottom:11px;font:700 9px Archivo,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:var(--soft)}
-.card-marks{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.card-mark{height:31px;min-width:52px;padding:0 10px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(7,19,29,.16);border-radius:5px;font:800 11px/1 Arial,sans-serif;letter-spacing:-.02em;color:#07131d}
-.card-mark.visa{font-size:15px;font-style:italic;letter-spacing:-.08em}
-.card-mark.mc{position:relative;min-width:55px;font-size:0}
-.card-mark.mc::before,.card-mark.mc::after{content:"";width:18px;height:18px;border:1.7px solid #07131d;border-radius:50%;position:absolute}
-.card-mark.mc::before{left:13px}.card-mark.mc::after{right:13px}
-.card-mark.amex{font-size:10px;letter-spacing:.03em}
-.card-note{margin-top:9px!important;font-size:10.5px!important;color:var(--soft)!important;line-height:1.45!important}
+.card-acceptance{margin:18px 0 16px;padding:0;border:1px solid rgba(7,19,29,.14);background:rgba(255,255,255,.48);border-radius:12px;overflow:hidden}
+.card-pay-top{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:18px 20px}
+.card-choice{display:flex;align-items:center;gap:13px;min-width:0}
+.card-radio{width:20px;height:20px;border:1.5px solid var(--navy);border-radius:50%;position:relative;flex:none}
+.card-radio:after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--navy)}
+.card-copy strong{display:block;font:700 12px/1.2 Archivo,sans-serif;letter-spacing:.01em;color:var(--ink)}
+.card-copy span{display:block;margin-top:4px;font-size:10.5px;color:var(--soft)}
+.card-marks{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.card-mark{height:34px;min-width:54px;padding:0 10px;display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid rgba(7,19,29,.13);border-radius:6px;font:800 11px/1 Arial,sans-serif;color:#07131d;box-shadow:0 1px 2px rgba(7,19,29,.04)}
+.card-mark.visa{font-size:16px;font-style:italic;letter-spacing:-.08em}
+.card-mark.mc{position:relative;min-width:56px;font-size:0}
+.card-mark.mc::before,.card-mark.mc::after{content:"";width:18px;height:18px;border:1.6px solid #07131d;border-radius:50%;position:absolute;top:7px}
+.card-mark.mc::before{left:14px}.card-mark.mc::after{right:14px}
+.card-mark.amex{font-size:9px;letter-spacing:.04em;text-align:center}
+.card-secure{display:flex;align-items:center;gap:9px;padding:11px 20px;border-top:1px solid rgba(7,19,29,.09);font-size:10.5px;line-height:1.45;color:var(--soft)}
+.card-lock{width:13px;height:11px;border:1.4px solid currentColor;border-radius:2px;position:relative;flex:none}
+.card-lock:before{content:"";position:absolute;width:7px;height:6px;border:1.4px solid currentColor;border-bottom:0;border-radius:7px 7px 0 0;left:1.6px;top:-6px}
+@media(max-width:650px){.card-pay-top{align-items:flex-start;flex-direction:column}.card-marks{justify-content:flex-start}}
 
 </style>
 </head>
@@ -566,13 +574,21 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
               <div class="paypal-stage" id="paypalStage" hidden>
                 <div class="paypal-head"><strong id="paypalTotal">USD 475</strong><span>Secure checkout · PayPal</span></div>
                 <div class="card-acceptance" aria-label="Card payment options">
-  <span class="card-label">Pay with a debit or credit card</span>
-  <div class="card-marks" aria-hidden="true">
-    <span class="card-mark visa">VISA</span>
-    <span class="card-mark mc" title="Mastercard"></span>
-    <span class="card-mark amex">AMERICAN<br>EXPRESS</span>
+  <div class="card-pay-top">
+    <div class="card-choice">
+      <span class="card-radio" aria-hidden="true"></span>
+      <div class="card-copy">
+        <strong>Debit or credit card</strong>
+        <span>Major cards supported where available</span>
+      </div>
+    </div>
+    <div class="card-marks" aria-hidden="true">
+      <span class="card-mark visa">VISA</span>
+      <span class="card-mark mc" title="Mastercard"></span>
+      <span class="card-mark amex">AMERICAN<br>EXPRESS</span>
+    </div>
   </div>
-  <p class="card-note">Card options are presented securely by PayPal and may vary by country, card issuer and eligibility.</p>
+  <div class="card-secure"><span class="card-lock" aria-hidden="true"></span><span>Secure card processing is provided by PayPal. Available card options may vary by country, issuer and eligibility.</span></div>
 </div>
 <div id="paypal-button-container"></div>
               </div>
