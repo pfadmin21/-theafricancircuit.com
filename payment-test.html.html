@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>African Circuit — $1 Live Payment Test</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f2;color:#111}
+    main{max-width:620px;margin:64px auto;padding:0 22px}
+    .card{background:#fff;border:1px solid #ddd;padding:32px}
+    .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#666}
+    h1{font-size:28px;margin:10px 0 8px}
+    p{line-height:1.55;color:#444}
+    .amount{font-size:44px;margin:26px 0 20px}
+    label{display:block;font-size:13px;font-weight:700;margin-bottom:8px}
+    input{width:100%;padding:13px;border:1px solid #bbb;font-size:16px;margin-bottom:18px}
+    #paypal-button-container{margin-top:12px}
+    #status{margin-top:18px;padding:12px;border:1px solid #ddd;display:none;white-space:pre-wrap}
+    .note{font-size:12px;color:#666;margin-top:18px}
+  </style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <div class="eyebrow">Private production test</div>
+    <h1>The African Circuit</h1>
+    <p>This page creates one real LIVE PayPal test order through the production Cloudflare Worker. It does not alter the Nairobi booking page.</p>
+    <div class="amount">USD 1.00</div>
+
+    <label for="testKey">Temporary test key</label>
+    <input id="testKey" type="password" autocomplete="off" placeholder="Enter TEST_PAYMENT_KEY">
+
+    <div id="paypal-button-container"></div>
+    <div id="status"></div>
+
+    <p class="note">The key is kept only in this browser page while it is open. Do not publish this HTML. Complete the test only once.</p>
+  </div>
+</main>
+
+<script src="https://www.paypal.com/sdk/js?client-id=BAAQ7HriRvDpwVK5Eu76-FlJxzB0ubZXbBlkBW3iFTF0cmNKBYZMeAjA58FfNN11LvDhMxinxZxVu9vw8k&currency=USD&intent=capture"></script>
+<script>
+const WORKER_URL = 'https://african-circuit-payments.delicate-wood-4b13.workers.dev';
+
+function showStatus(message, ok = true) {
+  const el = document.getElementById('status');
+  el.style.display = 'block';
+  el.textContent = message;
+  el.style.borderColor = ok ? '#888' : '#b00020';
+}
+
+paypal.Buttons({
+  createOrder: async () => {
+    const testKey = document.getElementById('testKey').value.trim();
+    if (!testKey) {
+      throw new Error('Enter TEST_PAYMENT_KEY first.');
+    }
+
+    const response = await fetch(`${WORKER_URL}/create-order`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        product: 'test-payment',
+        seats: 1,
+        day: '',
+        testKey
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok || !data.id) {
+      throw new Error(data.error || 'Could not create test order.');
+    }
+    return data.id;
+  },
+
+  onApprove: async (data) => {
+    showStatus('PayPal approved the order. Capturing and recording it…');
+
+    const response = await fetch(`${WORKER_URL}/capture-order`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({orderID:data.orderID})
+    });
+
+    const result = await response.json();
+    if (!response.ok || result.status !== 'COMPLETED') {
+      throw new Error(result.error || 'Capture failed.');
+    }
+
+    showStatus(
+      `SUCCESS\n\nPayment: ${result.currency || 'USD'} ${result.amount || '1.00'}\nPayPal order: ${result.orderID}\nCapture: ${result.captureID}\n\nNow verify the entry in Supabase.`
+    );
+  },
+
+  onCancel: () => showStatus('Payment cancelled. No capture was made.', false),
+
+  onError: (err) => {
+    console.error(err);
+    showStatus(`ERROR\n\n${err.message || String(err)}`, false);
+  }
+}).render('#paypal-button-container');
+</script>
+</body>
+</html>
