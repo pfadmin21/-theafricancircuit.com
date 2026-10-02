@@ -158,6 +158,10 @@ tbody th{font-weight:500;color:#46505b}
 .f textarea{border:1.5px solid rgba(7,19,29,.25);padding:12px;min-height:100px;resize:vertical;background:rgba(255,255,255,.35)}
 .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--ink);box-shadow:0 2px 0 var(--cyan)}
 .f input:user-invalid,.f select:user-invalid{border-color:var(--rust)}
+.f input.bad,.f select.bad,.f textarea.bad{border-color:var(--rust);box-shadow:0 2px 0 var(--rust)}
+.consent input.bad{outline:2px solid var(--rust);outline-offset:2px}
+.f-err{font-size:13px;line-height:1.4;color:var(--rust);font-weight:600}
+.consent+.f-err{margin:6px 0 0 29px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{position:relative}
 .chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
@@ -930,10 +934,52 @@ function prepareInvitationLetter(){
     $('#letterLink').value='https://theafricancircuit.com/invitation-letter.html#'+b64;
   } else $('#letterLink').value='';
 }
+/* inline validation: highlight each problem field and say what is wrong */
+function fieldName(el){
+  const lab = el.id && form.querySelector('label[for="'+el.id+'"]');
+  if (lab) return lab.textContent.replace('*','').trim();
+  return el.name==='consent' ? 'Consent' : (el.name||'This field');
+}
+function fieldMessage(el){
+  const v = el.validity;
+  if (v.valueMissing) return el.type==='checkbox' ? 'Please tick this box to continue.' : 'This field is required.';
+  if (v.typeMismatch && el.type==='email') return 'Please enter a valid email address, e.g. name@company.com.';
+  if (v.typeMismatch && el.type==='url') return 'Please enter a full link, e.g. https://linkedin.com/in/yourname, or leave this empty.';
+  if (v.customError) return el.validationMessage;
+  if (v.tooLong) return 'This is too long.';
+  return el.validationMessage || 'Please check this field.';
+}
+function clearFieldError(el){
+  el.classList.remove('bad'); el.removeAttribute('aria-invalid');
+  const host = el.closest('.consent') || el;
+  const n = host.nextElementSibling;
+  if (n && n.classList.contains('f-err')) n.remove();
+}
+function showFieldErrors(){
+  const li = $('#f-linkedin');
+  if (li) { const t = li.value.trim(); li.value = t && !/^https?:\/\//i.test(t) ? 'https://'+t.replace(/^\/+/,'') : t; li.setCustomValidity(li.value && !/^https?:\/\/[^\s\/]+\.[^\s]+$/i.test(li.value) ? 'Please enter a full link, e.g. https://linkedin.com/in/yourname, or leave this empty.' : ''); }
+  const bad = [];
+  [...form.elements].forEach(el=>{
+    if (!el.willValidate) return;
+    clearFieldError(el);
+    if (el.checkValidity()) return;
+    bad.push(el);
+    el.classList.add('bad'); el.setAttribute('aria-invalid','true');
+    const msg = document.createElement('div'); msg.className='f-err'; msg.textContent=fieldMessage(el);
+    (el.closest('.consent') || el).insertAdjacentElement('afterend', msg);
+  });
+  if (!bad.length) return true;
+  status.className='status err';
+  status.textContent = (bad.length===1 ? 'Please check 1 field: ' : 'Please check '+bad.length+' fields: ') + bad.map(fieldName).join(', ') + '.';
+  bad[0].scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>bad[0].focus({preventScroll:true}),350);
+  return false;
+}
+['input','change'].forEach(ev=>form.addEventListener(ev,e=>{ if(e.target.classList && e.target.classList.contains('bad')){ e.target.setCustomValidity(''); if(e.target.checkValidity()) clearFieldError(e.target); } }));
 function validateRegistration(){
   status.className='status'; status.textContent='';
   if (!selected) { status.className='status err'; status.textContent='Please choose a pass.'; return false; }
-  if (!form.checkValidity()) { form.reportValidity(); status.className='status err'; status.textContent='Please complete the required fields marked *.'; return false; }
+  if (!showFieldErrors()) return false;
   if ($('#f-gotcha').value) return false;
   try { prepareInvitationLetter(); } catch(err){ status.className='status err'; status.textContent=err.message; return false; }
   $('#subjectField').value = `Nairobi 2026 registration — ${form.first_name.value} ${form.last_name.value} (${form.organisation.value}) · ${$('#passField').value} × ${seatsInput.value}`;
