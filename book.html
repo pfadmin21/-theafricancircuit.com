@@ -556,6 +556,10 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
                   <select id="f-source" name="source"><option value="">Select…</option><option>Invitation from the Circuit team</option><option>LinkedIn</option><option>Colleague or partner</option><option>Attended Mauritius 2026</option><option>Other</option></select>
                 </div>
                 <div class="f full"><label for="f-msg">Notes (dietary, accessibility, meeting requests)</label><textarea id="f-msg" name="notes" maxlength="2000"></textarea></div>
+                <div class="f full"><label for="f-promo">Promo code</label>
+                  <div style="display:flex;gap:14px;align-items:flex-end"><input id="f-promo" maxlength="40" autocomplete="off" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase"><button type="button" class="invoice-alt" id="promoBtn" style="margin:0 0 10px;white-space:nowrap">Apply</button></div>
+                  <div class="status" id="promoStatus" role="status" aria-live="polite" style="margin-top:6px"></div>
+                </div>
               </div>
               <label class="consent" style="margin-top:22px"><input type="checkbox" id="f-inv" name="invitation_letter" value="Yes — invitation letter requested"><span>I need an <strong>invitation letter</strong> for my eTA or travel.</span></label>
               <div class="inv-box" id="invBox" hidden>
@@ -804,6 +808,8 @@ $('#compare').innerHTML = `<thead><tr><th></th><th>One day</th><th>Two days</th>
 
 const seatsInput = $('#f-seats');
 let selected = null;
+let promo = null;
+const netUnit = u => promo ? Math.round(u*(100-promo.percent))/100 : u;
 
 function selectPass(id, scroll){
   const p = CONFIG.products.find(x=>x.id===id); if(!p) return;
@@ -823,7 +829,7 @@ function update(){
   const n = Math.max(1, Math.min(20, parseInt(seatsInput.value)||1));
   seatsInput.value = n;
   $('#othersField').hidden = n < 2;
-  const unit = selected ? REL.prices[priceKey(selected)] : null;
+  const unit = selected ? netUnit(REL.prices[priceKey(selected)]) : null;
   const oneDay = selected && selected.id==='oneday';
   const label = selected ? selected.name + (oneDay ? ' · ' + dayVal().split(' · ')[0] : '') : '—';
   const dates = !selected ? '17–18 Nov 2026' : oneDay ? (dayVal().startsWith('Day 2') ? '18 Nov 2026' : '17 Nov 2026') : selected.id==='conduit' ? '17 Nov 2026 · Evening' : '17–18 Nov 2026';
@@ -864,9 +870,37 @@ const form = $('#bookingForm'), status = $('#formStatus'), btn = $('#submitBtn')
 const paypalStage = $('#paypalStage'), paypalTotal = $('#paypalTotal'), invoiceBtn = $('#invoiceBtn');
 let paypalRendered = false;
 
+/* promo code: checked by the payment server, which also sets the amount PayPal charges */
+const promoInput = $('#f-promo'), promoStatus = $('#promoStatus');
+function orderPayload(){
+  return {product:selected.id,seats:Number(seatsInput.value),day:selected.id==='oneday'?(dayVal().startsWith('Day 2')?'day2':'day1'):'',promo:promo?promo.code:''};
+}
+function refreshPayPalTotal(){
+  if(!paypalStage.hidden) paypalTotal.textContent=CONFIG.currency+' '+Number(currentAmount()).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+async function applyPromo(){
+  const code = promoInput.value.trim().toUpperCase();
+  promo = null; update();
+  promoStatus.className='status';
+  if(!code){ promoStatus.textContent=''; refreshPayPalTotal(); return; }
+  if(!selected){ promoStatus.className='status err'; promoStatus.textContent='Please choose a pass first.'; return; }
+  promoStatus.textContent='Checking code…';
+  try{
+    const r=await fetch(CONFIG.paymentApi+'/check-promo',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...orderPayload(),promo:code})});
+    const out=await r.json();
+    if(!r.ok||!out.promo) throw new Error(out.error||'This promo code is not valid.');
+    promo={code:out.promo,percent:out.percent};
+    promoStatus.textContent='Code applied: '+out.percent+'% off.';
+  }catch(err){ promoStatus.className='status err'; promoStatus.textContent=err.message; }
+  update(); refreshPayPalTotal();
+}
+$('#promoBtn').addEventListener('click',applyPromo);
+promoInput.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); applyPromo(); } });
+promoInput.addEventListener('input',()=>{ if(promo){ promo=null; promoStatus.textContent=''; update(); refreshPayPalTotal(); } });
+
 function currentAmount(){
   const n = Math.max(1, Math.min(20, parseInt(seatsInput.value)||1));
-  const unit = selected ? REL.prices[priceKey(selected)] : 0;
+  const unit = selected ? netUnit(REL.prices[priceKey(selected)]) : 0;
   return Number(unit*n).toFixed(2);
 }
 function prepareInvitationLetter(){
@@ -895,7 +929,9 @@ async function submitRegistration(payment){
   data.set('paypal_order_id', payment.orderID || '');
   data.set('paypal_payer_id', payment.payerID || '');
   data.set('paypal_capture_id', payment.captureID || '');
-  data.set('amount_paid', CONFIG.currency+' '+currentAmount());
+  data.set('amount_paid', CONFIG.currency+' '+(payment.amount||currentAmount()));
+  data.set('promo_code', payment.promoCode||(promo?promo.code:''));
+  data.set('discount', promo?promo.percent+'%':'');
   const res = await fetch(CONFIG.formspree,{method:'POST',body:data,headers:{Accept:'application/json'}});
   if(!res.ok) throw new Error('Registration email could not be recorded.');
 }
@@ -917,6 +953,7 @@ function loadPayPal(){
 }
 async function showPayPal(){
   if(!validateRegistration()) return;
+  if(promoInput.value.trim() && !promo){ await applyPromo(); if(!promo) return; }
   paypalTotal.textContent=CONFIG.currency+' '+Number(currentAmount()).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
   paypalStage.hidden=false; btn.hidden=true; invoiceBtn.hidden=true;
   status.textContent='Loading secure PayPal checkout…';
@@ -928,7 +965,8 @@ async function showPayPal(){
     paypal.Buttons({
       style:{layout:'vertical',shape:'rect',label:'paypal'},
       createOrder:async()=>{
-        const payload={product:selected.id,seats:Number(seatsInput.value),day:selected.id==='oneday'?(dayVal().startsWith('Day 2')?'day2':'day1'):''};
+        if(promoInput.value.trim() && !promo) throw new Error('Promo code not applied.');
+        const payload=orderPayload();
         const r=await fetch(CONFIG.paymentApi+'/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
         const out=await r.json();
         if(!r.ok||!out.id) throw new Error(out.error||'Could not create PayPal order.');
@@ -939,7 +977,7 @@ async function showPayPal(){
         const r=await fetch(CONFIG.paymentApi+'/capture-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({orderID:data.orderID})});
         const payment=await r.json();
         if(!r.ok||payment.status!=='COMPLETED') throw new Error(payment.error||'Payment was not completed.');
-        await submitRegistration({status:payment.status,orderID:payment.orderID,payerID:payment.payerID||'',captureID:payment.captureID||''});
+        await submitRegistration(payment);
         showPaid();
       },
       onCancel:()=>{status.className='status err';status.textContent='Payment cancelled. Nothing was charged.';},
@@ -955,9 +993,9 @@ invoiceBtn.addEventListener('click',async()=>{
   if(!validateRegistration()) return;
   status.textContent='Sending invoice request…'; invoiceBtn.disabled=true;
   try{
-    const data=new FormData(form); data.set('_replyto',form.email.value.trim()); data.set('payment_status','INVOICE REQUESTED'); data.set('payment_provider','Corporate invoice');
+    const data=new FormData(form); data.set('_replyto',form.email.value.trim()); data.set('payment_status','INVOICE REQUESTED'); data.set('payment_provider','Corporate invoice'); data.set('promo_code',promo?promo.code:promoInput.value.trim().toUpperCase()); data.set('discount',promo?promo.percent+'%':'');
     const res=await fetch(CONFIG.formspree,{method:'POST',body:data,headers:{Accept:'application/json'}}); if(!res.ok) throw new Error('Could not send invoice request.');
-    $('#regWrap').classList.add('sent'); $('.sent-stamp').textContent='REQUESTED'; $('#done .k').textContent='Invoice requested'; $('#done h3').textContent='Request received.'; $('#done p').first().textContent='We will send the corporate invoice and payment instructions by email.';
+    $('#regWrap').classList.add('sent'); $('.sent-stamp').textContent='REQUESTED'; $('#done .k').textContent='Invoice requested'; $('#done h3').textContent='Request received.'; $('#done p').textContent='We will send the corporate invoice and payment instructions by email.';
   }catch(err){status.className='status err';status.textContent=err.message;} finally{invoiceBtn.disabled=false;}
 });
 
