@@ -196,6 +196,12 @@ tbody th{font-weight:500;color:#46505b}
 .live-grid b{font-size:14px;font-weight:600}
 .live-total{display:flex;justify-content:space-between;align-items:baseline;padding:18px 26px;border-top:1px solid rgba(255,255,255,.14)}
 .live-total strong{font:500 42px "EB Garamond",serif}
+.live-break{padding:16px 26px 0;border-top:1px solid rgba(255,255,255,.14)}
+.live-break div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.live-break .k{color:#9fa9b4}
+.live-break b{font-size:14px;font-weight:600;white-space:nowrap}
+.live-break .disc b{color:var(--cyan)}
+.live-break:not([hidden])+.live-total{border-top:0;padding-top:8px}
 .live .barcode{margin:0 26px 22px;color:#f6f2e9;opacity:.5}
 .preview p{font-size:12px;line-height:1.6;color:var(--grey);margin:14px 0 0}
 .sent-stamp{position:absolute;right:22px;top:120px;transform:rotate(-10deg);font:900 15px Archivo;letter-spacing:.2em;color:var(--cyan);border:3px solid var(--cyan);padding:8px 12px;border-radius:4px;display:none}
@@ -628,7 +634,11 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
             <div><span class="k">Dates</span><b id="lvDates">17–18 Nov 2026</b></div>
             <div><span class="k">Venue</span><b>Trademark Hotel</b></div>
           </div>
-          <div class="live-total"><span class="k" style="color:#9fa9b4">Estimated total</span><strong id="lvTotal">—</strong></div>
+          <div class="live-break" id="lvBreak" hidden>
+            <div><span class="k">Standard price</span><b id="lvList">—</b></div>
+            <div class="disc"><span class="k" id="lvDiscLabel">Discount</span><b id="lvDisc">—</b></div>
+          </div>
+          <div class="live-total"><span class="k" style="color:#9fa9b4" id="lvTotalLabel">Estimated total</span><strong id="lvTotal">—</strong></div>
           <div class="barcode" aria-hidden="true"></div>
         </div>
         <p>Payments are processed in USD. Prices exclude travel and accommodation.</p>
@@ -829,17 +839,26 @@ function update(){
   const n = Math.max(1, Math.min(20, parseInt(seatsInput.value)||1));
   seatsInput.value = n;
   $('#othersField').hidden = n < 2;
-  const unit = selected ? netUnit(REL.prices[priceKey(selected)]) : null;
+  const listUnit = selected ? REL.prices[priceKey(selected)] : null;
+  const unit = selected ? netUnit(listUnit) : null;
   const oneDay = selected && selected.id==='oneday';
   const label = selected ? selected.name + (oneDay ? ' · ' + dayVal().split(' · ')[0] : '') : '—';
   const dates = !selected ? '17–18 Nov 2026' : oneDay ? (dayVal().startsWith('Day 2') ? '18 Nov 2026' : '17 Nov 2026') : selected.id==='conduit' ? '17 Nov 2026 · Evening' : '17–18 Nov 2026';
   $('#passLabel').textContent = label;
   $('#lvPass').textContent = label;
   $('#lvRelease').textContent = REL.name;
-  $('#lvPrice').textContent = money(unit);
+  $('#lvPrice').textContent = money(listUnit);
   $('#lvSeats').textContent = n;
   $('#lvDates').textContent = dates;
   $('#lvTotal').textContent = selected ? money(unit*n) : '—';
+  const showBreak = !!(selected && promo);
+  $('#lvBreak').hidden = !showBreak;
+  $('#lvTotalLabel').textContent = showBreak ? 'Total to pay' : 'Estimated total';
+  if (showBreak) {
+    $('#lvList').textContent = money(listUnit*n);
+    $('#lvDiscLabel').textContent = 'Discount ' + promo.percent + '% · ' + promo.code;
+    $('#lvDisc').textContent = '− ' + money(Math.round((listUnit-unit)*n*100)/100);
+  }
   $('#passField').value = label;
   $('#releaseField').value = REL.name;
   $('#priceField').value = money(unit);
