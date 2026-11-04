@@ -227,6 +227,13 @@ tbody th{font-weight:500;color:#46505b}
 .paypal-head strong{font:500 30px/1 "EB Garamond",serif}
 .paypal-head span{font:800 10px Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
 #paypal-button-container{min-height:46px}
+   /* ---------- M-Pesa (manual) ---------- */
+.mpesa-steps{margin:16px 0 0;padding-left:20px;font-size:14px;line-height:1.75;color:#3d4650}
+.mpesa-steps b{color:var(--ink)}
+.mpesa-till{font:800 17px Archivo,sans-serif;letter-spacing:.08em}
+.mpesa-break{font-size:13px;color:var(--grey);line-height:1.6}
+#mpesaBtn,#linkBtn{margin-left:22px}
+@media(max-width:650px){#mpesaBtn,#linkBtn{margin-left:0;display:block}}
 /* ---------- venue ---------- */
 .venue{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
 .venue-card{--stub:120px}
@@ -587,6 +594,8 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
               <button class="submit" type="submit" id="submitBtn">Continue to secure payment →</button>
               <div class="pay-note"><strong>Secure online payment</strong> · Pay in USD by PayPal or eligible debit / credit card.<br>Your payment is processed securely by PayPal.</div>
               <button class="invoice-alt" type="button" id="invoiceBtn">Request a corporate invoice instead</button>
+               <button class="invoice-alt" type="button" id="mpesaBtn">Pay by M-Pesa (Kenya) instead</button>
+              <button class="invoice-alt" type="button" id="linkBtn">Request a hotel payment link</button>
               <div class="status" id="formStatus" role="status" aria-live="polite"></div>
               <div class="paypal-stage" id="paypalStage" hidden>
                 <div class="paypal-head"><strong id="paypalTotal">USD 475</strong><span>Secure checkout · PayPal</span></div>
@@ -608,6 +617,22 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
   <div class="card-secure"><span class="card-lock" aria-hidden="true"></span><span>Secure card processing is provided by PayPal. Available card options may vary by country, issuer and eligibility.</span></div>
 </div>
 <div id="paypal-button-container"></div>
+              </div>
+                             <div class="paypal-stage" id="mpesaStage" hidden>
+                <div class="paypal-head"><strong id="mpesaTotal">KES</strong><span>M-Pesa · Buy Goods</span></div>
+                <div class="mpesa-break" id="mpesaBreak"></div>
+                <ol class="mpesa-steps">
+                  <li>Open <b>M-Pesa</b>, choose <b>Lipa na M-Pesa</b>, then <b>Buy Goods and Services</b>.</li>
+                  <li>Enter till number <b class="mpesa-till" id="mpesaTill">553252</b> (Trademark Hotel).</li>
+                  <li>Enter the exact amount, <b id="mpesaAmt">KES</b>, then your PIN.</li>
+                  <li>Copy the 10-character transaction code from your confirmation SMS and paste it below.</li>
+                </ol>
+                <div class="f" style="margin-top:20px"><label for="f-mpesa">M-Pesa transaction code <i>*</i></label><input id="f-mpesa" maxlength="12" autocomplete="off" autocapitalize="characters" spellcheck="false" style="text-transform:uppercase" placeholder="e.g. SKL4ABC123"></div>
+                <button class="submit" type="button" id="mpesaConfirm">Confirm my M-Pesa booking →</button>
+                <p class="pay-note" id="mpesaNote">Your pass is confirmed once Trademark Hotel matches your code against its M-Pesa statement. Your confirmation follows by email.</p>
+                <p class="pay-note"><strong>Can't pay by M-Pesa?</strong> Trademark Hotel can email you a direct payment link instead.</p>
+                <button class="invoice-alt" type="button" id="mpesaLinkBtn">Request a payment link instead</button><br>
+                <button class="invoice-alt" type="button" id="mpesaBack">← Back to other payment options</button>
               </div>
             </div>
           </div>
@@ -1064,6 +1089,130 @@ invoiceBtn.addEventListener('click',async()=>{
   }catch(err){status.className='status err';status.textContent=err.message;} finally{invoiceBtn.disabled=false;}
 });
 
+   /* ---------- M-Pesa (manual, Trademark Hotel till) ---------- */
+const mpesaBtn=$('#mpesaBtn'), mpesaStage=$('#mpesaStage'), mpesaInput=$('#f-mpesa'), mpesaConfirm=$('#mpesaConfirm');
+const kes = n => 'KES ' + Number(n).toLocaleString('en-US');
+let mpesaQuoteData = null;
+const linkBtn=$('#linkBtn'), mpesaLinkBtn=$('#mpesaLinkBtn');
+function hideOtherOptions(h){ btn.hidden=h; invoiceBtn.hidden=h; mpesaBtn.hidden=h; linkBtn.hidden=h; }
+
+async function showMpesa(){
+  if(!validateRegistration()) return;
+  if(promoInput.value.trim() && !promo){ await applyPromo(); if(!promo) return; }
+  status.className='status'; status.textContent='Calculating your M-Pesa amount…';
+  try{
+    const r=await fetch(CONFIG.paymentApi+'/mpesa-quote',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(orderPayload())});
+    const q=await r.json();
+    if(!r.ok||!q.ok) throw new Error(q.error||'Could not calculate the M-Pesa amount.');
+    if(q.overLimit) throw new Error('This total is above the M-Pesa limit of '+kes(q.maxKes)+' per payment. Please use "Request a hotel payment link" instead, or request a corporate invoice.');
+    mpesaQuoteData=q;
+    $('#mpesaTotal').textContent=kes(q.kesTotal);
+    $('#mpesaAmt').textContent=kes(q.kesTotal);
+    $('#mpesaTill').textContent=q.till;
+    $('#mpesaBreak').textContent='USD '+q.usd+' at KES '+q.kesRate+' = '+kes(q.kesBase)+', plus '+q.vatPercent+'% VAT '+kes(q.kesVat);
+    status.textContent='';
+    paypalStage.hidden=true; mpesaStage.hidden=false; hideOtherOptions(true);
+    mpesaStage.scrollIntoView({behavior:'smooth',block:'center'});
+  }catch(err){ status.className='status err'; status.textContent=err.message; }
+}
+
+async function confirmMpesa(){
+  const code=mpesaInput.value.trim().toUpperCase().replace(/\s+/g,'');
+  if(!/^[A-Z0-9]{10}$/.test(code)){
+    status.className='status err';
+    status.textContent='Please enter the 10-character M-Pesa code from your confirmation SMS.';
+    mpesaInput.classList.add('bad'); mpesaInput.focus(); return;
+  }
+  mpesaInput.classList.remove('bad');
+  if(!validateRegistration()) return;
+  mpesaConfirm.disabled=true; status.className='status'; status.textContent='Recording your M-Pesa booking…';
+  try{
+    const body={...orderPayload(),
+      mpesaCode:code,
+      expectedKes:mpesaQuoteData?mpesaQuoteData.kesTotal:'',
+      name:(form.first_name.value+' '+form.last_name.value).trim(),
+      email:form.email.value.trim(),
+      organisation:form.organisation.value.trim(),
+      phone:form.phone.value.trim()};
+    const r=await fetch(CONFIG.paymentApi+'/mpesa-booking',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const out=await r.json();
+    if(!r.ok||!out.ok) throw new Error(out.error||'Could not record the M-Pesa booking.');
+
+    /* copy to Formspree so the team inbox gets the full registration */
+    try{
+      const data=new FormData(form);
+      data.set('_replyto',form.email.value.trim());
+      data.set('_started',new Date(PAGE_OPENED).toISOString());
+      data.set('_subject',$('#subjectField').value.replace('registration','M-Pesa registration'));
+      data.set('payment_status','M-PESA PENDING VERIFICATION');
+      data.set('payment_provider','M-Pesa · Trademark till '+out.till);
+      data.set('mpesa_code',out.code);
+      data.set('amount_paid',kes(out.kesTotal)+' (incl. VAT '+kes(out.kesVat)+') · USD '+out.usd);
+      data.set('promo_code',promo?promo.code:'');
+      data.set('discount',promo?promo.percent+'%':'');
+      data.set('hotel_notified',out.emailSent?'Yes, automatic email sent':'NO: email the hotel manually');
+      await fetch(CONFIG.formspree,{method:'POST',body:data,headers:{Accept:'application/json'}});
+    }catch(e){ console.error('Formspree copy failed',e); }
+
+    $('#regWrap').classList.add('sent');
+    $('.sent-stamp').textContent='PENDING';
+    $('#done .k').textContent='M-Pesa payment received';
+    $('#done h3').textContent='Almost there.';
+    $('#done p').textContent='We have your M-Pesa code '+out.code+' for '+kes(out.kesTotal)+'. Trademark Hotel will verify the payment, and your confirmation will follow by email.';
+    $('#done').focus();
+    $('#register').scrollIntoView({behavior:'smooth'});
+  }catch(err){ status.className='status err'; status.textContent=err.message; }
+  finally{ mpesaConfirm.disabled=false; }
+}
+
+/* ---------- Hotel payment link request ---------- */
+async function requestLink(){
+  if(!validateRegistration()) return;
+  if(promoInput.value.trim() && !promo){ await applyPromo(); if(!promo) return; }
+  linkBtn.disabled=true; mpesaLinkBtn.disabled=true;
+  status.className='status'; status.textContent='Sending your payment link request…';
+  try{
+    const body={...orderPayload(),
+      name:(form.first_name.value+' '+form.last_name.value).trim(),
+      email:form.email.value.trim(),
+      organisation:form.organisation.value.trim(),
+      phone:form.phone.value.trim()};
+    const r=await fetch(CONFIG.paymentApi+'/hotel-link-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const out=await r.json();
+    if(!r.ok||!out.ok) throw new Error(out.error||'Could not send the payment link request.');
+
+    try{
+      const data=new FormData(form);
+      data.set('_replyto',form.email.value.trim());
+      data.set('_started',new Date(PAGE_OPENED).toISOString());
+      data.set('_subject',$('#subjectField').value.replace('registration','payment link registration'));
+      data.set('payment_status','HOTEL PAYMENT LINK REQUESTED');
+      data.set('payment_provider','Trademark Hotel payment link');
+      data.set('amount_paid','Quoted: USD '+out.usdWithVat+' incl. VAT (ticket USD '+out.usd+'), or '+kes(out.kesTotal));
+      data.set('promo_code',promo?promo.code:'');
+      data.set('discount',promo?promo.percent+'%':'');
+      data.set('hotel_notified',out.emailSent?'Yes, automatic email sent to Mehal':'NO: email Mehal manually');
+      await fetch(CONFIG.formspree,{method:'POST',body:data,headers:{Accept:'application/json'}});
+    }catch(e){ console.error('Formspree copy failed',e); }
+
+    $('#regWrap').classList.add('sent');
+    $('.sent-stamp').textContent='REQUESTED';
+    $('#done .k').textContent='Payment link requested';
+    $('#done h3').textContent='Request received.';
+    $('#done p').textContent='Trademark Hotel will email you a secure payment link from mehal.shah@tribe-collection.com. Your pass is confirmed once the payment is received.';
+    $('#done').focus();
+    $('#register').scrollIntoView({behavior:'smooth'});
+  }catch(err){ status.className='status err'; status.textContent=err.message; }
+  finally{ linkBtn.disabled=false; mpesaLinkBtn.disabled=false; }
+}
+
+linkBtn.addEventListener('click',requestLink);
+mpesaLinkBtn.addEventListener('click',requestLink);
+mpesaBtn.addEventListener('click',showMpesa);
+mpesaConfirm.addEventListener('click',confirmMpesa);
+mpesaInput.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); confirmMpesa(); } });
+$('#mpesaBack').addEventListener('click',()=>{ mpesaStage.hidden=true; hideOtherOptions(false); status.className='status'; status.textContent=''; });
+   
 /* mobile: menu */
 const menuBtn=$('.menu-btn'), navEl=$('#primaryNav');
 menuBtn.addEventListener('click',()=>{const o=navEl.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
