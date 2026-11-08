@@ -244,6 +244,25 @@ tbody th{font-weight:500;color:#46505b}
 .venue-card dd{margin:0}
 .venue-card .stub{align-items:center;justify-content:center;writing-mode:vertical-rl;transform:rotate(180deg);font:900 26px Archivo;letter-spacing:.2em;color:var(--rust)}
 .venue-map svg{width:100%;height:auto;display:block}
+/* venue & accommodation */
+.done-stay{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.done-stay p{color:var(--grey);line-height:1.7;margin:10px 0 0;max-width:560px}
+.done-stay .submit{margin-right:22px}
+@media(max-width:650px){.done-stay .submit{display:flex;justify-content:center;width:100%;margin-right:0}}
+.stay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start;margin-bottom:clamp(56px,7vw,100px)}
+.stay-logo{display:inline-block;background:#fff;border:1px solid var(--line);padding:18px 24px;margin-bottom:30px}
+.stay-logo img{display:block;width:clamp(150px,15vw,200px);height:auto}
+.stay h3{font:500 clamp(32px,3.2vw,46px)/.95 "EB Garamond",serif;letter-spacing:-.03em;margin:0 0 12px}
+.stay p{color:var(--grey);line-height:1.7;font-size:16px;margin:0 0 16px;max-width:560px}
+.stay .stay-role{font:800 11px Archivo;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin:0 0 26px}
+.stay-book{border-top:2px solid var(--ink);padding-top:28px}
+.stay-book h3{font-size:clamp(28px,2.6vw,38px);margin-bottom:18px}
+.stay-book p a{color:var(--ink);border-bottom:1px solid var(--gold);overflow-wrap:anywhere}
+.stay-book ol{margin:4px 0 22px;padding-left:22px;font-size:16px;line-height:1.9}
+.stay-book li::marker{font:800 12px Archivo;color:var(--gold)}
+.stay-book .stay-note{font-size:13px;margin:0}
+@media(max-width:900px){.stay{grid-template-columns:1fr}}
+@media(max-width:650px){.stay-book .submit{display:flex;justify-content:center;width:100%;padding:20px}}
 .link{display:inline-block;margin-top:24px;font:800 11px Archivo;letter-spacing:.14em;text-transform:uppercase;border-bottom:2px solid var(--gold);padding-bottom:4px}
 
 footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
@@ -644,6 +663,12 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
           <h3>You’re in.</h3>
           <p>Your Nairobi registration has been recorded. Keep your PayPal confirmation for your records; your African Circuit confirmation will follow by email.</p>
           <p style="display:flex;gap:22px;flex-wrap:wrap"><a class="link" id="liShare" href="#" target="_blank" rel="noopener">Share that you're attending on LinkedIn ↗</a><a class="link" href="index.html#programme">View the programme</a></p>
+          <div class="done-stay">
+            <span class="k">Accommodation</span>
+            <p>Staying on-site? Request your room at Trademark Hotel, the Official Host Hotel &amp; Venue Partner, quoting the group code <strong>#TheAfricanCircuit @ Trademark Hotel</strong>.</p>
+            <a class="submit" href="mailto:groups@tribe-collection.com?cc=meetings%40tribe-collection.com&amp;subject=The%20African%20Circuit%20Nairobi%202026%20%7C%20Accommodation%20Reservation&amp;body=Dear%20Trademark%20Hotel%20Reservations%20Team%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20accommodation%20in%20connection%20with%20The%20African%20Circuit%3A%20Nairobi%20Edition%2C%2017%E2%80%9318%20November%202026.%0D%0A%0D%0AGroup%20code%3A%20%23TheAfricanCircuit%20%40%20Trademark%20Hotel%0D%0A%0D%0AGuest%20name%28s%29%3A%0D%0A%0D%0ANumber%20of%20rooms%3A%0D%0A%0D%0ACheck-in%20date%3A%0D%0A%0D%0ACheck-out%20date%3A%0D%0A%0D%0AKindly%20confirm%20availability%20and%20the%20applicable%20room%20rates.%0D%0A%0D%0AThank%20you.">Request Accommodation →</a>
+            <a class="link" href="#venue">Venue &amp; accommodation details</a>
+          </div>
         </div>
       </div>
 
@@ -677,13 +702,40 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
   </div>
 </section>
 
-<!-- ============ VENUE ============ -->
+<!-- ============ VENUE & ACCOMMODATION ============ -->
 <section class="section" id="venue">
-  <div class="wrap venue">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="k">Nairobi · 17–18 Nov 2026</span><h2>Venue &amp; Accommodation</h2></div>
+    </div>
+    <div class="stay">
+      <div class="stay-host">
+        <div class="stay-logo"><img src="images/logo-trademark_hotel.webp" alt="Trademark Hotel, Official Host Hotel &amp; Venue Partner" width="300" height="159" loading="lazy" decoding="async"></div>
+        <h3>Trademark Hotel, Nairobi</h3>
+        <p class="stay-role">Official Host Hotel &amp; Venue Partner</p>
+        <p>The African Circuit: Nairobi Edition will take place on 17–18 November 2026 at Trademark Hotel, located in Village Market, Gigiri, Nairobi.</p>
+        <p>As the conference's Official Host Hotel &amp; Venue Partner, Trademark Hotel will welcome delegates, speakers and institutional partners for two days of high-level dialogue, strategic networking and cross-African collaboration.</p>
+        <p>International and regional delegates wishing to stay on-site may arrange accommodation directly with the hotel.</p>
+        <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Trademark%20Hotel%20Village%20Market%20Gigiri%20Nairobi" target="_blank" rel="noopener noreferrer">View Location on Google Maps ↗</a>
+      </div>
+      <div class="stay-book">
+        <h3>Accommodation Reservations</h3>
+        <p>To request a room, please email <a href="mailto:groups@tribe-collection.com">groups@tribe-collection.com</a>, copying <a href="mailto:meetings@tribe-collection.com">meetings@tribe-collection.com</a>, and provide:</p>
+        <ol>
+          <li><strong>Group code:</strong> #TheAfricanCircuit @ Trademark Hotel</li>
+          <li>Guest name(s)</li>
+          <li>Number of rooms required</li>
+          <li>Check-in and check-out dates</li>
+        </ol>
+        <p class="stay-note"><em>Room availability and reservations are subject to confirmation by Trademark Hotel.</em></p>
+        <a class="submit" href="mailto:groups@tribe-collection.com?cc=meetings%40tribe-collection.com&amp;subject=The%20African%20Circuit%20Nairobi%202026%20%7C%20Accommodation%20Reservation&amp;body=Dear%20Trademark%20Hotel%20Reservations%20Team%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20accommodation%20in%20connection%20with%20The%20African%20Circuit%3A%20Nairobi%20Edition%2C%2017%E2%80%9318%20November%202026.%0D%0A%0D%0AGroup%20code%3A%20%23TheAfricanCircuit%20%40%20Trademark%20Hotel%0D%0A%0D%0AGuest%20name%28s%29%3A%0D%0A%0D%0ANumber%20of%20rooms%3A%0D%0A%0D%0ACheck-in%20date%3A%0D%0A%0D%0ACheck-out%20date%3A%0D%0A%0D%0AKindly%20confirm%20availability%20and%20the%20applicable%20room%20rates.%0D%0A%0D%0AThank%20you.">Request Accommodation →</a>
+      </div>
+    </div>
+    <div class="venue">
     <div class="ticket venue-card">
       <div class="body">
-        <span class="k">Venue</span>
-        <h3>Trademark Hotel, Nairobi.</h3>
+        <span class="k">Practical details</span>
+        <h3>On the day.</h3>
         <dl>
           <dt>Address</dt><dd>Village Market, Limuru Road, Nairobi, Kenya</dd>
           <dt>District</dt><dd>Gigiri, Nairobi's diplomatic quarter, close to the UN Office at Nairobi</dd>
@@ -693,7 +745,6 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
         <div style="display:flex;gap:22px;flex-wrap:wrap;align-items:center">
           <a class="link" href="https://www.hero-kenya.com/" target="_blank" rel="noopener">Discover HERO ↗</a>
           <a class="link" href="https://www.trademark-hotel.com/" target="_blank" rel="noopener">Explore Trademark Hotel ↗</a>
-          <a class="link" href="https://www.google.com/maps/search/?api=1&query=Trademark+Hotel+Village+Market+Nairobi" target="_blank" rel="noopener">Open in Maps ↗</a>
         </div>
       </div>
       <div class="stub">GIGIRI</div>
@@ -712,6 +763,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
         <text x="390" y="252" class="raw-hand" font-size="20" fill="#07131d" transform="rotate(4 390 252)">Village Market</text>
         <path d="M40 40l20-18 20 18 20-18 20 18" fill="none" stroke="#9e4d38" stroke-width="4" stroke-linecap="round"/>
       </svg>
+    </div>
     </div>
   </div>
 </section>
