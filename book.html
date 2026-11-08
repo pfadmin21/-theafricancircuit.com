@@ -486,6 +486,7 @@ footer{padding:44px 0;color:#737b84;border-top:1px solid var(--line)}
           <input type="hidden" name="unit_price" id="priceField">
           <input type="hidden" name="estimated_total" id="totalField">
           <input type="hidden" name="invitation_letter_link" id="letterLink">
+          <input type="hidden" name="referral" id="refField">
 
           <div class="step">
             <div class="step-n">01</div>
@@ -1007,7 +1008,7 @@ function validateRegistration(){
   if (!showFieldErrors()) return false;
   if ($('#f-gotcha').value) return false;
   try { prepareInvitationLetter(); } catch(err){ status.className='status err'; status.textContent=err.message; return false; }
-  $('#subjectField').value = `Nairobi 2026 registration — ${form.first_name.value} ${form.last_name.value} (${form.organisation.value}) · ${$('#passField').value} × ${seatsInput.value}`;
+  $('#subjectField').value = `Nairobi 2026 registration — ${form.first_name.value} ${form.last_name.value} (${form.organisation.value}) · ${$('#passField').value} × ${seatsInput.value}${$('#refField').value?' · REF '+$('#refField').value:''}`;
   return true;
 }
 async function submitRegistration(payment){
@@ -1231,6 +1232,19 @@ $('#mbBtn').addEventListener('click',e=>{const inReg=$('#register').getBoundingC
 
 document.getElementById('liShare').href='https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent('https://theafricancircuit.com/book.html');
 document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script>
+/* Affiliate referral: book.html?ref=CODE is kept for 30 days and sent with every registration (PayPal, invoice, M-Pesa, payment link) */
+(function(){
+  var KEY='tac_ref', field=document.getElementById('refField'); if(!field) return;
+  var raw=new URLSearchParams(location.search).get('ref')||'';
+  var ref=raw.replace(/[^A-Za-z0-9_-]/g,'').slice(0,40).toUpperCase();
+  try{
+    if(ref){ localStorage.setItem(KEY,JSON.stringify({ref:ref,t:Date.now()})); }
+    else{ var o=JSON.parse(localStorage.getItem(KEY)||'null'); if(o&&Date.now()-o.t<30*864e5) ref=o.ref; }
+  }catch(e){}
+  field.value=ref;
+})();
 </script>
 </body>
 </html>
