@@ -974,7 +974,7 @@ let paypalRendered = false;
 /* promo code: checked by the payment server, which also sets the amount PayPal charges */
 const promoInput = $('#f-promo'), promoStatus = $('#promoStatus');
 function orderPayload(){
-  return {product:selected.id,seats:Number(seatsInput.value),day:selected.id==='oneday'?(dayVal().startsWith('Day 2')?'day2':'day1'):'',promo:promo?promo.code:''};
+  return {product:selected.id,seats:Number(seatsInput.value),day:selected.id==='oneday'?(dayVal().startsWith('Day 2')?'day2':'day1'):'',promo:promo?promo.code:'',ref:($('#refField')||{}).value||''};
 }
 function refreshPayPalTotal(){
   if(!paypalStage.hidden) paypalTotal.textContent=CONFIG.currency+' '+Number(currentAmount()).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
