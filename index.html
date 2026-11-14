@@ -1331,6 +1331,17 @@ header nav .attend:hover svg{transform:translateX(3px)}
 .hero .hero-next p {margin: 6px 0 14px}
 .hero-next .cta {display: inline-flex}
 </style>
+<style>
+#nairobi-speaker-grid > .speaker-card:nth-child(n+5):not(.show) {display:none}
+.compact-lineup summary {cursor:pointer;margin:16px 0;font-weight:600}
+.compact-lineup .speaker-card {display:block}
+.hero-venue {display:inline-block;margin:10px 0 10px 12px;color:inherit}
+#partner-logos:not(.expanded) .logo-cell:nth-child(n+13) {display:none}
+#partner-logos .logo-cell {height:94px}
+@media(max-width:1050px) {
+  #partner-logos:not(.expanded) .logo-cell:nth-child(n+7) {display:none}
+}
+</style>
 </head>
 <body id="top">
 
@@ -1499,6 +1510,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
       <span class="label">Next edition · Nairobi</span>
       <p>17–18 November 2026 · Trademark Hotel, Gigiri</p>
       <a class="cta" href="book.html">Request a seat →</a>
+      <a class="hero-venue" href="book.html#venue">Venue &amp; accommodation →</a>
     </div>
   </div>
 </section>
@@ -1557,7 +1569,8 @@ The page deliberately shows elegant placeholders until those files are uploaded.
       <div><span class="label">Mauritius 2026</span><h2>The people<br>in the room.</h2></div>
       <p>Institutional voices shaping the conversation across capital, policy and investment.</p>
     </div>
-    <div class="speaker-grid">
+    <details class="compact-lineup"><summary>View all 30 Mauritius speakers</summary>
+<div class="speaker-grid">
       
       <article class="speaker-card" data-person="mupotola">
         <button class="speaker-open" type="button" aria-label="Open biography for Moono Mupotola">
@@ -2010,7 +2023,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
         </button>
       </article>
     </div>
-    <button class="more" id="morePeople" type="button">View all 30 speakers</button>
+    </details>
   </div>
 </section>
 
@@ -2019,7 +2032,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
     <span class="label" style="color:var(--red)">Institutional ecosystem</span>
     <h2>Partners &amp; Collaborators</h2>
     <p class="lead">Across the Mauritius and Nairobi editions.</p>
-    <div class="logos">
+    <div class="logos" id="partner-logos">
       <div class="logo-cell"><img onerror="this.closest('.logo-cell').hidden = true" src="images/adili-group.webp" alt="Adili Group" loading="lazy" decoding="async"></div>
       <div class="logo-cell"><img onerror="this.closest('.logo-cell').hidden = true" src="images/eurocham-kenya.webp" alt="EuroCham Kenya" loading="lazy" decoding="async"></div>
       <div class="logo-cell"><img onerror="this.closest('.logo-cell').hidden = true" src="images/hotelonline.webp" alt="HotelOnline" loading="lazy" decoding="async"></div>
@@ -2134,6 +2147,7 @@ The page deliberately shows elegant placeholders until those files are uploaded.
         <span class="logo-placeholder">Bolt Global<small>images/logo-bolt_global.png</small></span>
       </div>
     </div>
+    <button class="more" id="morePartners" type="button" aria-controls="partner-logos" aria-expanded="false">View all partners &amp; collaborators</button>
   </div>
 </section>
 
@@ -2394,11 +2408,7 @@ moreNairobi.addEventListener('click', () => {
   moreNairobi.textContent = expanded ? 'Show fewer Nairobi speakers' : 'View full Nairobi lineup';
 });
 
-const more=document.getElementById('morePeople');
-more.addEventListener('click',()=>{
-  document.querySelectorAll('#people > .wrap > .speaker-grid > .speaker-card').forEach(x=>x.classList.add('show'));
-  more.remove();
-});
+
 
 function fitArt(){const m=matchMedia('(max-width:900px)').matches;document.querySelectorAll('.fit-art').forEach(v=>v.setAttribute('preserveAspectRatio',m?'xMaxYMid slice':'xMaxYMid meet'))}
 fitArt();addEventListener('resize',fitArt);
@@ -2463,5 +2473,13 @@ f.addEventListener('submit',async e=>{e.preventDefault();st.className='pt-status
   finally{btn.disabled=false;btn.textContent='Request the brief';}});})();
 
 document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+<script>
+const partnerToggle = document.getElementById('morePartners');
+partnerToggle.addEventListener('click', () => {
+  const expanded = document.getElementById('partner-logos').classList.toggle('expanded');
+  partnerToggle.setAttribute('aria-expanded', String(expanded));
+  partnerToggle.textContent = expanded ? 'Show fewer partners' : 'View all partners & collaborators';
+});
 </script>
 </body></html>
